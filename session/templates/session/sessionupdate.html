@@ -1,0 +1,49 @@
+{% extends "base_templates/base1.html" %}
+{% load static %}
+
+{% block head_block %}
+<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
+<title>
+    ویرایش سانس | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>ویرایش سانس</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
+
+    <form id='days_form' method="POST">
+      {{form.Hfield}}
+      {% csrf_token %}
+
+      <div class="input-field col s12">
+        {{form.price}}
+        <label class="fMarkazi" for="username">قیمت بر حسب تومان</label>
+      </div>
+      <div class="input-field col s12">
+        {{form.discount_percentage}}
+        <label class="fMarkazi" for="username">تخفیف بر حسب درصد</label>
+      </div>
+      <div class="input-field col s12 m12 l12">
+        <label>
+          {{form.is_ready}}
+          <span>آماده رزرو بودن</span>
+        </label>
+      </div><br><br><br>
+      <div class="row"></div><div class="row"></div><div class="row"></div>
+      <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
+</button>
+    </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+  {% endblock %}

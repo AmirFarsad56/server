@@ -1,0 +1,35 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    هشدار | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+      <!-- Modal Structure -->
+      <div id="modal" class="modal right-align">
+        <div class="modal-content fMarkazi grey darken-3">
+          <h4 class="gold-text">آیا مطمئن هستید میخواهید این کاربر را بلاک کنید؟</h4>
+          <p>در صورت بلاک شدن کاربر قادر به ورود به حساب کاربری خود نخواهد بود و سانس ها غیرفعال خواهند شد</p>
+        </div>
+        <div class="modal-footer grey darken-3">
+          <a href="{% url 'sportclub:ban_3' slug=sportclub.user.slug %}" class="modal-close waves-effect waves-green btn-flat fMarkazi red-text"><h6>بلاک کردن</h6></a>
+          <a href="{% url 'salon:unconfirmedsalonlist' %}" class="modal-close waves-effect waves-green btn-flat fMarkazi blue-text"><h6>بستن</h6></a>
+        </div>
+      </div>
+
+
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+
+$(document).ready(function(){
+   $('#modal').modal();
+   $('#modal').modal('open');
+});
+
+</script>
+{% endblock %}

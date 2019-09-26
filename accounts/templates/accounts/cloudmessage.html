@@ -1,0 +1,80 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    ارسال پیام سراسری | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section fMarkazi">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>ارسال پیام سراسری</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+    {% if failed_to_users %}
+    <div class="row center">
+      <h4 class="gold-text">نتیجه ی فرستادن پیام سراسری</h4>
+
+      <h6>{{failed_to_users|linebreaks}}</h6>
+      <div class="row"></div>
+      <h6>{{success|linebreaks}}</h6>
+      <a href="{% url 'accounts:workspace' slug=user.slug %}">میزکار</a>
+    </div>
+    {% else %}
+        <form method="POST">
+{{message_form.Hfield}}
+{{types_form.Hfield}}
+<div class="input-field col s12">
+{{message_form.text}}
+<label class="fMarkazi" for="username">متن پیام</label>
+</div>
+
+<div class="row">
+  <div class="input-field col s12 m4 l4">
+    <label>
+      {{types_form.commonusers}}
+      <span>کاربران عادی</span>
+    </label>
+  </div>
+  <div class="input-field col s12 m4 l4">
+    <label>
+      {{types_form.masterusers}}
+      <span>مدیران سایت</span>
+    </label>
+  </div>
+  <div class="input-field col s12 m4 l4">
+    <label>
+      {{types_form.sportclubs}}
+      <span>مجموعه های ورزشی</span>
+    </label>
+  </div>
+</div>
+<br>
+            {% if form.errors%}
+            <p class="fMarkazi white-text">مشکلی پیش آمد لطفا روباره سعی کنید</p>
+            {% endif %}
+<br>
+                {% csrf_token %}
+
+                <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">ارسال
+    </button>
+    <br><br>
+
+        </form>
+        {% endif %}
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  M.updateTextFields();
+});
+</script>
+{% endblock %}

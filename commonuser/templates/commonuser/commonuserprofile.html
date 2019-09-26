@@ -1,0 +1,118 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    پروفایل | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+{% if commonuser_detail.picture %}
+<div class="parallax-container">
+      <div class="parallax"><img src="{{commonuser_detail.picture.url}}"></div>
+    </div>
+{% endif %}
+<div class="section">
+
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";> {{commonuser_detail.user.last_name}} {{commonuser_detail.user.first_name}} خوش آمدید</h3><br><br></span>
+
+
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
+    <h3 class=" fMarkazi gold-text">اطلاعات شخصی</h3>
+<h6>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{commonuser_detail.user.username}}</div>
+      <div class="col s6 m6 l6 left-align">نام کاربری</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{commonuser_detail.user.first_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{commonuser_detail.user.last_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام خانوادگی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{commonuser_detail.user.email}}</div>
+      <div class="col s6 m6 l6 left-align">ایمیل</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{commonuser_detail.phone_number}}</div>
+      <div class="col s6 m6 l6 left-align">شماره همراه</div>
+    </div>
+    </h6>
+    <div class="row">
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'commonuser:update' commonuser_detail.user.slug %}" class="waves-effect waves-light btn modal-trigger modal-close gold white-text"><h6>               <span>ویرایش مشخصات</span>               </h6></a><p></p></div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'accounts:passwordchange' slug=user.slug %}" class="waves-effect waves-light btn modal-trigger modal-close gold white-text"><h6>                       <span>تغییر رمز</span>                       </h6></a><p></p></div>
+    </div>
+  </div>
+<br><br>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block script_block %}
+<script>
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>this is the detail view for the commonuser page</p><br>
+    <p>
+    username: {{ commonuser_detail.user.username }}<br>
+    email: {{ commonuser_detail.user.email }}<br>
+    first name: {{ commonuser_detail.user.first_name }}</br>
+    last_name: {{ commonuser_detail.user.last_name }}<br>
+    phone number: {{ commonuser_detail.phone_number }}<br>
+    profile image <img src="{{commonuser_detail.picture.url}}" width="70" height="70"/>
+    </p>
+    <p><a href="{% url 'commonuser:update' commonuser_detail.user.slug %}">Update</a> Your Infos</p>
+    <p>Change Passwrod <a href="{% url 'accounts:passwordchange' slug=user.slug %}">here</a></p>
+
+
+    {% for booked_sessions in commonuser_detail.bookings.all %}
+    {% if booked_sessions.cancelled %} ------------------------------- <br>
+    cancelled <br>
+    cancelld at date {{booked_sessions.cancelled_at_date}} <br>
+    cancelled at time{{booked_sessions.cancelled_at_time}}<br>
+    pay back: {{booked_sessions.pay_back}}<br>
+    {% else %}
+    +++++++++++<br>
+    session day {{booked_sessions.session.day}}<br>
+    session time {{booked_sessions.session.time}}<br>
+
+    <a href="{% url 'booking:cancelsession' pk=booked_sessions.pk %}">Cancelle ?</a> <br>
+
+    ++++++++++++++++++
+      <br><br><br><br>
+    {% endif %}
+    {% endfor %}
+
+  </body>
+</html>

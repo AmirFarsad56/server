@@ -1,0 +1,178 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    لیست سالن ها | سامانه ورزش
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+<div class="section">
+
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>لیست سالن های ورزشی</h3><br><br></span>
+
+  <div class="row center">
+
+    {% for salon in salons %}
+  <div class="card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
+{% if salon.pictures.all %}
+    <div class="slider">
+        <ul class="slides">
+{% for pic in salon.pictures.all %}
+    <li>
+      <img src="{{pic.picture.url}}"> <!-- random image -->
+    </li>
+{% endfor %}
+  </ul>
+</div>
+{% endif %}
+    <h3 class=" fMarkazi gold-text">اطلاعات سالن ورزشی</h3>
+  <div class="row">
+    <div class="col s6 m6 l6 right-align">
+    {% if salon.is_confirmed %}
+    تایید شده <i class="material-icons green-text">check</i>
+    {% else %}
+    در انتظار تایید شدن <i class="material-icons white-text">close</i>
+    {% endif %}
+  </div>
+    <div class="col s6 m6 l6 left-align">وضعیت سالن</div>
+  </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.area}}</div>
+      <div class="col s6 m6 l6 left-align">(انداره سالن (متر مربع</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.lastdatas.get.first_day}}</div>
+      <div class="col s6 m6 l6 left-align">مرز ایجاد سانس</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.floor_type}}</div>
+      <div class="col s6 m6 l6 left-align">جنس کف سالن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">
+{% if salon.locker %}<img class="tooltipped" data-position="bottom" data-tooltip="کمد" src="/media/logos/locker.png" width="35">
+{% endif %}
+{% if salon.air_conditioner %}<img class="tooltipped" data-position="bottom" data-tooltip="تهویه هوا" src="/media/logos/air_conditioner.png" width="35">
+{% endif %}
+{% if salon.ball_rent %}<img class="tooltipped" data-position="bottom" data-tooltip="اجاره توپ" src="/media/logos/ball_rent.png" width="35">
+{% endif %}
+{% if salon.spectator_place %}<img class="tooltipped" data-position="bottom" data-tooltip="جایگاه تماشاچی" src="/media/logos/spectator_place.png" width="35">
+{% endif %}
+{% if salon.shower %}<img class="tooltipped" data-position="bottom" data-tooltip="حمام" src="/media/logos/shower.png" width="35">
+{% endif %}
+{% if salon.changing_room %}<img class="tooltipped" data-position="bottom" data-tooltip="اتاق تعویض لباس" src="/media/logos/changing_room1.png" width="35">
+{% endif %}
+{% if salon.parking_area %}<img class="tooltipped" data-position="bottom" data-tooltip="پارکینگ" src="/media/logos/parking_area.png" width="35">
+{% endif %}
+{% if salon.drinking_water %}<img class="tooltipped" data-position="bottom" data-tooltip="آب آشامیدنی" src="/media/logos/drinking_water.png" width="35">
+{% endif %}
+{% if salon.safe_keeping %}<img class="tooltipped" data-position="bottom" data-tooltip="امانتداری" src="/media/logos/safe_keeping.png" width="35">
+{% endif %}
+{% if salon.buffet %}<img class="tooltipped" data-position="bottom" data-tooltip="بوفه" src="/media/logos/buffet.png" width="35">
+{% endif %}
+{% if salon.taxi %}<img class="tooltipped" data-position="bottom" data-tooltip="تاکسی" src="/media/logos/taxi.png" width="35">
+{% endif %}
+{% if salon.wifi %}<img class="tooltipped" data-position="bottom" data-tooltip="وای فای" src="/media/logos/wifi.png" width="35">
+{% endif %}
+      </div>
+      <div class="col s6 m6 l6 left-align">امکانات سالن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">
+        {% if salon.is_football %}
+        فوتبال
+        {% endif %}
+        {% if salon.is_futsall %}
+        فوتسال
+        {% endif %}
+        {% if salon.is_volleyball %}
+        والیبال
+        {% endif %}
+        {% if salon.is_basketball %}
+        بسکتبال
+        {% endif %}
+        {% if salon.is_handball %}
+        هندبال
+        {% endif %}
+      </div>
+      <div class="col s6 m6 l6 left-align">مناسب برای</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.profit_percentage}}</div>
+      <div class="col s6 m6 l6 left-align">درصد بهره ی سامانه برای این سالن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.company_discount_percentage}}</div>
+      <div class="col s6 m6 l6 left-align">درصد تخفیف سامانه مخصوص سانس های این سالن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.six_to_twelve_sessions_discount}}</div>
+      <div class="col s6 m6 l6 left-align">درصد تخفیف برای کاربرانی که قراردادی به مدت بین ۶ تا ۱۲ جلسه تنظیم میکنند</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.more_than_twelve_sessions_discount}}</div>
+      <div class="col s6 m6 l6 left-align">درصد تخفیف برای کاربرانی که قراردادی بین ۱۲ و ۲۴ جلسه تنظیم میکنند</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.more_than_24_sessions_discount}}</div>
+      <div class="col s6 m6 l6 left-align">درصد تخفیف برای کاربرانی که قراردادی بالای ۲۴ جلسه تنظیم میکنند</div>
+    </div>
+    <div class="row">
+
+    </div>
+
+
+    <div class="row">
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'salon:setprofitpercentage' pk=salon.pk %}" class="waves-effect waves-light btn modal-trigger modal-close green white-text"><h6>           <span>تعیین درصد بهره و تخفیف</span>          </h6></a><p></p></div>
+    <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'salon:accountingdetail' pk=salon.pk %}" class="waves-effect waves-light btn modal-trigger modal-close green white-text"><h6>               <span>جزئیات صورت حساب</span>              </h6></a><p></p></div>
+    {% if not salon.advertisements.all %}
+    <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'company:salonadvertisementcreate' pk=salon.pk %}" class="waves-effect waves-light btn modal-trigger modal-close green white-text"><h6>                <span>تبلیغ در صفحه اصلی</span>               </h6></a><p></p></div>
+    {% endif %}
+    <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'salon:reckoninglist' pk=salon.pk %}" class="waves-effect waves-light btn modal-trigger modal-close green white-text"><h6>               <span>لیست تسویه حساب ها</span>             </h6></a><p></p></div>
+    </div>
+
+
+  </div>
+  <div class="row">
+    <br>
+
+  </div>
+
+
+
+
+
+
+
+  {% endfor %}
+
+</div>
+<br><br>
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+{% block script_block %}
+<script>
+  $(document).ready(function(){
+    $('.slider').slider();
+  });
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
+{% endblock %}

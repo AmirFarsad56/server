@@ -1,0 +1,58 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    میزکار | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+
+
+<br><br>
+
+
+<div class="container">
+  <div class="row center">
+    <h4 class="center fMarkazi gold-text">میزکار</h4>
+  </div>
+
+
+  <div class="row">
+
+<br><br>
+  <div class="container">
+ <div class="center card-panel hoverable gold z-depth-5 fMarkazi">
+ <a href="{% url 'masteruser:signup' %}" style="white-space:pre" class=" waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">       </span>ثبت نام مدیر جدید<span class="black-text">       </span></h5></a><br>
+ <a href="{% url 'company:accountingdetail' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">        </span>جزئیات حساب سامانه ورزش کن<span class="black-text">      </span></h5></a><br>
+ <a href="{% url 'company:reckoninglist' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">        </span>لیست تسویه حساب ها<span class="black-text">      </span></h5></a><br>
+
+ <a href="{% url 'salon:salonlistforsuperuser' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">        </span>لیست سالن ها<span class="black-text">      </span></h5></a><br>
+
+    <a href="{% url 'masteruser:list' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text"></span>لیست مدیران فعال سایت<span class="black-text"></span></h5></a><br>
+    <a href="{% url 'masteruser:bannedlist' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text"></span>لیست مدیران بلاک شده<span class="black-text"></span></h5></a><br>
+    <a href="{% url 'sportclub:listforsuperuser' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">              </span>لیست مجموعه های ورزشی جهت تعیین درصد بهره<span class="black-text">              </span></h5></a><br>
+<a href="{% url 'accounts:cloudemail' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">        </span>فرستادن ایمیل سراسری به تمامی کاربران سایت<span class="black-text">      </span></h5></a><br>
+
+<a href="{% url 'accounts:cloudmessage' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">      </span>فرستادن پیام سراسری به تمامی کاربران سایت<span class="black-text">      </span></h5></a><br>
+{% if profit_percantage %}
+<a href="{% url 'booking:updateprofitpercentage' pk=profit_percantage.get.pk%}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">       </span>تعویض درصد بهره کلی سایت<span class="black-text">       </span></h5></a><br>
+{% else %}
+<a href="{% url 'booking:createprofitpercentage'%}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">       </span>ایجاد درصد بهره کلی سایت برای بار اول<span class="black-text">       </span></h5></a><br>
+{% endif %}
+{% if terms %}
+<a href="{% url 'company:updateterms' pk=terms.get.pk%}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">       </span>ویرایش قوانین سایت<span class="black-text">       </span></h5></a><br>
+{% else %}
+<a href="{% url 'company:createterms'%}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">       </span>ایجاد قوانین سایت<span class="black-text">       </span></h5></a><br>
+{% endif %}
+{% if salonadvertisement %}
+<a href="{% url 'company:salonadvertisementlist' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">       </span>لیست سالن های در حال تبلیغ<span class="black-text">       </span></h5></a><br>
+{% endif %}
+<a href="{% url 'accounts:deleteinactiveusers' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text"></span>حذف کاربران غیرفعال سایت<span class="black-text"></span></h5></a><br>
+  </div>
+  </div>
+<br><br>
+
+{% endblock %}

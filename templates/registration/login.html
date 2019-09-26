@@ -1,0 +1,52 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    ورود | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>ورود</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+
+        <form method="POST">
+          <div class="input-field col s12">
+  {{form.username}}
+  <label class="fMarkazi" for="username">نام کاربری</label>
+</div>
+<div class="input-field col s12 red-text">
+{{form.password}}
+
+<label class="fMarkazi right-align" for="password">رمز عبور</label>
+</div>
+            {% if form.errors %}
+            <p class="fMarkazi white-text">نام کاربری یا رمز عبور اشتباه است</p>
+            {% endif %}
+
+                {% csrf_token %}
+
+                <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">ورود
+    </button>
+    <br><br>
+            <a class="white-text fMarkazi" href="{% url 'accounts:forgotpassword' %}">فراموشی رمز عبور</a>
+        </form>
+  </div>
+</div>
+</div>
+
+</div>
+
+</div>
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  M.updateTextFields();
+});
+</script>
+{% endblock %}

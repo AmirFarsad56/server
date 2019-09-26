@@ -1,0 +1,177 @@
+.fMarkazi {
+  font-family: 'Markazi Text', serif;
+}
+.fLalezar {
+  font-family: 'Lalezar', cursive;
+}
+.gold{
+  background-color: #d4af37;
+}
+.gold-text{
+  color: #d4af37;
+}
+.icon-border{
+  border: 5px solid red;
+}
+/* label name color */
+.input-field label {
+  color: white;
+}
+/* label focus color */
+ .input-field input:focus + label {
+   color: white !important;
+ }
+ /* label underline focus color */
+ .input-field input:focus {
+   border-bottom: 1px solid white !important;
+   box-shadow: 0 1px 0 0 white !important
+ }
+
+/* label name focus color */
+ .input-field textarea:focus + label {
+   color: white !important;
+ }
+ /* label underline focus color */
+ .input-field textarea:focus {
+   border-bottom: 1px solid white !important;
+   box-shadow: 0 1px 0 0 white !important
+ }
+
+ .timepicker-modal,
+.datepicker-modal{
+  top: -5% !important;
+}
+
+navbar-fixed ul a:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+
+
+// Class for when element is above threshold
+.pin-top {
+  position: relative;
+}
+
+// Class for when element is below threshold
+.pin-bottom {
+  position: relative;
+}
+
+// Class for when element is pinned
+.pinned {
+  position: fixed !important;
+}
+
+
+
+
+
+
+/* Custom Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Oswald:700);
+
+.tbadge {
+  font-family: oswald, sans-serif;
+  font-size: 16px;
+  transform: rotate(45deg);
+  margin-top: -20px;
+  background: #e0e0e0;
+  width: 35px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 8px;
+  color: #e0e0e0;
+
+}
+.tbadge span {
+  display: block;
+  transform: rotate(-45deg);
+  opacity: .9;
+}
+
+.cbadge {
+  font-family: oswald, sans-serif;
+  font-size: 16px;
+  transform: rotate(45deg);
+  margin-top: -20px;
+  background: #9F6B99FF;
+  width: 35px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 8px;
+  color: #9F6B99FF;
+
+}
+.cbadge span {
+  display: block;
+  transform: rotate(-45deg);
+  opacity: .9;
+}
+
+.badge {
+  font-family: oswald, sans-serif;
+  font-size: 16px;
+  transform: rotate(45deg);
+  margin-top: -20px;
+  background: red;
+  width: 35px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 8px;
+  color: #FFFFFF;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+}
+.badge span {
+  display: block;
+  transform: rotate(-45deg);
+  opacity: .9;
+}

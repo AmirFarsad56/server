@@ -1,0 +1,107 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    لیست مدیران بلاک شده | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section fMarkazi white-text">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>لیست مدیران بلاک شده</h3><br><br></span>
+  <div class="row center">
+    {% for masteruser in masterusers %}
+    {% if not masteruser.user.is_active %}
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+    <h6>
+      {% if masteruser.picture %}
+          <div class="slider">
+              <ul class="slides">
+          <li>
+            <img src="{{masteruser.picture.url}}">
+          </li>
+        </ul>
+      </div>
+      {% endif %}
+<div class="row">
+  <div class="row">
+    <h5 class="gold-text">اطلاعات کاربری</h5>
+
+  </div>
+      <div class="col s6 m6 l6 right-align black-text black-text">{{masteruser.user.username}}</div>
+      <div class="col s6 m6 l6 left-align">نام کاربری</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{masteruser.user.first_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{masteruser.user.last_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام خانوادگی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{masteruser.user.email}}</div>
+      <div class="col s6 m6 l6 left-align">ایمیل</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{masteruser.phone_number}}</div>
+      <div class="col s6 m6 l6 left-align">شماره تلفن</div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'masteruser:unbanmodal' slug=masteruser.user.slug %}" class="waves-effect waves-light btn modal-trigger modal-close red white-text"><h6><span>            </span>فعال کردن<span>            </span></h6></a><p></p>
+</div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'masteruser:deletemodal' slug=masteruser.user.slug %}" class="hoverable waves-effect waves-light btn red white-text"><h6><span>         </span>حذف کردن کاربر<span>        </span></h6></a><p></p>
+</div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'masteruser:sendemail' slug=masteruser.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>           </span>ارسال ایمیل<span>           </span></h6></a><p></p>
+</div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'masteruser:sendsms' slug=masteruser.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>             <span>ارسال پیام</span>            </h6></a><p></p>
+</div>
+
+    </div>
+
+      <ul class="collapsible popout gold-text">
+      <li>
+        <div class="collapsible-header grey darken-4 " style="display: block;">
+          گزارش کارهای مدیر
+        </div>
+        <div class="collapsible-body grey darken-3"><span>{{masteruser.user.user_logs|linebreaks}}</span></div>
+      </li>
+      <li>
+      </ul>
+</h6>
+  </div>
+
+  <br><br>
+  {% endif %}
+  {% endfor %}
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  M.updateTextFields();
+});
+
+$(document).ready(function(){
+  $('.modal').modal();
+});
+
+$(document).ready(function(){
+  $('.slider').slider();
+});
+
+$(document).ready(function(){
+  $('.collapsible').collapsible();
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    لیست کاربران بلاک شده | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section fMarkazi white-text">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>لیست کاربران عادی و بلاک شده</h3><br><br></span>
+  <div class="row center">
+    {% for commonuser in commonusers %}
+    {% if not commonuser.user.is_active %}
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+    <h6>
+<div class="row">
+  <div class="row">
+    <h5 class="gold-text">اطلاعات کاربری</h5>
+
+  </div>
+      <div class="col s6 m6 l6 right-align black-text black-text">{{commonuser.user.username}}</div>
+      <div class="col s6 m6 l6 left-align">نام کاربری</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{commonuser.user.first_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{commonuser.user.last_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام خانوادگی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{commonuser.user.email}}</div>
+      <div class="col s6 m6 l6 left-align">ایمیل</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{commonuser.phone_number}}</div>
+      <div class="col s6 m6 l6 left-align">شماره تلفن</div>
+    </div>
+
+    <br>
+
+    <div class="row">
+
+</div>
+
+<div class="row">
+
+  <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="#modal1" class="waves-effect waves-light btn modal-trigger modal-close red white-text"><h6><span>  </span>فعال کردن مجدد کاربر<span> </span></h6></a><p></p>
+</div>
+<div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="#" class="waves-effect waves-light btn modal-trigger modal-close gold white-text"><h6><span>   </span>سانس های رزرو شده<span>   </span></h6></a><p></p>
+</div>
+  <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'commonuser:sendemail' slug=commonuser.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>           </span>ارسال ایمیل<span>           </span></h6></a><p></p>
+</div>
+  <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'commonuser:sendsms' slug=commonuser.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>             <span>ارسال پیام</span>            </h6></a><p></p>
+</div>
+
+</div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content fMarkazi grey darken-3">
+      <h4 class="gold-text">آیا مطمئن هستید میخواهید این کاربر را دوباره فعال کنید؟</h4>
+      <p>در صورت فعال شدن مجدد کاربر دوباره میتواند به حساب کاربری خود وارد شده و سانس ها را رزرو کند</p>
+    </div>
+    <div class="modal-footer grey darken-3">
+      <a href="{% url 'commonuser:unban' slug=commonuser.user.slug %}" class="modal-close waves-effect waves-green btn-flat fMarkazi red-text"><h6>فعال کردن</h6></a>
+      <a class="modal-close waves-effect waves-green btn-flat fMarkazi blue-text"><h6>بستن</h6></a>
+    </div>
+  </div>
+
+
+</h6>
+  </div>
+  <br><br>
+  {% endif %}
+  {% endfor %}
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  M.updateTextFields();
+});
+
+$(document).ready(function(){
+  $('.modal').modal();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "base_templates/base1.html" %}
+{% load static %}
+{% load customtags_session %}
+
+{% block head_block %}
+<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
+<title>
+    افزودن سانس | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>افزودن سانس</h3><br><br></span>
+  <div class="row center">
+    {% if last_data.first_day_2 %}
+  <div class="card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
+
+    <form id='days_form' method="POST">
+      {{days_form.Hfield}}
+      {{times_form.Hfield}}
+      {% csrf_token %}
+      <h5>
+      <div class="row">
+        <div class="col s12 m12 l12 center-align">
+شما قادر به افزودن سانس از امروز تا تاریخ
+{{last_data.first_day_2|the_past_day|date:"d-m-Y"}}
+هستید
+  </div>
+</div>
+
+<div class="row ">
+  <div class="input-field col s12 m6 l6">
+    <p class="fMarkazi">از روز</p>
+      {{days_form.first_day}}
+  </div>
+  <div class="input-field col s12 m4 l6">
+    <p class="fMarkazi">تا روز</p>
+      {{days_form.last_day}}
+  </div>
+</div>
+
+<div class="row ">
+<div class="input-field col s6 m6 l6">
+  <label>
+    <input type="checkbox" name="selected_days" value="0"/>
+    <span>شنبه</span>
+  </label>
+  </div>
+<div class="input-field col s6 m6 l6">
+  <label>
+    <input type="checkbox" name="selected_days" value="1">
+    <span>یکشنبه</span>
+  </label>
+</div>
+<div class="input-field col s6 m6 l6">
+  <label>
+    <input type="checkbox" name="selected_days" value="2">
+    <span>دوشنبه</span>
+  </label>
+</div>
+<div class="input-field col s6 m6 l6">
+  <label>
+    <input type="checkbox" name="selected_days" value="3">
+    <span>سه شنبه</span>
+  </label>
+</div>
+<div class="input-field col s6 m6 l6">
+  <label>
+    <input type="checkbox" name="selected_days" value="4">
+    <span>چهارشنبه</span>
+  </label>
+</div>
+<div class="input-field col s6 m6 l6">
+  <label>
+    <input type="checkbox" name="selected_days" value="5">
+    <span>پنجشنبه</span>
+  </label>
+</div>
+<div class="input-field col s6 m6 l6">
+  <label>
+    <input type="checkbox" name="selected_days" value="6">
+    <span>جمعه</span>
+  </label>
+</div>
+</div>
+</h5>
+<br><br>
+<div class="row center">
+
+<div class="input-field col s12 m4 l4">
+    {{times_form.start_time}}
+    <label class="fMarkazi active" for="start_time">ساعت شروع کار سالن</label>
+</div>
+<div class="input-field col s12 m4 l4">
+    {{times_form.stop_time}}
+    <label class="fMarkazi active" for="stop_time">ساعت پایان کار سالن</label>
+</div>
+<div class="input-field col s12 m4 l4">
+    {{times_form.duration}}
+    <label class="fMarkazi active" for="duration">طول هر تایم</label>
+</div>
+</div>
+<button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit" name='days_form' >تایید
+</button>
+</form>
+</div>
+{% else %}
+<p class="fMarkazi ">شما هنوز قادر به افزون سانس ها نیستید. برای اینکار ابتدا از طریق
+<a href="{% url 'session:create' pk=last_data.salon.pk %}">این لینک</a>
+سانس ها را به طور کامل ایجاد کنید
+</p>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+{% block script_block %}
+
+
+<script type="text/javascript" src="{% static 'js/mpdatepickers.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/timepickers.js' %}"></script>
+<script>
+  $(function() {
+      M.updateTextFields();
+    });
+</script>
+<script>
+  $('.timepicker').timepicker({
+    onSelect: function(time) {
+      console.log(time)
+    }
+  });
+
+</script>
+
+<script>
+
+$(function () {
+    $(".mp-datepicker").mpdatepicker({
+        'timePicker': true
+    });
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "base_templates/base1.html" %}
+{% load static %}
+{% load customtags_session %}
+
+{% block head_block %}
+<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
+<title>
+    تعیین تخفیف سانس ها | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>تعیین تخفیف سانس ها</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
+
+    <form id='days_form' method="POST">
+      {{form.Hfield}}
+      <h5>
+      {% csrf_token %}
+
+    بازه زمانی انتخابی شما میتواند مابین دو تاریخ <span style="white-space:pre">{% if today > session_category.range_start_day %}{{today|date:"d-m-Y"}}{% else %}{{session_category.range_start_day|date:"d-m-Y"}}{% endif %}</span> و <span style="white-space:pre">  {{session_category.range_end_day|date:"d-m-Y"}}  </span> باشد
+
+    <div class="row ">
+      <div class="input-field col s12 m6 l6">
+        <p class="fMarkazi">از روز</p>
+          {{form.range_start}}
+      </div>
+      <div class="input-field col s12 m4 l6">
+        <p class="fMarkazi">تا روز</p>
+          {{form.range_end}}
+      </div>
+    </div>
+    <div class="row"></div><div class="row"></div>
+  <div class="row center gold-text ">
+    انتخاب روز ها
+  </div>
+    <div class="row ">
+    {% if session_category.saturdays %}
+    <div class="input-field col s6 m6 l6">
+      <label>
+        <input type="checkbox" name="days" value="0"/>
+        <span>شنبه</span>
+      </label>
+      </div>
+    {% endif %}
+    {% if session_category.sundays %}
+    <div class="input-field col s6 m6 l6">
+      <label>
+        <input type="checkbox" name="days" value="1">
+        <span>یکشنبه</span>
+      </label>
+    </div>
+    {% endif %}
+    {% if session_category.mondays %}
+    <div class="input-field col s6 m6 l6">
+      <label>
+        <input type="checkbox" name="days" value="2">
+        <span>دوشنبه</span>
+      </label>
+    </div>
+    {% endif %}
+    {% if session_category.tuesdays %}
+    <div class="input-field col s6 m6 l6">
+      <label>
+        <input type="checkbox" name="days" value="3">
+        <span>سه شنبه</span>
+      </label>
+    </div>
+    {% endif %}
+    {% if session_category.wednesdays %}
+    <div class="input-field col s6 m6 l6">
+      <label>
+        <input type="checkbox" name="days" value="4">
+        <span>چهارشنبه</span>
+      </label>
+    </div>
+    {% endif %}
+    {% if session_category.thursdays %}
+    <div class="input-field col s6 m6 l6">
+      <label>
+        <input type="checkbox" name="days" value="5">
+        <span>پنجشنبه</span>
+      </label>
+    </div>
+    {% endif %}
+    {% if session_category.fridays %}
+    <div class="input-field col s6 m6 l6">
+      <label>
+        <input type="checkbox" name="days" value="6">
+        <span>جمعه</span>
+      </label>
+    </div>
+    </div>
+    {% endif %}
+    <div class="row"></div><div class="row"></div><div class="row"></div>
+  <div class="row center gold-text ">
+    انتخاب سانس ها
+  </div>
+  <div class="row">
+  {% for session in sessions %}
+    <div class="input-field col s12 m6 l6">
+      <label>
+        <input type="checkbox" name="checks" value="{{session.time|date:"H:i"}}">
+        <span>{{session.time|date:"H:i"}}-{{session.pk|session_end}</span>
+      </label>
+    </div>
+  {% endfor %}
+    </div>
+    <div class="input-field col s12 m12 l12">
+        {{form.discount_percentage}}
+        <label class="fMarkazi active" for="discount_percentage">تخفیف موردنظر بر حسب درصد</label>
+    </div>
+  <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit" >تایید
+  </button>
+  </h5>
+  </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+  {% endblock %}
+  {% block script_block %}
+
+
+  <script type="text/javascript" src="{% static 'js/mpdatepickers.js' %}"></script>
+  <script>
+    $(function() {
+        M.updateTextFields();
+      });
+  </script>
+  <script>
+  $(function () {
+      $(".mp-datepicker").mpdatepicker({
+          'timePicker': true
+      });
+  });
+  </script>
+  {% endblock %}

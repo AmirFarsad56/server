@@ -1,0 +1,27 @@
+﻿{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+{% block head_block %}
+{% endblock %}
+
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no" />
+    <link rel="stylesheet" href="{% static "assets/css/materialize.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/customize.css" %}">
+
+
+</head>
+<body>
+{% block body_block %}
+
+{% endblock %}
+    <script src="{% static "assets/js/bin/anime.min.js" %}"> </script>
+    <script src="{% static "assets/js/datepicker.js" %}"> </script>
+    <script>
+        M.AutoInit();
+
+    </script>
+</body>
+</html>

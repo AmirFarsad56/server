@@ -1,0 +1,174 @@
+{% extends "base_templates/base1.html" %}
+{% load customtags_session %}
+
+{% block head_block %}
+<title>
+    لیست سانس ها | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس ها</h3><br><br></span>
+<div class="container">
+
+
+</div>
+<br><br>
+<div class="container teal-text">
+{% for session in sessions %}
+<div class="center card-panel hoverable grey lighten-2 z-depth-5 fLalezar teal-text">
+  <h6>
+    <div class="row">
+      <div class="col s6 m3 l3 right-align black-text fMarkazi">
+        {{session.session.time|date:"H:i"}}-{{session.pk|session_end}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+زمان
+      </div>
+      <div class="col s6 m3 l3 right-align black-text fMarkazi ">
+        {{session.session.day}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        روز
+      </div>
+
+      <div class="col s6 m3 l3 right-align black-text fMarkazi">
+        {{session.session.discount_percentage}}%
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        درصد تخفیف
+      </div>
+      <div class="col s6 m3 l3 right-align black-text fMarkazi">
+        {{session.session.price}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+(قیمت (تومان
+      </div>
+          </div>
+          <ul class="collapsible popout gold-text">
+          <li>
+            <div class="collapsible-header grey darken-3 " style="display: block;">
+
+<h6 class="gold-text" >مشخصات  رزرو کننده</h6>
+          </div>
+            <div class="collapsible-body grey teal-text">
+              <img style=" margin-bottom: 18px" src="{{session.booker.user.commonusers.picture.url}}" height="50">
+              <div class="row">
+                <div class="col s6 m3 l3 right-align black-text fMarkazi">
+                  {{session.booker.user.first_name}}
+                </div>
+                <div class="col s6 m3 l3 right-align ">
+        نام
+                </div>
+                <div class="col s6 m3 l3 right-align black-text fMarkazi">
+                  {{session.booker.user.last_name}}
+                </div>
+                <div class="col s6 m3 l3 right-align ">
+        نام خانوادگی
+                </div>
+
+                <div class="col s6 m3 l3 right-align black-text fMarkazi">
+                  {{session.booker.user.email}}
+                </div>
+                <div class="col s6 m3 l3 right-align">
+        ایمیل
+                </div>
+                <div class="col s6 m3 l3 right-align black-text fMarkazi">
+                  {{session.booker.phone_number}}
+                </div>
+                <div class="col s6 m3 l3 right-align">
+        شماره تلفن
+                </div>
+
+              </div>
+
+    </div>
+    </li>
+    </ul>
+
+    <ul class="collapsible popout gold-text">
+    <li>
+      <div class="collapsible-header grey darken-3 " style="display: block;">
+
+    <h6 class="gold-text" >مشخصات  رزرو</h6>
+    </div>
+      <div class="collapsible-body grey teal-text">
+
+        <div class="row">
+
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {{session.booked_at_date}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+روز رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {{session.booked_at_time}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+زمان رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {{session.final_price}}
+        </div>
+        <div class="col s6 m3 l3 right-align ">
+مبلغ پرداخت شده
+        </div>
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {% if session.transfered_to_sportclub %} بله {% else %} خیر {% endif %}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+هزینه به حساب شما واریز شده
+        </div>
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {% if session.is_contract %} بله {% else %} خیر {% endif %}
+        </div>
+        <div class="col s6 m3 l3 right-align ">
+رزرو شده با قرارداد
+        </div>
+        {% if session.cancelled %}
+        <div class="col s6 m3 l3 right-align black-text fMarkazi red">
+           بله
+        </div>
+        <div class="col s6 m3 l3 right-align red-text">
+کنسل شده
+        </div>
+        {% endif %}
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {{session.code}}
+        </div>
+        <div class="col s6 m3 l3 right-align ">
+کد رزرو
+        </div>
+        {% if session.pay_back %}
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {{session.pay_back}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+مبلغی که باید برگردانده شود
+        </div>
+        {% endif %}
+</div>
+
+        </div>
+        </li>
+        </ul>
+
+
+
+</h6>
+  </div>
+  <br><br>
+{% endfor %}
+
+</div>
+<br><br>
+
+{% endblock %}
+{% block script_block %}
+<script>
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+{% endblock %}

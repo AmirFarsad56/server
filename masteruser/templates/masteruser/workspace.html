@@ -1,0 +1,64 @@
+{% extends "base_templates/base1.html" %}
+{% load customtags_session %}
+{% block head_block %}
+<title>
+    میزکار | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+
+
+<br><br>
+
+
+<div class="container">
+  <div class="row center">
+    <h4 class="center fMarkazi gold-text">میزکار</h4>
+  </div>
+
+
+  <div class="row">
+
+<br><br>
+  <div class="container">
+ <div class="center card-panel hoverable gold z-depth-5 fMarkazi">
+ <a href="{% url 'sportclub:signup' %}" style="white-space:pre" class=" waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">       </span>ثبت نام مجموعه ورزشی<span class="black-text">       </span></h5></a><br>
+    <a href="{% url 'sportclub:list' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text"></span>مجموعه های ورزشی های فعال<span class="black-text"></span></h5></a><br>
+    <a href="{% url 'sportclub:bannedlist' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text"></span>مجموعه های ورزشی بلاک شده<span class="black-text"></span></h5></a><br>
+    <a href="{% url 'salon:confirmedsalonlist' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">              </span>سالن های فعال<span class="black-text">              </span></h5></a><br>
+<a href="{% url 'salon:unconfirmedsalonlist' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">        </span>سالن های در انتظار تایید<span class="black-text">      </span></h5></a><br>
+
+<a href="{% url 'commonuser:list' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">      </span>لیست کاربران عادی سایت<span class="black-text">      </span></h5></a><br>
+<a href="{% url 'commonuser:bannedlist' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">       </span>لیست کاربران بلاک شده <span class="black-text">       </span></h5></a><br>
+<a href="{% url 'sportclub:map' %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">     </span>موقعیت مجموعه های ورزشی<span class="black-text">     </span></h5></a><br>
+
+  </div>
+  </div>
+<br><br>
+
+<div class="center card-panel hoverable pink accent-3 darken-4 z-depth-5 fMarkazi white-text">
+  <h4 class="fMarkazi gold-text";>نکات</h4>
+  <div class="row"></div>
+  <h6 class="right-align">
+    <div class="row">
+       الف - درنظر داشته باشید برای اینکه یک سالن را
+        تایید کنید باید کاربر مجموعه ورزشی مربوطه مشخصات حساب بانکی
+         خود را وارد کرده باشد در غیر اینصورت از کاربر مربوطه بخواهید نسبت به پر کردن مشخصات اقدام نماید
+    </div>
+    <div class="row">
+      ب - قبل از اقدام به بلاک کردن سالن یا کاربر مجموعه ورزشی یا حذف سالن ورزشی
+       حتما به کاربر مربوطه از طریق ایمیل و یا پیام
+       دلیل این کار را اعلام نمائید
+    </div>
+    <div class="row">
+پ - دقت داشته باشید که همه کارهایی که شما انجام میدهید اعم از تائید یا بن کردن سالن یا فرستادن پیام و .. ذخیره
+ شده و کاملا مشخص است
+    </div>
+  </h6>
+
+</div>
+
+{% endblock %}

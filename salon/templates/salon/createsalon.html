@@ -1,0 +1,200 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    افزودن سالن ورزشی | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>افزودن سالن</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+
+        <form enctype="multipart/form-data" method="POST">
+          {{salon_form.Hfield}}
+          {% csrf_token %}
+          <div class="input-field col s12">
+            {{salon_form.area}}
+            <label class="fMarkazi" for="username">(انداره سالن (متر مربع</label>
+          </div>
+          <div class="input-field col s12">
+            {{salon_form.floor_type}}
+            <label class="fMarkazi" for="username">جنس کف سالن</label>
+          </div>
+
+          <h5 class="fMarkazi gold-text">ورزش هایی که میشود در این سالن انجام داد</h5>
+          <div class="row ">
+          <div class="input-field col s6 m6 l6">
+            <label>
+              {{salon_form.is_football}}
+              <span>(فوتبال (چمن‌</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <label>
+              {{salon_form.is_futsall}}
+              <span>فوتسال</span>
+            </label>
+          </div>
+        </div>
+        <div class="row offset-m3">
+          <div class="input-field col s6 m6 l6">
+            <label>
+              {{salon_form.is_volleyball}}
+              <span class="offset-m3">والیبال</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <label>
+              {{salon_form.is_basketball}}
+              <span>بسکتبال</span>
+            </label>
+          </div>
+        </div>
+        <div class="row center-align">
+          <div class=" input-field col s6 m6 l6">
+            <label class="rigth-align">
+              {{salon_form.is_handball}}
+              <span>هندبال</span>
+            </label>
+          </div>
+        </div>
+<br><br>
+        <h5 class="fMarkazi gold-text">امکانات سالن</h5>
+        <div class="row ">
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.air_conditioner}}
+            <span>تهویه هوا</span>
+          </label>
+        </div>
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.drinking_water}}
+            <span>آب آشامیدنی</span>
+          </label>
+        </div>
+      </div>
+      <div class="row offset-m3">
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.shower}}
+            <span class="offset-m3">حمام</span>
+          </label>
+        </div>
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.locker}}
+            <span>کمد</span>
+          </label>
+        </div>
+      </div>
+      <div class="row offset-m3">
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.parking_area}}
+            <span class="offset-m3">پارکینگ</span>
+          </label>
+        </div>
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.changing_room}}
+            <span>رختکن</span>
+          </label>
+        </div>
+      </div>
+      <div class="row offset-m3">
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.wifi}}
+            <span class="offset-m3">وای فای</span>
+          </label>
+        </div>
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.safe_keeping}}
+            <span>امانتداری</span>
+          </label>
+        </div>
+      </div>
+      <div class="row offset-m3">
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.ball_rent}}
+            <span class="offset-m3">اجاره توپ</span>
+          </label>
+        </div>
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.buffet}}
+            <span>بوفه</span>
+          </label>
+        </div>
+      </div>
+      <div class="row offset-m3">
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.local_taxi}}
+            <span class="offset-m3">تاکسی ویژه</span>
+          </label>
+        </div>
+        <div class="input-field col s6 m6 l6">
+          <label>
+            {{salon_form.spectator_place}}
+            <span>جایگاه تماشاچی</span>
+          </label>
+        </div>
+      </div>
+<br><br>
+<div class="input-field col s12">
+  {{salon_form.six_to_twelve_sessions_discount}}
+  <label class="fMarkazi" for="username">درصد تخفیف برای کاربرانی که قراردادی به مدت بین ۶ تا ۱۲ جلسه تنظیم میکنند</label>
+</div>
+<div class="input-field col s12">
+  {{salon_form.more_than_twelve_sessions_discount}}
+  <label class="fMarkazi" for="username">درصد تخفیف برای کاربرانی که قراردادی بین ۱۲ و ۲۴ جلسه تنظیم میکنند</label>
+</div>
+<div class="input-field col s12">
+  {{salon_form.more_than_24_sessions_discount}}
+  <label class="fMarkazi" for="username">درصد تخفیف برای کاربرانی که قراردادی بالای ۲۴ جلسه تنظیم میکنند</label>
+</div>
+      <h5 class="fMarkazi gold-text">عکس های سالن</h5>
+
+      {{formsets.management_form}}
+            <div class="row ">
+      {% for formset in formsets %}
+
+      <div class="input-field col s12 m6 l6">
+        <div class="file-field input-field">
+  <div class="btn gold">
+{{formset}}
+  </div>
+  <div class="file-path-wrapper">
+    <input class="file-path" type="text">
+  </div>
+</div>
+      </div>
+    {% endfor %}
+        </div>
+            {% if salon_form.errors %}
+            <p class="fMarkazi white-text">مشکلی پیش آمد. لطفا فرم را دوباره و با دقت پر کنید</p>
+            {% endif %}
+            {% if formsets.errors %}
+            <p class="fMarkazi white-text">مشکلی پیش آمد. لطفا فرم را دوباره و با دقت پر کنید</p>
+            {% endif %}
+          <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
+    </button>
+    <br><br>
+        </form>
+  </div>
+</div>
+</div>
+
+</div>
+
+</div>
+{% endblock %}

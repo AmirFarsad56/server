@@ -1,0 +1,69 @@
+{% extends "base_templates/base1.html" %}
+{% load customtags_session %}
+{% block head_block %}
+<title>
+    پروفایل | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+
+
+<br><br>
+
+
+<div class="container">
+  <div class="row center-align">
+    <span class="center-align gold-text fMarkazi">درصورت وجود سانس با کلیک بر روی هر یک از روزها میتوانید به سانس های آن روز دسترسی داشته باشید</span>
+    </div>
+    <div class="row center">
+
+
+  {% if request.user.is_masteruser %}
+  <a href="{% url 'session:masteruser_listforsalon' pk=salon.pk %}" class="center-align hoverable btn waves-effect waves-dark gold white-text z-depth-3 fLalezar" >لیست کلی با امکان جستجو
+  </a>
+    </div>
+  {% endif %}
+  {% for key, month in data %}
+
+ <table class="grey darken-4 white-text fMarkazi">
+      <th class="center" style="white-space:pre">
+        <td style="white-space:pre">{% for day in month %}{% if day|only_day|cutbr == '1' %}<h5 class="pink-text">{{day|only_year}}</h5>{% endif %}{% endfor %}</td>
+        <td style="white-space:pre">          </td><td style="white-space:pre">          </td><td style="white-space:pre">          </td>
+        <td style="white-space:pre">{% for day in month %}{% if day|only_day|cutbr == '1' %}<h5 class="pink-text">{{day|only_month}}</h5>{% endif %}{% endfor %}</td>
+        <td></td>
+        <tr class="center">
+
+
+<td class="gold-text center" style="white-space:pre">    جمعه   </td>
+<td class="gold-text center" style="white-space:pre">پنج شنبه  </td>
+<td class="gold-text center" style="white-space:pre">چهارشنبه </td>
+<td class="gold-text center" style="white-space:pre"> سه شنبه </td>
+<td class="gold-text center" style="white-space:pre"> دوشنبه  </td>
+<td class="gold-text center" style="white-space:pre"> یکشنبه  </td>
+<td class="gold-text center" style="white-space:pre">   شنبه  </td>
+        </tr>
+      </th>
+
+
+{% for day in month %}
+
+
+{% if '-br' in day %}<tr><td class="center">{% if day|cutbr in session_days %}<a class="blue-text" href="{% url 'session:day_list' pk=salon.pk str=day|cutbr %}">{{day|only_day}}</a>{% else %}{{day|only_day}}{% endif %}</td>{% else %}<td class="center">{% if day|cutbr in session_days %}<a class="blue-text" href="{% url 'session:day_list' pk=salon.pk str=day|cutbr %}">{{day|only_day}}</a>{% else %}{{day|only_day}}{% endif %}</td>{% endif %}
+{% endfor %}
+<tr>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+</tr>
+
+    </table>
+<br><br>
+    {% endfor %}
+  {% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    ویرایش مشخصات | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>ویرایش مشخصات</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+
+        <form method="POST" enctype="multipart/form-data">
+          <div class="input-field col s12">
+            {{userform.Hfield}}
+            {{commonuserform.Hfield}}
+  {{userform.first_name}}
+  <label class="fMarkazi" for="first_name">نام</label>
+</div>
+<div class="input-field col s12 red-text">
+{{userform.last_name}}
+<label class="fMarkazi right-align" for="last_name">نام خانوادگی</label>
+</div>
+<div class="input-field col s12 red-text">
+{{userform.email}}
+<label class="fMarkazi right-align" for="email">ایمیل</label>
+</div>
+<div class="input-field col s12 red-text">
+{{commonuserform.phone_number}}
+<label class="fMarkazi right-align" for="phone_number">شماره همراه</label>
+</div>
+
+<div class="row">
+
+
+  <div class="row">
+
+
+  <div class="input-field col s12 m12 l12">
+    <div class="file-field input-field">
+
+  <div class="btn gold">
+  {{commonuserform.picture}}
+  <span>عکس</span>
+
+  </div>
+  <div class="file-path-wrapper">
+  <input class="file-path" type="text">
+  </div>
+  </div>
+  </div>
+  </div>
+
+            {% if userform.errors %}
+            <p class="fMarkazi white-text">مشکلی پیش آمد لطفا روباره سعی کنید</p>
+            {% endif %}
+
+                {% csrf_token %}
+
+                <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
+    </button>
+    <br><br>
+
+        </form>
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  M.updateTextFields();
+});
+</script>
+{% endblock %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Update Ypur Profile Datas:</h1>
+<form enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  {{userform.as_p}}
+  {{userform.Hfield}}
+  {{commonuserform.Hfield}}
+  {{commonuserform.as_p}}
+  <input type="submit" value="OK">
+</form>
+  </body>
+</html>

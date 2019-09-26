@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>ARE YOU SURE WANT to BAN THIS CommonUser</h1>
+    <p>
+      <p>
+        username: {{commonuser_detail.user.username}}<br>
+        phone number: {{commonuser_detail.phone_number}}<br>
+        first name: {{commonuser_detail.user.first_name}}<br>
+        last name: {{commonuser_detail.user.last_name}}<br>
+    <form method="POST">
+      {{form.Hfield}}
+      {% csrf_token %}
+      <input type="submit" value="BAN">
+    </form>
+  </body>
+</html>

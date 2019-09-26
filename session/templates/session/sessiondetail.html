@@ -1,0 +1,265 @@
+{% extends "base_templates/base1.html" %}
+{% load leaflet_tags %}
+{% load customtags_session %}
+{% block head_block %}
+{% leaflet_css %}
+{% leaflet_js %}
+<title>
+جزئیات سانس | سامانه ورزش
+</title>
+<style media="screen">
+    #gis {width:100%;height:400px;}
+</style>
+{% endblock %}
+
+{% block body_block %}
+
+
+<div class="section">
+
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>جزئیات سانس</h3><br><br></span>
+
+  <div class="row center">
+
+  <div class="card-panel hoverable orange z-depth-5 fMarkazi">
+    <div class="row center center-align">
+      <h4 class="center center-align grey-text text-darken-4">{{session.salon.sportclub.sportclub_name}}</h4>
+      {% leaflet_map 'gis' callback='map_init' %}
+    </div>
+    <ul class="collapsible popout gold-text">
+    <li>
+      <div class="collapsible-header grey darken-4 " style="display: block;">
+      مشخصات مجموعه ورزشی مربوطه
+      </div>
+      <div class="collapsible-body grey darken-3 white-text">
+
+                <div class="row">
+                  <div class="col s6 m6 l6 right-align gold-text">{{session.salon.sportclub.sportclub_name}}</div>
+                  <div class="col s6 m6 l6 left-align">نام مجموعه ورزشی</div>
+                </div>
+                <div class="row">
+                  <div class="col s6 m6 l6 right-align gold-text">{{session.salon.sportclub.user.first_name}}</div>
+                  <div class="col s6 m6 l6 left-align">نام</div>
+                </div>
+                <div class="row">
+                  <div class="col s6 m6 l6 right-align gold-text">{{session.salon.sportclub.user.last_name}}</div>
+                  <div class="col s6 m6 l6 left-align">نام خانوادگی</div>
+                </div>
+                <div class="row">
+                  <div class="col s6 m6 l6 right-align gold-text">{{session.salon.sportclub.company_phone_number}}</div>
+                  <div class="col s6 m6 l6 left-align">شماره تلفن ثابت</div>
+                </div>
+                <div class="row">
+                  <div class="col s6 m6 l6 right-align gold-text">{{session.salon.sportclub.phone_number}}</div>
+                  <div class="col s6 m6 l6 left-align">شماره تلفن همراه</div>
+                </div>
+                <div class="row">
+                  <div class="col s6 m6 l6 right-align gold-text">{{session.salon.sportclub.region}}</div>
+                  <div class="col s6 m6 l6 left-align">استان</div>
+                </div>
+                <div class="row">
+                  <div class="col s6 m6 l6 right-align gold-text">{{session.salon.sportclub.address}}</div>
+                  <div class="col s6 m6 l6 left-align">آدرس</div>
+                </div>
+                {% if session.salon.sportclub.info %}
+                <div class="row">
+                  <div class="col s6 m6 l6 right-align gold-text">{{session.salon.sportclub.info}}</div>
+                  <div class="col s6 m6 l6 left-align">اطلاعات دیگر</div>
+                </div>
+                {% endif %}
+
+                {% if session.salon.sportclub.terms_and_conditions %}
+                <div class="row">
+                  <h5 class="gold-text">قوانین خاص مجموعه ورزشی</h5>
+
+                <div class="col s12 m12 l12 right-align black-text">{{session.salon.sportclub.terms_and_conditions|linebreaks}}</div>
+          </div>
+              {% endif %}
+
+          </div>
+
+</li>
+        </ul>
+
+
+        {% if session.salon.pictures.all %}
+            <div class="slider">
+                <ul class="slides">
+        {% for pic in session.salon.pictures.all %}
+            <li>
+              <img src="{{pic.picture.url}}"> <!-- random image -->
+            </li>
+        {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <ul class="collapsible popout gold-text">
+        <li>
+          <div class="collapsible-header grey darken-4 " style="display: block;">
+          اطلاعات سالن ورزشی
+          </div>
+          <div class="collapsible-body grey darken-2">
+            <h6>
+            <div class="row">
+              <div class="col s6 m6 l6 right-align">{{session.salon.area}}</div>
+              <div class="col s6 m6 l6 left-align white-text">(انداره سالن (متر مربع</div>
+            </div>
+            <div class="row">
+              <div class="col s6 m6 l6 right-align">{{session.salon.floor_type}}</div>
+              <div class="col s6 m6 l6 left-align white-text">جنس کف سالن</div>
+            </div>
+            <div class="row">
+              <div class="col s6 m6 l6 right-align">
+        {% if session.salon.locker %}<img class="tooltipped" data-position="bottom" data-tooltip="کمد" src="/media/logos/locker.png" width="35">
+        {% endif %}
+        {% if session.salon.air_conditioner %}<img class="tooltipped" data-position="bottom" data-tooltip="تهویه هوا" src="/media/logos/air_conditioner.png" width="35">
+        {% endif %}
+        {% if session.salon.ball_rent %}<img class="tooltipped" data-position="bottom" data-tooltip="اجاره توپ" src="/media/logos/ball_rent.png" width="35">
+        {% endif %}
+        {% if session.salon.spectator_place %}<img class="tooltipped" data-position="bottom" data-tooltip="جایگاه تماشاچی" src="/media/logos/spectator_place.png" width="35">
+        {% endif %}
+        {% if session.salon.shower %}<img class="tooltipped" data-position="bottom" data-tooltip="حمام" src="/media/logos/shower.png" width="35">
+        {% endif %}
+        {% if session.salon.changing_room %}<img class="tooltipped" data-position="bottom" data-tooltip="اتاق تعویض لباس" src="/media/logos/changing_room1.png" width="35">
+        {% endif %}
+        {% if session.salon.parking_area %}<img class="tooltipped" data-position="bottom" data-tooltip="پارکینگ" src="/media/logos/parking_area.png" width="35">
+        {% endif %}
+        {% if session.salon.drinking_water %}<img class="tooltipped" data-position="bottom" data-tooltip="آب آشامیدنی" src="/media/logos/drinking_water.png" width="35">
+        {% endif %}
+        {% if session.salon.safe_keeping %}<img class="tooltipped" data-position="bottom" data-tooltip="امانتداری" src="/media/logos/safe_keeping.png" width="35">
+        {% endif %}
+        {% if session.salon.buffet %}<img class="tooltipped" data-position="bottom" data-tooltip="بوفه" src="/media/logos/buffet.png" width="35">
+        {% endif %}
+        {% if session.salon.taxi %}<img class="tooltipped" data-position="bottom" data-tooltip="تاکسی" src="/media/logos/taxi.png" width="35">
+        {% endif %}
+        {% if session.salon.wifi %}<img class="tooltipped" data-position="bottom" data-tooltip="وای فای" src="/media/logos/wifi.png" width="35">
+        {% endif %}
+              </div>
+              <div class="col s6 m6 l6 left-align white-text">امکانات سالن</div>
+            </div>
+            <div class="row">
+              <div class="col s6 m6 l6 right-align">
+                {% if session.salon.is_football %}
+                فوتبال
+                {% endif %}
+                {% if session.salon.is_futsall %}
+                فوتسال
+                {% endif %}
+                {% if session.salon.is_volleyball %}
+                والیبال
+                {% endif %}
+                {% if session.salon.is_basketball %}
+                بسکتبال
+                {% endif %}
+                {% if session.salon.is_handball %}
+                هندبال
+                {% endif %}
+              </div>
+              <div class="col s6 m6 l6 left-align white-text">مناسب برای</div>
+            </div>
+            <div class="row">
+              <div class="col s6 m6 l6 right-align">{{session.salon.six_to_twelve_sessions_discount}}</div>
+              <div class="col s6 m6 l6 left-align">درصد تخفیف برای کاربرانی که قراردادی به مدت بین ۶ تا ۱۲ جلسه تنظیم میکنند</div>
+            </div>
+            <div class="row">
+              <div class="col s6 m6 l6 right-align">{{session.salon.more_than_twelve_sessions_discount}}</div>
+              <div class="col s6 m6 l6 left-align">درصد تخفیف برای کاربرانی که قراردادی بالای ۱۲ جلسه تنظیم میکنند</div>
+            </div>
+</h6>
+</div>
+</li>
+</ul>
+
+
+
+    <h3 class=" fMarkazi grey-text text-darken-4">اطلاعات سانس</h3>
+    <h6>
+      <div class="row">
+        <div class="col s6 m3 l3 right-align">
+          {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+  زمان
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{session.day}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          روز
+        </div>
+{% if session.discount_percentage %}
+        <div class="col s6 m3 l3 right-align">
+          {{session.discount_percentage}}%
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          درصد تخفیف
+        </div>
+{% endif %}
+{% if session.salon.company_discount_percentage != 0 or session.discount_percentage != 0 %}
+        <div class="col s6 m3 l3 right-align">
+          {{session.price}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+  (قیمت خام (تومان
+        </div>
+{% endif %}
+
+        {% if session.salon.company_discount_percentage %}
+        <div class="col s6 m3 l3 right-align">
+          {{session.salon.company_discount_percentage}}%
+        </div>
+        <div class="col s6 m3 l3 right-align">
+تخفیف مخصوص سامانه ورزش کن
+        </div>
+        {% endif %}
+<br><br>
+<div class="row card-panel hoverable light-green accent-3 z-depth-3">
+<a href="{% url 'booking:booksession' pk=session.pk %}">
+
+        <div class="col s6 m6 l6 right-align black-text">
+      <span>{{need_to_pay}}</span>
+        </div>
+        <div class="col s6 m6 l6 left-align black-text">
+            (هزینه قابل پرداخت (تومان
+        </div>
+        </a>
+        </div>
+
+
+
+      </div>
+
+  </h6>
+
+  </div>
+
+</div>
+<br><br>
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+    function map_init (map, options) {
+        // get point lat and lon
+        var lon = "{{ session.salon.sportclub.location.x }}";
+        var lat = "{{ session.salon.sportclub.location.y }}";
+        // zoom to point & add it to map
+        map.setView([lat, lon], 12  );
+        L.marker([lat, lon]).addTo(map);
+    }
+</script>
+{% endblock %}
+{% block script_block %}
+<script>
+  $(document).ready(function(){
+    $('.slider').slider();
+  });
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+{% endblock %}

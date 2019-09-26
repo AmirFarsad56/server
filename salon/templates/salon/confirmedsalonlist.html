@@ -1,0 +1,365 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    لیست سالن های فعال | سامانه ورزش
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+<div class="section">
+
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>لیست سالن های فعال</h3><br><br></span>
+
+  <ul class="collapsible z-depth-5 fMarkazi hoverable popout gold-text">
+  <li>
+    <div class="collapsible-header grey darken-4 center" style="display: block;">
+جستجوی پیشرفته
+    </div>
+    <div class="collapsible-body grey darken-4">
+
+  <form method="get">
+<div class="row">
+
+    <div class="input-field col s12">
+      {{filter.form.area__gte}}
+      <label class="fMarkazi" for="area__gte">ابعاد سالن بزرگتر و مساوی</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.area__lte}}
+      <label class="fMarkazi" for="area__lte">ابعاد سالن کوچکتر و مساوی</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.company_discount_percentage__gte}}
+      <label class="fMarkazi" for="company_discount_percentage__gte">درصد تخفیف سامانه بزرگتر و مساوی</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.company_discount_percentage__lte}}
+      <label class="fMarkazi" for="company_discount_percentage__lte">درصد تخفیف سامانه کوچکتر و مساوی</label>
+    </div>
+    <div class="input-field col s6 m6 l6">
+      {{filter.form.is_futsall}}
+      <label class="fMarkazi" for="company_discount_percentage__lte">فوتسال</label>
+    </div>
+    <div class="input-field col s6 m6 l6">
+      {{filter.form.is_football}}
+      <label class="fMarkazi" for="company_discount_percentage__lte">فوتبال</label>
+    </div>
+    <div class="input-field col s6 m6 l6">
+      {{filter.form.is_basketball}}
+      <label class="fMarkazi" for="company_discount_percentage__lte">بسکتبال</label>
+    </div>
+    <div class="input-field col s6 m6 l6">
+      {{filter.form.is_volleyball}}
+      <label class="fMarkazi" for="company_discount_percentage__lte">والیبال</label>
+    </div>
+    <div class="input-field col s6 m6 l6">
+      {{filter.form.is_handball}}
+      <label class="fMarkazi" for="company_discount_percentage__lte">هندبال</label>
+    </div>
+
+      </div>
+    <div class="row">
+      <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">جستجو
+</button>
+    </div>
+
+  </form>
+</div>
+</li>
+</ul>
+
+  <div class="row center">
+
+    {% for salon in salons %}
+    {% if salon.is_confirmed %}
+  <div class="card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
+{% if salon.pictures.all %}
+    <div class="slider">
+        <ul class="slides">
+{% for pic in salon.pictures.all %}
+    <li>
+      <img src="{{pic.picture.url}}"> <!-- random image -->
+    </li>
+{% endfor %}
+  </ul>
+</div>
+{% endif %}
+    <h3 class=" fMarkazi gold-text">اطلاعات سالن ورزشی</h3>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.area}}</div>
+      <div class="col s6 m6 l6 left-align">(انداره سالن (متر مربع</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.lastdatas.get.first_day}}</div>
+      <div class="col s6 m6 l6 left-align">مرز ایجاد سانس</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.floor_type}}</div>
+      <div class="col s6 m6 l6 left-align">جنس کف سالن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">
+{% if salon.locker %}<img class="tooltipped" data-position="bottom" data-tooltip="کمد" src="/media/logos/locker.png" width="35">
+{% endif %}
+{% if salon.air_conditioner %}<img class="tooltipped" data-position="bottom" data-tooltip="تهویه هوا" src="/media/logos/air_conditioner.png" width="35">
+{% endif %}
+{% if salon.ball_rent %}<img class="tooltipped" data-position="bottom" data-tooltip="اجاره توپ" src="/media/logos/ball_rent.png" width="35">
+{% endif %}
+{% if salon.spectator_place %}<img class="tooltipped" data-position="bottom" data-tooltip="جایگاه تماشاچی" src="/media/logos/spectator_place.png" width="35">
+{% endif %}
+{% if salon.shower %}<img class="tooltipped" data-position="bottom" data-tooltip="حمام" src="/media/logos/shower.png" width="35">
+{% endif %}
+{% if salon.changing_room %}<img class="tooltipped" data-position="bottom" data-tooltip="اتاق تعویض لباس" src="/media/logos/changing_room1.png" width="35">
+{% endif %}
+{% if salon.parking_area %}<img class="tooltipped" data-position="bottom" data-tooltip="پارکینگ" src="/media/logos/parking_area.png" width="35">
+{% endif %}
+{% if salon.drinking_water %}<img class="tooltipped" data-position="bottom" data-tooltip="آب آشامیدنی" src="/media/logos/drinking_water.png" width="35">
+{% endif %}
+{% if salon.safe_keeping %}<img class="tooltipped" data-position="bottom" data-tooltip="امانتداری" src="/media/logos/safe_keeping.png" width="35">
+{% endif %}
+{% if salon.buffet %}<img class="tooltipped" data-position="bottom" data-tooltip="بوفه" src="/media/logos/buffet.png" width="35">
+{% endif %}
+{% if salon.taxi %}<img class="tooltipped" data-position="bottom" data-tooltip="تاکسی" src="/media/logos/taxi.png" width="35">
+{% endif %}
+{% if salon.wifi %}<img class="tooltipped" data-position="bottom" data-tooltip="وای فای" src="/media/logos/wifi.png" width="35">
+{% endif %}
+      </div>
+      <div class="col s6 m6 l6 left-align">امکانات سالن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">
+        {% if salon.is_football %}
+        فوتبال
+        {% endif %}
+        {% if salon.is_futsall %}
+        فوتسال
+        {% endif %}
+        {% if salon.is_volleyball %}
+        والیبال
+        {% endif %}
+        {% if salon.is_basketball %}
+        بسکتبال
+        {% endif %}
+        {% if salon.is_handball %}
+        هندبال
+        {% endif %}
+      </div>
+      <div class="col s6 m6 l6 left-align">مناسب برای</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.six_to_twelve_sessions_discount}}</div>
+      <div class="col s6 m6 l6 left-align">درصد تخفیف برای کاربرانی که قراردادی به مدت بین ۶ تا ۱۲ جلسه تنظیم میکنند</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.more_than_twelve_sessions_discount}}</div>
+      <div class="col s6 m6 l6 left-align">درصد تخفیف برای کاربرانی که قراردادی بین ۱۲ و ۲۴ جلسه تنظیم میکنند</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{salon.more_than_24_sessions_discount}}</div>
+      <div class="col s6 m6 l6 left-align">درصد تخفیف برای کاربرانی که قراردادی بالای ۲۴ جلسه تنظیم میکنند</div>
+    </div>
+    <div class="row"></div>
+
+    <div class="row">
+<div class="col s12 m6 l6 center-align"><a style="white-space:pre"  href="#modal{{salon.pk}}" class="waves-effect waves-light btn modal-trigger modal-close red white-text"><h6>                   <span>مسدود کردن سالن</span>                   </h6></a><p></p></div>
+<div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'session:list' pk=salon.pk %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>                   <span>سانس های این سالن</span>                 </h6></a><p></p></div>
+<div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'session:lastdataset' pk=salon.pk %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>             <span>تعیین مرزهای ایجاد سانس</span>            </h6></a><p></p></div>
+</div>
+
+
+<ul class="collapsible popout gold-text">
+<li>
+  <div class="collapsible-header grey darken-4 " style="display: block;">
+  مشخصات مجموعه ورزشی مربوطه
+  </div>
+  <div class="collapsible-body grey darken-3">
+
+
+    <div class="row">
+      <div class="row">
+        <h5 class="gold-text">اطلاعات کاربری</h5>
+
+      </div>
+          <div class="col s6 m6 l6 right-align white-text white-text">{{salon.sportclub.user.username}}</div>
+          <div class="col s6 m6 l6 left-align">نام کاربری</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.sportclub_name}}</div>
+          <div class="col s6 m6 l6 left-align">نام مجموعه ورزشی</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.serial_number}}</div>
+          <div class="col s6 m6 l6 left-align">شماره سریال مجموعه ورزشی</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.user.first_name}}</div>
+          <div class="col s6 m6 l6 left-align">نام</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.user.last_name}}</div>
+          <div class="col s6 m6 l6 left-align">نام خانوادگی</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.user.email}}</div>
+          <div class="col s6 m6 l6 left-align">ایمیل</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.company_phone_number}}</div>
+          <div class="col s6 m6 l6 left-align">شماره تلفن ثابت</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.phone_number}}</div>
+          <div class="col s6 m6 l6 left-align">شماره تلفن همراه</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.region}}</div>
+          <div class="col s6 m6 l6 left-align">استان</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.address}}</div>
+          <div class="col s6 m6 l6 left-align">آدرس</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.info}}</div>
+          <div class="col s6 m6 l6 left-align">اطلاعات دیگر</div>
+        </div>
+        {% if  salon.sportclub.bankaccount_cardnumber and salon.sportclub.bankaccount_bankname and salon.sportclub.bankaccount_ownername and salon.sportclub.bankaccount_accountnumber %}
+        <div class="row">
+          <h5 class="gold-text">اطلاعات حساب</h5>
+
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.bankaccount_ownername}}</div>
+          <div class="col s6 m6 l6 left-align">نام دارنده حساب</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.bankaccount_bankname}}</div>
+          <div class="col s6 m6 l6 left-align">بانک</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.bankaccount_cardnumber}}</div>
+          <div class="col s6 m6 l6 left-align">شماره کارت</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align white-text">{{salon.sportclub.bankaccount_accountnumber}}</div>
+          <div class="col s6 m6 l6 left-align">شماره حساب</div>
+        </div>
+        {% else %}
+        <div class="row">
+          <h5 class="gold-text">اطلاعات حساب</h5>
+    </div>
+        <div class="row">
+    کاربر هنوز اطلاعات حساب خود را وارد نکرده است
+        </div>
+        {% endif %}
+        {% if salon.sportclub.terms_and_conditions %}
+        <div class="row">
+          <h5 class="gold-text">قوانین خاص مجموعه ورزشی</h5>
+
+        <div class="col s12 m12 l12 right-align white-text">{{salon.sportclub.terms_and_conditions|linebreaks}}</div>
+        {% else %}
+        <div class="row">
+          <h5 class="gold-text">قوانین خاص مجموعه ورزشی</h5>
+
+        <div class="col s12 m12 l12 center-align">کاربر هنوز هیچ قانون خاصی برای مجموعه ورزشی خود وارد نکرده است</div><br>
+        {% endif %}
+        <div class="row">
+
+          <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'sportclub:detail' slug=salon.sportclub.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>         </span>لیست سالن ها<span>        </span></h6></a><p></p>
+    </div>
+          <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'sportclub:sendemail' slug=salon.sportclub.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>           </span>ارسال ایمیل<span>           </span></h6></a><p></p>
+    </div>
+          <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'sportclub:sendsms' slug=salon.sportclub.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>             <span>ارسال پیام</span>            </h6></a><p></p>
+    </div>
+
+        </div>
+
+      <br><br>
+
+
+  </div>
+
+</ul>
+
+  </div>
+  <div class="row">
+    <br>
+
+  </div>
+
+
+
+
+
+  <div id="modal{{salon.pk}}" class="modal right-align">
+    <div class="modal-content fMarkazi grey darken-3">
+      <h4 class="gold-text">آیا مطمئن هستید میخواهید این سالن را مسدود کنید؟</h4>
+      <p>در صورت مسدود شدن سالن دیگر سانس ها قابل رزرو نخواهند بود</p>
+    </div>
+    <div class="modal-footer grey darken-3">
+      <a href="{% url 'salon:ban_2' pk=salon.pk %}" class=" waves-effect waves-green btn-flat fMarkazi red-text"><h6>مسدود کردن</h6></a>
+      <a class="modal-close waves-effect waves-green btn-flat fMarkazi blue-text"><h6>بستن</h6></a>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+
+</div>
+<br><br>
+
+
+
+
+</div>
+
+
+<div class="container center">
+
+
+<ul class="pagination  z-depth-5 hoverable white fMarkazi">
+  {% if salons.has_previous %}
+  <li class="waves-effect"><a href="?page=1">&laquo; اولین صفحه</a></li>
+      <li class="waves-effect"><a href="?page={{ salons.previous_page_number }}">قبلی  </a></li>
+
+  {% endif %}
+  <li  style="white-space:pre;"  class="disabled active">  <span>صفحه</span> <span>{{ salons.number }}</span>  <span>از</span> <span>{{ salons.paginator.num_pages }}</span> </li>
+
+  {% if salons.has_next %}
+      <li class="waves-effect"><a href="?page={{ salons.next_page_number }}">بعدی</a></li>
+      <li class="waves-effect"><a href="?page={{ salons.paginator.num_pages }}">آخرین صفحه &raquo;</a></li>
+
+  {% endif %}
+
+</ul>
+</div>
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+{% block script_block %}
+<script>
+  $(document).ready(function(){
+    $('.slider').slider();
+  });
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+جزئیات صورت حساب | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+<div class="section">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>جزئیات صورت حساب</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+{% if user.is_sportclub %}
+<div class="row">
+  <div class="col s6 m6 l6 right-align white-text">{{need_to_pay}}</div>
+  <div class="col s6 m6 l6 left-align">مقدار بدهی سامانه ورزش کن به شما در این سالن</div>
+</div>
+<div class="row">
+  <div class="col s6 m6 l6 right-align white-text">{{paid}}</div>
+  <div class="col s6 m6 l6 left-align">جمع کل هزینه داده شده سامانه ورزش کن به شما تا این لحظه برای این سالن</div>
+</div>
+{% elif user.is_superuser %}
+<div class="row">
+  <div class="col s6 m6 l6 right-align white-text">{{need_to_pay}}</div>
+  <div class="col s6 m6 l6 left-align">مقدار بدهی به این سالن</div>
+</div>
+<div class="row">
+  <div class="col s6 m6 l6 right-align white-text">{{pure_profit_this_round}}</div>
+  <div class="col s6 m6 l6 left-align">سود خالص برای این بار</div>
+</div>
+<div class="row">
+  <div class="col s6 m6 l6 right-align white-text">{{paid}}</div>
+  <div class="col s6 m6 l6 left-align">کل داده ها به این سالن</div>
+</div>
+<div class="row">
+  <div class="col s6 m6 l6 right-align white-text">{{total_pure_profit}}</div>
+  <div class="col s6 m6 l6 left-align">سود خالص کل از این سالن</div>
+</div>
+<div class="row">
+<a href="{% url 'salon:reckoning' pk=pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">        </span>تسویه حساب<span class="black-text">      </span></h5></a><br>
+</div>
+{% endif %}
+
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  M.updateTextFields();
+});
+
+</script>
+{% endblock %}

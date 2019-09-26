@@ -1,0 +1,49 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    ارسال پیام | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="section">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>ارسال پیام</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+
+        <form method="POST">
+{{form.Hfield}}
+<div class="input-field col s12">
+{{form.text}}
+<label class="fMarkazi" for="username">متن پیام</label>
+</div>
+
+
+            {% if form.errors%}
+            <p class="fMarkazi white-text">مشکلی پیش آمد لطفا روباره سعی کنید</p>
+            {% endif %}
+
+                {% csrf_token %}
+
+                <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">ارسال
+    </button>
+    <br><br>
+
+        </form>
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  M.updateTextFields();
+});
+</script>
+{% endblock %}

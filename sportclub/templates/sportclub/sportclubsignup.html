@@ -1,0 +1,190 @@
+{% extends "base_templates/base1.html" %}
+{% load leaflet_tags %}
+{% block head_block %}
+
+{% leaflet_css plugins="ALL" %}
+{% leaflet_js plugins="ALL" %}
+<title>
+    افزودن مجموعه ورزشی | سامانه ورزش کن
+</title>
+<style media="screen">
+    #gis {width:80%;height:700px;}
+
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="section fMarkazi">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>افزودن مجموعه ورزشی</h3><br><br></span>
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+    {% if registered %}
+    <h3 class="white-text fMarkazi">مجموعه ورزشی با موفقیت اضافه شد</h3>
+<a href="{% url 'masteruser:workspace' slug=user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>میزکار</h6></a>
+
+    {% else %}
+        <form method="POST">
+          {% csrf_token %}
+
+            <form enctype="multipart/form-data" method="POST">
+              {{user_form.Hfield}}
+              {{sportclub_form.Hfield}}
+              <div class="input-field col s12">
+      {{user_form.username}}
+      <label class="fMarkazi" for="username">نام کاربری</label>
+    </div>
+    <div class="input-field col s12">
+{{user_form.email}}
+<label class="fMarkazi" for="emial">ایمیل</label>
+</div>
+<div class="input-field col s12">
+{{sportclub_form.sportclub_name}}
+<label class="fMarkazi" for="sportclub_name">نام مجموعه ورزشی</label>
+</div>
+<div class="input-field col s12">
+{{user_form.first_name}}
+<label class="fMarkazi" for="first_name">نام</label>
+</div>
+<div class="input-field col s12">
+{{user_form.last_name}}
+<label class="fMarkazi" for="last_name">نام خانوادگی</label>
+</div>
+<div class="input-field col s12">
+{{user_form.password1}}
+<label class="fMarkazi" for="password1">رمز عبور</label>
+</div>
+<div class="input-field col s12">
+{{user_form.password2}}
+<label class="fMarkazi" for="password2">تکرار رمز</label>
+</div>
+
+<div class="input-field col s12">
+  <select name="region">
+
+    <option value="آذربایجان شرقی" class="">آذربایجان شرقی</option>
+    <option value="آذربایجان غربی" class="">آذربایجان غربی</option>
+    <option value="اردبیل" class="">اردبیل</option>
+    <option value="اصفهان" class="">اصفهان</option>
+    <option value="البرز" class="">البرز</option>
+    <option value="ایلام" class="">ایلام</option>
+    <option value="بوشهر" class="">بوشهر</option>
+    <option value="تهران" class="">تهران</option>
+    <option value="چهار محال و بختیاری" class="">چهار محال و بختیاری</option>
+    <option value="خراسان جنوبی" class="">خراسان جنوبی</option>
+    <option value="خراسان رضوی" class="">خراسان رضوی</option>
+    <option value="خراسان شمالی" class="">خراسان شمالی</option>
+    <option value="خوزستان" class="">خوزستان</option>
+    <option value="زنجان" class="">زنجان</option>
+    <option value="سمنان" class="">سمنان</option>
+    <option value="سیستان و بلوچستان" class="">سیستان و بلوچستان</option>
+    <option value="فارس" class="">فارس</option>
+    <option value="قزوین" class="">قزوین</option>
+    <option value="قم" class="">قم</option>
+    <option value="کردستان" class="">کردستان</option>
+    <option value="کرمان" class="">کرمان</option>
+    <option value="کرمانشاه" class="">کرمانشاه</option>
+    <option value="کهگیلویه و بویر احمد" class="">کهگیلویه و بویر احمد</option>
+    <option value="گلستان" class="">گلستان</option>
+    <option value="گیلان" class="">گیلان</option>
+    <option value="لرستان" class="">لرستان</option>
+    <option value="مازندران" class="">مازندران</option>
+    <option value="مرکزی" class="">مرکزی</option>
+    <option value="هرمزگان" class="">هرمزگان</option>
+    <option value="همدان" class="">همدان</option>
+    <option value="یزد" class="">یزد</option>
+
+  </select>
+
+  <label>استان</label>
+</div>
+
+
+<div class="input-field col s12">
+{{sportclub_form.phone_number}}
+<label class="fMarkazi" for="phone_number">تلفن همراه</label>
+</div>
+<div class="input-field col s12">
+{{sportclub_form.company_phone_number}}
+<label class="fMarkazi" for="company_phone_number">تلفن ثابت</label>
+</div>
+<div class="input-field col s12">
+{{sportclub_form.address}}
+<label class="fMarkazi" for="address">آدرس</label>
+</div>
+<div class="input-field col s12 center">
+{{sportclub_form.location}}
+
+<label class="fMarkazi" for="username">نقشه</label>
+</div>
+<div class="input-field col s12">
+{{sportclub_form.info}}
+<label class="fMarkazi" for="info">اطلاعات دیگر</label>
+</div>
+<div class="input-field col s12 m12 l12">
+  <div class="file-field input-field">
+
+<div class="btn gold">
+{{sportclub_form.picture}}
+<span>عکس</span>
+
+</div>
+<div class="file-path-wrapper">
+<input class="file-path" type="text">
+</div>
+</div>
+</div>
+<div class="row">
+  <div class="input-field col s12 m12 l12">
+    <label>
+      {{user_form.terms}}
+      <span>کاربر قوانین سایت را به طور کامل قبول دارد</span>
+    </label>
+  </div>
+  <div class="row">
+
+  </div>
+<br>
+</div>
+<div class="row center">
+  <script class="center" src='https://www.google.com/recaptcha/api.js'></script>
+  <div class="g-recaptcha" data-sitekey="6LfbM5oUAAAAAIin3dtuLQB95QITpdUK09tsZ9Ku"></div>
+
+</div>
+<div class="row">
+
+</div>
+<br><br>
+          {% if user_form.errors%}
+                <p class="fMarkazi white-text">{{user_form.errors}}</p>
+                {% endif %}
+                {% if sportclub_form.errors%}
+                <p class="fMarkazi white-text">{{sportclub_form.errors}}</p>
+                {% endif %}
+
+                    {% csrf_token %}
+
+                    <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
+        </button>
+
+            </form>
+            {% endif %}
+          </div>
+        </div>
+        </div>
+
+        </div>
+        </div>
+
+        {% endblock %}
+        {% block script_block %}
+        <script type="text/javascript">
+          $(document).ready(function() {
+          M.updateTextFields();
+        });
+        $(document).ready(function(){
+          $('select').formSelect();
+        });
+        </script>
+        {% endblock %}

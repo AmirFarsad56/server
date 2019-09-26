@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>SportClub Details</h1>
+    <p>
+      LATER A POP UP SHOULD BE SHOWN BEFORE ANY ACTION ON THIS PAGE <br>
+
+      username: {{commonuser_detail.user.username}}<br>
+      phone number: {{commonuser_detail.phone_number}}<br>
+      first name: {{commonuser_detail.user.first_name}}<br>
+      last name: {{commonuser_detail.user.last_name}}<br>
+      booked booked_sessions <br>
+      upcoming booked sessions <br>
+      interests <br>
+
+
+      {% if commonuser_detail.user.is_active %}
+      <p><a href="{% url 'commonuser:ban' slug=commonuser_detail.user.slug %}">BAN?</a> </p>
+      {% else %}
+      <p><a href="{% url 'commonuser:unban' slug=commonuser_detail.user.slug %}">UNBAN?</a> </p>
+      <p><a href="{% url 'commonuser:delete' slug=commonuser_detail.user.slug %}">DELETE?</a> </p>
+      in front some pop has to show for these
+      {% endif %}
+      <a href="{% url 'commonuser:sendsms' slug=commonuser_detail.user.slug %}">Send SMS?</a><br>
+      <a href="{% url 'commonuser:sendemail' slug=commonuser_detail.user.slug %}">Send EMAIL?</a><br>
+
+
+
+
+    </p>
+
+
+  </body>
+</html>

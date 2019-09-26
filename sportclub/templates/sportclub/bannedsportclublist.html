@@ -1,0 +1,240 @@
+{% extends "base_templates/base1.html" %}
+{% load customtags_sportclub %}
+{% load leaflet_tags %}
+{% block head_block %}
+{% leaflet_css %}
+{% leaflet_js %}
+<title>
+    لیست مجموعه های ورزشی بلاک شده| سامانه ورزش کن
+</title>
+<style media="screen">
+  {% for sportclub in  filter.qs %}
+    #gis{{sportclub.pk}} {width:100%;height:400px;}
+  {% endfor %}
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="section fMarkazi white-text">
+  <div class="container">
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>لیست مجموعه های ورزشی بلاک شده</h3><br><br></span>
+
+
+
+  <ul class="collapsible z-depth-5 fMarkazi hoverable popout gold-text">
+  <li>
+    <div class="collapsible-header grey darken-4 center" style="display: block;">
+جستجوی پیشرفته
+    </div>
+    <div class="collapsible-body grey darken-4">
+
+  <form method="get">
+<div class="row">
+
+    <div class="input-field col s12">
+      {{filter.form.sportclub_name}}
+      <label class="fMarkazi" for="area__gte">نام مجموعه ورزشی شامل</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.region}}
+      <label class="fMarkazi" for="area__lte">اسم استان شامل</label>
+    </div>
+
+
+      </div>
+    <div class="row">
+      <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">جستجو
+</button>
+    </div>
+
+  </form>
+</div>
+</li>
+</ul>
+
+
+  <div class="row center">
+    {% for sportclub in sportclubs %}
+    {% if not sportclub.user.is_active %}
+  <div class="card-panel hoverable pink accent-3 z-depth-5">
+    <h6>
+<div class="row">
+  <div class="row">
+    <h5 class="gold-text">اطلاعات کاربری</h5>
+
+  </div>
+      <div class="col s6 m6 l6 right-align black-text black-text">{{sportclub.user.username}}</div>
+      <div class="col s6 m6 l6 left-align">نام کاربری</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.sportclub_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام مجموعه ورزشی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align white-text">{{sportclub.serial_number}}</div>
+      <div class="col s6 m6 l6 left-align">شماره سریال مجموعه ورزشی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.user.first_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.user.last_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام خانوادگی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.user.email}}</div>
+      <div class="col s6 m6 l6 left-align">ایمیل</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.phone_number}}</div>
+      <div class="col s6 m6 l6 left-align">شماره تلفن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.address}}</div>
+      <div class="col s6 m6 l6 left-align">آدرس</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.info}}</div>
+      <div class="col s6 m6 l6 left-align">اطلاعات دیگر</div>
+    </div>
+    {% if  sportclub.bankaccount_cardnumber and sportclub.bankaccount_bankname and sportclub.bankaccount_ownername and sportclub.bankaccount_accountnumber %}
+    <div class="row">
+      <h5 class="gold-text">اطلاعات حساب</h5>
+
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.bankaccount_ownername}}</div>
+      <div class="col s6 m6 l6 left-align">نام دارنده حساب</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.bankaccount_bankname}}</div>
+      <div class="col s6 m6 l6 left-align">بانک</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.bankaccount_cardnumber}}</div>
+      <div class="col s6 m6 l6 left-align">شماره کارت</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.bankaccount_accountnumber}}</div>
+      <div class="col s6 m6 l6 left-align">شماره حساب</div>
+    </div>
+    {% else %}
+    <div class="row">
+      <h5 class="gold-text">اطلاعات حساب</h5>
+</div>
+    <div class="row">
+کاربر هنوز اطلاعات حساب خود را وارد نکرده است
+    </div>
+    {% endif %}
+    {% if sportclub.terms_and_conditions %}
+    <div class="row">
+      <h5 class="gold-text">قوانین خاص مجموعه ورزشی</h5>
+
+    <div class="col s12 m12 l12 right-align black-text">{{sportclub.terms_and_conditions|linebreaks}}</div>
+    {% else %}
+    <div class="row">
+      <h5 class="gold-text">قوانین خاص مجموعه ورزشی</h5>
+
+    <div class="col s12 m12 l12 center-align">کاربر هنوز هیچ قانون خاصی برای مجموعه ورزشی خود وارد نکرده است</div><br>
+    {% endif %}
+
+    <br>
+
+
+    <div class="row">
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="#modal{{sportclub.pk}}" class="waves-effect waves-light btn modal-trigger modal-close red white-text"><h6><span>            </span>فعال کردن<span>            </span></h6></a><p></p>
+</div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'sportclub:detail' slug=sportclub.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>         </span>لیست سالن ها<span>        </span></h6></a><p></p>
+</div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'sportclub:sendemail' slug=sportclub.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>           </span>ارسال ایمیل<span>           </span></h6></a><p></p>
+</div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'sportclub:sendsms' slug=sportclub.user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>             <span>ارسال پیام</span>            </h6></a><p></p>
+</div>
+<h5 class="gold-text">موقعیت</h5>
+{% leaflet_map sportclub.pk|pk_to_str callback=sportclub.pk|pk_to_map_init %}
+
+    </div>
+
+
+</h6>
+  </div>
+  <br><br>
+
+
+  <div id="modal" class="modal right-align">
+    <div class="modal-content fMarkazi grey darken-3">
+      <h4 class="gold-text">آیا مطمئن هستید میخواهید این کاربر را دوباره فعال کنید؟</h4>
+      <p>در صورت فعال شدن کاربر دوباره میتواند به فعالیت های خود ادامه دهد</p>
+    </div>
+    <div class="modal-footer grey darken-3">
+      <a href="{% url 'sportclub:unban' slug=sportclub.user.slug %}" class="modal-close waves-effect waves-green btn-flat fMarkazi green-text"><h6>فعال کردن</h6></a>
+      <a class="modal-close waves-effect waves-green btn-flat fMarkazi blue-text"><h6>بستن</h6></a>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+</div>
+
+</div>
+
+
+<div class="container center">
+
+
+<ul class="pagination  z-depth-5 hoverable white fMarkazi">
+  {% if sportclubs.has_previous %}
+  <li class="waves-effect"><a href="?page=1">&laquo; اولین صفحه</a></li>
+      <li class="waves-effect"><a href="?page={{ sportclubs.previous_page_number }}">قبلی  </a></li>
+
+  {% endif %}
+  <li  style="white-space:pre;"  class="disabled active">  <span>صفحه</span> <span>{{ sportclubs.number }}</span>  <span>از</span> <span>{{ sportclubs.paginator.num_pages }}</span> </li>
+
+  {% if sportclubs.has_next %}
+      <li class="waves-effect"><a href="?page={{ sportclubs.next_page_number }}">بعدی</a></li>
+      <li class="waves-effect"><a href="?page={{ sportclubs.paginator.num_pages }}">آخرین صفحه &raquo;</a></li>
+
+  {% endif %}
+
+</ul>
+</div>
+
+</div>
+
+<script type="text/javascript">
+{% for sportclub in filter.qs %}
+    function map_init_{{sportclub.pk}} (map, options) {
+        // get point lat and lon
+        var lon = "{{ sportclub.location.x }}";
+        var lat = "{{ sportclub.location.y }}";
+        // zoom to point & add it to map
+        map.setView([lat, lon], 12  );
+        L.marker([lat, lon]).addTo(map);
+    }
+{% endfor %}
+</script>
+
+
+{% endblock %}
+{% block script_block %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  M.updateTextFields();
+});
+$(document).ready(function(){
+  $('.collapsible').collapsible();
+});
+$(document).ready(function(){
+  $('select').formSelect();
+});
+</script>
+{% for sportclub in sportclubs %}
+<script>
+  $(document).ready(function(){
+     $('#modal{{sportclub.pk}}').modal();
+  });
+</script>
+{% endfor %}
+{% endblock %}

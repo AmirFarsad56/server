@@ -1,0 +1,63 @@
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    پروفایل | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+{% if masteruser_detail.picture %}
+<div class="parallax-container">
+      <div class="parallax"><img src="{{masteruser_detail.picture.url}}"></div>
+    </div>
+{% endif %}
+<div class="section">
+
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>{{user.first_name}} {{user.last_name}} خوش آمدید</h3><br><br></span>
+
+
+  <div class="row center">
+  <div class="card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
+    <h3 class=" fMarkazi gold-text">اطلاعات شخصی</h3>
+<h6>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{user.username}}</div>
+      <div class="col s6 m6 l6 left-align">نام کاربری</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{user.first_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{user.last_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام خانوادگی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{user.email}}</div>
+      <div class="col s6 m6 l6 left-align">ایمیل</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align">{{masteruser_detail.phone_number}}</div>
+      <div class="col s6 m6 l6 left-align">شماره تلفن</div>
+    </div>
+    </h6>
+    <div class="row">
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'masteruser:update' slug=user.slug %}" class="waves-effect waves-light btn modal-trigger modal-close gold white-text"><h6>               <span>ویرایش مشخصات</span>               </h6></a><p></p></div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'accounts:passwordchange' slug=user.slug %}" class="waves-effect waves-light btn modal-trigger modal-close gold white-text"><h6>                       <span>تغییر رمز</span>                       </h6></a><p></p></div>
+    </div>
+  </div>
+<br><br>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block script_block %}
+<script>
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+</script>
+{% endblock %}

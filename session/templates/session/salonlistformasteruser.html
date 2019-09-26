@@ -1,0 +1,702 @@
+{% extends "base_templates/base1.html" %}
+{% load customtags_session %}
+{% load static %}
+
+{% block head_block %}
+<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
+<title>
+    لیست سانس ها | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<span class="center-align"><h3 class="fMarkazi gold-text";>لیست سانس ها</h3><br><br></span>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col s6 m4 l4 center-align"><i class="large material-icons blue-text text-darken-2">turned_in</i><br>
+      سانس های رزرو شده
+
+    </div>
+    <div class="col s6 m4 l4 center-align"><i class="large material-icons orange-text">turned_in</i><br>
+      سانس های کنسل شده
+
+    </div>
+    <div class="col s6 m4 l4 center-align"><i class="large material-icons light-green-text text-accent-4">turned_in</i><br>
+      سانس های آماده رزرو
+
+    </div>
+    <div class="col s6 m4 l4 center-align"><i class="large material-icons red-text">turned_in</i><br>
+      سانس های غیر قابل رزرو یا بدون قیمت
+
+    </div>
+    <div class="col s6 m4 l4 center-align"><i class="large material-icons grey-text text-darken-4">turned_in</i><br>
+      سانس های گذشته
+
+    </div>
+    <div class="col s6 m4 l4 center-align"><i class="large material-icons purple-text text-darken-3">turned_in</i><br>
+      سانس های رزرو مجازی
+
+    </div>
+  </div>
+
+</div>
+<br><br>
+<div class="container">
+
+
+  <ul class="collapsible z-depth-5 fMarkazi hoverable popout gold-text">
+  <li>
+    <div class="collapsible-header grey darken-4 center" style="display: block;">
+جستجوی پیشرفته
+    </div>
+    <div class="collapsible-body grey darken-4">
+
+  <form method="get">
+<div class="row">
+
+    <div class="input-field col s12">
+      {{filter.form.price__gte}}
+      <label class="fMarkazi" for="price__gte">قسمت سانس بیشتر از</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.price__lte}}
+      <label class="fMarkazi" for="price__lte">قیمت سانس کمتر از</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.day_str}}
+      <label class="fMarkazi" for="area__lte">روز سانس</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.time__gte}}
+      <label class="fMarkazi" for="time__gte">زمان شروع سانس بعد از</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.time__lte}}
+      <label class="fMarkazi" for="area__gte">زمان شروع سانس قبل از</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.discount_percentage__gte}}
+      <label class="fMarkazi" for="discount_percentage__gte">درصد تخفیف سانس بیشتر از</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.discount_percentage__lte}}
+      <label class="fMarkazi" for="discount_percentage__lte">درصد تخفیف سانس کمتر از</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.duration}}
+      <label class="fMarkazi" for="area__lte">مدت زمان سانس</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.is_booked}}
+      <label class="fMarkazi" for="area__lte">در حال حاضر رزرو شده</label>
+    </div>
+    <div class="input-field col s12">
+      {{filter.form.is_ready}}
+      <label class="fMarkazi" for="area__lte">آماده رزرو</label>
+    </div>
+
+
+      </div>
+    <div class="row">
+      <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">جستجو
+</button>
+    </div>
+
+  </form>
+</div>
+</li>
+</ul>
+</div>
+
+<br>
+<div class="container">
+{% for session in sessions %}
+{% if session.bookings.all  %}
+{% for booking in session.bookings.all %}
+{% if booking.cancelled %}
+<div class="center card-panel hoverable orange z-depth-5 fMarkazi black-text">
+  <h6>
+    <div class="row">
+      <div class="col s6 m3 l3 right-align">
+        {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+زمان
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.day}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        روز
+      </div>
+
+      <div class="col s6 m3 l3 right-align">
+        {{session.discount_percentage}}%
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        درصد تخفیف
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.price}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+(قیمت (تومان
+      </div>
+          </div>
+          <ul class="collapsible popout gold-text">
+          <li>
+            <div class="collapsible-header grey darken-3 " style="display: block;">
+
+<h5 class="gold-text" >مشخصات  رزرو کننده</h5>
+          </div>
+            <div class="collapsible-body grey darken-2 white-text">
+              <img style=" margin-bottom: 18px" src="{{session.booker.commonusers.picture.url}}" height="50">
+              <div class="row">
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.first_name}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        نام
+                </div>
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.last_name}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        نام خانوادگی
+                </div>
+
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.email}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        ایمیل
+                </div>
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.commonusers.phone_number}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        شماره تلفن
+                </div>
+              </div>
+
+    </div>
+    </li>
+    </ul>
+
+    <ul class="collapsible popout gold-text">
+    <li>
+      <div class="collapsible-header grey darken-3 " style="display: block;">
+
+    <h5 class="gold-text" >مشخصات  رزرو</h5>
+    </div>
+      <div class="collapsible-body grey darken-2 white-text">
+
+        <div class="row">
+
+        <div class="col s6 m3 l3 right-align">
+          {{booking.booked_at_date}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+روز رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.booked_at_time}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+زمان رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.final_price}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+مبلغ پرداخت شده
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.code}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+کد رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.pay_back}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+مبلغی که باید برگردانده شود
+        </div>
+</div>
+
+        </div>
+        </li>
+        </ul>
+
+
+
+</h6>
+  </div>
+  {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if now > session.day %}
+{% if session.is_booked %}
+<div class="center card-panel hoverable grey darken-4 z-depth-5 fMarkazi white-text">
+  <h6>
+    <div class="row">
+      <div class="col s6 m3 l3 right-align">
+        {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+زمان
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.day}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        روز
+      </div>
+
+      <div class="col s6 m3 l3 right-align">
+        {{session.discount_percentage}}%
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        درصد تخفیف
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.price}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+(قیمت (تومان
+      </div>
+          </div>
+          <ul class="collapsible popout gold-text">
+          <li>
+            <div class="collapsible-header grey darken-3 " style="display: block;">
+
+<h5 class="gold-text" >مشخصات  رزرو کننده</h5>
+          </div>
+            <div class="collapsible-body grey darken-2 white-text">
+              <img style=" margin-bottom: 18px" src="{{session.booker.commonusers.picture.url}}" height="50">
+              <div class="row">
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.first_name}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        نام
+                </div>
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.last_name}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        نام خانوادگی
+                </div>
+
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.email}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        ایمیل
+                </div>
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.commonusers.phone_number}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        شماره تلفن
+                </div>
+              </div>
+
+    </div>
+    </li>
+    </ul>
+
+    <ul class="collapsible popout gold-text">
+    <li>
+      <div class="collapsible-header grey darken-3 " style="display: block;">
+
+    <h5 class="gold-text" >مشخصات  رزرو</h5>
+    </div>
+      <div class="collapsible-body grey darken-2 white-text">
+        {% for booking in session.bookings.all %}
+        {% if forloop.last %}
+        <div class="row">
+
+        <div class="col s6 m3 l3 right-align">
+          {{booking.booked_at_date}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+روز رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.booked_at_time}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+زمان رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.final_price}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+مبلغ پرداخت شده
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.code}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+کد رزرو
+        </div>
+</div>
+{% endif %}
+{% endfor %}
+        </div>
+        </li>
+        </ul>
+
+
+
+</h6>
+  </div>
+
+{% else %}
+
+<div class="center card-panel hoverable grey darken-4 z-depth-5 fMarkazi white-text">
+  <h6>
+    <div class="row">
+      <div class="col s6 m3 l3 right-align">
+        {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+زمان
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.day}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        روز
+      </div>
+
+      <div class="col s6 m3 l3 right-align">
+        {{session.discount_percentage}}%
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        درصد تخفیف
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {% if session.price %}{{session.price}}{% else %}تعیین نشده{% endif %}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+(قیمت (تومان
+      </div>
+
+
+    </div>
+
+</h6>
+  </div>
+{% endif %}
+{% else %}
+
+{% if session.is_booked %}
+<div class="center card-panel hoverable blue darken-2 z-depth-5 fMarkazi white-text">
+  <h6>
+    <div class="row">
+      <div class="col s6 m3 l3 right-align">
+        {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+زمان
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.day}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        روز
+      </div>
+
+      <div class="col s6 m3 l3 right-align">
+        {{session.discount_percentage}}%
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        درصد تخفیف
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.price}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+(قیمت (تومان
+      </div>
+          </div>
+          <ul class="collapsible popout gold-text">
+          <li>
+            <div class="collapsible-header grey darken-4 " style="display: block;">
+
+<h5 class="gold-text" >مشخصات  رزرو کننده</h5>
+          </div>
+            <div class="collapsible-body grey darken-2 white-text">
+              <img style=" margin-bottom: 18px" src="{{session.booker.commonusers.picture.url}}" height="50">
+              <div class="row">
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.first_name}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        نام
+                </div>
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.last_name}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        نام خانوادگی
+                </div>
+
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.email}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        ایمیل
+                </div>
+                <div class="col s6 m3 l3 right-align">
+                  {{session.booker.commonusers.phone_number}}
+                </div>
+                <div class="col s6 m3 l3 right-align black-text">
+        شماره تلفن
+                </div>
+              </div>
+
+    </div>
+    </li>
+    </ul>
+
+    <ul class="collapsible popout gold-text">
+    <li>
+      <div class="collapsible-header grey darken-4 " style="display: block;">
+
+    <h5 class="gold-text" >مشخصات  رزرو</h5>
+    </div>
+      <div class="collapsible-body grey darken-2 white-text">
+        {% for booking in session.bookings.all %}
+        {% if forloop.last %}
+        <div class="row">
+
+        <div class="col s6 m3 l3 right-align">
+          {{booking.booked_at_date}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+روز رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.booked_at_time}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+زمان رزرو
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.final_price}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+مبلغ پرداخت شده
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          {{booking.code}}
+        </div>
+        <div class="col s6 m3 l3 right-align black-text">
+کد رزرو
+        </div>
+</div>
+{% endif %}
+{% endfor %}
+        </div>
+        </li>
+        </ul>
+
+
+
+</h6>
+  </div>
+{% endif %}
+{% if session.virtual_booker_name %}
+<div class="center card-panel hoverable purple darken-3 z-depth-5 fMarkazi">
+  <h6>
+    <div class="row">
+      <div class="col s6 m3 l3 right-align">
+        {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+زمان
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.day}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        روز
+      </div>
+
+      <div class="col s6 m3 l3 right-align">
+        {{session.discount_percentage}}%
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        درصد تخفیف
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.price}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+(قیمت (تومان
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.virtual_booker_name}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+      نام شخص رزرو کننده
+      </div>
+
+
+    </div>
+    <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'session:virtualcancel' pk=session.pk %}" class="hoverable waves-effect waves-light btn grey darken-4 gold-text"><h6><span>      </span>کنسل کردن رزرو مجازی <span>     </span></h6></a><p></p>
+    </div>
+
+</h6>
+  </div>
+{% endif %}
+{% if not session.is_booked and session.is_ready %}
+<div class="center card-panel hoverable light-green accent-4 z-depth-5 fMarkazi">
+  <h6>
+    <div class="row">
+      <div class="col s6 m3 l3 right-align">
+        {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+زمان
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.day}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        روز
+      </div>
+
+      <div class="col s6 m3 l3 right-align">
+        {{session.discount_percentage}}%
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        درصد تخفیف
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.price}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+(قیمت (تومان
+      </div>
+
+
+    </div>
+    <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'session:virtualbook' pk=session.pk %}" class="hoverable waves-effect waves-light btn grey darken-4 gold-text"><h6><span>      </span>رزرو مجازی سانس<span>     </span></h6></a><p></p>
+    </div>
+<div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'session:update' pk=session.pk %}" class="hoverable waves-effect waves-light btn grey darken-4 gold-text"><h6>ویرایش مشخصات سانس</h6></a><p></p>
+</div>
+</h6>
+  </div>
+{% endif %}
+{% if not session.is_booked and not session.is_ready %}
+<div class="center card-panel hoverable red z-depth-5 fMarkazi">
+  <h6>
+    <div class="row">
+      <div class="col s6 m3 l3 right-align">
+        {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+زمان
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {{session.day}}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        روز
+      </div>
+
+      <div class="col s6 m3 l3 right-align">
+        {{session.discount_percentage}}%
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        درصد تخفیف
+      </div>
+      <div class="col s6 m3 l3 right-align">
+        {% if session.price %}{{session.price}}{% else %}تعیین نشده{% endif %}
+      </div>
+      <div class="col s6 m3 l3 right-align">
+(قیمت (تومان
+      </div>
+
+
+    </div>
+    <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'session:virtualbook' pk=session.pk %}" class="hoverable waves-effect waves-light btn grey darken-4 gold-text"><h6><span>      </span>رزرو مجازی سانس<span>     </span></h6></a><p></p>
+    </div>
+<div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'session:update' pk=session.pk %}" class="hoverable waves-effect waves-light btn grey darken-4 gold-text"><h6>ویرایش مشخصات سانس</h6></a><p></p>
+</div>
+</h6>
+  </div>
+{% endif %}
+{% endif %}
+
+{% endfor %}
+
+<div class="container center">
+
+
+<ul class="pagination  z-depth-5 hoverable white fMarkazi">
+  {% if sessions.has_previous %}
+  <li class="waves-effect"><a href="?page=1">&laquo; اولین صفحه</a></li>
+      <li class="waves-effect"><a href="?page={{ sessions.previous_page_number }}">قبلی  </a></li>
+
+  {% endif %}
+  <li  style="white-space:pre;"  class="disabled active">  <span>صفحه</span> <span>{{ sessions.number }}</span>  <span>از</span> <span>{{ sessions.paginator.num_pages }}</span> </li>
+
+  {% if sessions.has_next %}
+      <li class="waves-effect"><a href="?page={{ sessions.next_page_number }}">بعدی</a></li>
+      <li class="waves-effect"><a href="?page={{ sessions.paginator.num_pages }}">آخرین صفحه &raquo;</a></li>
+
+  {% endif %}
+
+</ul>
+</div>
+<div class="row">
+
+</div>
+
+
+
+</div>
+<br><br>
+
+{% endblock %}
+{% block script_block %}
+
+<script type="text/javascript" src="{% static 'js/mpdatepickers.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/timepickers.js' %}"></script>
+
+<script>
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+<script>
+  $('.timepicker').timepicker({
+    onSelect: function(time) {
+      console.log(time)
+    }
+  });
+  $(function () {
+      $(".mp-datepicker").mpdatepicker({
+          'timePicker': true
+      });
+  });
+</script>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,232 @@
+{% extends "base_templates/base1.html" %}
+{% load static %}
+{% load leaflet_tags %}
+{% block head_block %}
+{% load customtags_session %}
+{% leaflet_css %}
+{% leaflet_js %}
+<title>
+جزئیات سانس | سامانه ورزش
+</title>
+<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
+<style media="screen">
+    #gis {width:100%;height:400px;z-index: 1;}
+</style>
+{% endblock %}
+
+{% block body_block %}
+
+
+<div class="section">
+
+  <div class="container"><br>
+<span class="center-align"><h3 class="fMarkazi gold-text";>جزئیات سانس</h3><br><br></span>
+
+  <div class="row center">
+
+  <div class="card-panel hoverable grey lighten-2  z-depth-5 teal-text fMarkazi">
+<br>
+    <div class="row center center-align">
+      <h4 class="col s6 m6 l6 center center-align grey-text text-darken-4">{{salon.sportclub.sportclub_name}}</h4>
+      <h4 class="col s6 m6 l6 fLalezar " >نام مجموعه ورزشی</h4>
+<br><br><br><br><br><br>
+      {% leaflet_map 'gis' callback='map_init' %}
+    </div>
+    <ul class="collapsible popout gold-text">
+    <li>
+      <div class="collapsible-header grey darken-4 " style="display: block;">
+      مشخصات مجموعه ورزشی مربوطه
+      </div>
+      <div class="collapsible-body grey teal-text">
+        <div class="row">
+          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.sportclub_name}}</div>
+          <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
+          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.serial_number}}</div>
+          <div class="col s4 m4 l4 left-align fLalezar">شماره سریال مجموعه ورزشی</div>
+          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.region}}</div>
+          <div class="col s4 m4 l4 left-align fLalezar">استان</div>
+          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.address}}</div>
+          <div class="col s4 m4 l4 left-align fLalezar">آدرس</div>
+          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.company_phone_number}}</div>
+          <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>
+          <a target="_blank" href="{% url 'sportclub:publicdetail' pk=session.salon.sportclub.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+        </div>
+          </div>
+
+</li>
+        </ul>
+
+
+        {% if salon.pictures.all %}
+            <div class="slider">
+                <ul class="slides">
+        {% for pic in salon.pictures.all %}
+            <li>
+              <img src="{{pic.picture.url}}"> <!-- random image -->
+            </li>
+        {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <ul class="collapsible popout ">
+        <li>
+          <div class="collapsible-header grey darken-4 gold-text" style="display: block;">
+          اطلاعات سالن ورزشی
+          </div>
+          <div class="collapsible-body grey ">
+            <h6>
+              <div class="row">
+                <div class="col s6 m6 l6 right-align black-text">{{session.salon.area}}</div>
+                <div class="col s6 m6 l6 left-align fLalezar fLalezar">(انداره سالن (متر مربع</div>
+              </div>
+              <div class="row">
+                <div class="col s6 m6 l6 right-align black-text">{{session.salon.floor_type}}</div>
+                <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
+              </div>
+              <div class="row">
+              <div class="col s6 m6 l6 right-align black-text">
+                {% if session.salon.is_football %}
+                فوتبال
+                {% endif %}
+                {% if session.salon.is_futsall %}
+                فوتسال
+                {% endif %}
+                {% if session.salon.is_volleyball %}
+                والیبال
+                {% endif %}
+                {% if session.salon.is_basketball %}
+                بسکتبال
+                {% endif %}
+                {% if session.salon.is_handball %}
+                هندبال
+                {% endif %}
+              </div>
+              <div class="col s6 m6 l6 left-align fLalezar">زمینه ورزشی سالن</div>
+              </div><br>
+              <h6 class="row fLalezar teal-text">
+                امکانات سالن
+              </h6>
+        {% if session.salon.locker %}
+        <div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tooltiptext" >کمد</span>
+        </div>
+        {% endif %}
+        {% if session.salon.air_conditioner %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tooltiptext" >تهویه هوا</span>
+        </div>
+        {% endif %}
+        {% if session.salon.ball_rent %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tooltiptext" >اجاره توپ</span>
+      </div>
+        {% endif %}
+        {% if session.salon.spectator_place %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tooltiptext" >جایگاه تماشاچی</span>
+      </div>
+        {% endif %}
+        {% if session.salon.shower %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tooltiptext" >دوش</span>
+      </div>
+        {% endif %}
+        {% if session.salon.changing_room %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tooltiptext" >اتاق تعویش لباس</span>
+      </div>
+        {% endif %}
+        {% if session.salon.parking_area %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tooltiptext" >پارکینگ</span>
+      </div>
+        {% endif %}
+        {% if session.salon.drinking_water %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tooltiptext" >آب آشامیدنی</span>
+      </div>
+        {% endif %}
+        {% if session.salon.safe_keeping %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tooltiptext" >امانتداری</span>
+      </div>
+        {% endif %}
+        {% if session.salon.buffet %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tooltiptext" >بوفه</span>
+      </div>
+        {% endif %}
+        {% if session.salon.taxi %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tooltiptext" >تاکسی ویژه</span>
+      </div>
+        {% endif %}
+        {% if session.salon.wifi %}<div class="tooltip">
+          <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tooltiptext" >وای فای</span>
+      </div>
+        {% endif %}
+        <div class="row center">
+          <a target="_blank" href="{% url 'session:publiclistforsalon' pk=session.salon.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>سانس های دیگر این سالن</h6></a>
+        </div>
+</h6>
+</div>
+</li>
+</ul>
+<br><br><br>
+
+<div  class="row">
+  <div class="col s6 m3 l3 right-align black-text">{{session.day}}</div>
+  <div class="col s6 m3 l3 left-align fLalezar fLalezar">روز سانس</div>
+
+  <div class="col s6 m3 l3 right-align black-text">{{session.time|date:"H:i"}}-{{session.pk|session_end}}</div>
+  <div class="col s6 m3 l3 left-align fLalezar">زمان سانس</div>
+
+  <div class="col s6 m3 l3 right-align black-text">{{session.duration}}</div>
+  <div class="col s6 m3 l3 left-align fLalezar">مدت سانس</div>
+
+  <div class="col s6 m3 l3 right-align black-text">{{session.discount_percentage}}% {% if session.salon.company_discount_percentage %}+ {{session.salon.company_discount_percentage}}% {% endif %}</div>
+  <div class="col s6 m3 l3 left-align fLalezar">درصد تخفیف سانس</div>
+
+  <div class="col s6 m6 l6 right-align black-text">{{session.price}}</div>
+  <div class="col s6 m6 l6 left-align fLalezar">(قیمت (تومان</div>
+</div>
+<br>
+<div class="row">
+  <div class="col s6 m6 l6 right-align"><a class="waves-effect waves-light btn"  href="{% url 'booking:booksession' pk=session.pk %}">پرداخت هزینه و رزرو</a></div>
+  <div style="margin-top:7px;" class="col s6 m2 l2 right-align black-text">{{session.pk|final_price}}</div>
+  <div style="margin-top:7px;" class="col s6 m4 l4 left-align fLalezar">قیمت نهایی</div>
+</div>
+
+<br><br>
+
+  </div>
+
+</div>
+<br><br>
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+    function map_init (map, options) {
+        // get point lat and lon
+        var lon = "{{ salon.sportclub.location.x }}";
+        var lat = "{{ salon.sportclub.location.y }}";
+        // zoom to point & add it to map
+        map.setView([lat, lon], 12  );
+        L.marker([lat, lon]).addTo(map);
+    }
+</script>
+{% endblock %}
+{% block script_block %}
+
+<script>
+  $(document).ready(function(){
+    $('.slider').slider();
+  });
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+<script type="text/javascript" src="{% static 'js/mpdatepickers.js' %}"></script>
+<script>
+$(function () {
+    $(".mp-datepicker").mpdatepicker({
+        'timePicker': true
+    });
+});
+</script>
+{% endblock %}

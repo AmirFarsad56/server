@@ -1,0 +1,290 @@
+{% extends "base_templates/base1.html" %}
+{% load customtags_session %}
+{% block head_block %}
+<title>
+    میزکار | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+
+
+<br><br>
+
+
+<div class="container">
+  <div class="row center">
+    <span class="center-align gold-text fMarkazi">درصورت وجود سانس با کلیک بر روی هر یک از روزها میتوانید به سانس های آن روز دسترسی داشته باشید</span>
+  </div>
+
+<div class="slider">
+    <ul class="slides">
+<li>    <table class="grey darken-4 white-text fMarkazi">
+      <th class="center" style="white-space:pre">
+        <td style="white-space:pre">{% for day in days_1 %}{% if day|only_day|cutbr == '1' %}<h5 class="pink-text">{{day|only_year}}</h5>{% endif %}{% endfor %}</td>
+        <td style="white-space:pre">          </td><td style="white-space:pre">          </td><td style="white-space:pre">          </td>
+        <td style="white-space:pre">{% for day in days_1 %}{% if day|only_day|cutbr == '1' %}<h5 class="pink-text">{{day|only_month}}</h5>{% endif %}{% endfor %}</td>
+        <td></td>
+        <tr class="center">
+
+
+<td class="gold-text center" style="white-space:pre">    جمعه   </td>
+<td class="gold-text center" style="white-space:pre">پنج شنبه  </td>
+<td class="gold-text center" style="white-space:pre">چهارشنبه </td>
+<td class="gold-text center" style="white-space:pre"> سه شنبه </td>
+<td class="gold-text center" style="white-space:pre"> دوشنبه  </td>
+<td class="gold-text center" style="white-space:pre"> یکشنبه  </td>
+<td class="gold-text center" style="white-space:pre">   شنبه  </td>
+        </tr>
+      </th>
+
+
+{% for day in days_1 %}
+
+
+{% if '-br' in day %}<tr><td class="center">{% if day|cutbr in session_days %}<a class="blue-text" href="{% url 'session:day_list' pk=salon.pk str=day|cutbr %}">{{day|only_day}}</a>{% else %}{{day|only_day}}{% endif %}</td>{% else %}<td class="center">{% if day|cutbr in session_days %}<a class="blue-text" href="{% url 'session:day_list' pk=salon.pk str=day|cutbr %}">{{day|only_day}}</a>{% else %}{{day|only_day}}{% endif %}</td>{% endif %}
+{% endfor %}
+<tr>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+</tr>
+
+    </table>
+</li>
+
+</ul>
+</div>
+
+  <div class="row">
+
+<br><br>
+  <div class="container">
+    <div class="container">
+      <div class="center card-panel hoverable gold z-depth-5 fMarkazi">
+      <a href="{% url 'session:create' pk=salon.pk %}" style="white-space:pre" class=" waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">          </span>ایجاد سانس در روز جدید<span class="black-text">          </span></h5></a><br>
+{% if salon.lastdatas.all %}    <a href="{% url 'session:create_2' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text"></span>اضافه کردن سانس به روز دارای سانس<span class="black-text"></span></h5></a><br>
+{% endif %}
+{% if salon.sessions.all %}    <a href="{% url 'session:list' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">         </span>لیست سانس ها<span class="black-text">         </span></h5></a><br>
+{% endif %}
+{% if salon.bookings.all %}    <a href="{% url 'booking:bookedsessionlist' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">         </span>لیست سانس های رزرو شده<span class="black-text">         </span></h5></a><br>
+{% endif %}
+{% if salon.contracts.all %}    <a href="{% url 'booking:contractlist' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">         </span>لیست قراردادهای بیش از یک جلسه<span class="black-text">         </span></h5></a><br>
+{% endif %}
+{% if salon.lastdatas.all %}    <a href="{% url 'session:lastdataset' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">        </span>ویرایش روز اول ایجاد سانس <span class="black-text">        </span></h5></a><br>
+{% endif %}
+  </div>
+  </div>
+  </div>
+<br><br>
+<div class="right-align card-panel hoverable grey accent-3 z-depth-5 fMarkazi black-text">
+  <h6>
+  <div class="row">
+<h4 class="center">نکات استفاده از میز کار</h4>
+  </div>
+  <div class="row">
+    ١-براي ايجاد سانس براي يك مدت زمان مشخص بر روي لینک ايجاد سانس در روز خالي كليك نماييد
+  </div>
+  <div class="row">
+    ٢- در صورتي كه ميخواهيد براي روزهاي مختلف هفته سانس بندي متفاوتي داشته باشيد براي
+    مثال از روز شنبه تا پنجشنبه سانس ها از ساعت ٩ صبح لغايت ٢٢ شب بوده و براي جمعه از
+     ساعت ٧ لغايت ٢٤ شب باشد ابتدا در صفحه ي ايجاد سانس انتهاي بازه ي تاريخ را مشخص نموده سپس روزهاي
+      شنبه تا پنجشنبه را انتخاب كرده و پس از وارد كردن ساعت شروع و پايان و طول هر سانس مورد نظر بر روي دكمه ي ايجاد
+       سانس كليك كنيد؛ سپس بار ديگر به صفحه ي ايجاد سانس رفته و اينبار فقط روز جمعه را با بازه هاي زماني مورد نظر خود وارد نموده و بر روي دكمه ي ايجاد سانس كليك كنيد.
+
+  </div>
+  <div class="row">
+    ٣- براي سهولت قيمت گذاري سانس ها، با هر بار ايجاد سانس در صفحه ي مورد نظر يك گروه سانس با
+     ساختار مشترك ايجاد مي شود كه از طريق صفحه ي مديريت سانس ها قابل مشاهده است.
+    براي مثال در مورد شماره ١ دو گروه سانس متفاوت ايجاد شد؛ يكي براي روز جمعه و ديگري براي روزهاي ديگر
+  </div>
+  <div class="row">
+    ٤- از طريق قيمت گذاري سانس ها شما ميتوانيد هزينه موردنظر خود براي رزرو شدن سانس هارا اصافه نماييد.
+    دقت فرمائيد كه قيمت گذاري يك سانس به معناي آماده رزرو بودن آن سانس است.
+     لطفا فقط در صورتي كه از درست بودن تايم بندي اطمينان داريد اقدام به قيمت گذاري كنيد در غير اين صورت
+     ايراد را برطرف نموده و يا مشكل خود را با مديرات سايت از طريق لينك ارتباط با ما درميان بگذاريد.
+  </div>
+  <div class="row">
+٥- شما ميتوانيد با انتخاب سانس موردنظر از صفحه ي ليست سانس ها تيك
+گزينه آماده رزرو بودن يك سانس را برداريد و كاربران ديگر را از رزرو آن سانس منع نمائيد
+  </div>
+  <div class="row">
+٦- از طريق لينك حذف سانس ها شما ميتوانيد نسبت به حذف سانسهاي مورد نظر خود اقدام فرمائيد.
+دقت فرمائيد فقط درصورتي يك سانس حذف ميشود كه رزرو نشده باشد.
+  </div>
+  <div class="row">
+    ٧- اگر ميخواهيد براي روزي دو نوع تايم بندي مختلف داشته باشيد و يا براي مدتي وقفه
+    در سانس ها ايجاد كنيد، براي مثال درنظر بگيريد ميخواهيد طرز كار سالن بو صورت زير باشد
+    سانس هاي وقت صبح از ساعت ٨ الي ١٢:٣٠ با طول تايم ١:٣٠ و ديگري سانس هاي وقت عصر از ساعت ١٥ لغايت ٢١ با طول
+    تايم ١:١٥، در اين حالت ابتدا سانس هاي وقت صبح را از طريق لينك ايجاد سانس عادي به طور كامل ايجاد فرمائيد سپس از طريق لينك
+    افزودن سانس به روز داراي سانس باقي سانس هاي وقت عصر و شب مورد نظر خود را ايجاد فرمائيد
+    دقت فرمائيد كه سانس ها نبايد با يكديگر تداخل داشته باشند درغير اين صورت قادر به افزودن سانس ها نخواهيد بود
+  </div>
+  <div class="row">
+    ٨- شما فقط قادر به ويرايش هزينه سانس ها و حذف سانس ها و ... خواهيد بود كه قبلا رزرو نشده باشند در غير اينصورت
+    اگر نياز ضروري به اعمال تغييرات سانس مربوطه
+    داريد بايد با كاربري كه سانس را رزرو كرده بخواهيد با رضايت خود رزرو خود را كنسل كند
+    و اگر تغييرات به صورت گروهي باشد فقط تغييرات در سانس هايي كه رزرو نشده اند اعمال ميشود
+  </div>
+  <div class="row">
+٩- اگر مشكلي پيش امد و خواستيد سالني كه قبلا ايجاد كرده ايد را پاك كنيد در صورتي كه
+سالن هيچ سانس رزرو شده اي نداشته باشد از مديران سايت بخواهيد سالن را براي شما پاك كنند
+  </div>
+  <div class="row">
+١٠- از طريق تعيين درصد تخفيف شما ميتوانيد به سانس هاي مورد نظر خود تخفيف اختصاص دهيد
+  </div>
+  <div class="row">
+١١- شما ميتوانيد از طريق صفحه ي ليست سانس ها يا ليست سانس هاي هر مجموعه سانس هارا به صورت
+ تكي مشاهده كرده و نسبت به ويرايش مشخصات آن ها به صورت تكي اقدام نمائيد
+  </div>
+  <div class="row">
+١٢- در صفحه ي ليست سانس ها در تقويم، اگر روزي سانس گذاري شده باشد رنگ آن به رنگ آبي
+تغيير خواهد يافت و با كليك بر روي ان روز ميتواند سانس هاي موجود در آن روز را مشاهده كنيد
+و از وضعيت سانس ها اطلاع داشته باشيد
+همچنين اگر سانسي رزرو شده باشد از طريق همين راه نيز ميتوانيد به مشخصات فرد رزرو كننده دسترسي داشته باشيد
+  </div>
+  <div class="row">
+    ١٣- براي جلوگيري از مشكلات احتمالي براي هر سانس رزرو شده يك كد درنظر گرفته ميشود
+     كه هم در اختيار شما و هم در اختيار فرد رزرو كننده قرار داده ميشود.
+    لطفا قبل از تحويل سالن نسبت به تطابق مشخصات فرد رزرو كننده و كد ذكر شده در سايت و مشخصات فرد اقدام كنيد
+  </div>
+  <div class="row">
+    ١٤- دقت فرمائيد كه در صفحه ي ايجاد سانس نهايتا تا ساعت ٢٤:٠٠ اقدام به سانس گذاري فرمائيد.
+    اگر ميخواهيد پس از ساعت ٢٤ سانس گذاري فرمائيد، ساعت شروع را ٠٠:٠٠ انتخاب كرده و براي مثال
+    تا ساعت ٠١:١٥ در (روز بعدي) را انتخاب كنيد
+  </div>
+  <div class="row">
+۱۵-سانسی که رزرو شد تا دو روز قبل از رسیدن تایم رزرو کننده میتواند سانس را بدون هیچ گونه کسری
+کنسل کند و هزینه پرداخت شده خود را به صورت حضوری از مجموعه ورزشی مربوطه دریافت کند
+لازم به ذکر است مجموعه ورزشی باید با سامانه ورزش کن همکاری کرده و پس از تطابق مشخصات
+سانس و فرد رزرو کننده با اطلاعات موجود در صفحه ی سانس های کنسل شده هزینه را به رزرو کننده برگشت دهد
+  </div>
+  <div class="row">
+چنانچه کاربری درخواست کنسل کردن سانس رزرو شده ی خود را در فاصله زمانی بین دو روز تا  پنج ساعت مانده به شروع سانس
+را داد مجموعه ورزشی موظف است هزینه ی پرداخت شده برای رزرو را پس از کسر ۱۵٪ از آن به کاربر مربوطه عودت دهد
+  </div>
+  <div class="row">
+    لازم به ذکر است که کاربران مقدور نخواهند بود تا سانس رزرو شده ای را در صورتی که کمتر از پنج ساعت به شروع سانس مانده کنسل کنند
+  </div>
+  <div class="row">
+    اگر کاربری خواست یکی از سانس هایی که در یک قرارداد بلندمدت رزرو کرده را کنسل کند
+    تخفیف حساب شده در زمان امضای قرارداد از وی کسر خواهد شد.
+    این کار بدان منظور است تا کاربران را از امضای قرارداد و بهره بردن از تخفیف رزرو های طولانی و سپس کنسل کردن بقیه ی سانس ها منع کند
+  </div>
+  <div class="row">
+    اگر سانسی خارح از سامانه آنلاین ورزش کن رزرو شد حتما سانس مربوطه را غیرقابل رزرو کنید و از طریق کلیک بر روی لینک
+    رزرو مجازی سانس اسم فرد رزرو کننده را وارد کنید تا از رزرو شدن سانس توسط دو فرد جلوگیری شود درغیر اینصورت
+    سامانه ورزش کن هیچ مسئولیتی درقبال تداخل به وجود آمده نخواهد داشت
+  </div>
+  <div class="row">
+درنظر داشته باشد اگر میخواهید در ایجاد سانس ساعت ۱۲ شب را انتخاب کنید در صفحه ی موردنظر ساعت 00:00 را انتخاب کنید
+    </div>
+  </h6>
+  </div>
+  <br><br>
+ {% for category in salon.sessioncategories.all %}
+  <div class="center card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
+    <h6>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align white-text">{{category.range_start_day}}</div>
+      <div class="col s6 m6 l6 left-align">از روز</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align white-text">{{category.range_end_day}}</div>
+      <div class="col s6 m6 l6 left-align">تا روز</div>
+    </div>
+    <div class="row">
+      <div style="white-space:pre"  class="col s6 m6 l6 right-align white-text">{{category.created_at_date}}   {{category.created_at_time}}</div>
+      <div class="col s6 m6 l6 left-align">آخرین تنظیم این گروه</div>
+    </div>
+    {% if category.is_closed %}
+    <div class="row">
+      <div class="col s6 m6 l6 right-align white-text">
+        {% if category.saturdays %}شنبه ها {% endif %}
+        {% if category.sundays %} یکشنبه ها{% endif %}
+        {% if category.mondays %} دوشنبه ها{% endif %}
+        {% if category.tuesdays %} سه شنبه ها{% endif %}
+        {% if category.wednesdays %} چهارشنبه ها{% endif %}
+        {% if category.thursdays %} پنج شنبه ها{% endif %}
+        {% if category.fridays %} جمعه ها {% endif %}
+      </div>
+      <div class="col s6 m6 l6 left-align">روز های هفته</div>
+    </div>
+      <div class="col s6 m6 l6 right-align white-text">تعطیل</div>
+      <div class="col s6 m6 l6 left-align">وضعیت سالن</div>
+    </div>
+    {% else %}
+    <div class="row">
+      <div class="col s6 m6 l6 right-align white-text">
+        {% if category.saturdays %}شنبه ها {% endif %}
+        {% if category.sundays %} یکشنبه ها{% endif %}
+        {% if category.mondays %} دوشنبه ها{% endif %}
+        {% if category.tuesdays %} سه شنبه ها{% endif %}
+        {% if category.wednesdays %} چهارشنبه ها{% endif %}
+        {% if category.thursdays %} پنج شنبه ها{% endif %}
+        {% if category.fridays %} جمعه ها {% endif %}
+      </div>
+      <div class="col s6 m6 l6 left-align">روز های هفته</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align white-text">{{floor}}</div>
+      <div class="col s6 m6 l6 left-align">شروع اولین سانس</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align white-text">{{ceil}}</div>
+      <div class="col s6 m6 l6 left-align">پایان آخرین سانس</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align white-text">{{duration}}</div>
+      <div class="col s6 m6 l6 left-align">مدت زمان هر سانس</div>
+    </div>
+
+    </h6>
+    {% if not now > category.range_end_day %}
+    <div class="row">
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'session:setprice' pk=category.pk %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>        </span>قیمت گذاری سانس ها<span>        </span></h6></a><p></p>
+</div>
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'session:delete' pk=category.pk %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>         </span>حذف کردن سانس ها<span>        </span></h6></a><p></p>
+</div>
+
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'session:setdiscountpercentage' pk=category.pk %}" class="hoverable waves-effect waves-light btn gold white-text"><h6><span>      </span>تعیین تخفیف سانس ها<span>      </span></h6></a><p></p>
+</div>
+
+      <div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'session:categorizedsessions' pk=category.pk %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>لیست سانس های این مجموعه</h6></a><p></p>
+</div>
+<div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'session:statuschange' pk=category.pk %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>تعیین قابل یا غیرقابل رزرو بودن سانس ها</h6></a><p></p>
+</div>
+
+    </div>
+    {% else %}
+    <div class="row">
+      <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'session:categorizedsessions' pk=category.pk %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>لیست سانس های این مجموعه</h6></a><p></p>
+</div>
+
+    </div>
+    {% endif %}
+
+    {% endif %}
+</div>
+<br><br>
+{% endfor %}
+</div>
+{% endblock %}
+{% block script_block %}
+<script>
+  $(document).ready(function(){
+    $('.slider').slider({
+        height : 480,
+        interval: 9999999999999,
+    });
+  })
+
+
+</script>
+{% endblock %}

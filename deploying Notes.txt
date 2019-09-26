@@ -1,0 +1,189 @@
+install OS on server
+get password and username and ip address and port(22) and connect to server using termius app
+
+sudo apt-get install libgeos-dev
+sudo apt-get install binutils libproj-dev
+sudo apt-get install gdal-bin libgdal-dev
+sudo apt-get install python3-gdal
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev
+sudo apt-get install python3-pip python3.7-dev
+sudo apt-get install python3.7
+sudo apt update
+sudo apt install virtualenv
+mkdir envs cd envs
+virtualenv -p python3.7 MyEnv1
+source envs/MyEnv1/bin/activate
+sudo apt-get install postgresql
+sudo apt-get install postgis
+sudo apt-get install postgis postgresql-9.5-postgis-scripts
+sudo su - postgres
+createuser -P amirfarsad
+psql
+CREATE DATABASE varzeshkondb;
+CREATE EXTENSION postgis;
+GRANT ALL PRIVILEGES ON DATABASE varzeshkondb TO amirfarsad;
+ALTER ROLE amirfarsad SUPERUSER;
+## upload project.zip inside MyEnv1 ##
+sudo apt-get install unzip
+unzip varzeshkon.zip
+pip install -r requirements.txt #in Main_Project main folder
+# OR
+pip install django==2.2.2
+pip install django-filter
+pip install django-filter==2.2.0
+pip install django-filters==0.2.1
+pip install django-dynamic-formsets==0.0.8
+pip install psycopg2-binary
+pip install django-leaflet
+Modules
+	password hashers
+		pip install bcrypt
+		pip install django[argon2]
+	pillow
+		pip install pillow
+	Persian Calendar
+		pip install django_jalali
+		pip install jdatetime
+	Message Service
+		pip install kavenegar
+pip install gunicorn
+#
+2 ways:
+	1st:
+https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html#install-uwsgi-into-your-virtualenv
+
+	2nd:
+## inside Main_Project folder where manage.py exists ##
+gunicorn --bind 0.0.0.0:8800 Main_Project.wsgi:application
+deactivate
+sudo nano /etc/systemd/system/gunicorn.service
+
+	##add these codes ##
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/root/envs/MyEnv1/VarzeshKon
+ExecStart=/root/envs/MyEnv1/bin/gunicorn --access-logfile - --workers 3 --bind unix:/root/envs/MyEnv1/VarzeshKon/Main_Project.sock Main_Project.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+	## end ##
+
+systemctl daemon-reload
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
+	## reload it with the existing code in WARNING ##
+sudo systemctl status gunicorn
+	## Main_Project.sock must exist in envs/MyEnv1/VarzeshKon/
+
+sudo apt-get install ngninx
+nano /etc/nginx/sites-available/gunicorn
+
+	## add these codes there ##
+server {
+    listen 80;
+    server_name varzesh-kon.ir;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /root/envs/MyEnv1/VarzeshKon;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/root/envs/MyEnv1/VarzeshKon/Main_Project.sock;
+    }
+}
+### or for uwsqi
+
+server {
+    listen 80;
+    server_name 2eah.c.serverhost.name;
+
+		location / {
+						uwsqi_pass unix:///tmp/main.sock;
+						include uwsgi_params;
+		}
+    location /static/ {
+        alias /var/www/Main_Project/static/;
+    }
+}
+	## end ##
+	## for uwsgi ##
+
+[uwsgi]
+vhost = true
+plugins = python
+socket = /tmp/main.sock
+master = true
+enable-threads = true
+processes = 4
+wsgi-file = /var/www/Main_Project/Main_Project/wsgi.py
+virtualenv = /var/www/venv/site
+chdir = /var/www/Main_Project
+touch-reload = /var/www/Main_Project/reload
+
+env = DJANGO_ENV=production
+env = DATABASE_NAME=varzeshkondb
+env = DATABASE_USER=amirfarsad
+env = DATABASE_PASSWORD=199271Raiden
+env = DATABASE_HOST=localhost
+env = DATABASE_PORT=5432
+
+
+## end ##
+ln -s /etc/nginx/sites-available/gunicorn /etc/nginx/sites-enabled/
+	## checking nginx ##
+nginx -t
+## output: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+## output: nginx: configuration file /etc/nginx/nginx.conf test is successful
+systemctl restart nginx
+
+
+
+google recaptcha redeploy for new domain
+coding the secret keys
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # During development only
+
+	materialize clear js files that there is no need to them
+	4xmen mpdatepicker initializing
+
+https://github.com/slashmili/django-jalali => set local ?
+
+
+postgres for maps:
+
+sudo apt-get install python3.7
+
+
+sudo -u postgres createdb databasename
+sudo su postgres
+psql
+CREATE EXTENSION postgis;
+ settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'YOUR_POSTGIS_DATABASE_NAME',
+        'USER': 'YOUR_DATABASE_USER_NAME',
+        'PASSWORD': 'YOUR_DATABASE_USER_PASSWORD',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
+
+pip install django-filter
+pip install django-filter==2.2.0
+pip install django-filters==0.2.1
+
+2eah.c.serverhost.name:8001
+
+/root/envs/MyEnv1/Main_Project
+sudo ln -s ~/root/envs/MyEnv1/Main_Project/mysite_nginx.conf /etc/nginx/sites-enabled/
