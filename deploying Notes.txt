@@ -1,6 +1,32 @@
-install OS on server
+Main_Projectinstall OS on server
 get password and username and ip address and port(22) and connect to server using termius app
+ (
+sudo apt-get update
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install -y libgeos-dev binutils libproj-dev gdal-bin libgdal-dev python3-gdal build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 virtualenv
+sudo apt-get upgrade
+sudo apt-get install -y postgresql postgis postgresql-9.5-postgis-scripts
+cd /var/www/
+mkdir envs
+virtualenv -p python3.7 MyEnv1
+source MyEnv1/bin/activate
+# upload files into /var/www/Main_Project/   manage.py must exist here
+cd /var/www/Main_Project/
+pip install -r requirements.txt
+sudo su - postgres
+createuser -P amirfarsad
+psql
+CREATE DATABASE maindb;
+CREATE EXTENSION postgis;
+ALTER ROLE amirfarsad SUPERUSER;
+GRANT ALL PRIVILEGES ON DATABASE maindb TO amirfarsad;
+\q
+exit
 
+
+# or
 sudo apt-get install libgeos-dev
 sudo apt-get install binutils libproj-dev
 sudo apt-get install gdal-bin libgdal-dev
@@ -13,19 +39,20 @@ sudo apt-get install python3-pip python3.7-dev
 sudo apt-get install python3.7
 sudo apt update
 sudo apt install virtualenv
+python3.7 -m pip install --upgrade pip
+
+)
 mkdir envs cd envs
-virtualenv -p python3.7 MyEnv1
+virtualenv -p python3 MyEnv1
 source envs/MyEnv1/bin/activate
-sudo apt-get install postgresql
-sudo apt-get install postgis
-sudo apt-get install postgis postgresql-9.5-postgis-scripts
+sudo apt-get install postgresql postgis postgresql-9.5-postgis-scripts
 sudo su - postgres
 createuser -P amirfarsad
 psql
-CREATE DATABASE varzeshkondb;
+CREATE DATABASE maindb;
 CREATE EXTENSION postgis;
-GRANT ALL PRIVILEGES ON DATABASE varzeshkondb TO amirfarsad;
-ALTER ROLE amirfarsad SUPERUSER;
+GRANT ALL PRIVILEGES ON DATABASE maindb TO amirfarsad;
+x
 ## upload project.zip inside MyEnv1 ##
 sudo apt-get install unzip
 unzip varzeshkon.zip
@@ -165,8 +192,10 @@ sudo apt-get install python3.7
 
 sudo -u postgres createdb databasename
 sudo su postgres
+
 psql
 CREATE EXTENSION postgis;
+ALTER ROLE amirfarsad SUPERUSER;
  settings.py
 DATABASES = {
     'default': {
@@ -187,3 +216,49 @@ pip install django-filters==0.2.1
 
 /root/envs/MyEnv1/Main_Project
 sudo ln -s ~/root/envs/MyEnv1/Main_Project/mysite_nginx.conf /etc/nginx/sites-enabled/
+
+
+
+
+
+
+
+
+
+
+
+
+/var/www/envs/MyEnv2
+
+
+
+<VirtualHost *:80>
+    ServerName 2eah.c.serverhost.name
+
+    ErrorLog ${APACHE_LOG_DIR}/Main_Project-error.log
+    CustomLog ${APACHE_LOG_DIR}/Main_Project-access.log combined
+
+    WSGIDaemonProcess Main_Project processes=2 threads=25 python-path=/var/www/Main_Project
+    WSGIProcessGroup Main_Project
+    WSGIScriptAlias / /var/www/Main_Project/Main_Project/wsgi.py
+
+    Alias /robots.txt /var/www/Main_Project/static/robots.txt
+    Alias /favicon.ico /var/www/Main_Project/static/favicon.ico
+    Alias /static/ /var/www/Main_Project/static/
+    Alias /static/ /var/www/Main_Project/media/
+
+    <Directory /var/www/Main_Project/Main_Project>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    <Directory /var/www/Main_Project/static>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/Main_Project/media>
+        Require all granted
+    </Directory>
+
+</VirtualHost>

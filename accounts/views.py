@@ -13,6 +13,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.password_validation import validate_password, MinimumLengthValidator
 from django.contrib.auth import authenticate, login
 import random
+from django.conf import settings
 
 #handmade
 from accounts.models import UserModel
@@ -33,6 +34,12 @@ from django.utils import timezone
 from kavenegar import KavenegarAPI
 
 
+#testing json
+import json
+with open('/home/alienone/envs/MyEnv/config.json') as config_file:
+    config = json.load(config_file)
+
+
 @login_required
 @superuser_required
 def SuperUserProfileView(request,slug):
@@ -40,6 +47,8 @@ def SuperUserProfileView(request,slug):
     if user.username == request.user.username:
         profit_percantage = ProfitPercentageModel.objects.all()
         terms_condition = TermsModel.objects.all()
+        key = config['KEY']
+        print(key)
         return render(request, 'accounts/superuserprofile.html', {'superuser':user,
                         'profit_percantage':profit_percantage,'terms':terms_condition})
     else:
@@ -65,7 +74,7 @@ def SuperUserWorkSpaceView(request,slug):
 @login_required
 @superuser_required
 def CloudMessageView(request):
-    api = KavenegarAPI('30383967456C38706753473546583443536233774E374E6E702B5832386C7648')
+    api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     if request.user.is_superuser:
 
         if request.method == 'POST':
@@ -83,7 +92,7 @@ def CloudMessageView(request):
                     for master_user in master_users:
                         try:
                             params = {
-                            'sender': '10008000300010',
+                            'sender': settings.KAVENEGAR_PHONE_NUMBER,
                             'receptor': master_user.phone_number,
                             'message' : message_text
                             }
@@ -96,7 +105,7 @@ def CloudMessageView(request):
                     for sport_club in sport_clubs:
                         try:
                             params = {
-                            'sender': '10008000300010',
+                            'sender': settings.KAVENEGAR_PHONE_NUMBER,
                             'receptor': sport_club.phone_number,
                             'message' : message_text
                             }
@@ -109,7 +118,7 @@ def CloudMessageView(request):
                     for common_user in common_users:
                         try:
                             params = {
-                            'sender': '10008000300010',
+                            'sender': settings.KAVENEGAR_PHONE_NUMBER,
                             'receptor': common_user.phone_number,
                             'message' : message_text
                             }
@@ -286,7 +295,7 @@ def PasswordChangeView(request,slug):
 
 
 def ForgotPasswordView(request):
-    api = KavenegarAPI('30383967456C38706753473546583443536233774E374E6E702B5832386C7648')
+    api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     try:
         last_retry_str = request.session['last_retry']
         last_retry = datetime.datetime.strptime(last_retry_str,"%Y-%m-%d %H:%M:%S")
@@ -315,7 +324,7 @@ def ForgotPasswordView(request):
 
 
                         params = {
-                        'sender': '10008000300010',
+                        'sender': settings.KAVENEGAR_PHONE_NUMBER,
                         'receptor': phone_number,
                         'message' : 'سامانه ورزش کن\n' + str(user.username) + ' :'+'نام کاربری شما'+'\n'+ new_password +' :'+ 'رمز عبور جدید شما '
                         }
@@ -342,7 +351,7 @@ def ForgotPasswordView(request):
 
 
                         params = {
-                        'sender': '10008000300010',
+                        'sender': settings.KAVENEGAR_PHONE_NUMBER,
                         'receptor': phone_number,
                         'message' : 'سامانه ورزش کن\n' + str(user.username) + ' :'+'نام کاربری شما'+'\n'+ new_password +' :'+ 'رمز عبور جدید شما '
                         }
@@ -370,7 +379,7 @@ def ForgotPasswordView(request):
 
 
                         params = {
-                        'sender': '10008000300010',
+                        'sender': settings.KAVENEGAR_PHONE_NUMBER,
                         'receptor': phone_number,
                         'message' : 'سامانه ورزش کن\n' + str(user.username) + ' :'+'نام کاربری شما'+'\n'+ new_password +' :'+ 'رمز عبور جدید شما '
                         }

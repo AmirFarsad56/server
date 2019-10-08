@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 import jdatetime
 from django.utils import timezone
+from django.conf import settings
 
 #Email send
 from django.core.mail import send_mail
@@ -271,7 +272,7 @@ def DeleteModalView(request,slug):
 @login_required
 @superuser_required
 def MesssageSendingView(request,slug):
-    api = KavenegarAPI('30383967456C38706753473546583443536233774E374E6E702B5832386C7648')
+    api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     if request.user.is_superuser:
         user_instance = get_object_or_404(UserModel, slug = slug)
         masteruser_instance = get_object_or_404(MasterUserModel, user = user_instance)
@@ -280,7 +281,7 @@ def MesssageSendingView(request,slug):
             if message_form.is_valid():
                 message_text = message_form.cleaned_data.get('text')
                 params = {
-                'sender': '10008000300010',
+                'sender': settings.KAVENEGAR_PHONE_NUMBER,
                 'receptor': masteruser_instance.phone_number,
                 'message' : message_text
                 }

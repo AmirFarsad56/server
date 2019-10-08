@@ -11,6 +11,7 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 import jdatetime
 from django.core.serializers import serialize
+from django.conf import settings
 
 #SMS send
 from kavenegar import KavenegarAPI
@@ -502,7 +503,7 @@ def BannedSportClubListView(request):
 @login_required
 @masteruser_required
 def MesssageSendingView(request,slug):
-    api = KavenegarAPI('30383967456C38706753473546583443536233774E374E6E702B5832386C7648')
+    api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     if request.user.is_masteruser:
         user_instance = get_object_or_404(UserModel, slug = slug)
         sportclub_instance = get_object_or_404(SportClubModel, user = user_instance)
@@ -511,7 +512,7 @@ def MesssageSendingView(request,slug):
             if message_form.is_valid():
                 message_text = message_form.cleaned_data.get('text')
                 params = {
-                'sender': '10008000300010',
+                'sender': settings.KAVENEGAR_PHONE_NUMBER,
                 'receptor': sportclub_instance.phone_number,
                 'message' : message_text
                 }

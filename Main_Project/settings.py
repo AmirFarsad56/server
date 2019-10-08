@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import json
+with open('/home/alienone/envs/MyEnv/config.json') as config_file:
+    config = json.load(config_file)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,12 +26,12 @@ STATIC_DIR = os.path.join(BASE_DIR,'statics')
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%g#(+j@zh^p-nmx$72i5rmg3u6#14u-jzccck!0j2w(m^ekwb6'
+SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['2eah.c.serverhost.name','89.40.14.30']
+ALLOWED_HOSTS = [config['ALLOWED_HOST'],]
 
 
 # Application definition
@@ -94,9 +97,9 @@ WSGI_APPLICATION = 'Main_Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'maindb',
-        'USER': 'amirfarsad',
-        'PASSWORD': '199271Raiden',
+        'NAME': config['DATABASE_NAME'],
+        'USER': config['DATABASE_USER'],
+        'PASSWORD': config['DATABASE_PASSWORD'],
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -153,6 +156,9 @@ STATICFILES_DIRS = [
     STATIC_DIR,
     ]
 
+#kavenegar
+KAVENEGAR_PHONE_NUMBER = config['KAVENEGAR_PHONE_NUMBER']
+KAVENEGAR_API_KEY = config['KAVENEGAR_API_KEY']
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
@@ -162,8 +168,7 @@ LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 
 DATE_INPUT_FORMAT = ['%Y-%m-%d']
-#sms service
-sms_sender_number = '100065995'
+
 
 # email test
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -175,7 +180,7 @@ EMAIL_HOST_PASSWORD = '199271Raiden'
 
 
 #recapcha V2
-GOOGLE_RECAPTCHA_SECRET_KEY = '6LfbM5oUAAAAAFFzKeADkQubmwRqyK6CvvegnT-l'
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LdgnrkUAAAAAKj7IfSlpLCgYYzqtLMxe9hqG8-6'
 
 
 LEAFLET_CONFIG ={

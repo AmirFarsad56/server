@@ -30,8 +30,8 @@ urlpatterns = [
     path('detail-superuser/<slug:slug>/', SportClubDetailViewSuperUser, name='detailforsuperuser'),
     path('bannedlist/', BannedSportClubListView, name='bannedlist'),
     path('list/<slug:slug>/', SportClubDetailView, name='detail'),
-    path('Pdetail/<int:pk>/', SportClubPublicDetailView, name='publicdetail'),
-    path('public-detail/<int:pk>/', SportClubDetailsView, name='publicdetail'),
+    path('Pdetail/<int:pk>/', SportClubPublicDetailView, name='publicdetail'),#####
+    path('public-detail/<int:pk>/', SportClubDetailsView, name='publicdetail'),#####
     path('ban/<slug:slug>/', SportClubBanView, name='ban'),
     path('ban-modal/<slug:slug>/', BanModalView, name='banmodal'),
     path('ban-modal-2/<slug:slug>/', BanModalView_2, name='banmodal2'),
@@ -45,13 +45,11 @@ urlpatterns = [
     path('unban-2/<slug:slug>/', SportClubUnBanView_2, name='unban_2'),
     path('unban-3/<slug:slug>/', SportClubUnBanView_3, name='unban_3'),
     path('delete/<slug:slug>/', SportClubDeleteView, name='delete'),
-    path('salon/bannedsportclub/<slug:slug>',BannedSportClubExceptionView,
+    path('banned-sportclub-exception/<slug:slug>',BannedSportClubExceptionView,
          name='bannedsportclubexception'),
-    path('sendsms/<slug:slug>/',MesssageSendingView, name='sendsms'),
-    path('sendemail/<slug:slug>/',EmailSendingView, name='sendemail'),
-    path('bankinfochange/<slug:slug>/', BankInfoChangeView, name='bankinfochange'),
+    path('send-sms/<slug:slug>/',MesssageSendingView, name='sendsms'),
+    path('send-email/<slug:slug>/',EmailSendingView, name='sendemail'),
+    path('bank-info-change/<slug:slug>/', BankInfoChangeView, name='bankinfochange'),
     path('update/<slug:slug>/', SportClubUpdateView, name='update'),
-    path('termsandconditions/<slug:slug>/', TermsAndConditionsView, name='termsandconditions'),
-
-
+    path('terms-and=conditions/<slug:slug>/', TermsAndConditionsView, name='termsandconditions'),
 ]

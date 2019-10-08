@@ -17,6 +17,7 @@ about us and contact us and FAQs page update
 baraye tanzime garardad ebteda salon morede nazare khod ra entekhab konid va ... dar index page
 suuuuuurelu check accounting detail and reckoning view speciallly for cancelled session that they were contracts
 maybe just remove commonuser profile picture (mind profile page and booked session detail)
+form error details show on every form template
 #####################################
 
 ---------------------------------------------------------------------------------------------

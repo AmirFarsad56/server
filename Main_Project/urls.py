@@ -22,15 +22,14 @@ from .views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('superuser/', include('accounts.urls',namespace = 'accounts')),
-    path('commonuser/', include('commonuser.urls',namespace = 'commonuser')),
+    path('', include('accounts.urls',namespace = 'accounts')),
+    path('user/', include('commonuser.urls',namespace = 'commonuser')),
     path('sportclub/', include('sportclub.urls',namespace = 'sportclub')),
     path('masteruser/', include('masteruser.urls',namespace = 'masteruser')),
-    path('',include('salon.urls',namespace = 'salon')),
+    path('salon/',include('salon.urls',namespace = 'salon')),
     path('session/', include('session.urls',namespace = 'session')),
     path('booking/', include('booking.urls',namespace = 'booking')),
     path('company/', include('company.urls',namespace = 'company')),
-    #path('accounts/',include('accounts.urls', namespace = 'accounts')),
     path('',IndexView,name = 'index'),
     path('',include('django.contrib.auth.urls')),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

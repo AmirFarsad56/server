@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 import jdatetime
 import datetime
 import random
+from django.conf import settings
 from django.utils import timezone
 
 #SMS send
@@ -38,7 +39,7 @@ from kavenegar import KavenegarAPI
 
 
 def CommonUserSignupView(request):
-    api = KavenegarAPI('30383967456C38706753473546583443536233774E374E6E702B5832386C7648')
+    api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     try:
         last_retry_str = request.session['last_retry']
         last_retry = datetime.datetime.strptime(last_retry_str,"%Y-%m-%d %H:%M:%S")
@@ -76,7 +77,7 @@ def CommonUserSignupView(request):
                  code = random_code
                  ######### send code to commonuser
                  params = {
-                 'sender': '10008000300010',
+                 'sender': settings.KAVENEGAR_PHONE_NUMBER,
                  'receptor': phone_number,
                  'message' : 'سامانه ورزش کن \n' +'کد فعالسازی شما' +  ' :' + code
                  }
@@ -246,7 +247,7 @@ class BannedCommonUserListView(ListView):
 @login_required
 @masteruser_required
 def MesssageSendingView(request,slug):
-    api = KavenegarAPI('30383967456C38706753473546583443536233774E374E6E702B5832386C7648')
+    api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     if request.user.is_masteruser:
         user_instance = get_object_or_404(UserModel, slug = slug)
         commonuser_instance = get_object_or_404(CommonUserModel, user = user_instance)
@@ -255,7 +256,7 @@ def MesssageSendingView(request,slug):
             if message_form.is_valid():
                 message_text = message_form.cleaned_data.get('text')
                 params = {
-                'sender': '10008000300010',
+                'sender': settings.KAVENEGAR_PHONE_NUMBER,
                 'receptor': commonuser_instance.phone_number,
                 'message' : message_text
                 }
