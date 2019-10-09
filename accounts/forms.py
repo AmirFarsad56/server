@@ -3,7 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 from accounts.models import UserModel
 from django.core import validators
 
-
 class UserForm(UserCreationForm):
     '''form for creating a user'''
 
@@ -59,6 +58,8 @@ class SuperUserUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(SuperUserUpdateForm, self).__init__(*args, **kwargs)
         self.fields['picture'].required = False
+
+
     class Meta():
         model = UserModel
         fields = ('first_name','last_name','email','picture')

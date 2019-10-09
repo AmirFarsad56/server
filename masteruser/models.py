@@ -11,3 +11,10 @@ class MasterUserModel(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def save(self, *args, **kwargs):
+        if self.picture.name.endswith('.jpg') or self.picture.name.endswith('.png') or self.picture.name.endswith('.jpeg'):
+            pass
+        else:
+            self.picture = None
+        super(MasterUserModel, self).save(*args, **kwargs)    

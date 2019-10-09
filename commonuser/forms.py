@@ -6,13 +6,9 @@ from django.core import validators
 class CommonUserForm(forms.ModelForm):
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
-    def __init__(self, *args, **kwargs):
-        super(CommonUserForm, self).__init__(*args, **kwargs)
-        self.fields['picture'].required = False
-
     class Meta:
         model = CommonUserModel
-        fields = ('phone_number','picture')
+        fields = ('phone_number',)
         widgets = {
             'phone_number': forms.TextInput(attrs={'placeholder':'09121234567 مثال',}),
         }
@@ -38,14 +34,10 @@ class EmailForm(forms.Form):
 class CommonUserUpdateForm(forms.ModelForm):
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
-    def __init__(self, *args, **kwargs):
-        super(CommonUserUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['picture'].required = False
 
     class Meta():
         model = CommonUserModel
-        fields = ('phone_number','picture')
+        fields = ('phone_number',)
         widgets = {
             'phone_number': forms.TextInput(attrs={'placeholder':'09121234567 مثال',}),
-            'picture': forms.FileInput(attrs={}),
         }

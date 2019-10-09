@@ -64,8 +64,6 @@ def CommonUserSignupView(request):
                  request.session['user_slug'] =  user.slug
                  commonuser = commonuser_form.save(commit=False)
                  commonuser.user = user
-                 if 'picture' in request.FILES:
-                    commonuser.picture = request.FILES['picture']
                  commonuser.save()
                  #### generating code
                  var = '1234567890'

@@ -262,3 +262,26 @@ sudo ln -s ~/root/envs/MyEnv1/Main_Project/mysite_nginx.conf /etc/nginx/sites-en
     </Directory>
 
 </VirtualHost>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git push -u origin master 
+
+
+
+
+
+
+
+/home/amirfarsad/django_env/config.json

@@ -17,4 +17,8 @@ class UserModel(AbstractUser):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.username)
+        if self.picture.name.endswith('.jpg') or self.picture.name.endswith('.png') or self.picture.name.endswith('.jpeg'):
+            pass
+        else:
+            self.picture = None
         super(UserModel, self).save(*args, **kwargs)

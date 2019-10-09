@@ -37,26 +37,15 @@
 <div class="row">
 
 
-  <div class="row">
-
-
-  <div class="input-field col s12 m12 l12">
-    <div class="file-field input-field">
-
-  <div class="btn gold">
-  {{commonuserform.picture}}
-  <span>عکس</span>
-
-  </div>
-  <div class="file-path-wrapper">
-  <input class="file-path" type="text">
-  </div>
-  </div>
-  </div>
-  </div>
-
             {% if userform.errors %}
-            <p class="fMarkazi white-text">مشکلی پیش آمد لطفا روباره سعی کنید</p>
+            <p class="fMarkazi white-text">مشکلی پیش آمد لطفا دوباره سعی کنید</p>
+            {{userform.errors}}
+
+            {% endif %}
+            {% if commonuserform.errors %}
+            <p class="fMarkazi white-text">مشکلی پیش آمد لطفا دوباره سعی کنید</p>
+            {{commonuserform.errors}}
+
             {% endif %}
 
                 {% csrf_token %}

@@ -52,3 +52,10 @@ class SalonPictureModel(models.Model):
                                related_name = 'pictures')
     picture = models.ImageField(blank = True, null = True,
                                 upload_to=r'sportclub/salon/picture')
+
+    def save(self, *args, **kwargs):
+        if self.picture.name.endswith('.jpg') or self.picture.name.endswith('.png') or self.picture.name.endswith('.jpeg'):
+            pass
+        else:
+            self.picture = None
+        super(SalonPictureModel, self).save(*args, **kwargs)                             

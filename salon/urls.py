@@ -12,16 +12,16 @@ from salon.views import (SalonCreateView, SalonUpdateView, SalonDetailView,
 
 app_name ='salon'
 urlpatterns = [
-    path('profile/<slug:slug>/createsalon/', SalonCreateView, name='createsalon'),
-    path('confirmed-salon-list/',ConfirmedSalonListView,
+    path('sportclub-profile/<slug:slug>/createsalon/', SalonCreateView, name='createsalon'),
+    path('salon/confirmed-salon-list/',ConfirmedSalonListView,
         name='confirmedsalonlist'),
-    path('unconfirmed-salon-list/',UnConfirmedSalonListView,
+    path('salon/unconfirmed-salon-list/',UnConfirmedSalonListView,
         name='unconfirmedsalonlist'),
-    path('salon-list-for-superuser/',SalonListSuperUserView,
+    path('salon/salon-list-for-superuser/',SalonListSuperUserView,
         name='salonlistforsuperuser'),
-    path('salon-Plist/',SalonPublicListView,
+    path('salon/salon-Plist/',SalonPublicListView,
         name='publiclist'),
-    path('salon-Plist-sportclub/<int:pk>/',SalonPublicListForSpecificSportClubView,
+    path('salon/salon-Plist-sportclub/<int:pk>/',SalonPublicListForSpecificSportClubView,
         name='publiclistforsportclub'),
     path('sportclub/<slug:slug>/profile/updatesalon/<int:pk>/',SalonUpdateView, name='update'),
     path('sportclub/profile/salondetail/<int:pk>/',SalonDetailView.as_view(), name='salondetail'),
@@ -36,7 +36,7 @@ urlpatterns = [
     path('salon/reckoning-list/<int:pk>/',SalonReckoninglistView, name='reckoninglist'),
     path('salon/ban-2/<int:pk>/',SalonBanView_2, name='ban_2'),
 
-    path('salon/detail/<int:pk>/',SalonDetailViewMasterUser, name='detail'),
-    path('salon/setprofitpercentage/<int:pk>/',SalonSetProfitPercentage, name='setprofitpercentage'),
+    path('salon/detail-masteruser/<int:pk>/',SalonDetailViewMasterUser, name='detail'),
+    path('salon/set-profit-percentage/<int:pk>/',SalonSetProfitPercentage, name='setprofitpercentage'),
 
 ]

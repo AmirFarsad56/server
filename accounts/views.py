@@ -34,12 +34,6 @@ from django.utils import timezone
 from kavenegar import KavenegarAPI
 
 
-#testing json
-import json
-with open('/home/alienone/envs/MyEnv/config.json') as config_file:
-    config = json.load(config_file)
-
-
 @login_required
 @superuser_required
 def SuperUserProfileView(request,slug):
@@ -47,8 +41,6 @@ def SuperUserProfileView(request,slug):
     if user.username == request.user.username:
         profit_percantage = ProfitPercentageModel.objects.all()
         terms_condition = TermsModel.objects.all()
-        key = config['KEY']
-        print(key)
         return render(request, 'accounts/superuserprofile.html', {'superuser':user,
                         'profit_percantage':profit_percantage,'terms':terms_condition})
     else:
