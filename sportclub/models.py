@@ -28,8 +28,9 @@ class SportClubModel(models.Model):
         return self.user.username
 
     def save(self, *args, **kwargs):
-        name = self.picture.name.lower()
+
         try:
+            name = self.picture.name.lower()
             if name.endswith('.jpg') or name.endswith('.png') or name.endswith('.jpeg'):
                 pass
             else:
