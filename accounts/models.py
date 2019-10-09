@@ -16,9 +16,12 @@ class UserModel(AbstractUser):
     user_logs = models.TextField(default='',null = True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.username)
-        if self.picture.name.endswith('.jpg') or self.picture.name.endswith('.png') or self.picture.name.endswith('.jpeg'):
+        name = self.picture.name.lower()
+        try:
+            if name.endswith('.jpg') or name.endswith('.png') or name.endswith('.jpeg'):
+                pass
+            else:
+                self.picture = None
+        except:
             pass
-        else:
-            self.picture = None
         super(UserModel, self).save(*args, **kwargs)

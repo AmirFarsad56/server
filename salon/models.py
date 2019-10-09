@@ -54,8 +54,12 @@ class SalonPictureModel(models.Model):
                                 upload_to=r'sportclub/salon/picture')
 
     def save(self, *args, **kwargs):
-        if self.picture.name.endswith('.jpg') or self.picture.name.endswith('.png') or self.picture.name.endswith('.jpeg'):
+        name = self.picture.name.lower()
+        try:
+            if name.endswith('.jpg') or name.endswith('.png') or name.endswith('.jpeg'):
+                pass
+            else:
+                self.picture = None
+        except:
             pass
-        else:
-            self.picture = None
-        super(SalonPictureModel, self).save(*args, **kwargs)                             
+        super(SalonPictureModel, self).save(*args, **kwargs)
