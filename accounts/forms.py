@@ -73,10 +73,3 @@ class PasswordChangeForm(forms.Form):
     new_password = forms.CharField(widget=forms.PasswordInput())
     confirm_password = forms.CharField(widget=forms.PasswordInput())
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
-
-    def clean(value):
-        all_clean_data = super().clean()
-        n1 = all_clean_data['new_password']
-        n2 = all_clean_data['confirm_password']
-        if n1 != n2:
-            raise forms.ValidationError("passwords don't match")

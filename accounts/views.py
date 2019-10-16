@@ -265,21 +265,29 @@ def PasswordChangeView(request,slug):
             logged_in = authenticate(request, username=user.username, password=current_password)
 
             if logged_in is not None:
-                new_password = password_form.cleaned_data.get('new_password')
-                try:
-                    validate_password(new_password,user=user, password_validators=None)
-                    user.set_password(new_password)
-                    user.save()
-                    return HttpResponseRedirect(reverse('login'))
-                except:
-                    error1 ='کلمه عبور باید بیش از 6 کاراکتر باشد'
-                    error2 ='کلمه عبور باید نمیتواند شامل نام کاربری باشد'
-                    error3 ='کلمه عبور نمیتواند خیلی ساده باشد'
-                    return render(request,'accounts/passwordchange.html',{'form':password_form,'error1':error1,'error2':error2,'error3':error3})
+                if password_form.cleaned_data.get('new_password') == password_form.cleaned_data.get('confirm_password'):
+                    new_password = password_form.cleaned_data.get('new_password')
+                    try:
+                        validate_password(new_password,user=user, password_validators=None)
+                        user.set_password(new_password)
+                        user.save()
+                        return HttpResponseRedirect(reverse('login'))
+                    except:
+                        error1 ='کلمه عبور باید بیش از 6 کاراکتر باشد'
+                        error2 ='کلمه عبور باید نمیتواند شامل نام کاربری باشد'
+                        error3 ='کلمه عبور نمیتواند خیلی ساده باشد'
+                        return render(request,'accounts/passwordchange.html',{'form':password_form,'error1':error1,'error2':error2,'error3':error3})
+                else:
+                    error4 = 'رمز های وارد شده با هم مطابقت ندارند'
+                    password_form = PasswordChangeForm()
+                    return  render(request,'accounts/passwordchange.html',
+                                          {'error4':error4,'form':password_form})
+
             else:
                 error4 = 'رمزعبور وارد شده صحیح نیست'
+                password_form = PasswordChangeForm()
                 return  render(request,'accounts/passwordchange.html',
-                                      {'error4':error4})
+                                      {'error4':error4,'form':password_form})
     else:
         password_form = PasswordChangeForm()
         return  render(request,'accounts/passwordchange.html',
