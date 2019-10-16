@@ -15,56 +15,10 @@
 
 
 <div class="container">
-  <div class="row center">
-    <span class="center-align gold-text fMarkazi">درصورت وجود سانس با کلیک بر روی هر یک از روزها میتوانید به سانس های آن روز دسترسی داشته باشید</span>
-  </div>
 
-<div class="slider">
-    <ul class="slides">
-<li>    <table class="grey darken-4 white-text fMarkazi">
-      <th class="center" style="white-space:pre">
-        <td style="white-space:pre">{% for day in days_1 %}{% if day|only_day|cutbr == '1' %}<h5 class="pink-text">{{day|only_year}}</h5>{% endif %}{% endfor %}</td>
-        <td style="white-space:pre">          </td><td style="white-space:pre">          </td><td style="white-space:pre">          </td>
-        <td style="white-space:pre">{% for day in days_1 %}{% if day|only_day|cutbr == '1' %}<h5 class="pink-text">{{day|only_month}}</h5>{% endif %}{% endfor %}</td>
-        <td></td>
-        <tr class="center">
-
-
-<td class="gold-text center" style="white-space:pre">    جمعه   </td>
-<td class="gold-text center" style="white-space:pre">پنج شنبه  </td>
-<td class="gold-text center" style="white-space:pre">چهارشنبه </td>
-<td class="gold-text center" style="white-space:pre"> سه شنبه </td>
-<td class="gold-text center" style="white-space:pre"> دوشنبه  </td>
-<td class="gold-text center" style="white-space:pre"> یکشنبه  </td>
-<td class="gold-text center" style="white-space:pre">   شنبه  </td>
-        </tr>
-      </th>
-
-
-{% for day in days_1 %}
-
-
-{% if '-br' in day %}<tr><td class="center">{% if day|cutbr in session_days %}<a class="blue-text" href="{% url 'session:day_list' pk=salon.pk str=day|cutbr %}">{{day|only_day}}</a>{% else %}{{day|only_day}}{% endif %}</td>{% else %}<td class="center">{% if day|cutbr in session_days %}<a class="blue-text" href="{% url 'session:day_list' pk=salon.pk str=day|cutbr %}">{{day|only_day}}</a>{% else %}{{day|only_day}}{% endif %}</td>{% endif %}
-{% endfor %}
-<tr>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-</tr>
-
-    </table>
-</li>
-
-</ul>
-</div>
 
   <div class="row">
 
-<br><br>
   <div class="container">
     <div class="container">
       <div class="center card-panel hoverable gold z-depth-5 fMarkazi">

@@ -15,8 +15,11 @@ class SalonForm(forms.ModelForm):
         one = self.cleaned_data.get('more_than_twelve_sessions_discount')
         two = self.cleaned_data.get('six_to_twelve_sessions_discount')
         three = self.cleaned_data.get('more_than_24_sessions_discount')
-        if one >= 100 or two >= 100 or three >=100:
-            raise ValidationError('درصد تخفیف نمیتواند مقداری بیشتر از ۱۰۰ داشته باشد')
+        try:
+            if one >= 100 or two >= 100 or three >=100:
+                raise ValidationError('درصد تخفیف نمیتواند مقداری بیشتر از ۱۰۰ داشته باشد')
+        except:
+            pass
 
     class Meta():
         model = SalonModel
