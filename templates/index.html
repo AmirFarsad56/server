@@ -114,13 +114,19 @@
 
 <div class="row">
   <div class="col s6 m3 l3 right-align">
-    <br><br><br><br><br><br><br><br>
+    <div class="hide-on-small-only">
+          <br>
+    </div>
+<br><br><br><br><br><br><br>
     <img class="brand-logo center" src="/media/logos/footer_logo.png" width="250">
     <br>
 
   </div>
   <div class="col s6 m3 l3">
-    <br><br><br><br><br><br>
+    <div class="hide-on-small-only">
+          <br>
+    </div>
+<br><br><br><br><br>
     <h2 class="fLalezar right-align gold-text">سامانه</h2>
     <h2 class="fLalezar center-align gold-text">ورزش</h2>
     <h2 class="fLalezar left-align gold-text">کن</h2>
@@ -129,7 +135,10 @@
 
   </div>
 <div class="col s12 m4 l4 white-text fMarkazi right-align">
-  <br><br><br><br><br><br><br><br><br><br>
+  <div class="hide-on-small-only">
+  <br><br><br><br><br><br><br>
+  </div>
+<br><br><br>
 <h5>سامانه ورزش کن یک سامانه ی رزرو آنلاین سانس های ورزشی کشور می باشد
 که به منظور آسان تر کردن امر رزرو سانس ها و به عنوان یک رابط بین مجموعه های سراسر کشور
 با هموطنان عزیزی که قصد ورزش کردن دارند عمل میکند </h5>
@@ -140,18 +149,38 @@
 <br> <br>
 <div  class="row">
   <h5 class="white-text ">
+
+    <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
+    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:faqs' %}">         لیست سالن ها          </a>
+    </div>
+    <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
+    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'company:contactus' %}">         لیست سانس ها         </a>
+    </div>
+    <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
+    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:aboutus' %}">             رزرو امروز                </a>
+    </div>
+    <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
+    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:termsdetail' %}">    مجموعه های ورزشی   </a>
+    </div>
+
+
 <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-<a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'company:contactus' %}">      ارتباط با ما      </a>
+<a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'company:contactus' %}">             ارتباط با ما             </a>
 </div>
 <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-<a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:faqs' %}">  سوالات متداول  </a>
+<a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:faqs' %}">         سوالات متداول         </a>
 </div>
 <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-<a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:termsdetail' %}">     قوانین سایت    </a>
+<a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:termsdetail' %}">            قوانین سایت           </a>
 </div>
 <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-<a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:aboutus' %}">        درباره ما         </a>
+<a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:aboutus' %}">               درباره ما                </a>
 </div>
+
+
+
+
+
 
   </h5>
 </div>
@@ -517,7 +546,7 @@
             <div class="col s4 m4 l4 left-align">آدرس</div>
             <div class="col s8 m8 l8 right-align">{{object.salon.sportclub.company_phone_number}}</div>
             <div class="col s4 m4 l4 left-align">شماره تلفن ثابت</div>
-            <a href="#" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+            <a href="{% url 'sportclub:publicdetail' pk=object.salon.sportclub.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
           </div>
         </div>
       </div>
