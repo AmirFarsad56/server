@@ -22,17 +22,16 @@
   <div class="container">
     <div class="container">
       <div class="center card-panel hoverable gold z-depth-5 fMarkazi">
-      <a href="{% url 'session:create' pk=salon.pk %}" style="white-space:pre" class=" waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">          </span>ایجاد سانس در روز جدید<span class="black-text">          </span></h5></a><br>
-{% if salon.lastdatas.all %}    <a href="{% url 'session:create_2' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text"></span>اضافه کردن سانس به روز دارای سانس<span class="black-text"></span></h5></a><br>
+      <a href="{% url 'session:create' pk=salon.pk %}" style="white-space:pre" class=" waves-effect waves-dark btn-flat btn-large gold white-text"><h5>ایجاد سانس در روز جدید</h5></a><br>
+{% if salon.lastdatas.all %}    <a href="{% url 'session:create_2' pk=salon.pk %}" style="white-space:pre; padding-left:-200px" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5 style="white-space:pre; margin-left:-20px; margin-right:-20px">افزودن سانس به روز دارای سانس</h5></a><br>
 {% endif %}
-{% if salon.sessions.all %}    <a href="{% url 'session:list' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">         </span>لیست سانس ها<span class="black-text">         </span></h5></a><br>
+{% if salon.sessions.all %}    <a href="{% url 'session:list' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5>لیست سانس ها</h5></a><br>
 {% endif %}
-{% if salon.bookings.all %}    <a href="{% url 'booking:bookedsessionlist' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">         </span>لیست سانس های رزرو شده<span class="black-text">         </span></h5></a><br>
+{% if salon.bookings.all %}    <a href="{% url 'booking:bookedsessionlist' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5>لیست سانس های رزرو شده</h5></a><br>
 {% endif %}
-{% if salon.contracts.all %}    <a href="{% url 'booking:contractlist' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">         </span>لیست قراردادهای بیش از یک جلسه<span class="black-text">         </span></h5></a><br>
+{% if salon.contracts.all %}    <a href="{% url 'booking:contractlist' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5>لیست قراردادهای این سالن</h5></a><br>
 {% endif %}
-{% if salon.lastdatas.all %}    <a href="{% url 'session:lastdataset' pk=salon.pk %}" style="white-space:pre" class="waves-effect waves-dark btn-flat btn-large gold white-text"><h5><span class="black-text">        </span>ویرایش روز اول ایجاد سانس <span class="black-text">        </span></h5></a><br>
-{% endif %}
+
   </div>
   </div>
   </div>
@@ -168,8 +167,9 @@
         {% if category.thursdays %} پنج شنبه ها{% endif %}
         {% if category.fridays %} جمعه ها {% endif %}
       </div>
+
       <div class="col s6 m6 l6 left-align">روز های هفته</div>
-    </div>
+
       <div class="col s6 m6 l6 right-align white-text">تعطیل</div>
       <div class="col s6 m6 l6 left-align">وضعیت سالن</div>
     </div>
@@ -185,7 +185,7 @@
         {% if category.fridays %} جمعه ها {% endif %}
       </div>
       <div class="col s6 m6 l6 left-align">روز های هفته</div>
-    </div>
+
     <div class="row">
       <div class="col s6 m6 l6 right-align white-text">{{floor}}</div>
       <div class="col s6 m6 l6 left-align">شروع اولین سانس</div>
@@ -197,6 +197,7 @@
     <div class="row">
       <div class="col s6 m6 l6 right-align white-text">{{duration}}</div>
       <div class="col s6 m6 l6 left-align">مدت زمان هر سانس</div>
+    </div>
     </div>
 
     </h6>
@@ -228,6 +229,7 @@
 </div>
 <br><br>
 {% endfor %}
+</div>
 </div>
 {% endblock %}
 {% block script_block %}
