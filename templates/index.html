@@ -407,6 +407,7 @@
 <div class="row center">
     <div class="customcontainer" style="margin-left:6%; margin-right:6%">
   {% for object in salons %}
+  {% if object.salon.is_confirmed %}
 <div class="row">
 
 
@@ -614,6 +615,7 @@
   </div>
   <!-- session end -->
   </div>
+  {% endif %}
 {% endfor %}
 </div>
 </div>
