@@ -52,7 +52,7 @@ def ceil(pk):
                     floor = JDATETIMETOOL.strptime(str(existing_session.time),'%H:%M')
     try:
 
-        return ceil.time
+        return ceil.time()
     except:
         return 2
 
@@ -97,7 +97,7 @@ def duration(pk):
         break
     try:
 
-        return duration.time()
+        return duration
     except:
         return 2
 

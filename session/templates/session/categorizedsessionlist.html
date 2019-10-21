@@ -17,27 +17,27 @@
 
 <div class="container">
   <div class="row">
-    <div class="col s6 m4 l4 center-align"><i class="large material-icons blue-text text-darken-2">turned_in</i><br>
+    <div class="col s6 m4 l4 center-align white-text fLalezar"><i class="large material-icons blue-text text-darken-2">turned_in</i><br>
       سانس های رزرو شده
 
     </div>
-    <div class="col s6 m4 l4 center-align"><i class="large material-icons orange-text">turned_in</i><br>
+    <div class="col s6 m4 l4 center-align white-text fLalezar"><i class="large material-icons orange-text">turned_in</i><br>
       سانس های کنسل شده
 
     </div>
-    <div class="col s6 m4 l4 center-align"><i class="large material-icons light-green-text text-accent-4">turned_in</i><br>
+    <div class="col s6 m4 l4 center-align white-text fLalezar"><i class="large material-icons light-green-text text-accent-4">turned_in</i><br>
       سانس های آماده رزرو
 
     </div>
-    <div class="col s6 m4 l4 center-align"><i class="large material-icons red-text">turned_in</i><br>
+    <div class="col s6 m4 l4 center-align white-text fLalezar"><i class="large material-icons red-text">turned_in</i><br>
       سانس های غیر قابل رزرو یا بدون قیمت
 
     </div>
-    <div class="col s6 m4 l4 center-align"><i class="large material-icons grey-text text-darken-4">turned_in</i><br>
+    <div class="col s6 m4 l4 center-align white-text fLalezar"><i class="large material-icons grey-text text-darken-4">turned_in</i><br>
       سانس های گذشته
 
     </div>
-    <div class="col s6 m4 l4 center-align"><i class="large material-icons purple-text text-darken-3">turned_in</i><br>
+    <div class="col s6 m4 l4 center-align white-text fLalezar"><i class="large material-icons purple-text text-darken-3">turned_in</i><br>
       سانس های رزرو مجازی
 
     </div>
@@ -50,59 +50,59 @@
 
   <ul class="collapsible z-depth-5 fMarkazi hoverable popout gold-text">
   <li>
-    <div class="collapsible-header grey darken-4 center" style="display: block;">
+    <div class="collapsible-header black center" style="display: block;">
 جستجوی پیشرفته
     </div>
-    <div class="collapsible-body grey darken-4">
+    <div class="collapsible-body grey lighten-2">
 
   <form method="get">
 <div class="row">
 
     <div class="input-field col s12">
       {{filter.form.price__gte}}
-      <label class="fMarkazi" for="price__gte">قسمت سانس بیشتر از</label>
+      <label class="fMarkazi black-text" for="price__gte">قیمت سانس بیشتر از</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.price__lte}}
-      <label class="fMarkazi" for="price__lte">قیمت سانس کمتر از</label>
+      <label class="fMarkazi black-text" for="price__lte">قیمت سانس کمتر از</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.day_str}}
-      <label class="fMarkazi" for="area__lte">روز سانس</label>
+      <label class="fMarkazi black-text" for="area__lte">روز سانس</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.time__gte}}
-      <label class="fMarkazi" for="time__gte">زمان شروع سانس بعد از</label>
+      <label class="fMarkazi black-text" for="time__gte">زمان شروع سانس بعد از</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.time__lte}}
-      <label class="fMarkazi" for="area__gte">زمان شروع سانس قبل از</label>
+      <label class="fMarkazi black-text" for="area__gte">زمان شروع سانس قبل از</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.discount_percentage__gte}}
-      <label class="fMarkazi" for="discount_percentage__gte">درصد تخفیف سانس بیشتر از</label>
+      <label class="fMarkazi black-text" for="discount_percentage__gte">درصد تخفیف سانس بیشتر از</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.discount_percentage__lte}}
-      <label class="fMarkazi" for="discount_percentage__lte">درصد تخفیف سانس کمتر از</label>
+      <label class="fMarkazi black-text" for="discount_percentage__lte">درصد تخفیف سانس کمتر از</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.duration}}
-      <label class="fMarkazi" for="area__lte">مدت زمان سانس</label>
+      <label class="fMarkazi black-text" for="area__lte">مدت زمان سانس</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.is_booked}}
-      <label class="fMarkazi" for="area__lte">در حال حاضر رزرو شده</label>
+      <label class="fMarkazi black-text" for="area__lte">در حال حاضر رزرو شده</label>
     </div>
     <div class="input-field col s12">
       {{filter.form.is_ready}}
-      <label class="fMarkazi" for="area__lte">آماده رزرو</label>
+      <label class="fMarkazi black-text" for="area__lte">آماده رزرو</label>
     </div>
 
 
       </div>
-    <div class="row">
-      <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">جستجو
+    <div class="row center">
+      <button class="hoverable btn waves-effect waves-dark white-text z-depth-3" type="submit">جستجو
 </button>
     </div>
 
@@ -685,6 +685,8 @@
 </script>
 <script>
   $('.timepicker').timepicker({
+    autoClose : false,
+    vibrate : true,
     onSelect: function(time) {
       console.log(time)
     }

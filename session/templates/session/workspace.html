@@ -175,6 +175,7 @@
     </div>
     {% else %}
     <div class="row">
+      <div class="row">
       <div class="col s6 m6 l6 right-align white-text">
         {% if category.saturdays %}شنبه ها {% endif %}
         {% if category.sundays %} یکشنبه ها{% endif %}
@@ -185,17 +186,17 @@
         {% if category.fridays %} جمعه ها {% endif %}
       </div>
       <div class="col s6 m6 l6 left-align">روز های هفته</div>
-
+</div>
     <div class="row">
-      <div class="col s6 m6 l6 right-align white-text">{{floor}}</div>
+      <div class="col s6 m6 l6 right-align white-text">{{category.pk|floor}}</div>
       <div class="col s6 m6 l6 left-align">شروع اولین سانس</div>
     </div>
     <div class="row">
-      <div class="col s6 m6 l6 right-align white-text">{{ceil}}</div>
+      <div class="col s6 m6 l6 right-align white-text">{{category.pk|ceil}}</div>
       <div class="col s6 m6 l6 left-align">پایان آخرین سانس</div>
     </div>
     <div class="row">
-      <div class="col s6 m6 l6 right-align white-text">{{duration}}</div>
+      <div class="col s6 m6 l6 right-align white-text">{{category.pk|duration}}</div>
       <div class="col s6 m6 l6 left-align">مدت زمان هر سانس</div>
     </div>
     </div>

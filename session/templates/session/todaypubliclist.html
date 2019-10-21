@@ -358,7 +358,11 @@ height : 330,
 interval : 2100
 });
   });
-  $('.timepicker').timepicker({container: 'body'});
+  $('.timepicker').timepicker({
+    autoClose : false,
+    vibrate : true,
+    container: 'body',
+  });
 </script>
 <script type="text/javascript" src="{% static 'js/mpdatepickers.js' %}"></script>
 <script>
