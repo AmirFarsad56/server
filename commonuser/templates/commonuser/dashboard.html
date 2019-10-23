@@ -36,7 +36,6 @@
         <nav class="black nav-extended" >
 
           <div class="nav-wrapper">
-            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons gold-text">search</i></a>
             <ul class="left">
               <a href="{% url 'index' %}"  ><img style="height: 100%" class="brand-logo center" src="/media/logos/black_logo.png" ></a>
             </ul>
@@ -53,18 +52,18 @@
 
             </ul>
           </div>
-          <div style="margin-top:0px; margin-bottom:0px" class="nav-content brand-logo center gold-text">
+          <div style="margin-top:0px; margin-bottom:0px; padding-left:30.9%; padding-right:30.9%;" class="nav-content brand-logo center gold-text grey darken-4">
   <ul  class="tabs tabs-transparent fLalezar">
-    <li class="tab"><a style="color:#f50057" href="#past-sessions">سانس های استفاده شده </a></li>
-    <li class="tab"><a style="color:#f50057" href="#canceled-sessions">سانس های کنسل شده</a></li>
-    <li class="tab"><a style="color:#f50057" href="#contracts">قراردادها</a></li>
-    <li class="tab"><a style="color:#f50057" class="active" href="#upcoming-sessions">سانس های رزرو شده پیش رو</a></li>
+    <li class="tab"><a style="color:#d4af37" href="#past-sessions">سوابق رزرو</a></li>
+    <li class="tab"><a style="color:#d4af37" href="#canceled-sessions">سانس های کنسل شده</a></li>
+    <li class="tab"><a style="color:#d4af37" href="#contracts">قراردادها</a></li>
+    <li class="tab"><a style="color:#d4af37" class="active" href="#upcoming-sessions">سانس های پیش رو</a></li>
   </ul>
 </div>
         </nav>
   </div>
 
-<div style="margin-top:115px" class="container fMarkazi">
+<div style="margin-top:115px" class="container fMarkazi ">
   <div id="canceled-sessions" class="col s12">
     <span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس های کنسل شده</h3><br><br></span>
     {% for booking in bookings %}
@@ -271,7 +270,7 @@
 
   </div>
   <div id="upcoming-sessions" class="col s12">
-    <span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس ها</h3><br><br></span>
+    <span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس های رزرو شده پیش رو</h3><br><br></span>
     {% for booking in bookings %}
     {% if not booking.cancelled %}
     {% if booking.session.day > today or booking.session.day == today and booking.session.time >= now %}
@@ -501,7 +500,7 @@
   {% endfor %}
 </div>
   <div id="past-sessions" class="col s12">
-    <span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس های گذشته</h3><br><br></span>
+    <span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس های استفاده شده</h3><br><br></span>
     {% for booking in bookings %}
     {% if not booking.cancelled %}
 

@@ -125,15 +125,15 @@
       </ul>
     </div>
     <div  class="card-content grey lighten-2">
-      <div id="session{{session.pk}}" style="height: 32px">
+      <div id="session{{session.pk}}" style="height: 42px">
 <div class="row">
   <div class="col s12 m5 l5 center-align black-text">
 <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:-14px;" class="waves-effect waves-light btn" ><h6>جزئیات و رزرو</h6></a>
   </div>
-  <div style="margin-top:1px;" class="col s6 m2 l2 right-align black-text">
+  <div style="margin-top:9px;" class="col s4 m2 l2 right-align black-text">
 {{session.pk|final_price}}
   </div>
-  <div style="margin-top:4px;" class="col s6 m5 l5 left-align fLalezar">
+  <div style="margin-top:9px;" class="col s8 m5 l5 left-align fLalezar">
     (هزینه قابل پرداخت برای رزرو (تومان
   </div>
 
