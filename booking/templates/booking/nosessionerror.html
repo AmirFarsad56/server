@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-there are no sessions in this salon yet
-  </body>
-</html>
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<title>
+    عدم وجود سانس | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<span class="center-align"><h3 class="fMarkazi gold-text";>عدم وجود سانس</h3><br></span>
+<div class="container">
+
+  <div class="center card-panel hoverable grey lighten-2 z-depth-5 fMarkazi black-text">
+    <h6>
+سالن مورد نظر شما هنوز سانس قابل رزرو ندارد
+<br>لطفا منتظر بمانید یا سالن های دیگری را برای رزرو انتخاب کنید
+</h6>
+</div>
+</div>
+<br><br>
+
+    {% endblock %}

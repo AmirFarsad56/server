@@ -24,6 +24,11 @@
     <style media="screen">
         #gis {width:100%;height:400px;z-index: 0}
     </style>
+    <style type="text/css">
+      html,body{
+        overflow-x:hidden;
+      }
+</style>
     <script type="text/javascript" src="{% static 'js/leaflet.ajax.min.js' %}"></script>
   </head>
   <body class="fMarkazi">
@@ -118,7 +123,7 @@
           <br>
     </div>
 <br><br><br><br><br><br><br>
-    <img class="brand-logo center" src="/media/logos/footer_logo.png" width="250">
+    <img class="brand-logo center" src="/media/logos/footer_logo.png" width="230">
     <br>
 
   </div>
@@ -150,32 +155,19 @@
 <div  class="row">
   <h5 class="white-text ">
 
-    <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'salon:publiclist' %}">         لیست سالن ها          </a>
+    <div style="margin-bottom: 21px;" class="col s12 m6 l3 center">
+    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'salon:publiclist' %}">             لیست سالن ها              </a>
     </div>
-    <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'session:publiclist' %}">         لیست سانس ها         </a>
+    <div style="margin-bottom: 21px;" class="col s12 m6 l3 center">
+    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'session:publiclist' %}">             لیست سانس ها             </a>
     </div>
-    <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'session:todaypubliclist' %}">               رزرو امروز              </a>
+    <div style="margin-bottom: 21px;" class="col s12 m6 l3 center">
+    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'session:todaypubliclist' %}">                   رزرو امروز                  </a>
     </div>
-    <div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'sportclub:publiclist' %}">    مجموعه های ورزشی   </a>
+    <div style="margin-bottom: 21px;" class="col s12 m6 l3 center">
+    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'sportclub:publiclist' %}">        مجموعه های ورزشی       </a>
     </div>
 
-
-<div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-<a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'company:contactus' %}">             ارتباط با ما             </a>
-</div>
-<div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-<a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:faqs' %}">         سوالات متداول         </a>
-</div>
-<div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-<a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:termsdetail' %}">            قوانین سایت           </a>
-</div>
-<div style="margin-bottom: 18px;" class="col s6 m3 l3 center">
-<a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'company:aboutus' %}">               درباره ما                </a>
-</div>
 
 
 
@@ -482,7 +474,7 @@
   </h6>
   <br><br>
   <div class="col s12 m6 l6 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large " ><h6>لیست سانس های سالن و رزرو</h6></a></div>
-  <div class="col s12 m6 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>   امضای قرارداد با این سالن  </h6></a></div>
+  <div class="col s12 m6 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>   عقد قرارداد با این سالن  </h6></a></div>
           </div>
         </div>
 
