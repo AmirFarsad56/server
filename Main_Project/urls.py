@@ -32,5 +32,4 @@ urlpatterns = [
     path('company/', include('company.urls',namespace = 'company')),
     path('',IndexView,name = 'index'),
     path('',include('django.contrib.auth.urls')),
-    path('blog/', include('wordpress_api.urls')),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

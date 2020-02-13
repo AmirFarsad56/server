@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'booking',
     'company',
     'dynamic_formsets',
-    'wordpress_api',
 ]
 
 AUTH_USER_MODEL = 'accounts.UserModel'
