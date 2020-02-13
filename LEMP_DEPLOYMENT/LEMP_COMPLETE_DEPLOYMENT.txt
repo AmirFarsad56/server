@@ -1,0 +1,226 @@
+#FIRST CREATE A USER WITH SUDO GROUP
+adduser amirfarsad && adduser amirfarsad sudo
+
+#INSIDE USER amirfarsad:
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt-get update
+sudo apt-get install -y libgeos-dev binutils libproj-dev gdal-bin libgdal-dev python3-gdal build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 python-virtualenv
+sudo apt-get install -y postgresql postgis postgresql-9.5-postgis-scripts git supervisor nginx
+
+#ADJUST POSTGRESQL
+
+sudo su - postgres
+createuser -P amirfarsad
+psql
+CREATE DATABASE maindb;
+CREATE EXTENSION postgis;
+ALTER ROLE amirfarsad SUPERUSER;
+GRANT ALL PRIVILEGES ON DATABASE maindb TO amirfarsad;
+\q
+exit
+
+#INSIDE MAIN DIRECORY WHICH IS /home/amirfarsad
+
+virtualenv -p python3.7 django_env && source django_env/bin/activate && sudo apt-get install libpq-dev python3-dev
+cd django_env && sudo nano config.json
+
+############## Copy These Configs There
+{
+  "ALLOWED_HOST1": "varzesh-kon.ir",
+  "ALLOWED_HOST2": "www.varzesh-kon.ir",
+  "SECRET_KEY": "%g#(+j@zh^p-nmx$72i5rmg3u6#14u-jzccck!0j2w(m^ekwb6",
+  "DATABASE_NAME": "maindb",
+  "DATABASE_USER": "amirfarsad",
+  "DATABASE_PASSWORD": "199271Raiden",
+  "KAVENEGAR_PHONE_NUMBER": "10008000300010",
+  "KAVENEGAR_API_KEY": "30383967456C38706753473546583443536233774E374E6E702B5832386C7648",
+  "GOOGLE_RECAPTCHA_SECRET_KEY": "6LdgnrkUAAAAAKj7IfSlpLCgYYzqtLMxe9hqG8-6"
+}
+#################
+#THEN UPLOAD PROJECT INSIDE MAIN DIRECRORY AND CHANGE SETTINGS.PY
+cd && git clone https://github.com/AmirFarsad56/server.git Main_Project && nano /home/amirfarsad/Main_Project/Main_Project/settings.py
+############ NEW PATH FOR CONFIG.JSON
+'/home/amirfarsad/django_env/config.json'
+###########
+
+
+cd /home/amirfarsad/Main_Project && pip install -r requirements.txt && pip install django[argon2] && python manage.py collectstatic
+python manage.py migrate && pip install gunicorn
+
+#####CHECK IF IT IS RUNNING CORRECTLY IN Main_Project
+gunicorn Main_Project.wsgi:application --bind 0.0.0.0:8001
+
+cd && nano gunicorn_start.bash
+
+ADD THESE LINES THERE
+################################
+#!/bin/bash
+
+NAME="Main_Project"                                   # Name of the application
+DJANGODIR=/home/amirfarsad/Main_Project               # Django project directory
+SOCKFILE=/home/amirfarsad/django_env/run/gunicorn.sock  # we will communicte using this unix socket
+USER=amirfarsad                                         # the user to run as
+GROUP=amirfarsad                                        # the group to run as
+NUM_WORKERS=3                                       # how many worker processes should Gunicorn spawn
+DJANGO_SETTINGS_MODULE=Main_Project.settings      # which settings file should Django use
+DJANGO_WSGI_MODULE=Main_Project.wsgi              # WSGI module name
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment
+
+cd $DJANGODIR
+source /home/amirfarsad/django_env/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+# Create the run directory if it doesn't exist
+
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+
+exec gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --user=$USER --group=$GROUP \
+  --bind=unix:$SOCKFILE \
+  --log-level=debug \
+  --log-file=-
+
+#########################################################
+sudo chmod u+x gunicorn_start.bash
+
+CHECK IT BY RUNNING:
+./gunicorn_start.bash
+sudo nano /etc/supervisor/conf.d/Main_Project.conf
+
+ADD THESE LINES THERE
+#########################################################
+
+[program:Main_Project]
+command = /home/amirfarsad/gunicorn_start.bash                  ; Command to start app
+user = amirfarsad                                                ; User to run as
+stdout_logfile = /home/amirfarsad/logs/gunicorn_supervisor.log   ; Where to write log messages
+redirect_stderr = true                                       ; Save stderr in the same log
+environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8              ; Set UTF-8 as default encoding
+
+###########################################################
+
+mkdir -p /home/amirfarsad/logs/
+touch /home/amirfarsad/logs/gunicorn_supervisor.log
+sudo systemctl restart supervisor
+sudo systemctl enable supervisor
+
+CHECK SUPERVISOR BY RUNNING:
+sudo supervisorctl status Main_Project
+
+############### deploying wordpress ##################
+
+sudo apt-get install -y software-properties-common
+sudo apt-get install python-software-properties -y
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update && sudo apt-get install php7.3 php7.3-fpm  mysql-server php7.3-mysql php-imagick && sudo apt-get update
+
+sudo nano /etc/php/7.3/fpm/pool.d/www.conf
+############# Then make these changes there: #### ctrl+w can be used for searching #######
+
+listen = /run/php/php7.3-fpm.sock ==> ;listen = /run/php/php7.3-fpm.sock
+;##ADD THIS ==>
+listen = 127.0.0.1:9000
+
+##############################################################################
+
+wget http://wordpress.org/latest.tar.gz && tar xzf latest.tar.gz && sudo mv wordpress /var/www/varzesh-kon.ir
+sudo chmod -R 755 /var/www/varzesh-kon.ir && sudo chown www-data:www-data /var/www/varzesh-kon.ir/ -R
+
+
+mysql -u root -p
+create database wordpress;
+create user amirfarsad@localhost;
+set password for amirfarsad@localhost= password("199271Raiden");
+grant all privileges on wordpress.* to amirfarsad@localhost identified by '199271Raiden';
+flush privileges;
+exit;
+
+cd /var/www/varzesh-kon.ir && sudo cp wp-config-sample.php wp-config.php && sudo nano wp-config.php
+
+#### CHANGE THESE LINES:
+
+define('FS_METHOD', 'direct');
+
+/** The name of the database for WordPress */
+define('DB_NAME', 'wordpress');
+
+/** MySQL database username */
+define('DB_USER', 'amirfarsad');
+
+/** MySQL database password */
+define('DB_PASSWORD', '199271Raiden');
+########################
+
+sudo nano /etc/nginx/sites-available/Main_Project.conf
+
+
+############################################
+
+upstream Main_Project_server {
+  server unix:/home/amirfarsad/django_env/run/gunicorn.sock fail_timeout=0;
+}
+
+server {
+    listen   80;
+    server_name varzesh-kon.ir www.varzesh-kon.ir;
+    client_max_body_size 4G;
+    access_log /home/amirfarsad/logs/nginx-access.log;
+    error_log /home/amirfarsad/logs/nginx-error.log;
+
+    location /static/ {
+        alias   /home/amirfarsad/Main_Project/static/;
+    }
+
+    location /media/ {
+        alias   /home/amirfarsad/Main_Project/media/;
+    }
+
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        if (!-f $request_filename) {
+            proxy_pass http://Main_Project_server;
+            break;
+        }
+    }
+    error_page 500 502 503 504 /500.html;
+    location = /500.html {
+        root /home/amirfarsad/Main_Project/static/;
+    }
+
+    location /blog {
+       alias /var/www/varzesh-kon.ir;
+       try_files $uri @blog;
+
+       location ~ \.php$ {
+         try_files $uri =404;
+         fastcgi_pass 127.0.0.1:9000;
+         fastcgi_index index.php;
+         fastcgi_param SCRIPT_FILENAME $request_filename;
+         include fastcgi_params;
+       }
+    }
+    location @blog {
+      rewrite /blog/(.*)$ /blog/index.php?/$1 last;
+    }
+
+}
+
+############################################
+
+sudo ln -s /etc/nginx/sites-available/Main_Project.conf /etc/nginx/sites-enabled/Main_Project.conf
+
+sudo supervisorctl restart Main_Project
+sudo service nginx start
+sudo service nginx restart
+sudo service php7.3-fpm restart

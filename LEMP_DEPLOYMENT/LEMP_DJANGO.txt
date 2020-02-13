@@ -1,17 +1,16 @@
-FIRST CREATE A USER WITH SUDO GROUP
+#FIRST CREATE A USER WITH SUDO GROUP
 
-adduser amirfarsad
-adduser amirfarsad sudo
+adduser amirfarsad && adduser amirfarsad sudo
 
-INSIDE USER amirfarsad:
+#INSIDE USER amirfarsad:
 
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt-get update
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y software-properties-common
+
+sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt-get update
 sudo apt-get install -y libgeos-dev binutils libproj-dev gdal-bin libgdal-dev python3-gdal build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 python-virtualenv
-sudo apt-get install -y postgresql postgis postgresql-9.5-postgis-scripts
+sudo apt-get install -y postgresql postgis postgresql-9.5-postgis-scripts git supervisor nginx
+
+##ADJUST POSTGRESQL
 
 sudo su - postgres
 createuser -P amirfarsad
@@ -23,24 +22,47 @@ GRANT ALL PRIVILEGES ON DATABASE maindb TO amirfarsad;
 \q
 exit
 
-INSIDE MAIN DIRECORY WHICH IS /home/amirfarsad
+#INSIDE MAIN DIRECORY WHICH IS /home/amirfarsad
+
 virtualenv -p python3.7 django_env
 source django_env/bin/activate
 sudo apt-get install libpq-dev python3-dev
 
-THEN UPLOAD PROJECT INSIDE MAIN DIRECRORY AND IN A FOLDER NAMED Main_Project
-THEN INSIDE THERE:
-pip install -r requirements.txt
-pip install django[argon2]
-python manage.py collectstatic
-python manage.py migrate
+
+cd django_env
+sudo nano config.json
+
+##############
+{
+  "ALLOWED_HOST": "2n9l.s.serverhost.name",
+  "SECRET_KEY": "%g#(+j@zh^p-nmx$72i5rmg3u6#14u-jzccck!0j2w(m^ekwb6",
+  "DATABASE_NAME": "maindb",
+  "DATABASE_USER": "amirfarsad",
+  "DATABASE_PASSWORD": "199271Raiden",
+  "KAVENEGAR_PHONE_NUMBER": "10008000300010",
+  "KAVENEGAR_API_KEY": "30383967456C38706753473546583443536233774E374E6E702B5832386C7648",
+  "GOOGLE_RECAPTCHA_SECRET_KEY": "6LdgnrkUAAAAAKj7IfSlpLCgYYzqtLMxe9hqG8-6"
+}
+#################
+#THEN UPLOAD PROJECT INSIDE MAIN DIRECRORY AND CHANGE SETTINGS.PY TO HAVE THE NEW PATH FOR CONFIG.JSON
+'/home/amirfarsad/django_env/config.json'
+
+cd && git clone https://github.com/AmirFarsad56/server.git Main_Project
+
+#THEN INSIDE THERE:
+
+cd Main_Project && pip install -r requirements.txt && pip install django[argon2] && python manage.py collectstatic && python manage.py migrate
+
+
+
 pip install gunicorn
 
-CHECK IF IT IS RUNNING CORRECTLY IN Main_Project
+#CHECK IF IT IS RUNNING CORRECTLY IN Main_Project
 gunicorn Main_Project.wsgi:application --bind 0.0.0.0:8001
 
-THEN CD TO MAIN DIRECORY /home/amirfarsad
-nano gunicorn_start.bash
+#THEN CD TO MAIN DIRECORY /home/amirfarsad
+
+cd && nano gunicorn_start.bash
 
 ADD THESE LINES THERE
 ################################
@@ -85,7 +107,6 @@ sudo chmod u+x gunicorn_start.bash
 
 CHECK IT BY RUNNING:
 ./gunicorn_start.bash
-sudo apt-get install supervisor
 sudo nano /etc/supervisor/conf.d/Main_Project.conf
 
 ADD THESE LINES THERE
@@ -108,7 +129,6 @@ sudo systemctl enable supervisor
 CHECK SUPERVISOR BY RUNNING:
 sudo supervisorctl status Main_Project
 
-sudo apt-get install nginx
 sudo nano /etc/nginx/sites-available/Main_Project.conf
 
 
@@ -125,7 +145,7 @@ upstream Main_Project_server {
 server {
 
     listen   80;
-    server_name 2eah.c.serverhost.name;
+    server_name 2n9l.s.serverhost.name;
 
     client_max_body_size 4G;
     access_log /home/amirfarsad/logs/nginx-access.log;
@@ -199,34 +219,3 @@ sudo service nginx stop
 AND TO START IT AGAIN:
 sudo supervisorctl start Main_Project
 sudo service nginx start
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-CREATE A CONFIG.JSON FILE LIKE THIS:
-
-{
-  "ALLOWED_HOST": "2eah.c.serverhost.name",
-  "SECRET_KEY": "%g#(+j@zh^p-nmx$72i5rmg3u6#14u-jzccck!0j2w(m^ekwb6",
-  "DATABASE_NAME": "maindb",
-  "DATABASE_USER": "amirfarsad",
-  "DATABASE_PASSWORD": "199271Raiden",
-  "KAVENEGAR_PHONE_NUMBER": "10008000300010",
-  "KAVENEGAR_API_KEY": "30383967456C38706753473546583443536233774E374E6E702B5832386C7648",
-  "GOOGLE_RECAPTCHA_SECRET_KEY": "6LdgnrkUAAAAAKj7IfSlpLCgYYzqtLMxe9hqG8-6"
-}
-
-
-
-#TO UPLOAD PROJECT; FIRST IN LOCAL MACHINE:
-git init
-git add .
-git commit -m "MESSAGE"
-git push -u origin master
-
-#AND TO CLONE IT FIRST NAVIGATE TO THE PARENT DIRECTORY WHERE Main_Project LIVES (/home/amirfarsad) THEN:
-git clone https://github.com/AmirFarsad56/server.git Main_Project
-#CHANGE config_file PATH IN SETTINGS.PY TO
-/home/amirfarsad/django_env/config.json
-python manage.py collectstatic
-
-sudo supervisorctl restart Main_Project
-sudo service nginx restart

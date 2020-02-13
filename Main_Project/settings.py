@@ -31,7 +31,7 @@ SECRET_KEY = config['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [config['ALLOWED_HOST'],]
+ALLOWED_HOSTS = [config['ALLOWED_HOST1'],config['ALLOWED_HOST2']]
 
 
 # Application definition
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'booking',
     'company',
     'dynamic_formsets',
+    'wordpress_api',
 ]
 
 AUTH_USER_MODEL = 'accounts.UserModel'
@@ -196,3 +197,6 @@ LEAFLET_CONFIG ={
 #SESSION_COOKIE_SECURE = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
+
+WP_URL = '127.0.0.1:8000/blog/'
+BLOG_POSTS_PER_PAGE = 10
