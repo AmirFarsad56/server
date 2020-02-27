@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <link href="https://fonts.googleapis.com/css?family=Lalezar&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Markazi+Text&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    <title>
+        خطا | سامانه ورزش کن
+    </title>
+   <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+    <body class="grey darken-3">
+
+      <div style="z-index: 10" class="navbar-fixed">
+
+
+            <nav style="min-height: 63px; height:63px;" class="black" >
+
+
+        <nav class="black" >
+
+          <div class="nav">
+
+            <ul class="left">
+              <a href="http://varzesh-kon.ir/"  ><img style="height: 100%" class="brand-logo center" src="/media/logos/black_logo.png" ></a>
+            </ul>
+            <ul class="right">
+            </ul>
+          </div>
+        </nav>
+  </div>
+
+
+
+<div class="row">
+  <br>
+</div>
+
+<span class="center-align"><h3 class="fMarkazi gold-text";>خطا</h3><br></span>
+<div class="container">
+
+  <div class="center card-panel hoverable grey lighten-2 z-depth-5 fMarkazi black-text">
+    <h6>
+مشکلی پیس آمد! لطفا مشکل خود را با مدیران سایت در میان بگذارید
+info@varzesh-kon.ir
+</h6>
+</div>
+</div>
+<br><br><br><br>
+
+<!--Footer-->
+      <footer class="page-footer grey darken-4">
+        <div class="container ">
+          <div class="row">
+            <div class="col l6 m6 s12">
+              <h4 class="gold-text fMarkazi">سامانه ورزش کن</h4>
+              <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
+            </div>
+            <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fMarkazi gold-text">
+              <ul><h5>
+                <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
+                <li><a class="gold-text " href="{% url 'company:faqs' %}">سوالات متداول</a></li>
+                <li><a class="gold-text " href="{% url 'company:aboutus' %}">درباره ما</a></li>
+                <li><a class="gold-text" href="{% url 'company:termsdetail' %}">قوانین سایت</a></li></h5>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright black">
+          <div class="fMarkazi container gold-text">
+        1398  سامانه ورزش کن
+
+          </div>
+        </div>
+      </footer>
+
+
+
+    </body>
+  </html>
