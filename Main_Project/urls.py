@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
-from .views import IndexView
+from .views import IndexView, error_404View, error_500View
 
 
 urlpatterns = [
@@ -33,3 +34,7 @@ urlpatterns = [
     path('',IndexView,name = 'index'),
     path('',include('django.contrib.auth.urls')),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
+handler404 = error_404View
+handler500 = error_500View

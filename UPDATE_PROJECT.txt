@@ -6,11 +6,13 @@ git add .
 git commit -m "MESSAGE"
 git push -u origin master
 
+sudo mv Main_Project/media media
 #AND TO CLONE IT FIRST NAVIGATE TO THE PARENT DIRECTORY WHERE Main_Project LIVES (/home/amirfarsad) THEN:
 sudo rm -r Main_Project/ && git clone https://github.com/AmirFarsad56/server.git Main_Project
 #CHANGE config_file PATH IN SETTINGS.PY TO
 /home/amirfarsad/django_env/config.json
-python manage.py collectstatic
+sudo rm -r Main_Project/media && sudo mv media Main_Project/media
+source django_env/bin/activate && python Main_Project/manage.py collectstatic
 
 sudo supervisorctl restart Main_Project
 sudo service nginx restart
