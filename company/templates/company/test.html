@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link href="{% static 'css/aos.css' %}" rel="stylesheet">
     <link href="{% static 'css/datepicker/bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'css/datepicker/jquery.Bootstrap-PersianDateTimePicker.css' %}"  rel="stylesheet" />
     <script src="{% static 'js/datepicker/jquery-2.1.4.js' %}" ></script>
@@ -22,9 +23,50 @@
   <body>
     Hi every one
     {{form.DatePicker}}
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script>
+    AOS.init();
+    </script>
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+      M.updateTextFields();
+    });
+
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+    </script>
+    <script type="text/javascript" src="{% static 'js/timepickers.js' %}"></script>
+    <script>
+      $(document).ready(function(){
+        $('.slider').slider({
+    full_width: true,
+    height : 330,
+    interval : 2100
+    });
+      });
+      $('.timepicker').timepicker({
+        autoClose : false,
+        vibrate : true,
+        container: 'body',
+      });
+    </script>
     <script src="{% static 'js/datepicker/calendar.min.js' %}" ></script>
     <script src="{% static 'js/datepicker/jquery.Bootstrap-PersianDateTimePicker.js' %}" ></script>
 
+    <script type="text/javascript">
+        $('#input1').change(function () {
+            var $this = $(this),
+                value = $this.val();
+            alert(value);
+        });
+        $('#textbox1').change(function () {
+            var $this = $(this),
+                value = $this.val();
+            alert(value);
+        });
+    </script>
 
           <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
           <script src="{% static 'js/bin/anime.min.js' %}"> </script>
@@ -42,13 +84,17 @@
 
           </script>
 
-          {% block script_block %}
-          {% endblock %}
+          <script src="{% static 'js/datepicker/calendar.min.js' %}" ></script>
+          <script src="{% static 'js/datepicker/jquery.Bootstrap-PersianDateTimePicker.js' %}" ></script>
+
+
+        
           <script type="text/javascript">
           $(document).ready(function(){
             $(".dropdown-trigger").dropdown({ constrainWidth: false, alignment: 'right' });
           });
           </script>
+
 
 
   </body>

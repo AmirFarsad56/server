@@ -170,7 +170,8 @@
         <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:todaypubliclist' %}">!امروزو رزرو کن<i style="color: white;" class=" material-icons">event_available</i></a></li>
       </ul>
       <!--NavOptions-->
-
+      {% block datepicker_script_block %}
+      {% endblock %}
 
       <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
       <script src="{% static 'js/bin/anime.min.js' %}"> </script>

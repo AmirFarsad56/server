@@ -781,8 +781,16 @@ def SessionCreateView_2(request,pk):
                                                 kwargs={'pk':pk}))
             else:
                 print(times_form.errors)
-                return HttpResponseRedirect(reverse('session:workspace',
-                                                kwargs={'pk':pk}))
+                if times_form.errors:
+                    error = True
+                days_form_2 = DaysForm_2()
+                times_form = TimesForm()
+                today = jdatetime.datetime.now().date()
+                return render(request,'session/sessioncreate_2.html',
+                                      {'times_form':times_form,
+                                      'last_data':last_data_instance,
+                                      'errors1':error,
+                                      'days_form':days_form_2,'today':today,})
         else:
             days_form_2 = DaysForm_2()
             times_form = TimesForm()
@@ -940,6 +948,12 @@ def SessionCreateView(request, pk):
             else:
                 print(days_form.errors)
                 print(times_form.errors)
+                return render(request,'session/createsession.html',{'errors1':days_form.errors,
+                                            'errors2':times_form.errors,
+                                            'lastdata_instance':lastdata_instance,
+                                            'days_form':days_form,
+                                            'times_form':times_form,
+                                            })
 
         else:
             days_form = DaysForm()

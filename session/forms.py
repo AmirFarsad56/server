@@ -4,13 +4,13 @@ from django.core import validators
 
 
 class DaysForm(forms.Form):
-    last_day = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = False)
+    last_day = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = False)
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 
 class DaysForm_2(forms.Form):
-    first_day = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
-    last_day = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
+    first_day = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
+    last_day = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 
@@ -22,31 +22,31 @@ class TimesForm(forms.Form):
 
 
 class PriceForm(forms.Form):
-    range_start = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
-    range_end = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
+    range_start = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
+    range_end = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
     price = forms.IntegerField(required = True)
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 
 class SessionDeleteForm(forms.Form):
-    range_start = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
-    range_end = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
+    range_start = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
+    range_end = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 
 class LastDataSetForm(forms.Form):
-    first_day = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
+    first_day = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 
 class DiscountPercentageForm(forms.Form):
-    range_start = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
-    range_end = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
+    range_start = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
+    range_end = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
     discount_percentage = forms.IntegerField(widget=forms.TextInput(attrs={'id':'discount_percentage'}),required = True)
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 
 class StatusForm(forms.Form):
-    range_start = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
-    range_end = forms.CharField(widget=forms.TextInput(attrs={'class':'mp-datepicker'}),required = True)
+    range_start = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
+    range_end = forms.CharField(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),required = True)
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])

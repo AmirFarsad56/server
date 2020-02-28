@@ -2,8 +2,11 @@
 {% load static %}
 
 {% block head_block %}
-<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
-<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
+{% block datepicker_script_block %}
+<script src="{% static 'js/datepicker/calendar.min.js' %}" ></script>
+<script src="{% static 'js/datepicker/jquery.Bootstrap-PersianDateTimePicker.js' %}" ></script>
+
+{% endblock %}
 <title>
   رزرو کردن مجازی | سامانه ورزش کن
 </title>
@@ -41,5 +44,10 @@
   </div>
   </div>
 
+
+  {% endblock %}
+  {% block datepicker_script_block %}
+  <script src="{% static 'js/datepicker/calendar.min.js' %}" ></script>
+  <script src="{% static 'js/datepicker/jquery.Bootstrap-PersianDateTimePicker.js' %}" ></script>
 
   {% endblock %}

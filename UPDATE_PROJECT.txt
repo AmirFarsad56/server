@@ -10,6 +10,7 @@ sudo mv Main_Project/media media
 #AND TO CLONE IT FIRST NAVIGATE TO THE PARENT DIRECTORY WHERE Main_Project LIVES (/home/amirfarsad) THEN:
 sudo rm -r Main_Project/ && git clone https://github.com/AmirFarsad56/server.git Main_Project
 #CHANGE config_file PATH IN SETTINGS.PY TO
+nano Main_Project/Main_Project/settings.py
 /home/amirfarsad/django_env/config.json
 sudo rm -r Main_Project/media && sudo mv media Main_Project/media
 source django_env/bin/activate && python Main_Project/manage.py collectstatic

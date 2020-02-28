@@ -3,9 +3,11 @@
 {% load static %}
 
 {% block head_block %}
-<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
-<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
-<title>
+<link href="{% static 'css/datepicker/bootstrap.min.css' %}" rel="stylesheet" />
+<link href="{% static 'css/datepicker/jquery.Bootstrap-PersianDateTimePicker.css' %}"  rel="stylesheet" />
+<script src="{% static 'js/datepicker/jquery-2.1.4.js' %}" ></script>
+<script src="{% static 'js/datepicker/bootstrap.js' %}" ></script>
+<link type="text/css" href="{% static 'css/datepicker/persian-datepicker.css' %}" rel="stylesheet" /><title>
     لیست سانس ها | سامانه ورزش کن
 </title>
 {% endblock %}
@@ -670,9 +672,14 @@
 <br><br>
 
 {% endblock %}
+{% block datepicker_script_block %}
+<script src="{% static 'js/datepicker/calendar.min.js' %}" ></script>
+<script src="{% static 'js/datepicker/jquery.Bootstrap-PersianDateTimePicker.js' %}" ></script>
+
+{% endblock %}
 {% block script_block %}
 
-<script type="text/javascript" src="{% static 'js/mpdatepickers.js' %}"></script>
+
 <script type="text/javascript" src="{% static 'js/timepickers.js' %}"></script>
 
 <script>
@@ -685,20 +692,15 @@
 </script>
 <script>
   $('.timepicker').timepicker({
-    autoClose : false,
+    autoClose : true,
     vibrate : true,
+    twelveHour: false,
     onSelect: function(time) {
       console.log(time)
     }
   });
-  $(function () {
-      $(".mp-datepicker").mpdatepicker({
-          'timePicker': true
-      });
-  });
+
 </script>
-
-
 
 
 {% endblock %}

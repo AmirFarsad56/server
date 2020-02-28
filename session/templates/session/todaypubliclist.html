@@ -6,8 +6,7 @@
 {% block head_block %}
 {% leaflet_css %}
 {% leaflet_js %}
-<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
-<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
+
 <title>
     لیست سانس های امروز | سامانه ورزش کن
 </title>
@@ -364,12 +363,5 @@ interval : 2100
     container: 'body',
   });
 </script>
-<script type="text/javascript" src="{% static 'js/mpdatepickers.js' %}"></script>
-<script>
-$(function () {
-    $(".mp-datepicker").mpdatepicker({
-        'timePicker': true
-    });
-});
-</script>
+
 {% endblock %}

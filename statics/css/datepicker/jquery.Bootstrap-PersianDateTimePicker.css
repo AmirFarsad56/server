@@ -1,5 +1,5 @@
 ﻿[data-name="Md-DateTimePicker-PopoverContent"] {
-    padding: 5px 6px;
+    padding: 0px 0px 0px 0px;
 }
 
     [data-name="Md-DateTimePicker-PopoverContent"] a[data-name="go-today"] {
@@ -11,13 +11,14 @@
 
 [data-name="Md-DateTimePicker-Title"] {
     direction: rtl;
+    opacity: 0;
     text-align: center;
     font-family: Tahoma;
     font-size: 12px;
 }
 
 [data-name="Md-PersianDateTimePicker"] {
-    min-width: 230px;
+    width: 230px;
 }
 
     [data-name="Md-PersianDateTimePicker"] button {
@@ -31,7 +32,8 @@
 
     [data-name="Md-PersianDateTimePicker"] table.table td {
         text-align: center;
-        padding: 2px;
+        padding: 3px;
+        background-color: #ffffff;
         font-size: 12px;
     }
 
@@ -80,6 +82,7 @@
 
 [data-name="day"], [data-name="today"] {
     cursor: pointer;
+    color: black;
     padding: 2px;
 }
 

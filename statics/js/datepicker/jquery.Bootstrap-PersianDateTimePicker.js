@@ -79,7 +79,7 @@
                     placement: settings.Placement,
                     title: 'انتخاب تاریخ',
                     trigger: 'manual',
-                    template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title" data-name="Md-DateTimePicker-Title"></h3><div class="popover-content"  data-name="Md-DateTimePicker-PopoverContent"></div></div>',
+                    template: '<div class="popover" role="tooltip"><div class="arrow"></div><div class="popover-content"  data-name="Md-DateTimePicker-PopoverContent"></div></div>',
                 }).on(settings.Trigger, function () {
                     hideOthers($this);
                     showPopover($this);
