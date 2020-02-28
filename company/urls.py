@@ -2,7 +2,7 @@ from django.urls import include, path
 from company.views import (CreateTermsView, UpdateTermsView, AccountingDetailView, ReckoninglistView,
                             SalonAdvertisementCreateView, SalonAdvertisementListView,
                             SalonAdvertisementDeleteView, TermsDetailView, FAQsView,
-                            AboutUsView, ContactUsView)
+                            AboutUsView, ContactUsView, TestView)
 
 
 app_name ='company'
@@ -18,5 +18,6 @@ urlpatterns = [
     path('salon-advertisement-add/<int:pk>/', SalonAdvertisementCreateView, name='salonadvertisementcreate'),
     path('salon-advertisement-list/', SalonAdvertisementListView.as_view(), name='salonadvertisementlist'),
     path('salon-advertisement-delete/<int:pk>/', SalonAdvertisementDeleteView, name='salonadvertisementdelete'),
+    path('test/', TestView, name='test'),
 
 ]

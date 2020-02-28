@@ -3,13 +3,34 @@
 {% load static %}
 {% load customtags_session %}
 {% block head_block %}
-<link type="text/css" rel="stylesheet" href="http://4xmen.ir/cdn/VazirCodeX.css" />
-<link type="text/css" rel="stylesheet" href="{% static 'css/jquery.mpdatepicker.css' %}" />
+
+
 <title>
     لیست سانس ها | سامانه ورزش کن
 </title>
 
 <link href="{% static 'css/aos.css' %}" rel="stylesheet">
+<!-- bootstrap datepicker
+<link href="{% static 'css/datepicker/bootstrap.min.css' %}" rel="stylesheet" />
+<link href="{% static 'css/datepicker/jquery.Bootstrap-PersianDateTimePicker.css' %}"  rel="stylesheet" />
+<script src="{% static 'js/datepicker/jquery-2.1.4.js' %}" ></script>
+<script src="{% static 'js/datepicker/bootstrap.js' %}" ></script>
+-->
+<link type="text/css" href="{% static 'css/datepicker/persian-datepicker.css' %}" rel="stylesheet" />
+
+   <script type="text/javascript" src="{% static 'js/datepicker/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/datepicker/persian-datepicker.js' %}" ></script>
+<script type="text/javascript">
+  $(function() {
+      $('#datepicker').datepicker({
+          changeMonth: true,
+          changeYear: true,
+          dateFormat: 'yy-mm-dd',
+      });
+  });
+</script>
+
+
 {% endblock %}
 
 
@@ -28,7 +49,10 @@
 <li><br></li>
 <div class="col s12">
   <span class="fMarkazi " style="color:#d4af37;"  for="day_str">روز سانس</span>
-  {{filter.form.day_str}}
+
+
+</div>
+<div class="form-group">
 
 </div>
 <div class="input-field col s12">
@@ -77,7 +101,7 @@
 <span class="center-align"><h3 style="margin-left:5%" class="fLalezar gold-text";>لیست سانس ها</h3><br><br></span>
 
 
-
+  {{filter.form.day_str}}
   <div class="row center">
     {% for session in sessions %}
     {% if session.is_ready %}
@@ -358,12 +382,24 @@ interval : 2100
     container: 'body',
   });
 </script>
-<script type="text/javascript" src="{% static 'js/mpdatepickers.js' %}"></script>
-<script>
-$(function () {
-    $(".mp-datepicker").mpdatepicker({
-        'timePicker': true
+<script src="{% static 'js/datepicker/calendar.min.js' %}" ></script>
+<script src="{% static 'js/datepicker/jquery.Bootstrap-PersianDateTimePicker.js' %}" ></script>
+
+<script type="text/javascript">
+    $('#input1').change(function () {
+        var $this = $(this),
+            value = $this.val();
+        alert(value);
     });
-});
+    $('#textbox1').change(function () {
+        var $this = $(this),
+            value = $this.val();
+        alert(value);
+    });
 </script>
+<script src="{% static 'js/datepicker/calendar.min.js' %}" ></script>
+<script src="{% static 'js/datepicker/jquery.Bootstrap-PersianDateTimePicker.js' %}" ></script>
+
+
+
 {% endblock %}

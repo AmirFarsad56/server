@@ -12,7 +12,7 @@ import datetime
 #handmade
 from company.models import TermsModel, ReckoningModel, SalonAdvertisementModel
 from company.filters import ReckoningFilter
-from company.forms import TermsForm
+from company.forms import TermsForm, TestForm
 from accounts.decorators import superuser_required
 from salon.models import SalonModel
 
@@ -118,3 +118,8 @@ def AboutUsView(request):
 
 def ContactUsView(request):
     return render(request,'company/contactus.html')
+
+
+def TestView(request):
+    form = TestForm()
+    return render(request,'company/test.html',{'form':form})    

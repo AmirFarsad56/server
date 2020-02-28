@@ -1,0 +1,15 @@
+﻿@font-face {
+    font-family: "KoofiDroid";
+    src: url( "/fonts/KoofiDroid.otf" );
+    src: url( "/fonts/KoofiDroid.ttf" );
+}
+
+body {
+    width: 40%;
+    margin: 40px auto;
+}
+
+* {
+    font-family: KoofiDroid;
+    font-size: 14px;
+}

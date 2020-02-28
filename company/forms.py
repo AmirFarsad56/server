@@ -13,3 +13,7 @@ class TermsForm(forms.ModelForm):
         widgets = {
             'terms_condition': forms.Textarea(attrs={'class': 'materialize-textarea','style': "height: 100px"}),
         }
+
+
+class TestForm(forms.Form):
+    DatePicker = forms.CharField(widget =forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumbe':'true' }))
