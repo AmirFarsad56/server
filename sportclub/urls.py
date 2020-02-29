@@ -51,5 +51,5 @@ urlpatterns = [
     path('send-email/<slug:slug>/',EmailSendingView, name='sendemail'),
     path('bank-info-change/<slug:slug>/', BankInfoChangeView, name='bankinfochange'),
     path('update/<slug:slug>/', SportClubUpdateView, name='update'),
-    path('terms-and=conditions/<slug:slug>/', TermsAndConditionsView, name='termsandconditions'),
+    path('terms-and-conditions/<slug:slug>/', TermsAndConditionsView, name='termsandconditions'),
 ]

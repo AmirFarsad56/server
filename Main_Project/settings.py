@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.gis',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'leaflet',
     'django_jalali',
     'accounts',
