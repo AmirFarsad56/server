@@ -15,26 +15,26 @@
 }
 /* label name color */
 .input-field label {
-  color: white;
+  color: #d4af37;
 }
 /* label focus color */
  .input-field input:focus + label {
-   color: white !important;
+   color: #d4af37 !important;
  }
  /* label underline focus color */
  .input-field input:focus {
-   border-bottom: 1px solid white !important;
-   box-shadow: 0 1px 0 0 white !important
+   border-bottom: 1px solid #d4af37 !important;
+   box-shadow: 0 1px 0 0 #d4af37 !important
  }
 
 /* label name focus color */
  .input-field textarea:focus + label {
-   color: white !important;
+   color: #d4af37 !important;
  }
  /* label underline focus color */
  .input-field textarea:focus {
-   border-bottom: 1px solid white !important;
-   box-shadow: 0 1px 0 0 white !important
+   border-bottom: 1px solid #d4af37 !important;
+   box-shadow: 0 1px 0 0 #d4af37 !important
  }
 
  .timepicker-modal,

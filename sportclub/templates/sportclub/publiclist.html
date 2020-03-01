@@ -24,33 +24,34 @@
 
   <div class="col s12 m12 l2 fMarkazi gold-text">
 
-  <ul id="slide-out" style="margin-top:63px;" class="sidenav sidenav-fixed grey darken-4">
+  <ul id="slide-out" style="border-top: #00796b 10px solid; margin-top:63px; padding-bottom:150px;" class="sidenav sidenav-fixed grey lighten-3">
 
     <br>
-    <li class="center" >جستجوی پیشرفته</li>
-    <li><div class="divider gold"></div></li>
+    <li class="center fLalezar teal-text" >جستجوی پیشرفته</li>
+    <li><div style="border-top: #00796b 2px solid;" class="divider teal"></div></li>
+    <br>
     <form  method="get">
 <li></li>
 <div class="input-field col s12">
   {{filter.form.serial_number}}
-  <label style="color:#d4af37;" class="fMarkazi" for="serial_number">شماره سریال مجموعه ورزشی</label>
+  <label class="fMarkazi teal-text teal-text" for="serial_number">شماره سریال مجموعه ورزشی</label>
 </div>
       <div class="input-field col s12">
         {{filter.form.sportclub_name}}
-        <label style="color:#d4af37;" class="fMarkazi" for="sportclub_name">نام مجموعه ورزشی شامل</label>
+        <label class="fMarkazi teal-text" for="sportclub_name">نام مجموعه ورزشی شامل</label>
       </div>
       <div class="input-field col s12">
         {{filter.form.region}}
-        <label style="color:#d4af37;" class="fMarkazi" for="region">اسم استان شامل</label>
+        <label class="fMarkazi teal-text" for="region">اسم استان شامل</label>
       </div>
       <div class="input-field col s12">
         {{filter.form.company_phone_number}}
-        <label style="color:#d4af37;" class="fMarkazi" for="company_phone_number">شماره تلفن ثابت شامل</label>
+        <label class="fMarkazi teal-text" for="company_phone_number">شماره تلفن ثابت شامل</label>
       </div>
 
 
 
-        <li class="center"><button class=" center-align hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">جستجو
+        <li class="center"><button class=" center-align hoverable btn waves-effect waves-dark teal white-text z-depth-3" type="submit">جستجو
   </button></li>
 
     </form>
@@ -71,7 +72,7 @@
   <div class="row center">
     {% for sportclub in sportclubs %}
     {% if sportclub.user.is_active %}
-  <div style="margin-left:5%" class="card-panel hoverable grey lighten-2  z-depth-5 teal-text" data-aos="fade-up"
+  <div style="margin-left:5%" class="card-panel hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
      data-aos-anchor-placement="top-bottom" data-aos-duration="1300">
     <h6>
 <div class="row">
@@ -133,12 +134,12 @@
 
     <br>
 
-<h5 class="black-text fLalezar  ">موقعیت</h5>
+<h5 class="black-text fLalezar">موقعیت</h5>
 <br>
 {% leaflet_map sportclub.pk|pk_to_str callback=sportclub.pk|pk_to_map_init %}
 <br><br><br>
 <div class="row">
-  <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'salon:publiclistforsportclub' pk=sportclub.pk %}" class="hoverable waves-effect waves-light btn teal white-text"><h6><span>         </span>لیست سالن ها<span>        </span></h6></a><p></p>
+  <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'salon:publiclistforsportclub' pk=sportclub.pk %}" class="hoverable waves-effect waves-light btn teal white-text"><h6><span>         </span>سالن های این مجموعه ورزشی<span>        </span></h6></a><p></p>
 </div>
 </div>
 

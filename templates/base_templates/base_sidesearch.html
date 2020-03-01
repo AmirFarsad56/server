@@ -27,20 +27,20 @@
 <div style="z-index: 10" class="navbar-fixed">
 
 
-      <nav style="min-height: 63px; height:63px;" class="black" >
+      <nav style="min-height: 63px; height:63px;" class="white" >
 
         <div class="nav">
           {% if not filter_off %}
           <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons gold-text">search</i></a>
           {% endif %}
           <ul class="left">
-            <a href="{% url 'index' %}"  ><img style="height: 100%" class="brand-logo center" src="/media/logos/black_logo.png" ></a>
+            <a href="{% url 'index' %}"  ><img style="height: 100%" class="brand-logo center" src="/media/logos/white_logo.png" ></a>
           </ul>
           <ul class="right">
           <a  href="#" data-target="nav1" class="sidenav-trigger"><i  class="gold-text material-icons"><font color="#d4af37">menu</font></i></a>
           </ul>
           <ul class="right hide-on-med-and-down">
-            <li><a class="dropdown-trigger gold-text fLalezar" href="#!" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i>میانبر</a></li>
+            <li><a class="dropdown-trigger gold-text fLalezar" href="#!" data-target="dropdown1"><div class="gold-text"><i class="material-icons right gold-text">arrow_drop_down</i>میانبر</div></a></li>
             {% if user.is_authenticated %}
             {% if user.is_sportclub %}
             {% if user.sportclubs.salons.count > 1 or user.sportclubs.salons.count == 0 %}
@@ -125,7 +125,7 @@
 
 
 <!--NavOptions-->
-<ul class="sidenav black" id="nav1">
+<ul class="sidenav white" id="nav1">
   <li><br></li>
   <li><a class="dropdown-trigger gold-text fLalezar" style="color:#d4af37;" href="#!" data-target="dropdownb1"><i style="color:#d4af37;" class="material-icons right">arrow_drop_down</i>میانبر</a></li>
   {% if user.is_authenticated %}
@@ -167,23 +167,23 @@
 
 
 
-<ul id="dropdown1" class="dropdown-content black" style="border: #d4af37 1px solid;">
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i style="color: white;" class=" material-icons">search</i></a></li>
+<ul id="dropdown1" class="dropdown-content white" style="border: #d4af37 1px solid;">
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i  class=" material-icons teal-text">search</i></a></li>
   <li class="divider gold"></li>
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i style="color: white;" class=" material-icons">search</i></a></li>
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i  class=" material-icons teal-text">search</i></a></li>
   <li class="divider gold"></li>
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:publiclist' %}">سانس ها<i style="color: white;" class=" material-icons">search</i></a></li>
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:publiclist' %}">سانس ها<i  class=" material-icons teal-text">search</i></a></li>
   <li class="divider gold"></li>
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:todaypubliclist' %}">!امروزو رزرو کن<i style="color: white;" class=" material-icons">event_available</i></a></li>
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:todaypubliclist' %}">!امروزو رزرو کن<i  class=" material-icons teal-text">event_available</i></a></li>
 </ul>
-<ul id="dropdownb1" class="dropdown-content black" style="border: #d4af37 1px solid;">
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i style="color: white;" class=" material-icons">search</i></a></li>
+<ul id="dropdownb1" class="dropdown-content white" style="border: #d4af37 1px solid;">
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i  class=" material-icons teal-text">search</i></a></li>
   <li class="divider gold"></li>
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i style="color: white;" class=" material-icons">search</i></a></li>
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i  class=" material-icons teal-text">search</i></a></li>
   <li class="divider gold"></li>
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:publiclist' %}">سانس ها<i style="color: white;" class=" material-icons">search</i></a></li>
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:publiclist' %}">سانس ها<i  class=" material-icons teal-text">search</i></a></li>
   <li class="divider gold"></li>
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:todaypubliclist' %}">!امروزو رزرو کن<i style="color: white;" class=" material-icons">event_available</i></a></li>
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:todaypubliclist' %}">!امروزو رزرو کن<i  class=" material-icons teal-text">event_available</i></a></li>
 </ul>
 <!--NavOptions-->
 
