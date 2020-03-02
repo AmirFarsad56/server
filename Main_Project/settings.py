@@ -172,12 +172,14 @@ DATE_INPUT_FORMAT = ['%Y-%m-%d']
 
 
 # email test
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'alienone306@gmail.com'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'info@varzesh-kon.ir'
 EMAIL_HOST_PASSWORD = '199271Raiden'
+EMAIL_USE_TLS = False
 
 
 #recapcha V2

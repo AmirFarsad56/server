@@ -24,7 +24,7 @@
   <ul id="slide-out" style="border-top: #00796b 10px solid; margin-top:63px; padding-bottom:150px;" class="sidenav sidenav-fixed grey lighten-3">
 
     <br>
-    <li class="center fLalezar teal-text" >جستجوی پیشرفته</li>
+    <li class="center fLalezar teal-text"  style="font-size:120%" >جستجوی پیشرفته</li>
     <li><div style="border-top: #00796b 2px solid;" class="divider teal"></div></li>
 <br>
     <form  method="get">
@@ -32,34 +32,34 @@
 
 <div class="input-field col s12">
   {{filter.form.time__gte}}
-  <label   class="fMarkazi teal-text" for="time__gte">زمان شروع سانس بعد از</label>
+  <label    style="font-size:90%" class="fLalezar teal-text" for="time__gte">زمان شروع سانس بعد از</label>
 </div>
 <div class="input-field col s12">
   {{filter.form.time__lte}}
-  <label  class="fMarkazi teal-text" for="time__lte">زمان شروع سانس قبل از</label>
+  <label   style="font-size:90%" class="fLalezar teal-text" for="time__lte">زمان شروع سانس قبل از</label>
 </div>
 <div class="input-field col s12">
   {{filter.form.duration}}
-  <label  class="fMarkazi teal-text" for="duration">طول تایم</label>
+  <label   style="font-size:90%" class="fLalezar teal-text" for="duration">طول تایم</label>
 </div>
 <div class="input-field col s12">
   {{filter.form.price__gte}}
-  <label  class="fMarkazi teal-text" for="price__gte">(قیمت سانس بیشتر و برابر (تومان</label>
+  <label   style="font-size:90%" class="fLalezar teal-text" for="price__gte">(قیمت سانس بیشتر و برابر (تومان</label>
 </div>
 <div class="input-field col s12">
   {{filter.form.price__lte}}
-  <label  class="fMarkazi teal-text" for="price__lte">(قیمت سانس کمتر و برابر (تومان</label>
+  <label   style="font-size:90%" class="fLalezar teal-text" for="price__lte">(قیمت سانس کمتر و برابر (تومان</label>
 </div>
 <div class="input-field col s12">
   {{filter.form.discount_percentage__gte}}
-  <label  class="fMarkazi teal-text" for="discount_percentage__gte">درصد تخفیف بیشتر و مساوی</label>
+  <label   style="font-size:90%" class="fLalezar teal-text" for="discount_percentage__gte">درصد تخفیف بیشتر و مساوی</label>
 </div>
 <div class="input-field col s12">
   {{filter.form.discount_percentage__lte}}
-  <label  class="fMarkazi teal-text" for="discount_percentage__lte">درصد تخفیف کمتر و مساوی</label>
+  <label   style="font-size:90%" class="fLalezar teal-text" for="discount_percentage__lte">درصد تخفیف کمتر و مساوی</label>
 </div>
 
-<li class="center">  <button class="hoverable btn waves-effect waves-dark teal white-text z-depth-3" type="submit">جستجو
+<li class="center">  <button class="fLalezar hoverable btn waves-effect waves-dark teal white-text z-depth-3" type="submit">جستجو
 </button></li>
 <li><br><br><br></li>
     </form>
@@ -271,9 +271,7 @@
   <br><br>
   {% endif %}
   {% endfor %}
-  {% else %}
-  <div style="height:400px;" class="card hoverable grey lighten-2  z-depth-5 teal-text">
-     </div>
+
   {% endif %}
 
 </div>

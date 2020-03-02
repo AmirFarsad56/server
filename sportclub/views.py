@@ -69,7 +69,7 @@ def SportClubSignupView(request):
                      sportclub.serial_number = sportclub.pk + 1000
                      if 'picture' in request.FILES:
                         sportclub.picture = request.FILES['picture']
-
+ 
                      sportclub.save()
                      registered = True
                      masteruser_instance = get_object_or_404(UserModel, slug = request.user.slug)
