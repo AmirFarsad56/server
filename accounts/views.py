@@ -193,7 +193,7 @@ def CloudEmailView(request):
                             send_mail(
                             email_subject,
                             email_text,
-                            'alienone306@gmail.com',
+                            'info@varzesh-kon.ir',
                             [user.email,],
                             fail_silently=False,
                             )
