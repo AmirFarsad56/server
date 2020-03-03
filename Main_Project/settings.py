@@ -29,7 +29,7 @@ STATIC_DIR = os.path.join(BASE_DIR,'statics')
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [config['ALLOWED_HOST1'],config['ALLOWED_HOST2']]
 
@@ -59,6 +59,10 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.UserModel'
+
+ADMINS = [
+('Amir', config['ERROR_EMAIL']),
+]
 
 
 MIDDLEWARE = [
@@ -177,8 +181,8 @@ DATE_INPUT_FORMAT = ['%Y-%m-%d']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'info@varzesh-kon.ir'
-EMAIL_HOST_PASSWORD = '199271Raiden'
+EMAIL_HOST_USER = config['EMAIL_USER']
+EMAIL_HOST_PASSWORD = config['EMAIL_PASSWORD']
 EMAIL_USE_TLS = False
 
 
@@ -199,6 +203,3 @@ LEAFLET_CONFIG ={
 #SESSION_COOKIE_SECURE = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
-
-WP_URL = '127.0.0.1:8000/blog/'
-BLOG_POSTS_PER_PAGE = 10
