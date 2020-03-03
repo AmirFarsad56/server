@@ -1,11 +1,24 @@
-<!DOCTYPE html>
-<html lang="
-" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    no such phone number give a phone number that you have registered
-  </body>
-</html>
+{% extends "base_templates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+    خطا | سامانه ورزش کن
+</title>
+{% endblock %}
+
+{% block body_block %}
+<span class="center-align"><h3 class="fMarkazi gold-text";>خطا</h3><br></span>
+<div class="container">
+
+  <div style="direction:rtl;" class="center card-panel hoverable grey lighten-2 z-depth-5 fMarkazi black-text">
+    <h6>
+شماره تلفن وارد شده صحیح نمیباشد
+<br>
+لطفا شماره ای که با آن ثبت نام کرده اید را وارد کنید.
+</h6>
+</div>
+</div>
+<br><br>
+
+    {% endblock %}

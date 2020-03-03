@@ -1,4 +1,4 @@
-info@varzesh-kon.irfrom django.shortcuts import render
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect

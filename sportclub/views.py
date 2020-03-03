@@ -1,4 +1,4 @@
-info@varzesh-kon.irfrom django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, TemplateView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
