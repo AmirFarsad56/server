@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+info@varzesh-kon.irfrom django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -299,7 +299,7 @@ def EmailSendingView(request,slug):
                 send_mail(
                 email_subject,
                 email_text,
-                'alienone306@gmail.com',
+                'info@varzesh-kon.ir',
                 [user_instance.email,],
                 fail_silently=False,
                 )

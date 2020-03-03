@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+info@varzesh-kon.irfrom django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, TemplateView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -69,7 +69,7 @@ def SportClubSignupView(request):
                      sportclub.serial_number = sportclub.pk + 1000
                      if 'picture' in request.FILES:
                         sportclub.picture = request.FILES['picture']
- 
+
                      sportclub.save()
                      registered = True
                      masteruser_instance = get_object_or_404(UserModel, slug = request.user.slug)
@@ -557,7 +557,7 @@ def EmailSendingView(request,slug):
                 send_mail(
                 email_subject,
                 email_text,
-                'alienone306@gmail.com',
+                'info@varzesh-kon.ir',
                 [user_instance.email,],
                 fail_silently=False,
                 )
