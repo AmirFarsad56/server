@@ -60,13 +60,14 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.UserModel'
 
-ADMINS = (('error500', 'error500@varzesh-kon.ir'),)
-MANAGERS = (('error404','error404@varzesh-kon.ir'),)
+ADMINS = ((config['500_ERROR_USER'], config['500_ERROR_EMAIL']),)
+MANAGERS = ((config['404_ERROR_USER'], config['404_ERROR_EMAIL']),)
 SEND_BROKEN_LINK_EMAILS = True
 
 
 
 MIDDLEWARE = [
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
