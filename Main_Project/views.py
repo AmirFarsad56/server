@@ -56,12 +56,3 @@ def IndexView(request):
                     pass
 
         return render(request,'index.html',{'salons':salon_advertisement_list,'sessions':session_list})
-
-
-def error_404View(request,exception):
-        data = {}
-        return render(request,'error_pages/error_404.html', data)
-
-def error_500View(request):
-        data = {}
-        return render(request,'error_pages/error_500.html', data)

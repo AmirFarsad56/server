@@ -20,7 +20,7 @@ from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import StaticViewSitemap
-from .views import IndexView, error_404View, error_500View
+from .views import IndexView
 
 sitemaps = {
     'static': StaticViewSitemap
@@ -39,7 +39,3 @@ urlpatterns = [
     path('',include('django.contrib.auth.urls')),
     path('info/sitemap.xml', sitemap, {'sitemaps': sitemaps}),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-
-
-handler404 = error_404View
-handler500 = error_500View

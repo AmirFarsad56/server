@@ -646,7 +646,10 @@ def MapDataSetView(request):
         query = get_list_or_404(SportClubModel)
     except:
         pass
-    points = serialize('geojson',query)
+    try:
+        points = serialize('geojson',query)
+    except:
+        points = False    
     return HttpResponse(points, content_type = 'json')
 
 

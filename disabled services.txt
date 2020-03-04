@@ -1,13 +1,1 @@
-php7.0-fpm
-dovecot
-amavis
-uwsgi
-iptables
-amavis-mc
-postfix
-spamassassin
-iredapd
-
-number of workers in gunicorn.bash changed to 2 instead of 3
-sudo service mysql start --skip-innodb
 ps -o pid,user,%mem,command ax | sort -b -k3 -r

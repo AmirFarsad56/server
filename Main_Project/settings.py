@@ -29,7 +29,7 @@ STATIC_DIR = os.path.join(BASE_DIR,'statics')
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [config['ALLOWED_HOST1'],config['ALLOWED_HOST2']]
 
@@ -60,9 +60,10 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.UserModel'
 
-ADMINS = [
-('Amir', config['ERROR_EMAIL']),
-]
+ADMINS = (('error500', 'error500@varzesh-kon.ir'),)
+MANAGERS = (('error404','error404@varzesh-kon.ir'),)
+SEND_BROKEN_LINK_EMAILS = True
+
 
 
 MIDDLEWARE = [
@@ -184,6 +185,7 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = config['EMAIL_USER']
 EMAIL_HOST_PASSWORD = config['EMAIL_PASSWORD']
 EMAIL_USE_TLS = False
+SERVER_EMAIL = config['EMAIL_USER']
 
 
 #recapcha V2
