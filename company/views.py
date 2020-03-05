@@ -7,13 +7,14 @@ from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
 import jdatetime
 import datetime
 
 #handmade
 from company.models import TermsModel, ReckoningModel, SalonAdvertisementModel
 from company.filters import ReckoningFilter
-from company.forms import TermsForm, TestForm, ContactUsForm
+from company.forms import TermsForm, TestForm, ContactUsForm, SportClubContactForm
 from accounts.decorators import superuser_required
 from salon.models import SalonModel
 
@@ -121,8 +122,59 @@ def FAQsView(request):
 def AboutUsView(request):
     return render(request,'company/aboutus.html')
 
+
 def ThanksView(request):
     return render(request,'company/thanks.html')
+
+
+def ContactSuccessView(request):
+    return render(request,'company/contactsuccess.html')
+
+
+def SportClubContactView(request):
+    if request.method == 'POST':
+        sportclubcontact_form = SportClubContactForm(data = request.POST)
+        region = request.POST.get('region')
+        if sportclubcontact_form.is_valid():
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            data = urllib.parse.urlencode(values).encode()
+            req =  urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
+            ''' End reCAPTCHA validation '''
+            if result['success']:
+                email_subject = sportclubcontact_form.cleaned_data.get('name')
+                phone = sportclubcontact_form.cleaned_data.get('phone')
+                address = sportclubcontact_form.cleaned_data.get('address')
+                now = jdatetime.datetime.now()
+                dtime = str(now.year)+'-'+str(now.month)+'-'+ str(now.day)+'  '+str(now.hour)+':'+str(now.minute)+':'+str(now.second)
+
+                email_text = region + '  ' + phone + '\n' + address + '\non: ' + dtime
+
+                send_mail(
+                email_subject,
+                email_text,
+                'info@varzesh-kon.ir',
+                ['sportclubcontact@varzesh-kon.ir',],
+                fail_silently=False,
+                )
+                return HttpResponseRedirect(reverse('company:contactsuccess'))
+            else:
+                 message =  'فیلد من ربات نیستم را به درستی کامل کنید'
+                 sportclubcontact_form = SportClubContactForm()
+
+                 return render(request,'company/sportclubcontact.html.html',
+                                       {'form':sportclubcontact_form,'message':message})
+    else:
+        sportclubcontact_form = SportClubContactForm()
+
+        return render(request,'company/sportclubcontact.html',
+                              {'form':sportclubcontact_form,})
 
 
 def ContactUsView(request):
