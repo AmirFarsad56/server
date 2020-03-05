@@ -2,7 +2,7 @@ from django.urls import include, path
 from company.views import (CreateTermsView, UpdateTermsView, AccountingDetailView, ReckoninglistView,
                             SalonAdvertisementCreateView, SalonAdvertisementListView,
                             SalonAdvertisementDeleteView, TermsDetailView, FAQsView,
-                            AboutUsView, ContactUsView, TestView)
+                            AboutUsView, ContactUsView, TestView, ThanksView)
 
 
 app_name ='company'
@@ -10,6 +10,7 @@ urlpatterns = [
     path('create-terms/', CreateTermsView.as_view(), name='createterms'),
     path('terms-detail/', TermsDetailView, name='termsdetail'),
     path('about-us/', AboutUsView, name='aboutus'),
+    path('thanks/', ThanksView, name='thanks'),
     path('contact-us/', ContactUsView, name='contactus'),
     path('FAQs/', FAQsView, name='faqs'),
     path('accounting-detail/', AccountingDetailView, name='accountingdetail'),

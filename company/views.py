@@ -5,6 +5,7 @@ from django.views.generic import CreateView, UpdateView, ListView
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
+from django.conf import settings
 from django.http import HttpResponseRedirect
 import jdatetime
 import datetime
@@ -12,10 +13,15 @@ import datetime
 #handmade
 from company.models import TermsModel, ReckoningModel, SalonAdvertisementModel
 from company.filters import ReckoningFilter
-from company.forms import TermsForm, TestForm
+from company.forms import TermsForm, TestForm, ContactUsForm
 from accounts.decorators import superuser_required
 from salon.models import SalonModel
 
+#reCAPTCHA
+import json
+import urllib
+from django.conf import settings
+from django.contrib import messages
 
 
 @method_decorator([login_required, superuser_required], name='dispatch')
@@ -115,11 +121,56 @@ def FAQsView(request):
 def AboutUsView(request):
     return render(request,'company/aboutus.html')
 
+def ThanksView(request):
+    return render(request,'company/thanks.html')
+
 
 def ContactUsView(request):
-    return render(request,'company/contactus.html')
+    if request.method == 'POST':
+        contactus_form = ContactUsForm(data = request.POST)
+        if contactus_form.is_valid():
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            data = urllib.parse.urlencode(values).encode()
+            req =  urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
+            ''' End reCAPTCHA validation '''
+            if result['success']:
+                email_subject = contactus_form.cleaned_data.get('email')
+                text = contactus_form.cleaned_data.get('text')
+                user_name = contactus_form.cleaned_data.get('user_name')
+                user_phone = contactus_form.cleaned_data.get('user_phone')
+                now = jdatetime.datetime.now()
+                dtime = str(now.year)+'-'+str(now.month)+'-'+ str(now.day)+'  '+str(now.hour)+':'+str(now.minute)+':'+str(now.second)
+
+                email_text = user_name + '  ' + user_phone + '\n' + text + '\non: ' + dtime
+
+                send_mail(
+                email_subject,
+                email_text,
+                'info@varzesh-kon.ir',
+                ['contactus@varzesh-kon.ir',],
+                fail_silently=False,
+                )
+                return HttpResponseRedirect(reverse('company:thanks'))
+            else:
+                 message =  'فیلد من ربات نیستم را به درستی کامل کنید'
+                 contactus_form = ContactUsForm()
+
+                 return render(request,'company/contactus.html',
+                                       {'form':contactus_form,'message':message})
+    else:
+        contactus_form = ContactUsForm()
+
+        return render(request,'company/contactus.html',
+                              {'form':contactus_form,})
 
 
 def TestView(request):
     form = TestForm()
-    return render(request,'company/test.html',{'form':form})    
+    return render(request,'company/test.html',{'form':form})

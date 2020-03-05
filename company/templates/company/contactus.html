@@ -3,7 +3,7 @@
 {% block head_block %}
 <meta name=”robots” content=”noindex,follow”>
 <title>
-  قوانین سایت | سامانه ورزش کن
+  ارتباط با ما | سامانه ورزش کن
 </title>
 {% endblock %}
 
@@ -11,18 +11,92 @@
 <div class="section">
   <div class="container">
   <div class="container"><br>
-<span class="center-align"><h3 class="fMarkazi gold-text";>قوانین سایت</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar gold-text";>ارتباط با ما</h3><br><br></span>
   <div class="row center">
+    <div class="card-panel hoverable pink z-depth-4 right-align">
+      <div class="row center fLalezar black-text">
+        <h3 class="fLalezar gold-text">ارسال نظرات, پیشنهادات و انتقادات</h3>
+      <h6>فرم زیر را پر کنید تا مارا در راستای بهبود بخشیدن به عملکردمان یاری نمائید</h6>
+      <h6>از اینکه وقتتان را در اختیارمان قرار میدهید متشکریم</h6>
+      </div>
   <div class="card-panel hoverable pink accent-3 z-depth-5 right-align">
 
 
+
+
+
+    <form method="POST">
+      {{form.Hfield}}
+
+<div class="input-field col s12 red-text">
+{{form.email}}
+<label class="fLalezar right-align" for="email">ایمیل</label>
+</div>
+<div class="input-field col s12 m6 l6 red-text">
+{{form.user_name}}
+<label class="fLalezar right-align" for="user_name">نام و نام خانوادگی</label>
+</div>
+
+<div class="input-field col s12 m6 l6 red-text">
+{{form.user_phone}}
+<label class="fLalezar right-align" for="user_phone">شماره تلفن (اختیاری)</label>
+</div>
+<div class="input-field col s12">
+{{form.text}}
+<label class="fLalezar" for="username">متن پیام</label>
+</div>
+<div class="row center-align center">
+<script class="center center-align" src='https://www.google.com/recaptcha/api.js'></script>
+<div class="g-recaptcha" data-sitekey="6LfXbd4UAAAAABbtFRQdnbm7PtIf1svNoeCJz9zt"></div>
+
+</div>
+<div class="fMarkazi center">
+  {% if message %}
+  <br>
+  {{message}}
+  <br>
+  {% endif %}
+</div>
+<br><br><br>
+
+            {% csrf_token %}
+<div class="row center">
+  <button class="fLalezar center hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">فرستادن پیام
+</button>
+</div>
+
+<br><br>
+    </form>
+
+
+
+
+
+
+
   </div>
+
+  <div class="row center fLalezar black-text">
+    <br><br>
+    <h6 class="fLalezar black-text">
+      اگر مجموعه ورزشی هستید و میخواهید به ما بپیوندید از <a href="#">این لینک</a> اقدام فرمائید
+
+    </h6>
+    <p>آدرس ایمیل جهت ارتباط با مدیران سایت
+    <br>
+    info@varzesh-kon.ir</p>
+  <p class="right" style="margin-top:0px"><span>مارا در اینستاگرام دنبال کنید </span><a href="https://instagram.com/varzesh_kon.ir"><img style="margin-bottom:-18px; margin-left:5px;" src="/media/logos/instagram_logo.png" width="42"></img></a></p>
+<p class="center"><span>  مارا در تلگرام دنبال کنید</span><a href="https://t.me/varzesh_kon"><img style="margin-bottom:-18px; margin-left:5px;" src="/media/logos/telegram_logo.png" width="58"></img></a></p>
+  </div>
+
+</div>
 </div>
 </div>
 
 </div>
 
 </div>
+
 {% endblock %}
 {% block script_block %}
 <script type="text/javascript">
