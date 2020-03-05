@@ -148,13 +148,14 @@ def SportClubContactView(request):
             result = json.loads(response.read().decode())
             ''' End reCAPTCHA validation '''
             if result['success']:
-                email_subject = sportclubcontact_form.cleaned_data.get('name')
+                name = sportclubcontact_form.cleaned_data.get('name')
                 phone = sportclubcontact_form.cleaned_data.get('phone')
                 address = sportclubcontact_form.cleaned_data.get('address')
+                email_subject = sportclubcontact_form.cleaned_data.get('sportclub_name')
                 now = jdatetime.datetime.now()
                 dtime = str(now.year)+'-'+str(now.month)+'-'+ str(now.day)+'  '+str(now.hour)+':'+str(now.minute)+':'+str(now.second)
 
-                email_text = region + '  ' + phone + '\n' + address + '\non: ' + dtime
+                email_text = name + '\n' + region + '  ' + phone + '\n' + address + '\non: ' + dtime
 
                 send_mail(
                 email_subject,

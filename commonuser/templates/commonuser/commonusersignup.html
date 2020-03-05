@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="section fMarkazi">
+<div class="section fLalezar">
   <div class="container">
 
   <div class="container"><br>
-<span class="center-align"><h3 class="fMarkazi gold-text";>عضویت</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar gold-text";>عضویت</h3><br><br></span>
   <div class="row center">
   <div class="card-panel hoverable pink accent-3 z-depth-5">
 
@@ -24,40 +24,38 @@
             <form enctype="multipart/form-data" method="POST">
               {{user_form.Hfield}}
               {{commonuser_form.Hfield}}
-              <div class="input-field col s12">
+              <div class="input-field col s12 m6 l6">
       {{user_form.username}}
-      <label class="fMarkazi" for="username">نام کاربری</label>
+      <label class="fLalezar" for="username">نام کاربری</label>
     </div>
-    <div class="input-field col s12">
+    <div class="input-field col s12 m6 l6">
 {{user_form.email}}
-<label class="fMarkazi" for="emial">ایمیل</label>
+<label class="fLalezar" for="emial">ایمیل</label>
 </div>
-<div class="input-field col s12">
+<div class="input-field col s12 m6 l6">
 {{user_form.first_name}}
-<label class="fMarkazi" for="first_name">نام</label>
+<label class="fLalezar" for="first_name">نام</label>
 </div>
-<div class="input-field col s12">
+<div class="input-field col s12 m6 l6">
 {{user_form.last_name}}
-<label class="fMarkazi" for="last_name">نام خانوادگی</label>
+<label class="fLalezar" for="last_name">نام خانوادگی</label>
 </div>
-<div class="input-field col s12">
+<div class="input-field col s12 m6 l6">
 {{user_form.password1}}
-<label class="fMarkazi" for="password1">رمز عبور</label>
+<label class="fLalezar" for="password1">رمز عبور</label>
 </div>
-<div class="input-field col s12">
+<div class="input-field col s12 m6 l6">
 {{user_form.password2}}
-<label class="fMarkazi" for="password2">تکرار رمز</label>
+<label class="fLalezar" for="password2">تکرار رمز</label>
 </div>
 
-
-
-<div class="input-field col s12">
+<div class="center input-field col s12 m6 l6">
 {{commonuser_form.phone_number}}
-<label class="fMarkazi" for="phone_number">تلفن همراه</label>
+<label class="fLalezar" for="phone_number">تلفن همراه</label>
 </div>
 
-<div class="row">
-  <div class="input-field col s12 m12 l12">
+<div class="center row">
+  <div class="center input-field col s12 m12 l12">
     <label>
       {{user_form.terms}}
       <span><a href="{% url 'company:termsdetail'%}">قوانین </a> سایت را به طور کامل خوانده و قبول دارم </span>
@@ -71,15 +69,15 @@
 
 
           {% if user_form.errors%}
-                <p class="fMarkazi white-text">{{user_form.errors}}</p>
+                <p class="fLalezar white-text">{{user_form.errors}}</p>
                 {% endif %}
                 {% if sportclub_form.errors%}
-                <p class="fMarkazi white-text">{{sportclub_form.errors}}</p>
+                <p class="fLalezar white-text">{{sportclub_form.errors}}</p>
                 {% endif %}
 
                     {% csrf_token %}
 
-                    <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
+                    <button class="fLalezar hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
         </button>
 
             </form>

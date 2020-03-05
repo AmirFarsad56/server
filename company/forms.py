@@ -29,6 +29,7 @@ class ContactUsForm(forms.Form):
 
 class SportClubContactForm(forms.Form):
     name = forms.CharField(required=True)
+    sportclub_name = forms.CharField(required=True)
     phone = forms.CharField(required=True)
     address = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea','style': "height: 80px"}))
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])

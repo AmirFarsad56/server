@@ -18,12 +18,12 @@
         <form method="POST">
           <div class="input-field col s12">
   {{form.username}}
-  <label class="fMarkazi" for="username">نام کاربری</label>
+  <label class="fLalezar" for="username">نام کاربری</label>
 </div>
 <div class="input-field col s12 red-text">
 {{form.password}}
 
-<label class="fMarkazi right-align" for="password">رمز عبور</label>
+<label class="fLalezar right-align" for="password">رمز عبور</label>
 </div>
             {% if form.errors %}
             <p class="fMarkazi white-text">نام کاربری یا رمز عبور اشتباه است</p>
@@ -31,7 +31,7 @@
 
                 {% csrf_token %}
 
-                <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">ورود
+                <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3 fLalezar" type="submit">ورود
     </button>
     <br><br>
             <a class="white-text fMarkazi" href="{% url 'accounts:forgotpassword' %}">فراموشی رمز عبور</a>
