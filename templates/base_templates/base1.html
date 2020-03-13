@@ -17,7 +17,7 @@
 
     <body class="grey darken-3" style="direction:rtl;" >
 
-      <div style="z-index: 10" class="navbar-fixed">
+      <div style="z-index: 10" class="navbar-fixed" style="direction:ltr;">
 
 
             <nav style="min-height: 63px; height:63px; " class="white" >
@@ -67,7 +67,7 @@
               {% else %}
               <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
               <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
-              <li><a href="#"><a class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></a></li>
+              <li><a href="{% url 'company:contactus' %}"><a class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></a></li>
               {% endif %}
             </ul>
           </div>
@@ -86,7 +86,7 @@
       <footer class="page-footer grey darken-4">
         <div class="container ">
           <div class="row">
-            <div class="col l6 m6 s12">
+            <div class="col l6 m6 s12" style="direction:ltr;">
               <h4 class="gold-text fMarkazi">سامانه ورزش کن</h4>
               <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
             </div>
@@ -110,7 +110,7 @@
       </footer>
 
       <!--NavOptions-->
-      <ul class="sidenav white" id="nav1">
+      <ul class="sidenav white" id="nav1" style="direction:ltr;">
         <li><br></li>
         <li><a class="dropdown-trigger gold-text fLalezar" style="color:#d4af37;" href="#!" data-target="dropdownb1"><i style="color:#d4af37;" class="material-icons right">arrow_drop_down</i>میانبر</a></li>
         {% if user.is_authenticated %}
@@ -146,13 +146,13 @@
         {% else %}
         <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
         <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
-        <li><a href="#"><a class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></a></li>
+        <li><a href="{% url 'company:contactus' %}" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
         {% endif %}
       </ul>
 
 
 
-      <ul id="dropdown1" class="dropdown-content white" style="border: #d4af37 1px solid;">
+      <ul id="dropdown1" class="dropdown-content white" style="direction:ltr; border: #d4af37 1px solid;">
         <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i style="color: white;" class=" material-icons teal-text">search</i></a></li>
         <li class="divider gold"></li>
         <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i style="color: white;" class=" material-icons teal-text">search</i></a></li>
@@ -161,7 +161,7 @@
         <li class="divider gold"></li>
         <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:todaypubliclist' %}">!امروزو رزرو کن<i style="color: white;" class=" material-icons teal-text">event_available</i></a></li>
       </ul>
-      <ul id="dropdownb1" class="dropdown-content white" style="border: #d4af37 1px solid;">
+      <ul id="dropdownb1" class="dropdown-content white" style="direction:ltr; border: #d4af37 1px solid;">
         <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i  class=" material-icons teal-text">search</i></a></li>
         <li class="divider gold"></li>
         <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i style="color: white;" class=" material-icons teal-text">search</i></a></li>
