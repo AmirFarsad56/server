@@ -13,6 +13,12 @@
 .gold-text{
   color: #d4af37;
 }
+.btn-small-color{
+  padding: 10px 6px 10px 6px;
+  font-family: 'Harmattan', sans-serif;
+  background-color: #4db6ac;
+  color: #ffffff;
+}
 .icon-border{
   border: 5px solid red;
 }
