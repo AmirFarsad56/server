@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
-    <body class="grey darken-3"  >
+    <body class="grey darken-3" style="direction:rtl;" >
 
 <div style="z-index: 10" class="navbar-fixed" style="direction:ltr;">
 
@@ -76,7 +76,7 @@
             {% else %}
             <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
             <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
-            <li><a href="#"><a class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></a></li>
+            <li><a ><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
             {% endif %}
           </ul>
         </div>
@@ -120,7 +120,7 @@
         {% else %}
         <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
         <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
-        <li><a href="#"><a class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></a></li>
+        <li><a><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
         {% endif %}
       </ul>
 

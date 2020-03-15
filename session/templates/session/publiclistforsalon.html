@@ -68,7 +68,7 @@
 
   </div>
 
-  <div  class="col s12 m12 l10 grey darken-3 fMarkazi">
+  <div  class="col s12 m12 l10 grey darken-3 fLalezar">
     <!-- Teal page content  -->
 
 <div class="container">
@@ -109,7 +109,7 @@
         <div class="col s6 m3 l3 left-align fLalezar">درصد تخفیف سانس</div>
 
         <div class="col s6 m6 l6 right-align black-text">{{session.price}}</div>
-        <div class="col s6 m6 l6 left-align fLalezar">(قیمت (تومان</div>
+        <div class="col s6 m6 l6 left-align fLalezar">قیمت (تومان)</div>
       </div>
 
 
@@ -134,7 +134,7 @@
 {{session.pk|final_price}}
   </div>
   <div style="margin-top:9px;" class="col s8 m5 l5 left-align fLalezar">
-    (هزینه قابل پرداخت برای رزرو (تومان
+    هزینه قابل پرداخت برای رزرو (تومان)
   </div>
 
 </div>
@@ -143,12 +143,6 @@
 
       <div class="center " style="height: auto" id="options{{session.pk}}">
         {% if session.salon.pictures.all %}
-        <ul class="collapsible z-depth-5 fMarkazi hoverable popout ">
-        <li>
-          <div class="collapsible-header grey darken-4 center white-text" style="display: block;">
-عکس های سالن
-          </div>
-          <div class="collapsible-body grey darken-4">
 
                 <div class="slider">
                     <ul class="slides">
@@ -159,15 +153,12 @@
             {% endfor %}
               </ul>
             </div>
-
-          </div>
-          </li>
-          </ul>
+<br>
       {% endif %}
 
               <div class="row">
                 <div class="col s6 m6 l6 right-align black-text">{{session.salon.area}}</div>
-                <div class="col s6 m6 l6 left-align fLalezar fLalezar">(انداره سالن (متر مربع</div>
+                <div class="col s6 m6 l6 left-align fLalezar fLalezar">انداره سالن (مترمربع)</div>
               </div>
               <div class="row">
                 <div class="col s6 m6 l6 right-align black-text">{{session.salon.floor_type}}</div>
@@ -197,57 +188,54 @@
                 امکانات سالن
               </h6>
         {% if session.salon.locker %}
-        <div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tooltiptext" >کمد</span>
+        <div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
         </div>
         {% endif %}
-        {% if session.salon.air_conditioner %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tooltiptext" >تهویه هوا</span>
+        {% if session.salon.air_conditioner %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
         </div>
         {% endif %}
-        {% if session.salon.ball_rent %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tooltiptext" >اجاره توپ</span>
+        {% if session.salon.ball_rent %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
       </div>
         {% endif %}
-        {% if session.salon.spectator_place %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tooltiptext" >جایگاه تماشاچی</span>
+        {% if session.salon.spectator_place %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
       </div>
         {% endif %}
-        {% if session.salon.shower %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tooltiptext" >دوش</span>
+        {% if session.salon.shower %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
       </div>
         {% endif %}
-        {% if session.salon.changing_room %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tooltiptext" >اتاق تعویش لباس</span>
+        {% if session.salon.changing_room %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویش لباس</span>
       </div>
         {% endif %}
-        {% if session.salon.parking_area %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tooltiptext" >پارکینگ</span>
+        {% if session.salon.parking_area %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
       </div>
         {% endif %}
-        {% if session.salon.drinking_water %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tooltiptext" >آب آشامیدنی</span>
+        {% if session.salon.drinking_water %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
       </div>
         {% endif %}
-        {% if session.salon.safe_keeping %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tooltiptext" >امانتداری</span>
+        {% if session.salon.safe_keeping %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
       </div>
         {% endif %}
-        {% if session.salon.buffet %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tooltiptext" >بوفه</span>
+        {% if session.salon.buffet %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
       </div>
         {% endif %}
-        {% if session.salon.taxi %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tooltiptext" >تاکسی ویژه</span>
+        {% if session.salon.taxi %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
       </div>
         {% endif %}
-        {% if session.salon.wifi %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tooltiptext" >وای فای</span>
+        {% if session.salon.wifi %}<div class="tiptool">
+          <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
       </div>
         {% endif %}
-        <div class="row center">
-          <a href="{% url 'session:publiclistforsalon' pk=session.salon.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>سانس های دیگر این سالن</h6></a>
-        </div>
       </div>
       <div id="sportclub{{session.pk}}" style="height: 195px;">
         <div class="row">
@@ -277,7 +265,7 @@
 <div class="container center">
 
 
-<ul style="margin-left:5%"  class="pagination  z-depth-5 hoverable white fMarkazi">
+<ul style="margin-left:5%"  class="pagination  z-depth-5 hoverable white fLalezar">
   {% if sessions.has_previous %}
   <li class="waves-effect"><a href="?page=1">&laquo; اولین صفحه</a></li>
       <li class="waves-effect"><a href="?page={{ sessions.previous_page_number }}">قبلی  </a></li>
@@ -301,10 +289,10 @@
     <div class="container ">
       <div class="row">
         <div class="col l6 m6 s12" style="direction:ltr;">
-          <h4 class="gold-text fMarkazi">سامانه ورزش کن</h4>
+          <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
           <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
         </div>
-        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fMarkazi gold-text">
+        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fLalezar gold-text">
           <ul><h5>
             <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
             <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>
@@ -316,7 +304,7 @@
       </div>
     </div>
     <div class="footer-copyright black">
-      <div class="fMarkazi container gold-text">
+      <div class="fLalezar container gold-text">
     1398  سامانه ورزش کن
 
       </div>

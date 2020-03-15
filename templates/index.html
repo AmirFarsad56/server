@@ -509,52 +509,52 @@
 
         <div class="center " style="height: auto" id="options{{object.pk}}">
           {% if object.salon.locker %}
-          <div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/locker.png" width="42"><span class="tooltiptext" >کمد</span>
+          <div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/locker.png" width="42"><span class="tiptooltext" >کمد</span>
           </div>
           {% endif %}
-          {% if object.salon.air_conditioner %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/air_conditioner.png" width="42"><span class="tooltiptext" >تهویه هوا</span>
+          {% if object.salon.air_conditioner %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/air_conditioner.png" width="42"><span class="tiptooltext" >تهویه هوا</span>
           </div>
           {% endif %}
-          {% if object.salon.ball_rent %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/ball_rent.png" width="42"><span class="tooltiptext" >اجاره توپ</span>
+          {% if object.salon.ball_rent %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/ball_rent.png" width="42"><span class="tiptooltext" >اجاره توپ</span>
         </div>
           {% endif %}
-          {% if object.salon.spectator_place %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/spectator_place.png" width="42"><span class="tooltiptext" >جایگاه تماشاچی</span>
+          {% if object.salon.spectator_place %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/spectator_place.png" width="42"><span class="tiptooltext" >جایگاه تماشاچی</span>
         </div>
           {% endif %}
-          {% if object.salon.shower %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/shower.png" width="42"><span class="tooltiptext" >دوش</span>
+          {% if object.salon.shower %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/shower.png" width="42"><span class="tiptooltext" >دوش</span>
         </div>
           {% endif %}
-          {% if object.salon.changing_room %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tooltiptext" >اتاق تعویش لباس</span>
+          {% if object.salon.changing_room %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویش لباس</span>
         </div>
           {% endif %}
-          {% if object.salon.parking_area %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/parking_area.png" width="42"><span class="tooltiptext" >پارکینگ</span>
+          {% if object.salon.parking_area %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/parking_area.png" width="42"><span class="tiptooltext" >پارکینگ</span>
         </div>
           {% endif %}
-          {% if object.salon.drinking_water %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/drinking_water.png" width="42"><span class="tooltiptext" >آب آشامیدنی</span>
+          {% if object.salon.drinking_water %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/drinking_water.png" width="42"><span class="tiptooltext" >آب آشامیدنی</span>
         </div>
           {% endif %}
-          {% if object.salon.safe_keeping %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/safe_keeping.png" width="42"><span class="tooltiptext" >امانتداری</span>
+          {% if object.salon.safe_keeping %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/safe_keeping.png" width="42"><span class="tiptooltext" >امانتداری</span>
         </div>
           {% endif %}
-          {% if object.salon.buffet %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/buffet.png" width="42"><span class="tooltiptext" >بوفه</span>
+          {% if object.salon.buffet %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/buffet.png" width="42"><span class="tiptooltext" >بوفه</span>
         </div>
           {% endif %}
-          {% if object.salon.taxi %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/taxi.png" width="42"><span class="tooltiptext" >تاکسی ویژه</span>
+          {% if object.salon.taxi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/taxi.png" width="42"><span class="tiptooltext" >تاکسی ویژه</span>
         </div>
           {% endif %}
-          {% if object.salon.wifi %}<div class="tooltip">
-            <img style="margin:10px;" src="/media/logos/wifi.png" width="42"><span class="tooltiptext" >وای فای</span>
+          {% if object.salon.wifi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/wifi.png" width="42"><span class="tiptooltext" >وای فای</span>
         </div>
           {% endif %}
         </div>
@@ -647,30 +647,31 @@
 
 
   <!--Footer-->
-        <footer class="page-footer grey darken-4">
-          <div class="container ">
-            <div class="row">
-              <div class="col l6 s12">
-                <h4 class="gold-text fMarkazi">سامانه ورزش کن</h4>
-                <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
-              </div>
-              <div class="col l4 offset-l2 s12 right-align fMarkazi gold-text">
-                <ul><h5>
-                  <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
-                  <li><a class="gold-text " href="{% url 'company:faqs' %}">سوالات متداول</a></li>
-                  <li><a class="gold-text " href="{% url 'company:aboutus' %}">درباره ما</a></li>
-                  <li><a class="gold-text" href="{% url 'company:termsdetail' %}">قوانین سایت</a></li></h5>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright black">
-            <div class="fMarkazi container gold-text">
-          1398  سامانه ورزش کن
+  <footer class="page-footer grey darken-4">
+    <div class="container ">
+      <div class="row">
+        <div class="col l6 m6 s12" style="direction:ltr;">
+          <h4 class="gold-text fMarkazi">سامانه ورزش کن</h4>
+          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
+        </div>
+        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fMarkazi gold-text">
+          <ul><h5>
+            <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
+            <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>
+            <li><a class="gold-text " href="{% url 'company:faqs' %}">سوالات متداول</a></li>
+            <li><a class="gold-text " href="{% url 'company:aboutus' %}">درباره ما</a></li>
+            <li><a class="gold-text" href="{% url 'company:termsdetail' %}">قوانین سایت</a></li></h5>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright black">
+      <div class="fMarkazi container gold-text">
+    1398  سامانه ورزش کن
 
-            </div>
-          </div>
-        </footer>
+      </div>
+    </div>
+  </footer>
 
         <!-- in the end this part must be copy pasted from above-->
         <ul class="sidenav black" id="nav1"  style="direction:rtl;">

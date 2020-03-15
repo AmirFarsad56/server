@@ -77,14 +77,14 @@ navbar-fixed ul a:hover {
 
 
 
-/* Custom Tooltip */
-.tooltip {
+/* Custom tiptool */
+.tiptool {
   position: relative;
   display: inline-block;
 
 }
 
-.tooltip .tooltiptext {
+.tiptool .tiptooltext {
   visibility: hidden;
   width: 120px;
   background-color: #555;
@@ -103,7 +103,7 @@ navbar-fixed ul a:hover {
   transition: opacity 0.3s;
 }
 
-.tooltip .tooltiptext::after {
+.tiptool .tiptooltext::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -114,7 +114,7 @@ navbar-fixed ul a:hover {
   border-color: #555 transparent transparent transparent;
 }
 
-.tooltip:hover .tooltiptext {
+.tiptool:hover .tiptooltext {
   visibility: visible;
   opacity: 1;
 }
