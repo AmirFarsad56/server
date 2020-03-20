@@ -135,7 +135,7 @@
       </ul>
     </div>
     <div  class="card-content grey lighten-2">
-      <div id="session{{session.pk}}" style="height: 42px">
+      <div id="session{{session.pk}}">
 <div class="row">
   <div class="col s12 m5 l5 center-align black-text">
 <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:-14px;" class="waves-effect waves-light btn" ><h6>جزئیات و رزرو</h6></a>
@@ -144,14 +144,14 @@
 {{session.pk|final_price}}
   </div>
   <div style="margin-top:9px;" class="col s8 m5 l5 left-align fLalezar">
-    قیمت تمام شده سانس (تومان)
+    قیمت تمام شده (تومان)
   </div>
 
 </div>
       </div>
 
 
-      <div  class="center " style="height: auto;" id="options{{session.pk}}">
+      <div  class="center " id="options{{session.pk}}">
         {% if session.salon.pictures.all %}
 
                 <div class="slider">
@@ -250,19 +250,19 @@
           <a href="{% url 'session:publiclistforsalon' pk=session.salon.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>سانس های دیگر این سالن</h6></a>
         </div>
       </div>
-      <div id="sportclub{{session.pk}}" style="height: 195px;">
-        <div class="row">
-          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.sportclub_name}}</div>
-          <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
-          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.serial_number}}</div>
-          <div class="col s4 m4 l4 left-align fLalezar">سریال مجموعه ورزشی</div>
-          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.region}}</div>
-          <div class="col s4 m4 l4 left-align fLalezar">استان</div>
-          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.address}}</div>
-          <div class="col s4 m4 l4 left-align fLalezar">آدرس</div>
-          <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.company_phone_number}}</div>
-          <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>
-                  </div>
+      <div id="sportclub{{session.pk}}" >
+        <div class="row fHarmattan">
+          <div class="col s7 m7 l7 right-align black-text">{{session.salon.sportclub.sportclub_name}}</div>
+          <div class="col s5 m5 l5 left-align fLalezar">نام مجموعه ورزشی</div>
+          <div class="col s7 m7 l7 right-align black-text">{{session.salon.sportclub.serial_number}}</div>
+          <div class="col s5 m5 l5 left-align fLalezar">سریال مجموعه ورزشی</div>
+          <div class="col s7 m7 l7 right-align black-text">{{session.salon.sportclub.region}}</div>
+          <div class="col s5 m5 l5 left-align fLalezar">استان</div>
+          <div class="col s7 m7 l7 right-align black-text">{{session.salon.sportclub.address}}</div>
+          <div class="col s5 m5 l5 left-align fLalezar">آدرس</div>
+          <div class="col s7 m7 l7 right-align black-text">{{session.salon.sportclub.company_phone_number}}</div>
+          <div class="col s5 m5 l5 left-align fLalezar">شماره تلفن ثابت</div>
+        </div>
           <a target="_blank" href="{% url 'sportclub:publicdetail' pk=session.salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
 
       </div>
