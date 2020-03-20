@@ -13,6 +13,7 @@
     <meta name="google-site-verification" content="5rzOcKTW4Po3gOenh5hEYZLu04gfKUsHZ3GRGieYyMA" />
     <link href="https://fonts.googleapis.com/css?family=Lalezar&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Markazi+Text&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Harmattan&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
@@ -151,7 +152,7 @@
   <br><br><br><br><br><br><br>
   </div>
 <br><br><br>
-<h5 style="direction: rtl; text-align: justify; text-justify: inter-word;">سامانه ورزش کن یک سامانه ی آنلاین رزرو سانس های ورزشی میباشد که به منظور آسان تر کردن رزرو سالن های
+<h5 class="fHarmattan" style="direction: rtl; text-align: justify; text-justify: inter-word;">سامانه ورزش کن یک سامانه ی آنلاین رزرو سانس های ورزشی میباشد که به منظور آسان تر کردن رزرو سالن های
 ورزشی مانند سالن فوتسال و سالن والیبال و بسکتبال و زمین چمن ایجاد شده است و با استفاده از این سامانه شما
 میتوانید به رزرو سانس فوتسال یا سانس دیگر رشته های ورزشی بپردازید. </h5>
   </div>
@@ -166,7 +167,7 @@
   {% if error %}
   <div class="col s12 m12 l12 center red-text text-darken-2">
     <h5 style="direction:rtl;">
-  مجموعه ورزشی با شماره سریال وارد شده پیدا نشد.
+  مجموعه ورزشی با سریال وارد شده پیدا نشد.
   </h5>
 </div>
   {% endif %}
@@ -178,7 +179,7 @@
     </button>
   </div>
   <div style="direction:rtl; text-align:right;" class="fLalezar input-field col s8 m7 l5 right-align ">
-    <input style="direction:rtl; text-align:right;" class="fLalezar gold-text" placeholder="شماره سریال مجموعه ورزشی" type="text" name="serial_number" >
+    <input style="direction:rtl; text-align:right;" class="fLalezar gold-text" placeholder="سریال مجموعه ورزشی" type="text" name="serial_number" >
 </div>
 
 <div class="hide-on-small-only col s0 m1 l3">
@@ -189,7 +190,7 @@
 
 <br>
 <div  class="row">
-  <h5 class="white-text ">
+  <h5 class="white-text fLalezar">
 
 
 
@@ -197,13 +198,13 @@
     <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'salon:publiclist' %}">             لیست سالن ها              </a>
     </div>
     <div style="margin-bottom: 25px;" class="col s12 m6 l3 center">
-    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'session:publiclist' %}">             لیست سانس ها             </a>
+    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'session:publiclist' %}">            لیست سانس ها            </a>
     </div>
     <div style="margin-bottom: 25px;" class="col s12 m6 l3 center">
-    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'session:todaypubliclist' %}">                   رزرو امروز                  </a>
+    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'session:todaypubliclist' %}">                     رزرو امروز                     </a>
     </div>
     <div style="margin-bottom: 25px;" class="col s12 m6 l3 center">
-    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'sportclub:publiclist' %}">        مجموعه های ورزشی       </a>
+    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'sportclub:publiclist' %}">         مجموعه های ورزشی       </a>
     </div>
   </h5>
 
@@ -214,8 +215,8 @@
 <h2 style="text-align: right;">مقدمه</h2>
 <p style="text-align: right;">سامانه ورزش کن یک سامانه آنلاین رزرو سانس ها و سالن های ورزشی می باشد. که با هدف آسان تر کردن نحوه ی رزرو سالن های ورزشی ایجاد شده است. و به مردم عزیز ایران این امکان را می دهد تا با کمترین دردسر و در کوتاه ترین زمان مقدور به رزرو و انجام ورزش موردنظر خود شوند. در ادامه با ما همراه باشید. تا با چگونگی <strong>رزرو سانس ها و سالن های ورزشی در سامانه ورزش کن</strong> آشنا شوید.</p>
 
-<h2 style="text-align: right;"><a href="http://varzesh-kon.ir/">سامانه ورزش کن</a></h2>
-<img class="alignnone wp-image-28 size-full" src="http://varzesh-kon.ir/blog/wp-content/uploads/2020/02/favicon.png" alt="سامانه ورزش کن" width="251" height="251" />
+<h2 style="text-align: right;"><a href="https://varzesh-kon.ir/">سامانه ورزش کن</a></h2>
+<img class="alignnone wp-image-28 size-full" src="https://varzesh-kon.ir/blog/wp-content/uploads/2020/02/favicon.png" alt="سامانه ورزش کن" width="251" height="251" />
 <p style="text-align: right;">همانطور که اشاره شد; سامانه ورزش کن یک سامانه ی آنلاین برای رزرو سانس ها و سالن های کشور میباشد.</p>
 <p style="text-align: right;">که به عنوان رابط میان مردم و مجموعه های ورزشی عمل کرده. و کار رزرو سانس ها را برای هر دو طرف چندین برابر آسان تر می کند.</p>
 <p style="text-align: right;">دیگر نیازی نیست برای رزرو سانس ها در مجموعه ورزشی مورد نظر حضور یافت.</p>
@@ -227,7 +228,7 @@
 
 <ol>
  	<li style="text-align: right;">انتخاب مجموعه ورزشی مورد نظر. از روی <a href="http://www.varzesh-kon.ir/sportclub/map/">نقشه</a> موجود در سایت. سپس انتخاب سالن و سانس مورد نظر برای رزرو.</li>
- 	<li style="text-align: right;">جستجو بر اساس شماره سریال مخصوص هر مجموعه ورزشی. به طوری که هر مجموعه ورزشی یک شماره سریال مخصوص به خود را دارد .که با جستجوی آن سریال در سایت میتوان محل مورد نظر را پیدا کرد. و به رزرو سانس های آن اقدام کرد.</li>
+ 	<li style="text-align: right;">جستجو بر اساس سریال مخصوص هر مجموعه ورزشی. به طوری که هر مجموعه ورزشی یک سریال مخصوص به خود را دارد .که با جستجوی آن سریال در سایت میتوان محل مورد نظر را پیدا کرد. و به رزرو سانس های آن اقدام کرد.</li>
  	<li style="text-align: right;">جستجوی پیشرفته بین <a href="http://www.varzesh-kon.ir/sportclub/Plist/">مجموعه های ورزشی</a>. که میتواند بر اساس شماره تلفن – استان – نام مجموعه ورزشی و… باشد و پس از پیدا کردن مجموعه ورزشی مورد نظر; کاربر میتواند مانند مراحل قبلی اقدام به رزرو سانس های آن کند.</li>
  	<li style="text-align: right;">جستجوی پیشرفته بین<a href="http://www.varzesh-kon.ir/salon/salon/salon-Plist/"> سالن ها</a>. بر اساس ابعاد – ورزش های قابل انجام در سالن – تخفیف های سالن و … که پس از پیدا کردن سالن مربوطه میتوان سانس های آن را رزرو کرد.</li>
  	<li style="text-align: right;">جستجوی پیشرفته بین <a href="http://www.varzesh-kon.ir/session/sessions-Plist/">سانس ها</a>. بر اساس روز موردنظر – ساعت شروع سانس – طول سانس – هزینه مورد نظر برای رزرو سانس – درصد تخفیف و … و پس از پیدا کردن سانس رزرو آن.</li>
@@ -249,7 +250,7 @@
 <h3>بدون هزینه اضافی</h3>
 در سامانه ورزش کن برای رزرو سانس ها و سالن های ورزشی مدنظر خود لازم نیست هیچ هزینه اضافی بپردازید. و همان هزینه تعیین شده توسط مجموعه ورزشی قابل پرداخت است.
 
-<img class="size-medium wp-image-20 aligncenter" src="http://varzesh-kon.ir/blog/wp-content/uploads/2020/02/photo5960710417351291817-1-300x221.jpg" alt="بدون هزینه اضافی" width="300" height="221" />
+<img class="size-medium wp-image-20 aligncenter" src="https://varzesh-kon.ir/blog/wp-content/uploads/2020/02/photo5960710417351291817-1-300x221.jpg" alt="بدون هزینه اضافی" width="300" height="221" />
 <h3>سرعت بالای سامانه ورزش کن</h3>
 سامانه ورزش کن با اتصال به سرور های پرقدرت از سرعت بالایی برخوردار است. و در وقت گران قدر شما به میزان قابل توجهی صرفه جویی می کند.
 
@@ -424,7 +425,7 @@
 
 <br><br>
 </div>
-<div class="row center">
+<div class="row center fLalezar" ">
     <div class="customcontainer" style="margin-left:6%; margin-right:6%">
   {% for object in salons %}
   {% if object.salon.is_confirmed %}
@@ -450,15 +451,15 @@
         <br>
 
         <div class="row">
-          <div class="col s6 m6 l6 right-align">{{object.salon.area}}</div>
-          <div class="col s6 m6 l6 left-align">(انداره سالن (متر مربع</div>
+          <div class="col s6 m6 l6 right-align fHarmattan">{{object.salon.area}}</div>
+          <div class="col s6 m6 l6 left-align">(اندازه سالن (متر مربع</div>
         </div>
         <div class="row">
-          <div class="col s6 m6 l6 right-align">{{object.salon.floor_type}}</div>
+          <div class="col s6 m6 l6 right-align fHarmattan">{{object.salon.floor_type}}</div>
           <div class="col s6 m6 l6 left-align">جنس کف سالن</div>
         </div>
         <div class="row">
-        <div class="col s6 m6 l6 right-align">
+        <div class="col s6 m6 l6 right-align fHarmattan">
           {% if object.salon.is_football %}
           فوتبال
           {% endif %}
@@ -483,26 +484,26 @@
 
       <div class="card-tabs" style="height: 50px; background-color: #230136;">
         <ul class="tabs tabs-fixed-width" style="background-color: #230136;">
-          <li class="tab"><a class="white-text" href="#options{{object.pk}}">امکانات سالن</a></li>
-          <li class="tab"><a class="white-text active" href="#sportclub{{object.pk}}">مجموعه ورزشی</a></li>
-          <li class="tab"><a class="white-text" href="#session{{object.pk}}">جزئیات سانس </a></li>
+          <li class="tab"><a class="fHarmattan white-text" href="#options{{object.pk}}">امکانات</a></li>
+          <li class="tab"><a class="fHarmattan white-text active" href="#sportclub{{object.pk}}">مجموعه ورزشی</a></li>
+          <li class="tab"><a class="fHarmattan white-text" href="#session{{object.pk}}">جزئیات سانس </a></li>
         </ul>
       </div>
-      <div  class="card-content grey lighten-2">
+      <div  class="card-content grey lighten-2" style="font-size:90%;">
         <div id="session{{object.pk}}" style="height: auto">
-          <div class="row"><h6>
-            <div class="col s4 m4 l4 right-align black-text">{{object.salon.six_to_twelve_sessions_discount}}%</div>
-            <div class="col s8 m8 l8 left-align fLalezar">تخفیف قراردادهای بین ۶ و ۱۲ جلسه</div>
+          <div class="row"><h6 style="margin-bottom:-8px;">
+            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.six_to_twelve_sessions_discount}}%</div>
+            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بین ۶ و ۱۲ جلسه</div>
   <br><br>
-            <div class="col s4 m4 l4 right-align black-text">{{object.salon.more_than_twelve_sessions_discount}}%</div>
-            <div class="col s8 m8 l8 left-align fLalezar">تخفیف قراردادهای بین ۱۲ و ۲۴ جلسه</div>
+            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.more_than_twelve_sessions_discount}}%</div>
+            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بین ۱۲ و ۲۴ جلسه</div>
   <br><br>
-            <div class="col s4 m4 l4 right-align black-text">{{object.salon.more_than_twelve_sessions_discount}}%</div>
-            <div class="col s8 m8 l8 left-align fLalezar">تخفیف قرارداد های بیش از ۲۴ جلسه</div>
+            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.more_than_twelve_sessions_discount}}%</div>
+            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بیش از ۲۴ جلسه</div>
   </h6>
   <br><br>
-  <div class="col s12 m6 l6 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large " ><h6>لیست سانس های سالن و رزرو</h6></a></div>
-  <div class="col s12 m6 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>   عقد قرارداد با این سالن  </h6></a></div>
+  <div class="col s12 m12 l6 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large " ><h6>لیست سانس های سالن و رزرو</h6></a></div>
+  <div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>         عقد قرارداد با این سالن       </h6></a></div>
           </div>
         </div>
 
@@ -530,7 +531,7 @@
         </div>
           {% endif %}
           {% if object.salon.changing_room %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویش لباس</span>
+            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویض لباس</span>
         </div>
           {% endif %}
           {% if object.salon.parking_area %}<div class="tiptool">
@@ -560,15 +561,15 @@
         </div>
         <div id="sportclub{{object.pk}}" style="height: auto">
           <div class="row">
-            <div class="col s8 m8 l8 right-align">{{object.salon.sportclub.sportclub_name}}</div>
+            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.sportclub_name}}</div>
             <div class="col s4 m4 l4 left-align">نام مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align">{{object.salon.sportclub.serial_number}}</div>
-            <div class="col s4 m4 l4 left-align">شماره سریال مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align">{{object.salon.sportclub.region}}</div>
+            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.serial_number}}</div>
+            <div class="col s4 m4 l4 left-align">سریال مجموعه ورزشی</div>
+            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.region}}</div>
             <div class="col s4 m4 l4 left-align">استان</div>
-            <div class="col s8 m8 l8 right-align">{{object.salon.sportclub.address}}</div>
+            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.address}}</div>
             <div class="col s4 m4 l4 left-align">آدرس</div>
-            <div class="col s8 m8 l8 right-align">{{object.salon.sportclub.company_phone_number}}</div>
+            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.company_phone_number}}</div>
             <div class="col s4 m4 l4 left-align">شماره تلفن ثابت</div>
             <a href="{% url 'sportclub:publicdetail' pk=object.salon.sportclub.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
           </div>
@@ -578,7 +579,7 @@
 </div>
 </div>
 <!-- session -->
-<div class="col s12 m12 l5 ">
+<div class="col s12 m12 l5 fHarmattan">
   <br><br>
   {% for session in sessions %}
   {% if session.salon == object.salon %}
@@ -599,7 +600,7 @@
           <div class="col s6 m6 l6 right-align">
             {{session.time|date:"H:i"}}-{{session.pk|session_end}}
           </div>
-          <div class="col s6 m6 l6 left-align">
+          <div class="col s6 m6 l6 left-align ">
     زمان
           </div>
           <div class="col s6 m6 l6 right-align">
@@ -627,7 +628,7 @@
           <div class="col s6 m6 l6 left-align">
     (قیمت نهایی (تومان
           </div>
-          <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:12px; margin-bottom:-5%; background-color: #550680;"4f3466ff class="waves-effect waves-light btn-large" ><h6>جزئیات و رزرو</h6></a>
+          <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:12px; margin-bottom:-5%; background-color: #550680;"4f3466ff class="fLalezar waves-effect waves-light btn-large" ><h6>جزئیات و رزرو</h6></a>
       </h6>
     </div>
   {% endif %}

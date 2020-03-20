@@ -105,7 +105,7 @@
 
       <div class="row">
         <div class="col s6 m6 l6 right-align black-text">{{salon.area}}</div>
-        <div class="col s6 m6 l6 left-align fLalezar fLalezar">انداره سالن (متر مربع)</div>
+        <div class="col s6 m6 l6 left-align fLalezar fLalezar">اندازه سالن (متر مربع)</div>
       </div>
       <div class="row">
         <div class="col s6 m6 l6 right-align black-text">{{salon.floor_type}}</div>
@@ -135,11 +135,11 @@
 
     </div>
 
-    <div class="card-tabs " style="height: 50px;">
-      <ul class="tabs tabs-fixed-width grey darken-4" style="">
-        <li class="tab"><a class="white-text" href="#options{{salon.pk}}">امکانات سالن</a></li>
+    <div class="card-tabs center-align " style="height: 50px; ">
+      <ul class="center tabs tabs-fixed-width grey darken-4" style="direction:ltr;">
+        <li class="tab"><a class="white-text" href="#options{{salon.pk}}">امکانات</a></li>
         <li class="tab"><a class="white-text active" href="#sportclub{{salon.pk}}">مجموعه ورزشی</a></li>
-        <li class="tab"><a class="white-text" href="#session{{salon.pk}}">جزئیات سانس </a></li>
+        <li class="tab"><a class="white-text" href="#session{{salon.pk}}">سانس ها </a></li>
       </ul>
     </div>
     <div  class="card-content grey lighten-2">
@@ -184,7 +184,7 @@
       </div>
         {% endif %}
         {% if salon.changing_room %}<div class="tiptool">
-          <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویش لباس</span>
+          <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویض لباس</span>
       </div>
         {% endif %}
         {% if salon.parking_area %}<div class="tiptool">
@@ -217,7 +217,7 @@
           <div class="col s8 m8 l8 right-align black-text">{{salon.sportclub.sportclub_name}}</div>
           <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
           <div class="col s8 m8 l8 right-align black-text">{{salon.sportclub.serial_number}}</div>
-          <div class="col s4 m4 l4 left-align fLalezar">شماره سریال مجموعه ورزشی</div>
+          <div class="col s4 m4 l4 left-align fLalezar">سریال مجموعه ورزشی</div>
           <div class="col s8 m8 l8 right-align black-text">{{salon.sportclub.region}}</div>
           <div class="col s4 m4 l4 left-align fLalezar">استان</div>
           <div class="col s8 m8 l8 right-align black-text">{{salon.sportclub.address}}</div>
@@ -321,7 +321,7 @@
 
     <div class="row">
       <div class="col s6 m6 l6 right-align black-text">{{salon.area}}</div>
-      <div class="col s6 m6 l6 left-align fLalezar fLalezar">(انداره سالن (متر مربع</div>
+      <div class="col s6 m6 l6 left-align fLalezar fLalezar">(اندازه سالن (متر مربع</div>
     </div>
     <div class="row">
       <div class="col s6 m6 l6 right-align black-text">{{salon.floor_type}}</div>
@@ -351,11 +351,11 @@
 
   </div>
 
-  <div class="card-tabs " style="height: 50px;">
-    <ul class="tabs tabs-fixed-width grey darken-4" style="">
-      <li class="tab"><a class="white-text" href="#options{{salon.pk}}">امکانات سالن</a></li>
+  <div class="card-tabs center-align " style="height: 50px; ">
+    <ul class="center tabs tabs-fixed-width grey darken-4" style="direction:ltr;">
+      <li class="tab"><a class="white-text" href="#options{{salon.pk}}"> سالن</a></li>
       <li class="tab"><a class="white-text active" href="#sportclub{{salon.pk}}">مجموعه ورزشی</a></li>
-      <li class="tab"><a class="white-text" href="#session{{salon.pk}}">جزئیات سانس </a></li>
+      <li class="tab"><a class="white-text" href="#session{{salon.pk}}">سانس ها </a></li>
     </ul>
   </div>
   <div  class="card-content grey lighten-2">
@@ -400,7 +400,7 @@
     </div>
       {% endif %}
       {% if salon.changing_room %}<div class="tiptool">
-        <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویش لباس</span>
+        <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویض لباس</span>
     </div>
       {% endif %}
       {% if salon.parking_area %}<div class="tiptool">
@@ -437,9 +437,9 @@
         <div class="col s8 m8 l8 right-align black-text">{{salon.sportclub.address}}</div>
         <div class="col s4 m4 l4 left-align fLalezar">آدرس</div>
         <div class="col s8 m8 l8 right-align black-text">{{salon.sportclub.company_phone_number}}</div>
-        <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>
-        <a href="{% url 'sportclub:publicdetail' pk=salon.sportclub.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
-      </div>
+        <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>        </div>
+        <a href="{% url 'sportclub:publicdetail' pk=salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+
     </div>
   </div>
 
