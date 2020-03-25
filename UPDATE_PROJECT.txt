@@ -22,3 +22,11 @@ sudo service nginx restart
 
 *******
 sudo supervisorctl restart Main_Project && sudo service php7.3-fpm restart && sudo service nginx restart
+
+############# to backup mysql database:
+cd backup && sudo rm -r all_databases.sql && mysqldump -u root -p --all-databases > all_databases.sql
+git init
+git add .
+git commit -m "MESSAGE"
+git remote add origin https://github.com/alienone306/backup.git
+git push -u origin master

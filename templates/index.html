@@ -174,7 +174,7 @@
   <div class="hide-on-small-only col s1 m1 l3">
 
   </div>
-  <div style="margin-top:22px; margin-right:8px; margin-left:8px;" class="input-field col s3 m3 l1 left-align">
+  <div style="margin-top:22px; margin-right:6px; margin-left:8px;" class="input-field col s3 m3 l1 left-align">
     <button class="left-align btn btn-large fLalezar gold black-text" type="submit">جستجو
     </button>
   </div>
@@ -358,7 +358,7 @@
   <div class=" hide-on-med-and-down col s0 m0 l0 xl1">
 
   </div>
-  <div class="col s12 m7 l7 right-align fLalezar"><h5 style="direction: rtl; text-align: justify; text-justify: inter-word;">
+  <div class="col s12 m7 l7 right-align fHarmattan"><h5 style="direction: rtl; text-align: justify; text-justify: inter-word;">
 با انتخاب مجموعه ورزشی مورد نظر خود از نقشه میتوانید نسبت به رزرو سانس های ورزشی آن اقدام فرمائید.
 <br>
 </h5>  </div>
@@ -482,15 +482,15 @@
 
       </div>
 
-      <div class="card-tabs" style="height: 50px; background-color: #230136;">
+      <div class="card-tabs" style="height: auto; background-color: #230136;">
         <ul class="tabs tabs-fixed-width" style="background-color: #230136;">
           <li class="tab"><a class="fHarmattan white-text" href="#options{{object.pk}}">امکانات</a></li>
           <li class="tab"><a class="fHarmattan white-text active" href="#sportclub{{object.pk}}">مجموعه ورزشی</a></li>
           <li class="tab"><a class="fHarmattan white-text" href="#session{{object.pk}}">جزئیات سانس </a></li>
         </ul>
       </div>
-      <div  class="card-content grey lighten-2" style="font-size:90%;">
-        <div id="session{{object.pk}}" style="height: auto">
+      <div  class="card-content grey lighten-2" >
+        <div id="session{{object.pk}}" style=" font-size: 80%">
           <div class="row"><h6 style="margin-bottom:-8px;">
             <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.six_to_twelve_sessions_discount}}%</div>
             <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بین ۶ و ۱۲ جلسه</div>
@@ -502,8 +502,8 @@
             <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بیش از ۲۴ جلسه</div>
   </h6>
   <br><br>
-  <div class="col s12 m12 l6 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large " ><h6>لیست سانس های سالن و رزرو</h6></a></div>
-  <div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>         عقد قرارداد با این سالن       </h6></a></div>
+  <div class="col s12 m12 l6 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large " ><h6> سانس های این سالن </h6></a></div>
+  <div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>عقد قرارداد با این سالن</h6></a></div>
           </div>
         </div>
 
@@ -560,19 +560,20 @@
           {% endif %}
         </div>
         <div id="sportclub{{object.pk}}" style="height: auto">
-          <div class="row">
-            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.sportclub_name}}</div>
-            <div class="col s4 m4 l4 left-align">نام مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.serial_number}}</div>
-            <div class="col s4 m4 l4 left-align">سریال مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.region}}</div>
-            <div class="col s4 m4 l4 left-align">استان</div>
-            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.address}}</div>
-            <div class="col s4 m4 l4 left-align">آدرس</div>
-            <div class="col s8 m8 l8 right-align fHarmattan">{{object.salon.sportclub.company_phone_number}}</div>
-            <div class="col s4 m4 l4 left-align">شماره تلفن ثابت</div>
-            <a href="{% url 'sportclub:publicdetail' pk=object.salon.sportclub.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+          <div class="row fHarmattan">
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.sportclub_name}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">نام مجموعه ورزشی</div>
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.serial_number}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">سریال مجموعه ورزشی</div>
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.region}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">استان</div>
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.address}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">آدرس</div>
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.company_phone_number}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">شماره تلفن ثابت</div>
           </div>
+  <a target="_blank" href="{% url 'sportclub:publicdetail' pk=object.salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+
         </div>
       </div>
 
@@ -655,7 +656,7 @@
           <h4 class="gold-text fMarkazi">سامانه ورزش کن</h4>
           <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
         </div>
-        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fMarkazi gold-text">
+        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
           <ul><h5>
             <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
             <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>

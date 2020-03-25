@@ -83,6 +83,7 @@
   </div>
     </div>
 
+<div class="fHarmattan">
 
     <div class="row">
       <div class="col s6 m6 l6 right-align black-text">{{sportclub.sportclub_name}}</div>
@@ -131,8 +132,11 @@
       <h5 class="black-text fLalezar">قوانین خاص مجموعه ورزشی</h5>
 
     <div class="col s12 m12 l12 right-align black-text">{{sportclub.terms_and_conditions|linebreaks}}</div>
+
+  </div>
     {% endif %}
 
+  </div>
     <br>
 
 <h5 class="black-text fLalezar">موقعیت</h5>
@@ -140,7 +144,7 @@
 {% leaflet_map sportclub.pk|pk_to_str callback=sportclub.pk|pk_to_map_init %}
 <br><br><br>
 <div class="row">
-  <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'salon:publiclistforsportclub' pk=sportclub.pk %}" class="hoverable waves-effect waves-light btn teal white-text"><h6><span>         </span>سالن های این مجموعه ورزشی<span>        </span></h6></a><p></p>
+  <div class="col s12 m12 l12 center-align"><a style="white-space:pre" href="{% url 'salon:publiclistforsportclub' pk=sportclub.pk %}" class="hoverable waves-effect waves-light btn teal white-text fLalezar"><h6><span>         </span>سالن های این مجموعه<span>        </span></h6></a><p></p>
 </div>
 </div>
 
