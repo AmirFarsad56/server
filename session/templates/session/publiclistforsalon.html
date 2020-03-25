@@ -95,7 +95,7 @@
 </div>
 {% endif %}
 
-      <div style="margin-bottom: -12px; margin-top:-60px" class="row">
+      <div style="margin-bottom: -12px; margin-top:-60px" class="row fHarmattan">
         <div class="col s6 m3 l3 right-align black-text">{{session.day}}</div>
         <div class="col s6 m3 l3 left-align fLalezar fLalezar">روز سانس</div>
 
@@ -130,7 +130,7 @@
   <div class="col s12 m5 l5 center-align black-text">
 <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:-14px;" class="waves-effect waves-light btn" ><h6>جزئیات و رزرو</h6></a>
   </div>
-  <div style="margin-top:9px;" class="col s4 m2 l2 right-align black-text">
+  <div style="margin-top:9px;" class="col s4 m2 l2 right-align black-text fHarmattan">
 {{session.pk|final_price}}
   </div>
   <div style="margin-top:9px;" class="col s8 m5 l5 left-align fLalezar">
@@ -141,7 +141,7 @@
       </div>
 
 
-      <div class="center " id="options{{session.pk}}">
+      <div class="center fHarmattan" id="options{{session.pk}}">
         {% if session.salon.pictures.all %}
 
                 <div class="slider">
@@ -189,51 +189,51 @@
               </h6>
         {% if session.salon.locker %}
         <div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
+          <img style="margin:3px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
         </div>
         {% endif %}
         {% if session.salon.air_conditioner %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
+          <img style="margin:3px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
         </div>
         {% endif %}
         {% if session.salon.ball_rent %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
+          <img style="margin:3px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
       </div>
         {% endif %}
         {% if session.salon.spectator_place %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
+          <img style="margin:3px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
       </div>
         {% endif %}
         {% if session.salon.shower %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
+          <img style="margin:3px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
       </div>
         {% endif %}
         {% if session.salon.changing_room %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویض لباس</span>
+          <img style="margin:3px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویض لباس</span>
       </div>
         {% endif %}
         {% if session.salon.parking_area %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
+          <img style="margin:3px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
       </div>
         {% endif %}
         {% if session.salon.drinking_water %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
+          <img style="margin:3px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
       </div>
         {% endif %}
         {% if session.salon.safe_keeping %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
+          <img style="margin:3px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
       </div>
         {% endif %}
         {% if session.salon.buffet %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
+          <img style="margin:3px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
       </div>
         {% endif %}
         {% if session.salon.taxi %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
+          <img style="margin:3px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
       </div>
         {% endif %}
         {% if session.salon.wifi %}<div class="tiptool">
-          <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
+          <img style="margin:3px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
       </div>
         {% endif %}
       </div>
@@ -293,7 +293,7 @@
           <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
           <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
         </div>
-        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fLalezar gold-text">
+        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
           <ul><h5>
             <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
             <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>

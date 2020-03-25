@@ -85,7 +85,7 @@
 
 
 
-  <div class="row center">
+  <div class="row center fHarmattan">
     {% for salon in salons %}
     {% if salon.is_confirmed %}
   <div style="margin-left:5%" class="card hoverable grey lighten-2  z-depth-5 teal-text" data-aos="fade-up"
@@ -156,8 +156,8 @@
           <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بیش از ۲۴ جلسه</div>
 </h6>
 <br><br>
-<div class="col s12 m12 l6 center-align"><a href="{% url 'session:publiclistforsalon' salon.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large " ><h6> سانس های این سالن </h6></a></div>
-<div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>عقد قرارداد با این سالن</h6></a></div>
+<div class="col s12 m12 l6 center-align"><a href="{% url 'session:publiclistforsalon' salon.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="fLalezar waves-effect waves-light btn-large " ><h6> سانس های این سالن </h6></a></div>
+<div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="fLalezar waves-effect waves-light btn-large " ><h6>عقد قرارداد با این سالن</h6></a></div>
         </div>
       </div>
 
@@ -226,7 +226,7 @@
           <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.company_phone_number}}</div>
           <div class="col s5 m5 l5 left-align fLalezar">شماره تلفن ثابت</div>
         </div>
-<a target="_blank" href="{% url 'sportclub:publicdetail' pk=salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+<a target="_blank" href="{% url 'sportclub:publicdetail' pk=salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="fLalezar waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
 
       </div>
     </div>
@@ -271,7 +271,7 @@
           <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
           <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
         </div>
-        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fLalezar gold-text">
+        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
           <ul><h5>
             <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
             <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>
