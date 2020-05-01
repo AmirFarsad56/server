@@ -10,19 +10,25 @@ from jdatetime import timedelta as jtimedelta
 from datetime import timedelta
 from jdatetime import date as jdate
 from django.core.paginator import Paginator
+from django.conf import settings
 import datetime
 import random
 
 #handmade
 from sportclub.decorators import sportclub_required
 from booking.forms import NumberForm
-from booking.filters import ContractFilter
+from booking.filters import ContractFilter, SessionFilter
 from booking.models import ProfitPercentageModel
 from commonuser.decorators import commonuser_required
 from accounts.decorators import superuser_required
 from session.models import SessionModel
 from booking.models import BookingModel, ContractModel
 from salon.models import SalonModel
+
+
+#SMS send
+from django.utils import timezone
+from kavenegar import KavenegarAPI
 
 
 
@@ -473,6 +479,9 @@ class ContractSuccessView(TemplateView):
 class CancelSuccessView(TemplateView):
     template_name = 'booking/cancelsuccess.html'
 
+class CancelSuccessBySportclubView(TemplateView):
+    template_name = 'booking/cancelsuccessbysportclub.html'
+
 
 @login_required
 @sportclub_required
@@ -496,7 +505,59 @@ def BookedSessionListView(request,pk):
     salon = get_object_or_404(SalonModel,pk = pk)
     if request.user == salon.sportclub.user:
 
-        sessions = get_list_or_404(BookingModel, salon = salon)
-        return render(request,'booking/bookedsessionlist.html',{'sessions':sessions})
+        sessions = BookingModel.objects.filter(salon = salon)
+        now_date = jdatetime.datetime.now().date()
+        now_time = jdatetime.datetime.now().time()
+        session_filter = SessionFilter(request.GET,queryset = sessions)
+        paginator = Paginator(session_filter.qs, 15)
+        page = request.GET.get('page')
+        sessions = paginator.get_page(page)
+        return render(request,'booking/bookedsessionlist.html',{'sessions':sessions,'now_time':now_time,
+        'now_date':now_date,'filter':session_filter,})
     else:
         return HttpResponseRedirect(reverse('login'))
+
+
+@login_required
+@sportclub_required
+def CancellingBySportclubView(request,pk):
+    try:
+        today = jdatetime.datetime.now().date()
+        now_time = datetime.datetime.now().time()
+
+        booking_object = get_object_or_404(BookingModel, pk = pk)
+        session = booking_object.session
+        final_price = booking_object.final_price
+
+        if booking_object.session.day == today and booking_object.session.time < now_time or booking_object.session.day < today:
+            return HttpResponseRedirect(reverse('booking:cancellingerror'))
+        else:
+            session.is_booked = False
+            session.is_ready = False
+            session.booker = None
+            contract_discount = booking_object.contract_discount
+            booking_object.pay_back_by_sportclub = booking_object.final_price
+            booking_object.cancelled_by_sportclub = True
+            booking_object.cancelled_by_sportclub_at_date = today
+            booking_object.cancelled_by_sportclub_at_time = now_time
+            booking_object.save()
+            session.save()
+            api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
+            phone_number = booking_object.booker.phone_number
+            message_text ='''
+سامانه ورزش کن\nبه اطلاع شما میرساند سانس
+روز {first}
+ساعت {second}
+توسط مجموعه ورزشی مربوطه لغو شد. جهت دریافت هزینه پرداخت شده به مجموعه ورزشی مراجعه کنید.
+'''.format(first = str(session.day), second = str(session.time.hour)+':'+str(session.time.minute), )
+            params = {
+            'sender': settings.KAVENEGAR_PHONE_NUMBER,
+            'receptor': phone_number,
+            'message' : message_text
+            }
+            response = api.sms_send(params)
+
+
+        return HttpResponseRedirect(reverse('booking:cancelsuccessbysportclub'))
+    except:
+        return HttpResponseRedirect(reverse('booking:cancellingerror'))

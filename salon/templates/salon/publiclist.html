@@ -20,7 +20,7 @@
 
   <div class="col s12 m12 l2 fLalezar teal-text">
 
-  <ul id="slide-out" style="direction:ltr; border-top: #00796b 10px solid; margin-top:63px; padding-bottom:150px;" class="sidenav sidenav-fixed grey lighten-3">
+  <ul id="slide-out" style="direction:ltr; border-top: #d4af37 10px solid; margin-top:63px; padding-bottom:150px;" class="sidenav sidenav-fixed grey lighten-3">
 
     <br>
     <li class="center teal-text fLalezar" style="font-size:120%" >جستجوی پیشرفته</li>
@@ -75,20 +75,20 @@
 
   </div>
 
-  <div  class="col s12 m12 l10 grey darken-3 fLalezar">
+  <div  class="col s12 m12 l10 grey lighten-2 fLalezar">
     <!-- Teal page content  -->
 
 <div class="container">
+<br><br>
 
-
-<span class="center-align"><h3 style="margin-left:5%" class="fLalezar gold-text";>لیست سالن ها</h3><br><br></span>
+<span class="center-align"><h3 style="margin-left:5%" class="fLalezar teal-text";>لیست سالن ها</h3><br><br></span>
 
 
 
   <div class="row center fHarmattan">
     {% for salon in salons %}
     {% if salon.is_confirmed %}
-  <div style="margin-left:5%" class="card hoverable grey lighten-2  z-depth-5 teal-text" data-aos="fade-up"
+  <div style="margin-left:5%; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
      data-aos-anchor-placement="top-bottom" data-aos-duration="1300">
     <div class="card-content">
       {% if salon.pictures.all %}
@@ -137,7 +137,7 @@
     </div>
 
     <div class="card-tabs center-align " style="height: 50px; ">
-      <ul class="center tabs tabs-fixed-width grey darken-4" style="direction:ltr;">
+      <ul class="center tabs tabs-fixed-width gold fLalezar" style="direction:ltr;">
         <li class="tab"><a class="white-text" href="#options{{salon.pk}}">امکانات</a></li>
         <li class="tab"><a class="white-text active" href="#sportclub{{salon.pk}}">مجموعه ورزشی</a></li>
         <li class="tab"><a class="white-text" href="#session{{salon.pk}}">سانس ها </a></li>
@@ -264,12 +264,12 @@
 
 </div>
 
-<footer style="width:108%; margin-left:-10px;margin-right:-10px; margin-bottom:-30px; " class="page-footer grey darken-4">
+<footer style="width:108%; margin-left:-10px;margin-right:-10px; margin-bottom:-30px; " class="page-footer white">
     <div class="container ">
       <div class="row">
         <div class="col l6 m6 s12" style="direction:ltr;">
           <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
-          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
+          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/white_footer.png" width="160"></a>
         </div>
         <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
           <ul><h5>
@@ -282,8 +282,8 @@
         </div>
       </div>
     </div>
-    <div class="footer-copyright black">
-      <div class="fLalezar container gold-text">
+    <div class="footer-copyright grey darken-2">
+      <div class="fLalezar container white-text">
     1398  سامانه ورزش کن
 
       </div>

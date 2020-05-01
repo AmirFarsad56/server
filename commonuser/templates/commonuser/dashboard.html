@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lalezar&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Markazi+Text&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Harmattan&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
 
@@ -53,22 +54,22 @@
 
             </ul>
           </div>
-          <div style="margin-top:0px; margin-bottom:0px; padding-left:30.9%; padding-right:30.9%;" class="nav-content brand-logo center gold-text grey darken-4">
+          <div  class="nav-content brand-logo center gold-text grey darken-4">
   <ul  class="tabs tabs-transparent fLalezar">
     <li class="tab"><a style="color:#d4af37" href="#past-sessions">سوابق رزرو</a></li>
-    <li class="tab"><a style="color:#d4af37" href="#canceled-sessions">سانس های کنسل شده</a></li>
+    <li class="tab"><a style="color:#d4af37" href="#cancelled-sessions">کنسل شده</a></li>
     <li class="tab"><a style="color:#d4af37" href="#contracts">قراردادها</a></li>
-    <li class="tab"><a style="color:#d4af37" class="active" href="#upcoming-sessions">سانس های پیش رو</a></li>
+    <li class="tab"><a style="color:#d4af37" class="active" href="#upcoming-sessions">پیش رو</a></li>
   </ul>
 </div>
         </nav>
   </div>
 
-<div style="margin-top:115px" class="container fMarkazi ">
-  <div id="canceled-sessions" class="col s12">
+<div style="margin-top:115px" class="container fLalezar ">
+  <div id="cancelled-sessions" class="col s12">
     <span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس های کنسل شده</h3><br><br></span>
     {% for booking in bookings %}
-    {% if booking.cancelled %}
+    {% if booking.cancelled or booking.cancelled_by_sportclub %}
 
     <div class="card hoverable grey lighten-2  z-depth-5 teal-text" data-aos="fade-up"
        data-aos-anchor-placement="top-bottom" data-aos-duration="1300">
@@ -85,39 +86,57 @@
   {% endif %}
 
         <div style="margin-bottom: -12px; margin-top:-60px" class="row">
-          <div class="col s6 m3 l3 right-align black-text">{{booking.session.day}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{% if booking.cancelled %}شما{% else %}مجموعه ورزشی{% endif %}</div>
+          <div class="col s6 m3 l3 left-align fLalezar fLalezar">کنسل شده توسط</div>
+
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.day}}</div>
           <div class="col s6 m3 l3 left-align fLalezar fLalezar">روز سانس</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.session.time|date:"H:i"}}-{{booking.session.pk|session_end}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.time|date:"H:i"}}-{{booking.session.pk|session_end}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">زمان سانس</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.session.duration}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.duration}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">مدت سانس</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.session.discount_percentage}}% {% if booking.session.salon.company_discount_percentage %}+ {{booking.session.salon.company_discount_percentage}}% {% endif %}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.discount_percentage}}% {% if booking.session.salon.company_discount_percentage %}+ {{booking.session.salon.company_discount_percentage}}% {% endif %}</div>
           <div class="col s6 m3 l3 left-align fLalezar">درصد تخفیف سانس</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.booked_at_date}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.booked_at_date}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">روز رزرو</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.booked_at_time|date:"H:i"}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.booked_at_time|date:"H:i"}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">ساعت رزرو</div>
-
-          <div class="col s6 m3 l3 right-align black-text">{{booking.cancelled_at_date}}</div>
+{% if booking.cancelled %}
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.cancelled_at_date}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">روز کنسل کردن</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.cancelled_at_time|date:"H:i"}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.cancelled_at_time|date:"H:i"}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">ساعت کنسل کردن</div>
+{% endif %}
+{% if booking.cancelled_by_sportclub %}
+<div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.cancelled_by_sportclub_at_date}}</div>
+<div class="col s6 m3 l3 left-align fLalezar">روز کنسل شدن</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.final_price}}</div>
+<div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.cancelled_by_sportclub_at_time|date:"H:i"}}</div>
+<div class="col s6 m3 l3 left-align fLalezar">ساعت کنسل شدن</div>
+{% endif %}
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.final_price}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">(هزینه پرداخت شده (تومان</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.code}}</div>
-          <div class="col s6 m3 l3 left-align fLalezar">کد رزرو</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.code}}</div>
+          <div class="col s6 m3 l3 left-align fLalezar">کد رزرو</div>        </div><br>
+{% if booking.cancelled %}<div class="row">
+  <div class="col s6 m6 l6 right-align black-text fHarmattan fLalezar"><h5>{{booking.pay_back}}</h5></div>
+  <div class="col s6 m6 l6 left-align fLalezar"><h5>هزینه عودتی (تومان)</h5></div>
+{% endif %}
+{% if booking.cancelled_by_sportclub %}
+<div class="row">
+  <div class="col s6 m6 l6 right-align black-text fHarmattan fLalezar"><h5>{{booking.pay_back_by_sportclub}}</h5></div>
+  <div class="col s6 m6 l6 left-align fLalezar"><h5>هزینه عودتی (تومان)</h5></div>
+</div>
 
-          <div class="col s6 m6 l6 right-align black-text">{{booking.pay_back}}</div>
-          <div class="col s6 m6 l6 left-align fLalezar">(هزینه قابل عودت (تومان</div>
-        </div>
+{% endif %}
+
 
 
 
@@ -135,7 +154,7 @@
 
         <div class="center " style="height: auto" id="options{{booking.pk}}">
           {% if booking.session.salon.pictures.all %}
-          <ul class="collapsible z-depth-5 fMarkazi hoverable popout ">
+          <ul class="collapsible z-depth-5 fLalezar hoverable popout ">
           <li>
             <div class="collapsible-header grey darken-4 center white-text" style="display: block;">
   عکس های سالن
@@ -158,15 +177,15 @@
         {% endif %}
 
                 <div class="row">
-                  <div class="col s6 m6 l6 right-align black-text">{{booking.session.salon.area}}</div>
+                  <div class="col s6 m6 l6 right-align black-text fHarmattan">{{booking.session.salon.area}}</div>
                   <div class="col s6 m6 l6 left-align fLalezar fLalezar">(انداره سالن (متر مربع</div>
                 </div>
                 <div class="row">
-                  <div class="col s6 m6 l6 right-align black-text">{{booking.session.salon.floor_type}}</div>
+                  <div class="col s6 m6 l6 right-align black-text fHarmattan">{{booking.session.salon.floor_type}}</div>
                   <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
                 </div>
                 <div class="row">
-                <div class="col s6 m6 l6 right-align black-text">
+                <div class="col s6 m6 l6 right-align black-text fHarmattan">
                   {% if booking.session.salon.is_football %}
                   فوتبال
                   {% endif %}
@@ -185,56 +204,56 @@
                 </div>
                 <div class="col s6 m6 l6 left-align fLalezar">زمینه ورزشی سالن</div>
                 </div><br>
-                <h6 class="row fLalezar black-text">
+                <h6 class="row fLalezar black-text fHarmattan">
                   امکانات سالن
                 </h6>
           {% if booking.session.salon.locker %}
-          <div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tooltiptext" >کمد</span>
+          <div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
           </div>
           {% endif %}
-          {% if booking.session.salon.air_conditioner %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tooltiptext" >تهویه هوا</span>
+          {% if booking.session.salon.air_conditioner %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
           </div>
           {% endif %}
-          {% if booking.session.salon.ball_rent %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tooltiptext" >اجاره توپ</span>
+          {% if booking.session.salon.ball_rent %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.spectator_place %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tooltiptext" >جایگاه تماشاچی</span>
+          {% if booking.session.salon.spectator_place %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.shower %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tooltiptext" >دوش</span>
+          {% if booking.session.salon.shower %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.changing_room %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tooltiptext" >اتاق تعویش لباس</span>
+          {% if booking.session.salon.changing_room %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویش لباس</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.parking_area %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tooltiptext" >پارکینگ</span>
+          {% if booking.session.salon.parking_area %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.drinking_water %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tooltiptext" >آب آشامیدنی</span>
+          {% if booking.session.salon.drinking_water %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.safe_keeping %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tooltiptext" >امانتداری</span>
+          {% if booking.session.salon.safe_keeping %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.buffet %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tooltiptext" >بوفه</span>
+          {% if booking.session.salon.buffet %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.taxi %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tooltiptext" >تاکسی ویژه</span>
+          {% if booking.session.salon.taxi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.wifi %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tooltiptext" >وای فای</span>
+          {% if booking.session.salon.wifi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
         </div>
           {% endif %}
           <div class="row center">
@@ -243,15 +262,15 @@
         </div>
         <div id="sportclub{{booking.pk}}" style="height: 195px;">
           <div class="row">
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.sportclub_name}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.sportclub_name}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.serial_number}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.serial_number}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">شماره سریال مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.region}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.region}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">استان</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.address}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.address}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">آدرس</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.company_phone_number}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.company_phone_number}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>
             </div>
             <div class="row center-align">
@@ -273,13 +292,13 @@
   <div id="upcoming-sessions" class="col s12">
     <span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس های رزرو شده پیش رو</h3><br><br></span>
     {% for booking in bookings %}
-    {% if not booking.cancelled %}
+    {% if not booking.cancelled and not booking.cancelled_by_sportclub %}
     {% if booking.session.day > today or booking.session.day == today and booking.session.time >= now %}
 
 
     <div class="row center">
 
-    <div class="card-panel hoverable grey lighten-2  z-depth-5 teal-text fMarkazi">
+    <div class="card-panel hoverable grey lighten-2  z-depth-5 teal-text fLalezar">
   <br>
       <div class="row center center-align">
         <h4 class="col s6 m6 l6 center center-align grey-text text-darken-4">{{booking.session.salon.sportclub.sportclub_name}}</h4>
@@ -294,15 +313,15 @@
         </div>
         <div class="collapsible-body grey teal-text">
           <div class="row">
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.sportclub_name}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.sportclub_name}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.serial_number}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.serial_number}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">شماره سریال مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.region}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.region}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">استان</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.address}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.address}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">آدرس</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.company_phone_number}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.company_phone_number}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>
             </div>
             <div class="row">
@@ -335,15 +354,15 @@
             <div class="collapsible-body grey ">
               <h6>
                 <div class="row">
-                  <div class="col s6 m6 l6 right-align black-text">{{booking.session.salon.area}}</div>
+                  <div class="col s6 m6 l6 right-align black-text fHarmattan">{{booking.session.salon.area}}</div>
                   <div class="col s6 m6 l6 left-align fLalezar fLalezar">(انداره سالن (متر مربع</div>
                 </div>
                 <div class="row">
-                  <div class="col s6 m6 l6 right-align black-text">{{booking.session.salon.floor_type}}</div>
+                  <div class="col s6 m6 l6 right-align black-text fHarmattan">{{booking.session.salon.floor_type}}</div>
                   <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
                 </div>
                 <div class="row">
-                <div class="col s6 m6 l6 right-align black-text">
+                <div class="col s6 m6 l6 right-align black-text fHarmattan">
                   {% if booking.session.salon.is_football %}
                   فوتبال
                   {% endif %}
@@ -366,52 +385,52 @@
                   امکانات سالن
                 </h6>
           {% if booking.session.salon.locker %}
-          <div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tooltiptext" >کمد</span>
+          <div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
           </div>
           {% endif %}
-          {% if booking.session.salon.air_conditioner %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tooltiptext" >تهویه هوا</span>
+          {% if booking.session.salon.air_conditioner %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
           </div>
           {% endif %}
-          {% if booking.session.salon.ball_rent %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tooltiptext" >اجاره توپ</span>
+          {% if booking.session.salon.ball_rent %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.spectator_place %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tooltiptext" >جایگاه تماشاچی</span>
+          {% if booking.session.salon.spectator_place %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.shower %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tooltiptext" >دوش</span>
+          {% if booking.session.salon.shower %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.changing_room %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tooltiptext" >اتاق تعویش لباس</span>
+          {% if booking.session.salon.changing_room %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویش لباس</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.parking_area %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tooltiptext" >پارکینگ</span>
+          {% if booking.session.salon.parking_area %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.drinking_water %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tooltiptext" >آب آشامیدنی</span>
+          {% if booking.session.salon.drinking_water %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.safe_keeping %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tooltiptext" >امانتداری</span>
+          {% if booking.session.salon.safe_keeping %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.buffet %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tooltiptext" >بوفه</span>
+          {% if booking.session.salon.buffet %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.taxi %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tooltiptext" >تاکسی ویژه</span>
+          {% if booking.session.salon.taxi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.wifi %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tooltiptext" >وای فای</span>
+          {% if booking.session.salon.wifi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
         </div>
           {% endif %}
           <div class="row center">
@@ -424,46 +443,46 @@
   <br><br><br>
 
   <div  class="row">
-    <div class="col s6 m3 l3 right-align black-text">{{booking.session.day}}</div>
+    <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.day}}</div>
     <div class="col s6 m3 l3 left-align fLalezar fLalezar">روز سانس</div>
 
-    <div class="col s6 m3 l3 right-align black-text">{{booking.session.time|date:"H:i"}}-{{booking.session.pk|session_end}}</div>
+    <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.time|date:"H:i"}}-{{booking.session.pk|session_end}}</div>
     <div class="col s6 m3 l3 left-align fLalezar">زمان سانس</div>
 
-    <div class="col s6 m3 l3 right-align black-text">{{booking.session.duration}}</div>
+    <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.duration}}</div>
     <div class="col s6 m3 l3 left-align fLalezar">مدت سانس</div>
 
-    <div class="col s6 m3 l3 right-align black-text">{{booking.session.discount_percentage}}% {% if session.salon.company_discount_percentage %}+ {{booking.session.salon.company_discount_percentage}}% {% endif %}</div>
+    <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.discount_percentage}}% {% if session.salon.company_discount_percentage %}+ {{booking.session.salon.company_discount_percentage}}% {% endif %}</div>
     <div class="col s6 m3 l3 left-align fLalezar">درصد تخفیف سانس</div>
 
-    <div class="col s6 m3 l3 right-align black-text">{{booking.session.price}}</div>
+    <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.price}}</div>
     <div class="col s6 m3 l3 left-align fLalezar">(قیمت خام سانس (تومان</div>
 
-    <div class="col s6 m3 l3 right-align black-text">{{booking.booked_at_date}}</div>
+    <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.booked_at_date}}</div>
     <div class="col s6 m3 l3 left-align fLalezar">روز رزرو</div>
 
-    <div class="col s6 m3 l3 right-align black-text">{{booking.booked_at_time|date:"H:i"}}</div>
+    <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.booked_at_time|date:"H:i"}}</div>
     <div class="col s6 m3 l3 left-align fLalezar">ساعت رزرو</div>
 
-    <div class="col s6 m3 l3 right-align black-text">{{booking.final_price}}</div>
+    <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.final_price}}</div>
     <div class="col s6 m3 l3 left-align fLalezar">(هزینه پرداخت شده (تومان</div>
   </div>
   <br>
-  <ul class="collapsible popout black-text">
+  <ul class="collapsible popout black-text fHarmattan">
   <li>
     <div class="collapsible-header red " style="display: block;">
 کنسل کردن سانس
     </div>
     <div class="collapsible-body grey teal-text">
       <div class="row">
-        <div class="col s12 m5 l5 center-align black-text">
+        <div class="col s12 m5 l5 center-align black-text fHarmattan">
           <!-- Modal Trigger -->
 <a class="waves-effect waves-light btn modal-trigger red" href="#modal{{booking.pk}}">کنسل کردن</a>
 
 <!-- Modal Structure -->
 
 <div id="modal{{booking.pk}}" class="modal right-align">
-  <div class="modal-content fMarkazi grey darken-3">
+  <div class="modal-content fLalezar grey darken-3">
     <h4 class="gold-text">آیا مطمئن هستید میخواهید این سانس را با جریمه  ذکر شده کنسل نمائید؟</h4>
     <p>در صورت کنسل کردن سانس شما فقط قادر خواهید بود مبلغ قابل عودت را به صورت حضوری از مجموعه ورزشی موردنظر دریافت نمائید <br>
    {{booking.session.day}} روز سانس <br>
@@ -471,17 +490,17 @@
     </p>
   </div>
   <div class="modal-footer grey darken-3">
-    <a href="{% url 'booking:cancelsession' pk=booking.pk %}" class=" waves-effect waves-green btn-flat fLalezar red black-text"><h6>!کنسل کردن</h6></a>
-    <a class="modal-close waves-effect waves-green btn-flat fLalezar green black-text"><h6>بیخیال</h6></a>
+    <a href="{% url 'booking:cancelsession' pk=booking.pk %}" class=" waves-effect waves-green btn-flat fLalezar red black-text fHarmattan"><h6>کنسل کردن!</h6></a>
+    <a class="modal-close waves-effect waves-green btn-flat fLalezar green black-text fHarmattan"><h6>بیخیال</h6></a>
   </div>
 </div>
 
         </div>
-        <div style="margin-top:1px;" class="col s6 m2 l2 right-align black-text">
+        <div style="margin-top:1px;" class="col s6 m2 l2 right-align black-text fHarmattan">
       {{booking.pk|pay_back_generator}}
         </div>
         <div style="margin-top:4px;" class="col s6 m5 l5 left-align fLalezar">
-          (مبلغ عودت در صورت کنسل کردن تایم (تومان
+      مبلغ عودت در صورت کنسل کردن تایم (تومان)
         </div>
 
       </div>
@@ -503,7 +522,7 @@
   <div id="past-sessions" class="col s12">
     <span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس های استفاده شده</h3><br><br></span>
     {% for booking in bookings %}
-    {% if not booking.cancelled %}
+    {% if not booking.cancelled and not booking.cancelled_by_sportclub %}
 
     <div class="card hoverable grey lighten-2 z-depth-5 teal-text" data-aos="fade-up"
        data-aos-anchor-placement="top-bottom" data-aos-duration="1300">
@@ -520,29 +539,29 @@
   {% endif %}
 
         <div style="margin-bottom: -12px; margin-top:-60px" class="row">
-          <div class="col s6 m3 l3 right-align black-text">{{booking.session.day}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.day}}</div>
           <div class="col s6 m3 l3 left-align fLalezar fLalezar">روز سانس</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.session.time|date:"H:i"}}-{{booking.session.pk|session_end}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.time|date:"H:i"}}-{{booking.session.pk|session_end}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">زمان سانس</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.session.duration}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.duration}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">مدت سانس</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.session.discount_percentage}}% {% if booking.session.salon.company_discount_percentage %}+ {{booking.session.salon.company_discount_percentage}}% {% endif %}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.discount_percentage}}% {% if booking.session.salon.company_discount_percentage %}+ {{booking.session.salon.company_discount_percentage}}% {% endif %}</div>
           <div class="col s6 m3 l3 left-align fLalezar">درصد تخفیف سانس</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.booked_at_date}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.booked_at_date}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">روز رزرو</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.booked_at_time|date:"H:i"}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.booked_at_time|date:"H:i"}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">ساعت رزرو</div>
 
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.final_price}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.final_price}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">(هزینه پرداخت شده (تومان</div>
 
-          <div class="col s6 m3 l3 right-align black-text">{{booking.code}}</div>
+          <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.code}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">کد رزرو</div>
 
         </div>
@@ -563,7 +582,7 @@
 
         <div class="center " style="height: auto" id="options{{booking.pk}}">
           {% if booking.session.salon.pictures.all %}
-          <ul class="collapsible z-depth-5 fMarkazi hoverable popout ">
+          <ul class="collapsible z-depth-5 fLalezar hoverable popout ">
           <li>
             <div class="collapsible-header grey darken-4 center white-text" style="display: block;">
   عکس های سالن
@@ -586,15 +605,15 @@
         {% endif %}
 
                 <div class="row">
-                  <div class="col s6 m6 l6 right-align black-text">{{booking.session.salon.area}}</div>
+                  <div class="col s6 m6 l6 right-align black-text fHarmattan">{{booking.session.salon.area}}</div>
                   <div class="col s6 m6 l6 left-align fLalezar fLalezar">(انداره سالن (متر مربع</div>
                 </div>
                 <div class="row">
-                  <div class="col s6 m6 l6 right-align black-text">{{booking.session.salon.floor_type}}</div>
+                  <div class="col s6 m6 l6 right-align black-text fHarmattan">{{booking.session.salon.floor_type}}</div>
                   <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
                 </div>
                 <div class="row">
-                <div class="col s6 m6 l6 right-align black-text">
+                <div class="col s6 m6 l6 right-align black-text fHarmattan">
                   {% if booking.session.salon.is_football %}
                   فوتبال
                   {% endif %}
@@ -613,56 +632,56 @@
                 </div>
                 <div class="col s6 m6 l6 left-align fLalezar">زمینه ورزشی سالن</div>
                 </div><br>
-                <h6 class="row fLalezar black-text">
+                <h6 class="row fLalezar black-text fHarmattan">
                   امکانات سالن
                 </h6>
           {% if booking.session.salon.locker %}
-          <div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tooltiptext" >کمد</span>
+          <div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
           </div>
           {% endif %}
-          {% if booking.session.salon.air_conditioner %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tooltiptext" >تهویه هوا</span>
+          {% if booking.session.salon.air_conditioner %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
           </div>
           {% endif %}
-          {% if booking.session.salon.ball_rent %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tooltiptext" >اجاره توپ</span>
+          {% if booking.session.salon.ball_rent %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.spectator_place %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tooltiptext" >جایگاه تماشاچی</span>
+          {% if booking.session.salon.spectator_place %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.shower %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tooltiptext" >دوش</span>
+          {% if booking.session.salon.shower %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.changing_room %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tooltiptext" >اتاق تعویش لباس</span>
+          {% if booking.session.salon.changing_room %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویش لباس</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.parking_area %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tooltiptext" >پارکینگ</span>
+          {% if booking.session.salon.parking_area %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.drinking_water %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tooltiptext" >آب آشامیدنی</span>
+          {% if booking.session.salon.drinking_water %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.safe_keeping %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tooltiptext" >امانتداری</span>
+          {% if booking.session.salon.safe_keeping %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.buffet %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tooltiptext" >بوفه</span>
+          {% if booking.session.salon.buffet %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.taxi %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tooltiptext" >تاکسی ویژه</span>
+          {% if booking.session.salon.taxi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
         </div>
           {% endif %}
-          {% if booking.session.salon.wifi %}<div class="tooltip">
-            <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tooltiptext" >وای فای</span>
+          {% if booking.session.salon.wifi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
         </div>
           {% endif %}
           <div class="row center">
@@ -671,15 +690,15 @@
         </div>
         <div id="sportclub{{booking.pk}}" style="height: 195px;">
           <div class="row">
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.sportclub_name}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.sportclub_name}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.serial_number}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.serial_number}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">شماره سریال مجموعه ورزشی</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.region}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.region}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">استان</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.address}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.address}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">آدرس</div>
-            <div class="col s8 m8 l8 right-align black-text">{{booking.session.salon.sportclub.company_phone_number}}</div>
+            <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.company_phone_number}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>
             </div>
             <div class="row center-align">
@@ -702,7 +721,7 @@
 {% for contract in contracts %}
 <div class="row center">
 
-<div class="card-panel hoverable grey lighten-2  z-depth-5 teal-text fMarkazi">
+<div class="card-panel hoverable grey lighten-2  z-depth-5 teal-text fLalezar">
 <br>
   <div class="row center center-align">
     <h4 class="col s6 m6 l6 center center-align grey-text text-darken-4">{{contract.salon.sportclub.sportclub_name}}</h4>
@@ -715,15 +734,15 @@
     </div>
     <div class="collapsible-body grey teal-text">
       <div class="row">
-        <div class="col s8 m8 l8 right-align black-text">{{contract.salon.sportclub.sportclub_name}}</div>
+        <div class="col s8 m8 l8 right-align black-text fHarmattan">{{contract.salon.sportclub.sportclub_name}}</div>
         <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
-        <div class="col s8 m8 l8 right-align black-text">{{contract.salon.sportclub.serial_number}}</div>
+        <div class="col s8 m8 l8 right-align black-text fHarmattan">{{contract.salon.sportclub.serial_number}}</div>
         <div class="col s4 m4 l4 left-align fLalezar">شماره سریال مجموعه ورزشی</div>
-        <div class="col s8 m8 l8 right-align black-text">{{contract.salon.sportclub.region}}</div>
+        <div class="col s8 m8 l8 right-align black-text fHarmattan">{{contract.salon.sportclub.region}}</div>
         <div class="col s4 m4 l4 left-align fLalezar">استان</div>
-        <div class="col s8 m8 l8 right-align black-text">{{contract.salon.sportclub.address}}</div>
+        <div class="col s8 m8 l8 right-align black-text fHarmattan">{{contract.salon.sportclub.address}}</div>
         <div class="col s4 m4 l4 left-align fLalezar">آدرس</div>
-        <div class="col s8 m8 l8 right-align black-text">{{contract.salon.sportclub.company_phone_number}}</div>
+        <div class="col s8 m8 l8 right-align black-text fHarmattan">{{contract.salon.sportclub.company_phone_number}}</div>
         <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>
         </div>
         <div class="row">
@@ -757,15 +776,15 @@
           {% endif %}
           <h6>
             <div class="row">
-              <div class="col s6 m6 l6 right-align black-text">{{contract.salon.area}}</div>
+              <div class="col s6 m6 l6 right-align black-text fHarmattan">{{contract.salon.area}}</div>
               <div class="col s6 m6 l6 left-align fLalezar fLalezar">(انداره سالن (متر مربع</div>
             </div>
             <div class="row">
-              <div class="col s6 m6 l6 right-align black-text">{{contract.salon.floor_type}}</div>
+              <div class="col s6 m6 l6 right-align black-text fHarmattan">{{contract.salon.floor_type}}</div>
               <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
             </div>
             <div class="row">
-            <div class="col s6 m6 l6 right-align black-text">
+            <div class="col s6 m6 l6 right-align black-text fHarmattan">
               {% if contract.salon.is_football %}
               فوتبال
               {% endif %}
@@ -788,52 +807,52 @@
               امکانات سالن
             </h6>
       {% if contract.salon.locker %}
-      <div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tooltiptext" >کمد</span>
+      <div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
       </div>
       {% endif %}
-      {% if contract.salon.air_conditioner %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tooltiptext" >تهویه هوا</span>
+      {% if contract.salon.air_conditioner %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
       </div>
       {% endif %}
-      {% if contract.salon.ball_rent %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tooltiptext" >اجاره توپ</span>
+      {% if contract.salon.ball_rent %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
     </div>
       {% endif %}
-      {% if contract.salon.spectator_place %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tooltiptext" >جایگاه تماشاچی</span>
+      {% if contract.salon.spectator_place %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
     </div>
       {% endif %}
-      {% if contract.salon.shower %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tooltiptext" >دوش</span>
+      {% if contract.salon.shower %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
     </div>
       {% endif %}
-      {% if contract.salon.changing_room %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tooltiptext" >اتاق تعویش لباس</span>
+      {% if contract.salon.changing_room %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویش لباس</span>
     </div>
       {% endif %}
-      {% if contract.salon.parking_area %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tooltiptext" >پارکینگ</span>
+      {% if contract.salon.parking_area %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
     </div>
       {% endif %}
-      {% if contract.salon.drinking_water %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tooltiptext" >آب آشامیدنی</span>
+      {% if contract.salon.drinking_water %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
     </div>
       {% endif %}
-      {% if contract.salon.safe_keeping %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tooltiptext" >امانتداری</span>
+      {% if contract.salon.safe_keeping %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
     </div>
       {% endif %}
-      {% if contract.salon.buffet %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tooltiptext" >بوفه</span>
+      {% if contract.salon.buffet %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
     </div>
       {% endif %}
-      {% if contract.salon.taxi %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tooltiptext" >تاکسی ویژه</span>
+      {% if contract.salon.taxi %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
     </div>
       {% endif %}
-      {% if contract.salon.wifi %}<div class="tooltip">
-        <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tooltiptext" >وای فای</span>
+      {% if contract.salon.wifi %}<div class="tiptool">
+        <img style="margin:10px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
     </div>
       {% endif %}
       <div class="row center">
@@ -846,16 +865,16 @@
 <br><br><br>
 
 <div  class="row">
-<div class="col s6 m3 l3 right-align black-text">{{contract.created_at_date}}</div>
+<div class="col s6 m3 l3 right-align black-text fHarmattan">{{contract.created_at_date}}</div>
 <div class="col s6 m3 l3 left-align fLalezar fLalezar">روز بستن قرارداد</div>
 
-<div class="col s6 m3 l3 right-align black-text">{{contract.created_at_time}}</div>
+<div class="col s6 m3 l3 right-align black-text fHarmattan">{{contract.created_at_time}}</div>
 <div class="col s6 m3 l3 left-align fLalezar">زمان بستن قرارداد</div>
 
-<div class="col s6 m3 l3 right-align black-text">{{contract.total_price}}</div>
+<div class="col s6 m3 l3 right-align black-text fHarmattan">{{contract.total_price}}</div>
 <div class="col s6 m3 l3 left-align fLalezar">هزینه کلی قرارداد</div>
 
-<div class="col s6 m3 l3 right-align black-text">{{contract.numbers}}</div>
+<div class="col s6 m3 l3 right-align black-text fHarmattan">{{contract.numbers}}</div>
 <div class="col s6 m3 l3 left-align fLalezar">تعداد جلسات قرارداد</div>
 
 
@@ -866,7 +885,7 @@
 <div class="row">
 {% for booking in contract.bookings.all %}
 
-<div class="col s6 m3 l3 right-align black-text">{{booking.session.day}}</div>
+<div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.session.day}}</div>
 <div class="col s6 m3 l3 left-align fLalezar fLalezar">روز سانس</div>
 
 
@@ -877,7 +896,7 @@
 <div class="row">
 
 
-<div class="col s6 m6 l6 right-align black-text">{{ booking.session.time|date:"H:i" }} - {{booking.session.pk|session_end}}</div>
+<div class="col s6 m6 l6 right-align black-text fHarmattan">{{ booking.session.time|date:"H:i" }} - {{booking.session.pk|session_end}}</div>
 <div class="col s6 m6 l6 left-align fLalezar fLalezar">زمان تمامی سانس ها</div>
 </div>
 {% endif %}
@@ -907,10 +926,10 @@
         <div class="container ">
           <div class="row">
             <div class="col l6 s12">
-              <h4 class="gold-text fMarkazi">سامانه ورزش کن</h4>
+              <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
               <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
             </div>
-            <div class="col l4 offset-l2 s12 right-align fMarkazi gold-text">
+            <div class="col l4 offset-l2 s12 right-align fLalezar gold-text">
               <ul><h5>
                 <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
                 <li><a class="gold-text " href="{% url 'company:faqs' %}">سوالات متداول</a></li>
@@ -921,7 +940,7 @@
           </div>
         </div>
         <div class="footer-copyright black">
-          <div class="fMarkazi container gold-text">
+          <div class="fLalezar container gold-text">
         1398  سامانه ورزش کن
 
           </div>

@@ -76,6 +76,10 @@ class BookingModel(models.Model):
     pay_back = models.FloatField(null = True)
     cancelled_at_date = jmodels.jDateField(null = True)
     cancelled_at_time = models.TimeField(null = True)
+    cancelled_by_sportclub = models.BooleanField(null = False, default = False)
+    pay_back_by_sportclub = models.FloatField(null = True)
+    cancelled_by_sportclub_at_date = jmodels.jDateField(null = True)
+    cancelled_by_sportclub_at_time = models.TimeField(null = True)
 
     def __str__(self):
         return str(self.user.username) + ' booked ' + str(self.sesison.pk)

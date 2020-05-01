@@ -2,6 +2,7 @@
 {% load customtags_session %}
 
 {% block head_block %}
+
 <meta name=”robots” content=”noindex,follow”>
 <title>
     لیست سانس ها | سامانه ورزش کن
@@ -9,19 +10,65 @@
 {% endblock %}
 
 {% block body_block %}
-<span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس ها</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar gold-text";>لیست سانس های رزرو شده</h3><br><br></span>
 <div class="container">
 
+
+    <ul class="collapsible z-depth-5 fMarkazi hoverable popout gold-text">
+    <li>
+      <div class="collapsible-header grey darken-4 center fLalezar" style="display: block;">
+  جستجوی پیشرفته
+      </div>
+      <div class="collapsible-body grey lighten-1">
+
+    <form method="get">
+  <div class="row">
+
+      <div class="input-field col s12">
+        {{filter.form.is_contract}}
+        <label class="fLalezar teal-text" for="area__lte">از سانس های قرارداد</label>
+      </div>
+      <div class="input-field col s12">
+        {{filter.form.cancelled}}
+        <label class="fLalezar teal-text" for="area__lte">کنسل شده توسط کاربر</label>
+      </div>
+      <div class="input-field col s12">
+        {{filter.form.cancelled_by_sportclub}}
+        <label class="fLalezar teal-text" for="area__lte">کنسل شده توسط مجموعه ورزشی</label>
+      </div>
+
+
+        </div>
+      <div class="row center">
+        <button class="fLalezar hoverable btn waves-effect waves-dark white-text z-depth-3" type="submit">جستجو
+  </button>
+      </div>
+
+    </form>
+  </div>
+  </li>
+  </ul>
 
 </div>
 <br><br>
 <div class="container teal-text">
 {% for session in sessions %}
+{% if now_date < session.session.day or now_date == session.session.day and now_time < session.session.time %}
 <div class="center card-panel hoverable grey lighten-2 z-depth-5 fLalezar teal-text">
   <h6>
+    {% if session.cancelled  %}
+    <div class="row red-text center-align"><h5>
+کنسل شده توسط کاربر
+    </h5></div>
+    {% endif %}
+    {% if session.cancelled_by_sportclub  %}
+    <div class="row center-align red-text"><h5>
+کنسل شده توسط شما
+    </h5></div>
+    {% endif %}
     <div class="row">
       <div class="col s6 m3 l3 right-align black-text fMarkazi">
-        {{session.session.time|date:"H:i"}}-{{session.pk|session_end}}
+        {{session.session.time|date:"H:i"}}-{{session.session.pk|session_end}}
       </div>
       <div class="col s6 m3 l3 right-align">
 زمان
@@ -33,6 +80,7 @@
         روز
       </div>
 
+
       <div class="col s6 m3 l3 right-align black-text fMarkazi">
         {{session.session.discount_percentage}}%
       </div>
@@ -43,7 +91,7 @@
         {{session.session.price}}
       </div>
       <div class="col s6 m3 l3 right-align">
-(قیمت (تومان
+قیمت (تومان)
       </div>
           </div>
           <ul class="collapsible popout gold-text">
@@ -154,14 +202,231 @@
         </div>
         </li>
         </ul>
+    {% if not session.cancelled_by_sportclub and not session.cancelled %}
+        <ul class="collapsible popout black-text ">
+        <li>
+          <div class="collapsible-header red " style="display: block;">
+      کنسل کردن سانس
+          </div>
+          <div class="collapsible-body grey teal-text">
+            <div class="row">
+              <div class="col s12 m5 l5 center-align black-text">
+                <!-- Modal Trigger -->
+      <a class="waves-effect waves-light btn modal-trigger red" href="#modal{{session.pk}}">کنسل کردن</a>
 
+      <!-- Modal Structure -->
 
+      <div id="modal{{session.pk}}" class="modal right-align">
+        <div class="modal-content fMarkazi grey darken-3">
+          <h4 class="gold-text">آیا مطمئن هستید میخواهید این سانس که توسط کاربران رزرو شده را کنسل کنید؟</h4>
+          <p>لازم به ذکر است مسئولیت کنسل کردن سانس بر عهده شماست و کاربری که سانس را رزرو کرده بود باید تمام
+            مبلغی که برای رزرو سانس پرداخت کرده بود پس بگیرد. همچنین درصدی از این سانس که برای سامانه ورزش کن بود
+            برگشت داده نمیشود.<br>
+         {{session.session.day}} روز سانس <br>
+         {{session.session.time|date:"H:i"}} ساعت شروع سانس
+          </p>
+        </div>
+        <div class="modal-footer grey darken-3">
+          <a href="{% url 'booking:cancelsessionbysportclub' pk=session.pk %}" class=" waves-effect waves-green btn-flat fLalezar red black-text"><h6>کنسل کردن!</h6></a>
+          <a class="modal-close waves-effect waves-green btn-flat fLalezar green black-text"><h6>بیخیال</h6></a>
+        </div>
+      </div>
+
+              </div>
+              <div style="margin-top:1px;" class="col s6 m2 l2 right-align black-text">
+            {{session.final_price}}
+              </div>
+              <div style="margin-top:4px;" class="col s6 m5 l5 left-align fLalezar">
+            مبلغ عودت در صورت کنسل کردن تایم (تومان)
+              </div>
+
+            </div>
+              </div>
+
+      </li>
+            </ul>
+{% endif %}
 
 </h6>
   </div>
   <br><br>
+  {% else %}
+  <div class="center card-panel hoverable grey lighten-2 z-depth-5 fLalezar teal-text">
+    {% if session.cancelled  %}
+    <div class="row red-text center-align"><h5>
+کنسل شده توسط کاربر
+    </h5></div>
+    {% endif %}
+    {% if session.cancelled_by_sportclub  %}
+    <div class="row center-align red-text"><h5>
+کنسل شده توسط شما
+    </h5></div>
+    {% endif %}
+    <h6>
+      <div class="row">
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {{session.session.time|date:"H:i"}}-{{session.session.pk|session_end}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+  زمان
+        </div>
+        <div class="col s6 m3 l3 right-align black-text fMarkazi ">
+          {{session.session.day}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          روز
+        </div>
+
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {{session.session.discount_percentage}}%
+        </div>
+        <div class="col s6 m3 l3 right-align">
+          درصد تخفیف
+        </div>
+        <div class="col s6 m3 l3 right-align black-text fMarkazi">
+          {{session.session.price}}
+        </div>
+        <div class="col s6 m3 l3 right-align">
+  قیمت (تومان)
+        </div>
+            </div>
+            <ul class="collapsible popout gold-text">
+            <li>
+              <div class="collapsible-header grey darken-3 " style="display: block;">
+
+  <h6 class="gold-text" >مشخصات  رزرو کننده</h6>
+            </div>
+              <div class="collapsible-body grey teal-text">
+                <img style=" margin-bottom: 18px" src="{{session.booker.user.commonusers.picture.url}}" height="50">
+                <div class="row">
+                  <div class="col s6 m3 l3 right-align black-text fMarkazi">
+                    {{session.booker.user.first_name}}
+                  </div>
+                  <div class="col s6 m3 l3 right-align ">
+          نام
+                  </div>
+                  <div class="col s6 m3 l3 right-align black-text fMarkazi">
+                    {{session.booker.user.last_name}}
+                  </div>
+                  <div class="col s6 m3 l3 right-align ">
+          نام خانوادگی
+                  </div>
+
+                  <div class="col s6 m3 l3 right-align black-text fMarkazi">
+                    {{session.booker.user.email}}
+                  </div>
+                  <div class="col s6 m3 l3 right-align">
+          ایمیل
+                  </div>
+                  <div class="col s6 m3 l3 right-align black-text fMarkazi">
+                    {{session.booker.phone_number}}
+                  </div>
+                  <div class="col s6 m3 l3 right-align">
+          شماره تلفن
+                  </div>
+
+                </div>
+
+      </div>
+      </li>
+      </ul>
+
+      <ul class="collapsible popout gold-text">
+      <li>
+        <div class="collapsible-header grey darken-3 " style="display: block;">
+
+      <h6 class="gold-text" >مشخصات  رزرو</h6>
+      </div>
+        <div class="collapsible-body grey teal-text">
+
+          <div class="row">
+
+          <div class="col s6 m3 l3 right-align black-text fMarkazi">
+            {{session.booked_at_date}}
+          </div>
+          <div class="col s6 m3 l3 right-align">
+  روز رزرو
+          </div>
+          <div class="col s6 m3 l3 right-align black-text fMarkazi">
+            {{session.booked_at_time}}
+          </div>
+          <div class="col s6 m3 l3 right-align">
+  زمان رزرو
+          </div>
+          <div class="col s6 m3 l3 right-align black-text fMarkazi">
+            {{session.final_price}}
+          </div>
+          <div class="col s6 m3 l3 right-align ">
+  مبلغ پرداخت شده
+          </div>
+          <div class="col s6 m3 l3 right-align black-text fMarkazi">
+            {% if session.transfered_to_sportclub %} بله {% else %} خیر {% endif %}
+          </div>
+          <div class="col s6 m3 l3 right-align">
+  هزینه به حساب شما واریز شده
+          </div>
+          <div class="col s6 m3 l3 right-align black-text fMarkazi">
+            {% if session.is_contract %} بله {% else %} خیر {% endif %}
+          </div>
+          <div class="col s6 m3 l3 right-align ">
+  رزرو شده با قرارداد
+          </div>
+          {% if session.cancelled %}
+          <div class="col s6 m3 l3 right-align black-text fMarkazi red">
+             بله
+          </div>
+          <div class="col s6 m3 l3 right-align red-text">
+  کنسل شده
+          </div>
+          {% endif %}
+          <div class="col s6 m3 l3 right-align black-text fMarkazi">
+            {{session.code}}
+          </div>
+          <div class="col s6 m3 l3 right-align ">
+  کد رزرو
+          </div>
+          {% if session.pay_back %}
+          <div class="col s6 m3 l3 right-align black-text fMarkazi">
+            {{session.pay_back}}
+          </div>
+          <div class="col s6 m3 l3 right-align">
+  مبلغی که باید برگردانده شود
+          </div>
+          {% endif %}
+  </div>
+
+          </div>
+          </li>
+          </ul>
+
+
+  </h6>
+    </div>
+    <br><br>
+
+  {% endif %}
 {% endfor %}
 
+</div>
+
+<div class="container center">
+
+
+<ul class="pagination  z-depth-5 hoverable white fMarkazi">
+  {% if sessions.has_previous %}
+  <li class="waves-effect"><a href="?page=1">&laquo; اولین صفحه</a></li>
+      <li class="waves-effect"><a href="?page={{ sessions.previous_page_number }}">قبلی  </a></li>
+
+  {% endif %}
+  <li  style="white-space:pre;"  class="disabled active">  <span>صفحه</span> <span>{{ sessions.number }}</span>  <span>از</span> <span>{{ sessions.paginator.num_pages }}</span> </li>
+
+  {% if sessions.has_next %}
+      <li class="waves-effect"><a href="?page={{ sessions.next_page_number }}">بعدی</a></li>
+      <li class="waves-effect"><a href="?page={{ sessions.paginator.num_pages }}">آخرین صفحه &raquo;</a></li>
+
+  {% endif %}
+
+</ul>
 </div>
 <br><br>
 
@@ -171,5 +436,36 @@
   $(document).ready(function(){
     $('.collapsible').collapsible();
   });
+</script>
+<script>
+  M.AutoInit()
+  $(document).ready(function(){
+    $('.slider').slider({
+full_width: true,
+height : 330,
+interval : 2100
+});
+  });
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+
+
+
+
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".dropdown-trigger").dropdown({ constrainWidth: false, alignment: 'right' });
+});
 </script>
 {% endblock %}

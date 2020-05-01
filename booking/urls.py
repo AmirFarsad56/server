@@ -3,7 +3,8 @@ from booking.views import (CreateProfitPercentageView, UpdateProfitPercentageVie
                             BookingView, CancellingView, CantCancellView,
                             CancellingErrorView, SignContractView, ContractSuccessView,
                             NotAvailableSessionsView, NoSessionErrorView, CancelSuccessView,
-                            BookedSessionListView, ContractListView, ContractDetailView)
+                            BookedSessionListView, ContractListView, ContractDetailView,
+                            CancelSuccessBySportclubView, CancellingBySportclubView)
 
 
 app_name ='booking'
@@ -22,6 +23,8 @@ urlpatterns = [
     path('not-available-sessions/', NotAvailableSessionsView.as_view(), name='notavailablesessions'),
     path('no-sessions/', NoSessionErrorView.as_view(), name='nosessionerror'),
     path('cancel-success/', CancelSuccessView.as_view(), name='cancelsuccess'),
+    path('cancelling-by-sportclub/<int:pk>/', CancellingBySportclubView, name='cancelsessionbysportclub'),
+    path('cancel-success-by-sportclub/', CancelSuccessBySportclubView.as_view(), name='cancelsuccessbysportclub'),
 
 
 ]

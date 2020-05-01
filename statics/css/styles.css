@@ -125,7 +125,7 @@ navbar-fixed ul a:hover {
 .tbadge {
   font-family: oswald, sans-serif;
   font-size: 16px;
-  transform: rotate(45deg);
+  transform: rotate(-45deg);
   margin-top: -20px;
   background: #e0e0e0;
   width: 35px;
@@ -134,13 +134,14 @@ navbar-fixed ul a:hover {
   text-align: center;
   text-transform: uppercase;
   border-radius: 8px;
-  color: #e0e0e0;
+  color: #eeeeee;
+  opacity: .01;
 
 }
 .tbadge span {
   display: block;
-  transform: rotate(-45deg);
-  opacity: .9;
+  transform: rotate(45deg);
+  opacity: .01;
 }
 
 .cbadge {

@@ -415,8 +415,9 @@ def CategorizedSessionListView(request,pk):
     page = request.GET.get('page')
     sessions = paginator.get_page(page)
     now = jdatetime.datetime.now().date()
+    now_time = jdatetime.datetime.now().time()
     return render(request,'session/categorizedsessionlist.html',{'sessions':sessions,
-                  'filter':session_filter,'now':now,
+                  'filter':session_filter,'now':now,'now_time':now_time,
                   'session_category':sessioncategory_instance,})
 
 
@@ -1059,7 +1060,9 @@ def DayListView(request,pk,str):
     if request.user == salon.sportclub.user or request.user.is_masteruser:
         sessionlist = get_list_or_404(SessionModel.objects.order_by('day','time'),day = str, salon=salon)
         now = jdatetime.datetime.now().date()
-        return render(request,'session/daylist.html',{'sessions':sessionlist,'now':now})
+        now_time = jdatetime.datetime.now().time()
+        return render(request,'session/daylist.html',{'sessions':sessionlist,'now':now,
+        'now_time':now_time,})
     else:
         return HttpResponseRedirect(reverse('login'))
 

@@ -1,4 +1,4 @@
-from booking.models import ContractModel
+from booking.models import ContractModel, BookingModel
 from django import forms
 import django_filters
 
@@ -15,3 +15,11 @@ class ContractFilter(django_filters.FilterSet):
     class Meta:
         model = ContractModel
         fields = ['str_created_at_date',]
+
+
+class SessionFilter(django_filters.FilterSet):
+    booked_at_date = django_filters.CharFilter(widget=forms.TextInput(attrs={'type':'text' , 'id':'exampleInput3', 'data-mddatetimepicker':'true' ,'data-englishnumber':'true', 'autocomplete':'off'}),field_name='booked_at_date')
+
+    class Meta:
+        model = BookingModel
+        fields = ['is_contract','cancelled','cancelled_by_sportclub']

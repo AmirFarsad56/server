@@ -1,1 +1,29 @@
-ps -o pid,user,%mem,command ax | sort -b -k3 -r
+<div style="margin-left:5%; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
+
+d4af37
+
+<footer style="width:108%; margin-left:-10px;margin-right:-10px; margin-bottom:-30px; " class="page-footer white">
+    <div class="container ">
+      <div class="row">
+        <div class="col l6 m6 s12" style="direction:ltr;">
+          <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
+          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/white_footer.png" width="160"></a>
+        </div>
+        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
+          <ul><h5>
+            <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
+            <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>
+            <li><a class="gold-text " href="{% url 'company:faqs' %}">سوالات متداول</a></li>
+            <li><a class="gold-text " href="{% url 'company:aboutus' %}">درباره ما</a></li>
+            <li><a class="gold-text" href="{% url 'company:termsdetail' %}">قوانین سایت</a></li></h5>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-2">
+      <div class="fLalezar container white-text">
+    1398  سامانه ورزش کن
+
+      </div>
+    </div>
+</footer>
