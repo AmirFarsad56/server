@@ -1,0 +1,34 @@
+4 different type of pages
+1st: pages with base1 as their base
+2nd: pages with base_sidesearch as their base
+  session:
+    publiclist
+    publiclistforsalon
+    todaypubliclist
+  salon:
+    publiclist
+    publiclistforsportclub
+  sportclub:
+    publiclist
+    publicdetail
+3rd: commonuser's dashboard page
+4th: index page
+
+
+commonuser access:
+  index
+  all base_sidesearch pages
+  login
+  signup
+  terms_and_conditions
+  aboutus
+  sportclub-contact
+  FAQs
+  contactus
+  forgot-password
+  commonuser-profile
+  commonuser-dashboard
+  commonuser-update
+  commonuser-passwordchange
+  wrong-phone-number (for passwordchange)
+  error pages

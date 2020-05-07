@@ -57,7 +57,7 @@
             <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
             {% endif %}
             {% if user.is_commonuser %}
-            <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="سانس های شما"><i style="color:#d4af37;" class="material-icons">event</i></a></li>
+            <li><a href="{% url 'commonuser:dashboard' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="سانس های شما"><i style="color:#d4af37;" class="material-icons">event</i></a></li>
             <li><a href="{% url 'commonuser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
             <li><a href="{% url 'company:contactus' %}" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
             <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
@@ -103,9 +103,9 @@
         <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
         {% endif %}
         {% if user.is_commonuser %}
-        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="سانس های شما"><i style="color:#d4af37;" class="material-icons">event</i></a></li>
+        <li><a href="{% url 'commonuser:dashboard' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="سانس های شما"><i style="color:#d4af37;" class="material-icons">event</i></a></li>
         <li><a href="{% url 'commonuser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
-        <li><a href="#" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
+        <li><a href="{% url 'company:contactus' %}" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
         <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
         {% endif %}
         {% if user.is_superuser %}

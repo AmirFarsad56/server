@@ -157,12 +157,13 @@ navbar-fixed ul a:hover {
   text-transform: uppercase;
   border-radius: 8px;
   color: #9F6B99FF;
+  opacity: .01;
 
 }
 .cbadge span {
   display: block;
   transform: rotate(-45deg);
-  opacity: .9;
+  opacity: .01;
 }
 
 .badge {

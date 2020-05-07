@@ -29,7 +29,7 @@ class TypesForm(forms.Form):
 
 
 class ForgotPasswordForm(forms.Form):
-    phone_number = forms.CharField(required = True)
+    phone_number = forms.CharField(required = True, widget=forms.TextInput(attrs={'placeholder':'مثال 09123456789'}))
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 

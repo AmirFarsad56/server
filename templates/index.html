@@ -292,7 +292,7 @@
 
 
 <!-- map -->
-<div id="map" class="blocktwo grey lighten-3 section scrollspy">
+<div id="map" class="blocktwo grey lighten-2 section scrollspy">
   <nav class="pushpin-demo-nav pinned" data-target="map" style="z-index: 2;top: 0px;">
     <div class="nav-wrapper white">
       <div class="container">
@@ -379,10 +379,10 @@
 
 
 <!-- salon -->
-<div id="salon" style="background-color: #550680;" class="blockthree section scrollspy">
+<div id="salon"  class="blockthree section scrollspy grey lighten-2">
 
 <!-- end nav-->
-<br><br><br>
+<br>
 <div style="white-space:pre" class="row">
 
 </div>
@@ -392,10 +392,10 @@
   <div class="col s0 m5 l5">
   </div>
   <div class="col s12 m4 l4 center-align">
-  <h2  ><a href="{% url 'salon:publiclist' %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large cyan fLalezar" ><h6>جستجوی سالن ها<i class="material-icons left" style="margin-right:0px; margin-left:-10px">search</i></h6></a></h2>
+  <h2  ><a href="{% url 'salon:publiclist' %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large gold fLalezar" ><h6>جستجوی سالن ها<i class="material-icons left" style="margin-right:0px; margin-left:-10px">search</i></h6></a></h2>
   </div>
 <div class="col s12 m2 l2">
-  <h2 style="white-space:pre;" class="fLalezar center-align white-text"> سالن ها و  </h2>
+  <h2 style="white-space:pre;" class="fLalezar center-align teal-text"> سالن ها و  </h2>
 </div>
 <div class="col s0 m1 l1">
 </div>
@@ -404,17 +404,17 @@
 <div class="col s0 m2 l2">
 </div>
 <div class="col s12 m4 l4 center-align">
-<h2><a href="{% url 'session:publiclist' %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large cyan fLalezar" ><h6>جستجوی سانس ها<i class="material-icons left" style="margin-right:0px; margin-left:-10px">search</i></h6></a></h2>
+<h2><a href="{% url 'session:publiclist' %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large gold fLalezar" ><h6>جستجوی سانس ها<i class="material-icons left" style="margin-right:0px; margin-left:-10px">search</i></h6></a></h2>
 </div>
 <div class="col s12 m3 l3">
-<h2 style="white-space:pre" class="fLalezar center-align white-text"> سانس های</h2>
+<h2 style="white-space:pre" class="fLalezar center-align teal-text"> سانس های</h2>
 </div>
 <div class="col s0 m3 l3">
 </div>
 
 <div class="col s0 m4 l4">
 </div>
-<h2 style="white-space:pre" class="fLalezar center-align white-text">
+<h2 style="white-space:pre" class="fLalezar center-align teal-text">
 <div class="col s12 m12 l4">
  پیشنهادی
 </div>
@@ -435,7 +435,8 @@
 
   <div style=" margin-top:40px" class="col s12 m12 l7">
 
-    <div class="card grey lighten-2 hoverable z-depth-3" data-aos="fade-left" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
+    <div style="padding:8px;  border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-4 teal-text" data-aos="fade-left"
+     data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
       <div class="card-content">
         {% if object.salon.pictures.all %}
             <div style="z-index: 1;" class="slider">
@@ -451,15 +452,15 @@
         <br>
 
         <div class="row">
-          <div class="col s6 m6 l6 right-align fHarmattan">{{object.salon.area}}</div>
+          <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.area}}</div>
           <div class="col s6 m6 l6 left-align">(اندازه سالن (متر مربع</div>
         </div>
         <div class="row">
-          <div class="col s6 m6 l6 right-align fHarmattan">{{object.salon.floor_type}}</div>
+          <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.floor_type}}</div>
           <div class="col s6 m6 l6 left-align">جنس کف سالن</div>
         </div>
         <div class="row">
-        <div class="col s6 m6 l6 right-align fHarmattan">
+        <div class="col s6 m6 l6 right-align fHarmattan black-text">
           {% if object.salon.is_football %}
           فوتبال
           {% endif %}
@@ -482,14 +483,14 @@
 
       </div>
 
-      <div class="card-tabs" style="height: auto; background-color: #230136;">
-        <ul class="tabs tabs-fixed-width" style="background-color: #230136;">
-          <li class="tab"><a class="fHarmattan white-text" href="#options{{object.pk}}">امکانات</a></li>
-          <li class="tab"><a class="fHarmattan white-text active" href="#sportclub{{object.pk}}">مجموعه ورزشی</a></li>
-          <li class="tab"><a class="fHarmattan white-text" href="#session{{object.pk}}">جزئیات سانس </a></li>
+      <div class="card-tabs gold" style="height: auto;">
+        <ul class="tabs tabs-fixed-width gold" >
+          <li class="tab"><a class="fLalezar white-text" href="#options{{object.pk}}">امکانات</a></li>
+          <li class="tab"><a class="fLalezar white-text active" href="#sportclub{{object.pk}}">مجموعه ورزشی</a></li>
+          <li class="tab"><a class="fLalezar white-text" href="#session{{object.pk}}">جزئیات سانس </a></li>
         </ul>
       </div>
-      <div  class="card-content grey lighten-2" >
+      <div  class="card-content grey lighten-3" >
         <div id="session{{object.pk}}" style=" font-size: 80%">
           <div class="row"><h6 style="margin-bottom:-8px;">
             <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.six_to_twelve_sessions_discount}}%</div>
@@ -585,51 +586,51 @@
   {% for session in sessions %}
   {% if session.salon == object.salon %}
 
-    <div style="margin-top:35px; height:auto;  background-color: #9F6B99FF;" class="card-panel gold" data-aos="fade-right" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
+    <div style="margin-top:35px; height:auto; padding-bottom:5%;" class="card-panel grey darken-2" data-aos="fade-right" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
       {% if session.discount_percentage or session.salon.company_discount_percentage %}
       <div class="badge">
       <span>{{ session.discount_percentage|add:session.salon.company_discount_percentage }}%</span>
       </div>
       {% else %}
       <div class="cbadge">
-      <span >{{ session.discount_percentage|add:session.salon.company_discount_percentage }}%</span>
+      <span >{{ session.discount_percentage|add:session.salon.company_discount_percentage }}</span>
       </div>
       {% endif %}
       <h6 style="font-size:21px; margin-top:-50px">
         <div class="row">
 
-          <div class="col s6 m6 l6 right-align">
+          <div class="col s6 m6 l6 right-align white-text">
             {{session.time|date:"H:i"}}-{{session.pk|session_end}}
           </div>
-          <div class="col s6 m6 l6 left-align ">
+          <div class="col s6 m6 l6 left-align fLalezar">
     زمان
           </div>
-          <div class="col s6 m6 l6 right-align">
+          <div class="col s6 m6 l6 right-align white-text">
             {{session.day}}
           </div>
-          <div class="col s6 m6 l6 left-align">
+          <div class="col s6 m6 l6 left-align fLalezar">
             روز
           </div>
 
-          <div class="col s6 m6 l6 right-align">
+          <div class="col s6 m6 l6 right-align white-text">
             {{session.discount_percentage}}% {% if session.salon.company_discount_percentage %}+ {{session.salon.company_discount_percentage}}% {% endif %}
           </div>
-          <div class="col s6 m6 l6 left-align">
+          <div class="col s6 m6 l6 left-align fLalezar">
             درصد تخفیف
           </div>
-          <div class="col s6 m6 l6 right-align">
+          <div class="col s6 m6 l6 right-align white-text">
             {{session.price}}
           </div>
-          <div class="col s6 m6 l6 left-align">
+          <div class="col s6 m6 l6 left-align fLalezar">
     (قیمت (تومان
           </div>
-          <div class="col s6 m6 l6 right-align">
+          <div class="col s6 m6 l6 right-align white-text">
             {{session.pk|final_price}}
           </div>
-          <div class="col s6 m6 l6 left-align">
+          <div class="col s6 m6 l6 left-align fLalezar">
     (قیمت نهایی (تومان
           </div>
-          <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:12px; margin-bottom:-5%; background-color: #550680;"4f3466ff class="fLalezar waves-effect waves-light btn-large" ><h6>جزئیات و رزرو</h6></a>
+          <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:12px; margin-bottom:-5%; " class="fLalezar waves-effect waves-light btn-large gold" ><h6>جزئیات و رزرو</h6></a>
       </h6>
     </div>
   {% endif %}

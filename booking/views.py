@@ -355,8 +355,8 @@ def SignContractView(request,pk):
             l = 0
             for category in salon_instance.sessioncategories.all():
                 if not category.is_closed:
-                    list = category.sessions.all()
-                    obj = list[0]
+                    queryset_1 = category.sessions.all()
+                    obj = queryset_1[0]
                     session_instances = get_list_or_404(SessionModel,day = obj.day,
                                                         session_category = category)
                     dictionary = {'category':category,'sessions':session_instances}
