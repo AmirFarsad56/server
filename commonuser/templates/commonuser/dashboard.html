@@ -54,7 +54,7 @@
 
               <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="سانس های شما"><i style="color:#d4af37;" class="material-icons">event</i></a></li>
               <li><a href="{% url 'commonuser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
-              <li><a href="#" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
+              <li><a href="{% url 'company:contactus' %}" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
               <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
 
             </ul>
@@ -126,7 +126,7 @@
 <div class="col s6 m3 l3 left-align fLalezar">ساعت کنسل شدن</div>
 {% endif %}
           <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.final_price}}</div>
-          <div class="col s6 m3 l3 left-align fLalezar">(هزینه پرداخت شده (تومان</div>
+          <div class="col s6 m3 l3 left-align fLalezar">هزینه پرداخت شده (تومان)</div>
 
           <div class="col s6 m3 l3 right-align black-text fHarmattan">{{booking.code}}</div>
           <div class="col s6 m3 l3 left-align fLalezar">کد رزرو</div>        </div><br>
@@ -308,15 +308,17 @@
       <div class="row center center-align">
         <h4 class="col s6 m6 l6 center center-align grey-text text-darken-4">{{booking.session.salon.sportclub.sportclub_name}}</h4>
         <h4 class="col s6 m6 l6 fLalezar " >نام مجموعه ورزشی</h4>
-  <br><br><br><br><br><br>
+  <br><br><br><br><br><br><div style="padding:5%;">
         {% leaflet_map booking.pk|pk_to_str callback=booking.pk|pk_to_map_init %}
+  </div>
+
       </div>
-      <ul class="collapsible popout gold-text">
+      <ul class="collapsible popout white-text">
       <li>
-        <div class="collapsible-header grey darken-4 " style="display: block;">
+        <div class="collapsible-header gold" style="display: block;">
         مشخصات مجموعه ورزشی مربوطه
         </div>
-        <div class="collapsible-body grey teal-text">
+        <div class="collapsible-body grey lighten-2 teal-text">
           <div class="row">
             <div class="col s8 m8 l8 right-align black-text fHarmattan">{{booking.session.salon.sportclub.sportclub_name}}</div>
             <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
@@ -340,23 +342,24 @@
           </ul>
 
 
-          {% if booking.session.salon.pictures.all %}
-              <div class="slider">
-                  <ul class="slides">
-          {% for pic in booking.session.salon.pictures.all %}
-              <li>
-                <img src="{{pic.picture.url}}"> <!-- random image -->
-              </li>
-          {% endfor %}
-            </ul>
-          </div>
-          {% endif %}
+
           <ul class="collapsible popout ">
           <li>
-            <div class="collapsible-header grey darken-4 gold-text" style="display: block;">
+            <div class="collapsible-header gold lighten-2 white-text" style="display: block;">
             اطلاعات سالن ورزشی
             </div>
-            <div class="collapsible-body grey ">
+            <div class="collapsible-body grey lighten-3">
+              {% if booking.session.salon.pictures.all %}
+                  <div class="slider">
+                      <ul class="slides">
+              {% for pic in booking.session.salon.pictures.all %}
+                  <li>
+                    <img src="{{pic.picture.url}}"> <!-- random image -->
+                  </li>
+              {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
               <h6>
                 <div class="row">
                   <div class="col s6 m6 l6 right-align black-text fHarmattan">{{booking.session.salon.area}}</div>
@@ -489,13 +492,13 @@
 <div id="modal{{booking.pk}}" class="modal right-align">
   <div class="modal-content fLalezar grey darken-3">
     <h4 class="gold-text">آیا مطمئن هستید میخواهید این سانس را با جریمه  ذکر شده کنسل نمائید؟</h4>
-    <p>در صورت کنسل کردن سانس شما فقط قادر خواهید بود مبلغ قابل عودت را به صورت حضوری از مجموعه ورزشی موردنظر دریافت نمائید <br>
+    <p class="fHarmattan white-text">در صورت کنسل کردن سانس شما فقط قادر خواهید بود مبلغ قابل عودت را به صورت حضوری از مجموعه ورزشی موردنظر دریافت نمائید <br>
    {{booking.session.day}} روز سانس <br>
    {{booking.session.time|date:"H:i"}} ساعت شروع سانس
     </p>
   </div>
   <div class="modal-footer grey darken-3">
-    <a href="{% url 'booking:cancelsession' pk=booking.pk %}" class=" waves-effect waves-green btn-flat fLalezar red black-text fHarmattan"><h6>کنسل کردن!</h6></a>
+    <a style="direction:rtl" href="{% url 'booking:cancelsession' pk=booking.pk %}" class=" waves-effect waves-green btn-flat fLalezar red black-text fHarmattan"><h6>کنسل کردن!</h6></a>
     <a class="modal-close waves-effect waves-green btn-flat fLalezar green black-text fHarmattan"><h6>بیخیال</h6></a>
   </div>
 </div>

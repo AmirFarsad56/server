@@ -20,6 +20,16 @@
 <link rel="shortcut icon" type="image/png" href="https://varzesh-kon.ir/favicon.png"/>
 <link rel="shortcut icon" type="image/png" href="/media/logos/favicon.png"/>
 
+<!-- date picker -->
+<link href="{% static 'css/datepicker/bootstrap.css' %}" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+<link href="{% static 'css/datepicker/jquery.Bootstrap-PersianDateTimePicker.css' %}"  rel="stylesheet" />
+<script src="{% static 'js/datepicker/jquery-2.1.4.js' %}" ></script>
+<script src="{% static 'js/datepicker/bootstrap.js' %}" ></script>
+<link type="text/css" href="{% static 'css/datepicker/persian-datepicker.css' %}" rel="stylesheet" />
+<!-- date picker -->
+
+
     <link href="{% static 'css/aos.css' %}" rel="stylesheet">
 
    <!--Let browser know website is optimized for mobile-->
@@ -30,7 +40,7 @@
     <meta name="keywords" content=",رزرو سانس والیبال,سالن والیبال,رزرو سالن والیبال,,بسکتبال,هندبال,والیبال,رزرو سالن فوتسال,رزرو زمین چمن,زمین چمن,والیبال,سامانه رزرو سالن فوتسال,ورزش کن,سامانه ورزش کن,سانس ورزشی,رزرو سانس ورزشی,رزرو آنلاین سانس,رزرو اینترنتی سالن فوتسال,رزرو آنلاین سالن فوتسال,رزرو سالن فوتسا,رزرو سانس ورزشی,رزرو سانس,سالن فوتسال,فوتسال,سالن,سانس,رزرو">
 
     <style media="screen">
-        #gis {width:100%;height:400px;z-index: 0}
+        #gis {width:100%;height:400px;z-index: 0;}
     </style>
     <style type="text/css">
       html,body{
@@ -39,7 +49,7 @@
 </style>
     <script type="text/javascript" src="{% static 'js/leaflet.ajax.min.js' %}"></script>
   </head>
-  <body class="fMarkazi">
+  <body class="fHarmattan grey lighten-4">
 <!-- initialzing sportclub points on map -->
 <script type="text/javascript">
   function points(map,options){
@@ -61,22 +71,18 @@
 <!-- initialzing sportclub points on map -->
 
 
-<style type="text/css">
-
-</style>
-
 <!-- introduction -->
-<div id="introduction" class="blockone grey darken-4 section scrollspy">
-  <nav class="pushpin-demo-nav pinned" data-target="introduction" style="z-index: 1;top: 0px;">
-    <div class="nav-wrapper black">
+<div class="blockone section scrollspy navbar-fixed ">
+  <nav class="navbar-fixed" data-target="introduction" style="z-index: 5;top: 0px;">
+    <div class="nav-wrapper white">
       <div class="container">
         <ul id="nav-mobile" class="left hide-on-med-and-down table-of-contents fLalezar">
-          <li><a style="color: #d4af37;" href="#introduction">ورزش کن</a></li>
+          <li><a style="color: #d4af37;" href="#search">جستجو</a></li>
           <li><a style="color: #d4af37;" href="#map">نقشه</a></li>
           <li><a style="color: #d4af37;" href="#salon">سالن ها و سانس ها</a></li>
         </ul>
 
-        <a href="{% url 'index' %}"  ><img style="height: 100%" class="brand-logo center" src="/media/logos/black_logo.png" ></a>
+        <a href="{% url 'index' %}"  ><img style="height: 100%" class="brand-logo center" src="/media/logos/white_logo.png" ></a>
         <ul class="right">
         <a  href="#" data-target="nav1" class="sidenav-trigger"><i  class="gold-text material-icons"><font color="#d4af37">menu</font></i></a>
         </ul>
@@ -123,90 +129,111 @@
   </nav>
 <!-- end nav-->
 
+<div class="grey darken-1">
+  <br><br><br>
 
-
-<div class="row">
-  <div class="col s6 m3 l3 right-align">
-    <div class="hide-on-small-only">
-          <br>
-    </div>
-<br><br><br><br><br><br><br>
-    <img class="brand-logo center" src="/media/logos/footer_logo.png" width="230">
-    <br>
-
+  <h4 class="row center black-text fHarmattan">
+  رزرو آنلاین سانس ها و سالن های ورزشی در سامانه ورزش کن
+  </h4>
+  <br>
   </div>
-  <div class="col s6 m3 l3">
-    <div class="hide-on-small-only">
-          <br>
-    </div>
-<br><br><br><br><br>
-    <h2 class="fLalezar right-align gold-text">سامانه</h2>
-    <h2 class="fLalezar center-align gold-text">ورزش</h2>
-    <h2 class="fLalezar left-align gold-text">کن</h2>
-  </div>
-  <div class="col s12 m1 l1">
+<div id="search" class="row ">
 
-  </div>
-<div class="col s12 m4 l4 white-text fMarkazi right-align">
-  <div class="hide-on-small-only">
-  <br><br><br><br><br><br><br>
-  </div>
-<br><br><br>
-<h5 class="fHarmattan" style="direction: rtl; text-align: justify; text-justify: inter-word;">سامانه ورزش کن یک سامانه ی آنلاین رزرو سانس های ورزشی میباشد که به منظور آسان تر کردن رزرو سالن های
-ورزشی مانند سالن فوتسال و سالن والیبال و بسکتبال و زمین چمن ایجاد شده است و با استفاده از این سامانه شما
-میتوانید به رزرو سانس فوتسال یا سانس دیگر رشته های ورزشی بپردازید. </h5>
-  </div>
-
-
-</div>
 <div class="row" style="direction:rtl; text-align:right;">
   <form method="POST" style="direction:rtl; text-align:right;">
 {% csrf_token %}
 
+<div class="grey darken-3">
+  <br>
+  <h4 class="row center fLalezar gold-text">
+        جستجو در سانس های ورزشی
+
+  </h4>
+  {% if error %}
+
+  {% endif %}
+<div class="row red-text">
+<div class="container">
+
+
+  <div style="direction:rtl; text-align:right;" class="fLalezar input-field right-align ">
+    <div class="col s6 m3 l2 center-align">
+<label>
+<input style="direction:rtl;  text-align:right; color:d4af37;" value="grass" class="fLalezar gold-text col s12 m11 l11"  type="radio" name="type"/>
+<span style="margin-top:18px;">زمین چمن</span>
+</label>
+    </div>
+    <div class="col s6 m3 l2 center-align">
+      <label>
+  <input checked style="direction:rtl; text-align:right; color:d4af37;" value="salon" class="fLalezar gold-text col s12 m11 l11" type="radio" name="type"/>
+  <span style="margin-top:18px;">سالن</span>
+</label>
+</div>
+    <div class="col s12 m3 l4">
+      <input style="direction:rtl; text-align:right; color:d4af37;" class="fLalezar gold-text col s12 m11 l11" placeholder="روز"
+       id="exampleInput3" data-mddatetimepicker="true" data-englishnumber="true" autocomplete="off" type="text" name="day" >
+    </div>
+    <div class="col s12 m3 l4">
+      <select style="direction:rtl; text-align:right; color:d4af37;" class="gold fLalezar gold-text col s12 m11 l11" placeholder="زمان شروع سانس" type="text" name="time">
+<option style="white-space:pre;" value="" disabled selected>        ساعت شروع سانس</option>
+        <option style="white-space:pre;" value="1" >      قبل از 10 صبح</option>
+        <option style="white-space:pre;" value="2">      بین 10 صبح و 15 ظهر</option>
+        <option style="white-space:pre;" value="3">     بین 15 ظهر و 19 شب</option>
+        <option style="white-space:pre;" value="4">     بعد از 19 شب</option>
+
+
+      </select>
+
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<div class="row grey darken-3 center-align">
+  <button class="input-field center-align left-align left-align btn btn-large fLalezar gold black-text " type="submit">جستجو
+  </button>
+</div>
+</div>
+<div style="margin:-20px;" class="row center grey darken-1 black-text fLalezar"">
+<br>
+<h4 >
+
+  جستجوی مجموعه ها
+</h4>
+
+</div>
+<div class="row grey darken-1 center">
+
 
   {% if error %}
-  <div class="col s12 m12 l12 center red-text text-darken-2">
+  <div class="col s12 m12 l12 center white-text text-darken-2">
     <h5 style="direction:rtl;">
   مجموعه ورزشی با سریال وارد شده پیدا نشد.
   </h5>
 </div>
   {% endif %}
-  <div class="hide-on-small-only col s1 m1 l3">
+
+  <div  class="container input-field left-align">
+    <div style="direction:rtl; text-align:right;" class="fLalezar input-field right-align ">
+      <input style="direction:rtl; text-align:right; color:d4af37;" class="fLalezar gold-text" placeholder="سریال مجموعه ورزشی" type="text" name="serial_number" >
+  </div>
+
 
   </div>
-  <div style="margin-top:22px; margin-right:6px; margin-left:8px;" class="input-field col s3 m3 l1 left-align">
-    <button class="left-align btn btn-large fLalezar gold black-text" type="submit">جستجو
-    </button>
-  </div>
-  <div style="direction:rtl; text-align:right;" class="fLalezar input-field col s8 m7 l5 right-align ">
-    <input style="direction:rtl; text-align:right;" class="fLalezar gold-text" placeholder="سریال مجموعه ورزشی" type="text" name="serial_number" >
-</div>
 
-<div class="hide-on-small-only col s0 m1 l3">
+<button class=" btn btn-large fLalezar gold black-text" type="submit">جستجو
+</button>
+
+<br><br>
 
 </div>
+
   </form>
 </div>
 
-<br>
-<div  class="row">
-  <h5 class="white-text fLalezar">
 
-
-
-    <div style="margin-bottom: 25px;" class="col s12 m6 l3 center">
-    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'salon:publiclist' %}">             لیست سالن ها              </a>
-    </div>
-    <div style="margin-bottom: 25px;" class="col s12 m6 l3 center">
-    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;"  href="{% url 'session:publiclist' %}">            لیست سانس ها            </a>
-    </div>
-    <div style="margin-bottom: 25px;" class="col s12 m6 l3 center">
-    <a class="gold-text " style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'session:todaypubliclist' %}">                     رزرو امروز                     </a>
-    </div>
-    <div style="margin-bottom: 25px;" class="col s12 m6 l3 center">
-    <a class="gold-text" style="border: 2px solid #d4af37; border-radius: 7px; white-space: pre;" href="{% url 'sportclub:publiclist' %}">         مجموعه های ورزشی       </a>
-    </div>
-  </h5>
 
 
 <div class="hide">
@@ -257,405 +284,286 @@
 </div>
 </div>
 
-
-
 </div>
-
-<br>
 
 
 <div class="row">
   <div class="col s1 m2 l2">
-
+<br>
   </div>
-  <div class="col s10 m8 l8">
 
-    <h2 style="white-space: pre;" class="fMarkazi white-text right-align">با             </h2>
-    <h1 class="fLalezar gold-text center">ورزش کن</h1>
-    <h2 class="fMarkazi white-text left">!آسون تر ورزش کن</h2>
-
-
-
-  </div>
     <div class="col s1 m2 l2">
 
     </div>
 </div>
 
-
-
-
-
 </div>
 <!-- introduction -->
 
-
-
 <!-- map -->
-<div id="map" class="blocktwo grey lighten-2 section scrollspy">
-  <nav class="pushpin-demo-nav pinned" data-target="map" style="z-index: 2;top: 0px;">
-    <div class="nav-wrapper white">
-      <div class="container">
-        <ul id="nav-mobile" class="left hide-on-med-and-down table-of-contents fLalezar">
-          <li><a style="color:#d4af37;" href="#introduction">ورزش کن</a></li>
-          <li><a style="color:#d4af37;"" href="#map">نقشه</a></li>
-          <li><a style="color:#d4af37;" href="#salon">سالن ها و سانس ها</a></li>
-        </ul>
+<div class="blocktwo grey lighten-1 section scrollspy">
 
-        <a href="{% url 'index' %}"  ><img style="height: 100%" class="brand-logo center" src="/media/logos/white_logo.png"></a>
-        <ul class="right">
-        <a  href="#" data-target="nav2" class="sidenav-trigger"><i  class="gold-text material-icons"><font >menu</font></i></a>
-        </ul>
-        <ul class="right hide-on-med-and-down">
-          <li><a class="dropdown-trigger gold-text fLalezar" href="#!" data-target="dropdown2"><i class="material-icons right gold-text">arrow_drop_down</i>میانبر</a></li>
-          {% if user.is_authenticated %}
-          {% if user.is_sportclub %}
-          {% if user.sportclubs.salons.count > 1 or user.sportclubs.salons.count == 0 %}
-          <li><a href="{% url 'sportclub:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سالن ها"><i class=" material-icons gold-text">account_balance</i></a></li>
-          {% else %}
-          <li><a href="{% url 'session:workspace' pk=user.sportclubs.salons.get.pk %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سانس ها"><i class=" material-icons gold-text">event_note</i></a></li>
-          <li><a href="{% url 'sportclub:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سالن ها"><i class=" material-icons gold-text">account_balance</i></a></li>
-          {% endif %}
-
-          <li><a href="{% url 'sportclub:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i class="material-icons gold-text">account_circle</i></a></li>
-          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
-          {% endif %}
-          {% if user.is_commonuser %}
-          <li><a href="{% url 'commonuser:dashboard' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="سانس های شما"><i class="material-icons gold-text">event</i></a></li>
-          <li><a href="{% url 'commonuser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i class="material-icons gold-text">account_circle</i></a></li>
-          <li><a href="{% url 'company:contactus' %}" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i class=" material-icons gold-text">phone</i></a></li>
-          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
-          {% endif %}
-          {% if user.is_superuser %}
-          <li><a href="{% url 'accounts:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="میز کار"><i class=" material-icons gold-text">event_note</i></a></li>
-          <li><a href="{% url 'accounts:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i class="material-icons gold-text">account_circle</i></a></li>
-          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
-          {% endif %}
-          {% if user.is_masteruser %}
-          <li><a href="{% url 'masteruser:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="میز کار"><i class=" material-icons gold-text">event_note</i></a></li>
-          <li><a href="{% url 'masteruser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i class="material-icons gold-text">account_circle</i></a></li>
-          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
-          {% endif %}
-          {% else %}
-          <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
-          <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
-          <li><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i class=" material-icons gold-text">phone</i></a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
 <!-- end nav-->
-<div class="container">
-<br><br><br><br><br><div class="row">
-
+<div  class="container row">
+<div class="row">
 </div>
-
+<div id="map" style="margin-top:-40px; direction:rtl;"  class="fHarmattan center"><h6>
+با انتخاب مجموعه ورزشی مورد نظر خود از نقشه میتوانید نسبت به رزرو سانس های ورزشی آن اقدام فرمائید.
+<br><br><br>
+</h6>
+</div>
 {% leaflet_map 'gis' callback="window.points" %}
 </div>
 <br>
-<div class="row">
-  <div class=" hide-on-med-and-down col s0 m0 l0 xl1">
 
-  </div>
-  <div class="col s12 m7 l7 right-align fHarmattan"><h5 style="direction: rtl; text-align: justify; text-justify: inter-word;">
-با انتخاب مجموعه ورزشی مورد نظر خود از نقشه میتوانید نسبت به رزرو سانس های ورزشی آن اقدام فرمائید.
-<br>
-</h5>  </div>
-  <div class="col s12 m5 l4 left">
-    <br>
-    <div class="center center-align">
-      <a href="{% url 'sportclub:publiclist' %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large teal fLalezar" ><h6 >جستجوی مجموعه های ورزشی<i class="material-icons left" style="margin-right:0px; margin-left:-10px">search</i></h6></a>
-    </div>
-
-  </div>
-
-</div>
 </div>
 <!-- map -->
 
 
 
+<div style="margin:-10px" class="row grey lighten-2">
+  <br><br><br>
+  <h5 class="fLalezar">
+
+    <div style="margin-bottom: 27px;" class="col s12 m6 l3 center">
+    <a class="white-text teal" style="border: 2px solid #009688; border-radius: 7px; white-space: pre;" href="{% url 'salon:publiclist' %}">                   سالن ها                    </a>
+    </div>
+    <div style="margin-bottom: 27px;" class="col s12 m6 l3 center">
+    <a class="white-text teal" style="border: 2px solid #009688; border-radius: 7px; white-space: pre;"  href="{% url 'session:publiclist' %}">                  سانس ها                  </a>
+    </div>
+    <div style="margin-bottom: 27px;" class="col s12 m6 l3 center">
+    <a class="white-text teal " style="border: 2px solid #009688; border-radius: 7px; white-space: pre;" href="{% url 'session:todaypubliclist' %}">                   رزرو امروز                   </a>
+    </div>
+    <div style="margin-bottom: 27px;" class="col s12 m6 l3 center">
+    <a class="white-text teal" style="border: 2px solid #009688; border-radius: 7px; white-space: pre;" href="{% url 'sportclub:publiclist' %}">       مجموعه های ورزشی     </a>
+    </div>
+  </h5>
+</div>
 
 
 <!-- salon -->
-<div id="salon"  class="blockthree section scrollspy grey lighten-2">
+<div style="margin:-10px"  class="blockthree section scrollspy grey lighten-2">
 
-<!-- end nav-->
-<br>
-<div style="white-space:pre" class="row">
-
-</div>
-
-
-<div class="row"><h3>
-  <div class="col s0 m5 l5">
-  </div>
-  <div class="col s12 m4 l4 center-align">
-  <h2  ><a href="{% url 'salon:publiclist' %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large gold fLalezar" ><h6>جستجوی سالن ها<i class="material-icons left" style="margin-right:0px; margin-left:-10px">search</i></h6></a></h2>
-  </div>
-<div class="col s12 m2 l2">
-  <h2 style="white-space:pre;" class="fLalezar center-align teal-text"> سالن ها و  </h2>
-</div>
-<div class="col s0 m1 l1">
-</div>
-
-
-<div class="col s0 m2 l2">
-</div>
-<div class="col s12 m4 l4 center-align">
-<h2><a href="{% url 'session:publiclist' %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large gold fLalezar" ><h6>جستجوی سانس ها<i class="material-icons left" style="margin-right:0px; margin-left:-10px">search</i></h6></a></h2>
-</div>
-<div class="col s12 m3 l3">
-<h2 style="white-space:pre" class="fLalezar center-align teal-text"> سانس های</h2>
-</div>
-<div class="col s0 m3 l3">
-</div>
-
-<div class="col s0 m4 l4">
-</div>
-<h2 style="white-space:pre" class="fLalezar center-align teal-text">
-<div class="col s12 m12 l4">
- پیشنهادی
-</div>
-</h2>
-<div class="col s0 m4 l4">
+<br><br><br>
+<div id="salon" class="row fLalezar center teal-text"> <h3>
+  سالن ها و سانس های پیشنهادی
+</h3>
 </div>
 
 
 <br><br>
-</div>
-<div class="row center fLalezar" ">
-    <div class="customcontainer" style="margin-left:6%; margin-right:6%">
-  {% for object in salons %}
-  {% if object.salon.is_confirmed %}
-<div class="row">
 
+  <div class="row">
+  <div class="col s12">
+    <ul style=" height:150px; border-radius: 18px; border-left: 6px solid #d4af37; border-right: 6px solid #d4af37;" class="tabs center">
+      {% for object in salons %}
+      {% if object.salon.is_confirmed %}
+      <li style="height:150px;" class="tab"><a href="#tab{{object.salon.pk}}">
 
-
-  <div style=" margin-top:40px" class="col s12 m12 l7">
-
-    <div style="padding:8px;  border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-4 teal-text" data-aos="fade-left"
-     data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
-      <div class="card-content">
         {% if object.salon.pictures.all %}
-            <div style="z-index: 1;" class="slider">
-                <ul style="z-index: 1; " class="slides">
+
         {% for pic in object.salon.pictures.all %}
-            <li >
-              <img style="z-index: 1" src="{{pic.picture.url}}">
-            </li>
+        {% if forloop.first %}
+              <img style="z-index: 1; height:150px;" src="{{pic.picture.url}}">
+        {% endif %}
         {% endfor %}
-          </ul>
+
+        {% endif %}
+
+</a></li>
+      {% endif %}
+      {% endfor %}
+
+    </ul>
+  </div>
+</div>
+<div class="center">
+{% for object in salons %}
+{% if object.salon.is_confirmed %}
+<div id="tab{{object.salon.pk}}" style="height:auto" class="row">
+
+  <div  class="col l6 m6 s12">
+    <div style="margin:3%; padding:30px;" class="card fLalezar teal-text" data-aos="fade-left" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
+
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.sportclub.sportclub_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام مجموعه ورزشی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.sportclub.region}}</div>
+      <div class="col s6 m6 l6 left-align">استان</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.area}}</div>
+      <div class="col s6 m6 l6 left-align">(اندازه سالن (متر مربع</div>
+    </div>
+    <div class="row">
+    <div class="col s6 m6 l6 right-align fHarmattan black-text">
+      {% if object.salon.is_football %}
+      فوتبال
+      {% endif %}
+      {% if object.salon.is_futsall %}
+      فوتسال
+      {% endif %}
+      {% if object.salon.is_volleyball %}
+      والیبال
+      {% endif %}
+      {% if object.salon.is_basketball %}
+      بسکتبال
+      {% endif %}
+      {% if object.salon.is_handball %}
+      هندبال
+      {% endif %}
+    </div>
+    <div class="col s6 m6 l6 left-align">زمینه ورزشی سالن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.sportclub.address}}</div>
+      <div class="col s6 m6 l6 left-align">آدرس سالن</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.sportclub.company_phone_number}}</div>
+      <div class="col s6 m6 l6 left-align">شماره تلفن ثابت</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.sportclub.serial_number}}</div>
+      <div class="col s6 m6 l6 left-align">سریال مجموعه ورزشی</div>
+    </div>
+
+
+    <div class="row">
+<div class="col s12 m12 l6 center-align"><a href="{% url 'sportclub:publicdetail' pk=object.salon.sportclub.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large z-depth-0" ><h6>جزئیات و محل مجموعه</h6></a></div>
+<div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn z-depth-0" ><h6>    عقد قرارداد با این سالن    </h6></a></div>
+<div class="col s12 m12 l12 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large z-depth-3" ><h6>   رزرو و جزئیات سالن     </h6></a></div>
+    </div>
+
+  </div>
+  </div>
+  <div  class="col l6 m6 s12">
+    {% for session in sessions %}
+    {% if session.salon == object.salon %}
+    <div style="margin-top:45px;">
+
+    </div>
+<div style="  width: 0; margin-left:8px; height: 0; border-top: 20px solid transparent;
+  border-bottom: 28px solid transparent; border-right:28px solid #d4af37; margin-bottom:-85px;"
+  data-aos="fade-right" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
+
+</div>
+      <div style="margin:5%; height:auto; padding-bottom:5%;" class="card-panel grey lighten-3 teal-text " data-aos="fade-right" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
+        {% if session.discount_percentage or session.salon.company_discount_percentage %}
+        <div class="badge">
+        <span>{{ session.discount_percentage|add:session.salon.company_discount_percentage }}%</span>
+        </div>
+        {% else %}
+        <div class="cbadge">
+        <span >{{ session.discount_percentage|add:session.salon.company_discount_percentage }}</span>
         </div>
         {% endif %}
-        <br>
 
-        <div class="row">
-          <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.area}}</div>
-          <div class="col s6 m6 l6 left-align">(اندازه سالن (متر مربع</div>
-        </div>
-        <div class="row">
-          <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.floor_type}}</div>
-          <div class="col s6 m6 l6 left-align">جنس کف سالن</div>
-        </div>
-        <div class="row">
-        <div class="col s6 m6 l6 right-align fHarmattan black-text">
-          {% if object.salon.is_football %}
-          فوتبال
-          {% endif %}
-          {% if object.salon.is_futsall %}
-          فوتسال
-          {% endif %}
-          {% if object.salon.is_volleyball %}
-          والیبال
-          {% endif %}
-          {% if object.salon.is_basketball %}
-          بسکتبال
-          {% endif %}
-          {% if object.salon.is_handball %}
-          هندبال
-          {% endif %}
-        </div>
-        <div class="col s6 m6 l6 left-align">زمینه ورزشی سالن</div>
-        </div>
+        <h6 style="font-size:21px; margin-top:-50px">
 
-
+          <div class="row">
+            <div class="col s6 m6 l6 right-align black-text">
+              <div style="margin:3px;">
+                  {{session.day}}
+              </div>
+            </div>
+            <div class="col s6 m6 l6 left-align fLalezar">
+              <div style="margin:3px;">
+              روز
+              </div>
+            </div>
+            <div class="col s6 m6 l6 right-align black-text">
+              <div style="margin:3px;">
+              {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+              </div>
+            </div>
+            <div class="col s6 m6 l6 left-align fLalezar">
+              <div style="margin:3px;">
+      زمان
+              </div>
+            </div>
+            <div class="col s6 m6 l6 right-align black-text">
+              <div style="margin:3px;">
+              {{session.price}}
+              </div>
+            </div>
+            <div class="col s6 m6 l6 left-align fLalezar">
+              <div style="margin:3px;">
+      (قیمت (تومان
+              </div>
+            </div>
+            {% if session.discount_percentage or session.salon.company_discount_percentage %}
+            <div class="col s6 m6 l6 right-align black-text">
+              <div style="margin:3px;">
+              {{session.pk|final_price}}
+              </div>
+            </div>
+            <div class="col s6 m6 l6 left-align fLalezar">
+              <div style="margin:3px;">
+      (قیمت نهایی (تومان
+              </div>
+            </div>
+            {% endif %}
+            <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:12px; margin-bottom:-5%; " class="fLalezar waves-effect waves-light btn-large gold z-depth-2" ><h6>رزرو</h6></a>
+        </h6>
       </div>
-
-      <div class="card-tabs gold" style="height: auto;">
-        <ul class="tabs tabs-fixed-width gold" >
-          <li class="tab"><a class="fLalezar white-text" href="#options{{object.pk}}">امکانات</a></li>
-          <li class="tab"><a class="fLalezar white-text active" href="#sportclub{{object.pk}}">مجموعه ورزشی</a></li>
-          <li class="tab"><a class="fLalezar white-text" href="#session{{object.pk}}">جزئیات سانس </a></li>
-        </ul>
-      </div>
-      <div  class="card-content grey lighten-3" >
-        <div id="session{{object.pk}}" style=" font-size: 80%">
-          <div class="row"><h6 style="margin-bottom:-8px;">
-            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.six_to_twelve_sessions_discount}}%</div>
-            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بین ۶ و ۱۲ جلسه</div>
-  <br><br>
-            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.more_than_twelve_sessions_discount}}%</div>
-            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بین ۱۲ و ۲۴ جلسه</div>
-  <br><br>
-            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.more_than_twelve_sessions_discount}}%</div>
-            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بیش از ۲۴ جلسه</div>
-  </h6>
-  <br><br>
-  <div class="col s12 m12 l6 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large " ><h6> سانس های این سالن </h6></a></div>
-  <div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>عقد قرارداد با این سالن</h6></a></div>
-          </div>
-        </div>
-
-
-        <div class="center " style="height: auto" id="options{{object.pk}}">
-          {% if object.salon.locker %}
-          <div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/locker.png" width="42"><span class="tiptooltext" >کمد</span>
-          </div>
-          {% endif %}
-          {% if object.salon.air_conditioner %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/air_conditioner.png" width="42"><span class="tiptooltext" >تهویه هوا</span>
-          </div>
-          {% endif %}
-          {% if object.salon.ball_rent %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/ball_rent.png" width="42"><span class="tiptooltext" >اجاره توپ</span>
-        </div>
-          {% endif %}
-          {% if object.salon.spectator_place %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/spectator_place.png" width="42"><span class="tiptooltext" >جایگاه تماشاچی</span>
-        </div>
-          {% endif %}
-          {% if object.salon.shower %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/shower.png" width="42"><span class="tiptooltext" >دوش</span>
-        </div>
-          {% endif %}
-          {% if object.salon.changing_room %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویض لباس</span>
-        </div>
-          {% endif %}
-          {% if object.salon.parking_area %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/parking_area.png" width="42"><span class="tiptooltext" >پارکینگ</span>
-        </div>
-          {% endif %}
-          {% if object.salon.drinking_water %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/drinking_water.png" width="42"><span class="tiptooltext" >آب آشامیدنی</span>
-        </div>
-          {% endif %}
-          {% if object.salon.safe_keeping %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/safe_keeping.png" width="42"><span class="tiptooltext" >امانتداری</span>
-        </div>
-          {% endif %}
-          {% if object.salon.buffet %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/buffet.png" width="42"><span class="tiptooltext" >بوفه</span>
-        </div>
-          {% endif %}
-          {% if object.salon.taxi %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/taxi.png" width="42"><span class="tiptooltext" >تاکسی ویژه</span>
-        </div>
-          {% endif %}
-          {% if object.salon.wifi %}<div class="tiptool">
-            <img style="margin:10px;" src="/media/logos/wifi.png" width="42"><span class="tiptooltext" >وای فای</span>
-        </div>
-          {% endif %}
-        </div>
-        <div id="sportclub{{object.pk}}" style="height: auto">
-          <div class="row fHarmattan">
-            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.sportclub_name}}</div>
-            <div class="col s5 m5 l5 left-align fLalezar">نام مجموعه ورزشی</div>
-            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.serial_number}}</div>
-            <div class="col s5 m5 l5 left-align fLalezar">سریال مجموعه ورزشی</div>
-            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.region}}</div>
-            <div class="col s5 m5 l5 left-align fLalezar">استان</div>
-            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.address}}</div>
-            <div class="col s5 m5 l5 left-align fLalezar">آدرس</div>
-            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.company_phone_number}}</div>
-            <div class="col s5 m5 l5 left-align fLalezar">شماره تلفن ثابت</div>
-          </div>
-  <a target="_blank" href="{% url 'sportclub:publicdetail' pk=object.salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
-
-        </div>
-      </div>
-
-</div>
-</div>
-<!-- session -->
-<div class="col s12 m12 l5 fHarmattan">
-  <br><br>
-  {% for session in sessions %}
-  {% if session.salon == object.salon %}
-
-    <div style="margin-top:35px; height:auto; padding-bottom:5%;" class="card-panel grey darken-2" data-aos="fade-right" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
-      {% if session.discount_percentage or session.salon.company_discount_percentage %}
-      <div class="badge">
-      <span>{{ session.discount_percentage|add:session.salon.company_discount_percentage }}%</span>
-      </div>
-      {% else %}
-      <div class="cbadge">
-      <span >{{ session.discount_percentage|add:session.salon.company_discount_percentage }}</span>
-      </div>
-      {% endif %}
-      <h6 style="font-size:21px; margin-top:-50px">
-        <div class="row">
-
-          <div class="col s6 m6 l6 right-align white-text">
-            {{session.time|date:"H:i"}}-{{session.pk|session_end}}
-          </div>
-          <div class="col s6 m6 l6 left-align fLalezar">
-    زمان
-          </div>
-          <div class="col s6 m6 l6 right-align white-text">
-            {{session.day}}
-          </div>
-          <div class="col s6 m6 l6 left-align fLalezar">
-            روز
-          </div>
-
-          <div class="col s6 m6 l6 right-align white-text">
-            {{session.discount_percentage}}% {% if session.salon.company_discount_percentage %}+ {{session.salon.company_discount_percentage}}% {% endif %}
-          </div>
-          <div class="col s6 m6 l6 left-align fLalezar">
-            درصد تخفیف
-          </div>
-          <div class="col s6 m6 l6 right-align white-text">
-            {{session.price}}
-          </div>
-          <div class="col s6 m6 l6 left-align fLalezar">
-    (قیمت (تومان
-          </div>
-          <div class="col s6 m6 l6 right-align white-text">
-            {{session.pk|final_price}}
-          </div>
-          <div class="col s6 m6 l6 left-align fLalezar">
-    (قیمت نهایی (تومان
-          </div>
-          <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:12px; margin-bottom:-5%; " class="fLalezar waves-effect waves-light btn-large gold" ><h6>جزئیات و رزرو</h6></a>
-      </h6>
-    </div>
-  {% endif %}
-  {% endfor %}
+    {% endif %}
+    {% endfor %}
   </div>
-  <!-- session end -->
-  </div>
-  {% endif %}
+</div>
+{% endif %}
 {% endfor %}
 </div>
 </div>
+<!-- offering -->
 
 
+
+
+<div class="grey lighten-1 black-text right-align">
+
+<h5 class="fHarmattan container" style="direction: rtl; text-align: justify; text-justify: inter-word;">
+  <br><br>
+سامانه ورزش کن یک سامانه ی آنلاین رزرو سانس های ورزشی و سالن های ورزشی کشور میباشد
+ که از سال 1398 کار خود را شروع کرده است. رشته های ورزشی که در حال حاضر توسط این سامانه
+  پشتیبانی میشوند عبارتند از: فوتسال, والیبال, فوتبال,بسکتبال و هندبال.
+  اما در آینده ی نزدیک مدیران این سامانه در نظر دارند دیگر رشته های
+ ورزشی اعم از بدنسازی و شنا را نیز پشتیبانی کنند.
+با استفاده از این سامانه شما میتوانید به صورت آنلاین و اینترنتی سالن های مورد نظر خود مانند سالن فوتسال
+را رزرو نمائید.
+لازم به ذکر است که با استفاده کردن از این سامانه هیچ هزینه اضافی
+از شما گرفته نمیشود و شما همان هزینه ای را پرداخت خواهید کرد که مجموعه ورزشی آن را تعیین کرده است.
+ سامانه ورزش کن این هدف را دارد که با برطرف کردن مشکلات و سختی های
+ رزرو کردن سانس قدمی در راستای کمک به ورزشکاران عزیز بردارد.
+ <br>
+اگر مجموعه ورزشی هستید و سالن ورزشی مانند سالن فوتسال داشته و قصد دارید مدیریت سالن و سانس های خود را چند
+ برابر آسان تر کنید سامانه ورزش کن این امکان را به شما میدهد تا با ثبت نام در آن در عرض فقط چند دقیقه
+ سانس های سالن مورد نظر خود را ایجاد کرده و آنها را قیمت گذاری کنید
+  و بقیه کار ها را به ما بسپارید. کافیست از طریق لینک
+  <a href="{% url 'company:sportclubcontact' %}">   ثبت مجموعه ورزشی در سامانه </a>
+
+   فرم مربوطه را پر کرده تا بدون افزایش هزینه هم مدیریت سالن خود
+   را آسان تر کنید و هم دیگر سانس خالی و رزرو نشده ای نداشته باشید
+    و ورزشکاران کشور را در راستای رزرو کردن تایم های مورد نظرشان یاری بفرمائید.
+<br><br></h5>
 </div>
+
+
+
+
 <!-- salon -->
 
 
 
   <!--Footer-->
-  <footer class="page-footer grey darken-4">
+  <footer class="page-footer white">
     <div class="container ">
       <div class="row">
         <div class="col l6 m6 s12" style="direction:ltr;">
           <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
-          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/footer_logo.png" width="160"></a>
+          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/white_footer.png" width="160"></a>
         </div>
         <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
           <ul><h5>
@@ -668,60 +576,15 @@
         </div>
       </div>
     </div>
-    <div class="footer-copyright black">
-      <div class="fLalezar container gold-text">
+    <div class="footer-copyright grey darken-2">
+      <div class="fLalezar container white-text">
     1398  سامانه ورزش کن
 
       </div>
     </div>
   </footer>
 
-        <!-- in the end this part must be copy pasted from above-->
-        <ul class="sidenav black" id="nav1"  style="direction:rtl;">
-          <li><br></li>
-          {% if user.is_authenticated %}
-          {% if user.is_sportclub %}
-          {% if user.sportclubs.salons.count > 1 or user.sportclubs.salons.count == 0 %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:workspace' slug=user.slug %}">مدیریت سالن ها<i style="color: white;" class=" material-icons white-text">account_balance</i></a></li>
-          {% else %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:workspace' pk=user.sportclubs.salons.get.pk %}">مدیریت سانس ها<i style="color: white;" class=" material-icons white-text">event_note</i></a></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:workspace' slug=user.slug %}">مدیریت سالن ها<i style="color: white;" class=" material-icons white-text">account_balance</i></a></li>
-          {% endif %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:profile' slug=user.slug %}">پروفایل<i style="color: white;" class=" material-icons white-text">account_circle</i></a></li>
-          {% endif %}
-          {% if user.is_commonuser %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'commonuser:dashboard' slug=user.slug %}">سانس های شما<i style="color: white;" class=" material-icons white-text">event</i></a></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'commonuser:profile' slug=user.slug %}">پروفایل<i style="color: white;" class=" material-icons white-text">account_circle</i></a></li>
-          {% endif %}
-          {% if user.is_superuser %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'accounts:workspace' slug=user.slug %}">میز کار<i style="color: white;" class=" material-icons white-text">event_note</i></a></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'accounts:profile' slug=user.slug %}">پروفایل<i style="color: white;" class=" material-icons white-text">account_circle</i></a></li>
-          {% endif %}
-          {% if user.is_masteruser %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'masteruser:workspace' slug=user.slug %}">میز کار<i style="color: white;" class=" material-icons white-text">event_note</i></a></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'masteruser:profile' slug=user.slug %}">پروفایل<i style="color: white;" class=" material-icons white-text">account_circle</i></a></li>
-          {% endif %}
-          {% else %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'login' %}">ورود<i  class=" material-icons white-text">keyboard_tab</i></a></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'commonuser:signup' %}">عضویت<i  class=" material-icons white-text">person_add</i></a></li>
-          {% endif %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i  class=" material-icons white-text">search</i></a></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i  class=" material-icons white-text">search</i></a></li>
-
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:publiclist' %}">سانس ها<i  class=" material-icons white-text">search</i></a></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37; direction:ltr;" href="{% url 'session:todaypubliclist' %}">!امروزو رزرو کن<i  class=" material-icons white-text">event_available</i></a></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="https://varzesh-kon.ir/blog/">وبلاگ<i style="color: white;" class=" material-icons white-text">question_answer</i></a></li>
-          {% if not user.is_authenticated or user.is_commonuser %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی<i style="color: white;" class=" material-icons white-text">beenhere</i></a></li>
-          {% endif %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'company:contactus' %}">ارتباط با ما<i style="color: white;" class=" material-icons white-text">phone</i></a></li>
-          {% if user.is_authenticated %}
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'logout' %}">خروج<i style="color: white;" class=" material-icons white-text">close</i></a></li>
-          {% endif %}
-        </ul>
-
-
-        <ul class="sidenav white" id="nav2" style="direction:rtl;">
+        <ul class="sidenav white" id="nav1" style="direction:rtl;">
           <li><br></li>
           {% if user.is_authenticated %}
           {% if user.is_sportclub %}
@@ -767,24 +630,9 @@
 
 
 
-        <ul id="dropdown1" class="dropdown-content black" style="border: #d4af37 1px solid;">
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i style="color: white;" class=" material-icons">search</i></a></li>
-          <li class="divider gold"></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i style="color: white;" class=" material-icons">search</i></a></li>
-          <li class="divider gold"></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:publiclist' %}">سانس ها<i style="color: white;" class=" material-icons">search</i></a></li>
-          <li class="divider gold"></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'session:todaypubliclist' %}">!امروزو رزرو کن<i style="color: white;" class=" material-icons">event_available</i></a></li>
-          <li class="divider gold"></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="https://varzesh-kon.ir/blog/">وبلاگ<i style="color: white;" class=" material-icons">question_answer</i></a></li>
-          {% if not user.is_authenticated or user.is_commonuser %}
-          <li class="divider gold"></li>
-          <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی<i style="color: white;" class="material-icons">beenhere</i></a></li>
-          {% endif %}
-        </ul>
 
 
-        <ul id="dropdown2" class="dropdown-content white" style="direction:ltr; border: #d4af37 1px solid;">
+        <ul id="dropdown1" class="dropdown-content white" style="direction:ltr; border: #d4af37 1px solid;">
           <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i style="color: white;" class=" material-icons teal-text">search</i></a></li>
           <li class="divider gold"></li>
           <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'salon:publiclist' %}">سالن ها<i style="color: white;" class=" material-icons teal-text">search</i></a></li>
@@ -800,6 +648,8 @@
           {% endif %}
           </ul>
 
+          <script src="{% static 'js/datepicker/calendar.min.js' %}" ></script>
+          <script src="{% static 'js/datepicker/jquery.Bootstrap-PersianDateTimePicker.js' %}" ></script>
 
         <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
         <script src="{% static 'js/bin/anime.min.js' %}"> </script>
@@ -819,6 +669,14 @@
           });
           $(document).ready(function(){
             $('.sidenav').sidenav();
+          });
+          $(document).ready(function(){
+            $('.tabs').tabs({
+              duration:500,
+              swipeable:true,
+
+            });
+
           });
 
           $(document).ready(function(){
@@ -846,6 +704,8 @@
                 top: $target.offset().top,
               });
           });
+
+
         </script>
         <script src="{% static 'js/aos.js' %}"></script>
         <script>

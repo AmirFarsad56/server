@@ -1,29 +1,245 @@
-<div style="margin-left:5%; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
+<div class="col s12 m12 l5 fHarmattan">
+  <br><br>
+  {% for session in sessions %}
+  {% if session.salon == object.salon %}
 
-d4af37
+    <div style="margin-top:35px; height:auto; padding-bottom:5%;" class="card-panel grey darken-2" data-aos="fade-right" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
+      {% if session.discount_percentage or session.salon.company_discount_percentage %}
+      <div class="badge">
+      <span>{{ session.discount_percentage|add:session.salon.company_discount_percentage }}%</span>
+      </div>
+      {% else %}
+      <div class="cbadge">
+      <span >{{ session.discount_percentage|add:session.salon.company_discount_percentage }}</span>
+      </div>
+      {% endif %}
+      <h6 style="font-size:21px; margin-top:-50px">
+        <div class="row">
 
-<footer style="width:108%; margin-left:-10px;margin-right:-10px; margin-bottom:-30px; " class="page-footer white">
-    <div class="container ">
-      <div class="row">
-        <div class="col l6 m6 s12" style="direction:ltr;">
-          <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
-          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/white_footer.png" width="160"></a>
-        </div>
-        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
-          <ul><h5>
-            <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
-            <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>
-            <li><a class="gold-text " href="{% url 'company:faqs' %}">سوالات متداول</a></li>
-            <li><a class="gold-text " href="{% url 'company:aboutus' %}">درباره ما</a></li>
-            <li><a class="gold-text" href="{% url 'company:termsdetail' %}">قوانین سایت</a></li></h5>
+          <div class="col s6 m6 l6 right-align white-text">
+            {{session.time|date:"H:i"}}-{{session.pk|session_end}}
+          </div>
+          <div class="col s6 m6 l6 left-align fLalezar">
+    زمان
+          </div>
+          <div class="col s6 m6 l6 right-align white-text">
+            {{session.day}}
+          </div>
+          <div class="col s6 m6 l6 left-align fLalezar">
+            روز
+          </div>
+
+          <div class="col s6 m6 l6 right-align white-text">
+            {{session.discount_percentage}}% {% if session.salon.company_discount_percentage %}+ {{session.salon.company_discount_percentage}}% {% endif %}
+          </div>
+          <div class="col s6 m6 l6 left-align fLalezar">
+            درصد تخفیف
+          </div>
+          <div class="col s6 m6 l6 right-align white-text">
+            {{session.price}}
+          </div>
+          <div class="col s6 m6 l6 left-align fLalezar">
+    (قیمت (تومان
+          </div>
+          <div class="col s6 m6 l6 right-align white-text">
+            {{session.pk|final_price}}
+          </div>
+          <div class="col s6 m6 l6 left-align fLalezar">
+    (قیمت نهایی (تومان
+          </div>
+          <a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:12px; margin-bottom:-5%; " class="fLalezar waves-effect waves-light btn-large gold" ><h6>جزئیات و رزرو</h6></a>
+      </h6>
+    </div>
+  {% endif %}
+  {% endfor %}
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {% for object in salons %}
+  {% if object.salon.is_confirmed %}
+
+  <div class=" carousel-item card hoverable grey lighten-3  z-depth-4 teal-text">
+      <div class="card-content">
+        {% if object.salon.pictures.all %}
+            <div style="z-index: 1;" class="slider">
+                <ul style="z-index: 1; " class="slides">
+        {% for pic in object.salon.pictures.all %}
+            <li >
+              <img style="z-index: 1" src="{{pic.picture.url}}">
+            </li>
+        {% endfor %}
           </ul>
         </div>
-      </div>
-    </div>
-    <div class="footer-copyright grey darken-2">
-      <div class="fLalezar container white-text">
-    1398  سامانه ورزش کن
+        {% endif %}
+        <br>
+
+        <div class="row">
+          <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.area}}</div>
+          <div class="col s6 m6 l6 left-align">(اندازه سالن (متر مربع</div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6 l6 right-align fHarmattan black-text">{{object.salon.floor_type}}</div>
+          <div class="col s6 m6 l6 left-align">جنس کف سالن</div>
+        </div>
+        <div class="row">
+        <div class="col s6 m6 l6 right-align fHarmattan black-text">
+          {% if object.salon.is_football %}
+          فوتبال
+          {% endif %}
+          {% if object.salon.is_futsall %}
+          فوتسال
+          {% endif %}
+          {% if object.salon.is_volleyball %}
+          والیبال
+          {% endif %}
+          {% if object.salon.is_basketball %}
+          بسکتبال
+          {% endif %}
+          {% if object.salon.is_handball %}
+          هندبال
+          {% endif %}
+        </div>
+        <div class="col s6 m6 l6 left-align">زمینه ورزشی سالن</div>
+        </div>
+
 
       </div>
-    </div>
-</footer>
+
+      <div class="card-tabs gold" style="height: auto;">
+        <ul class="tabs tabs-fixed-width gold" >
+          <li class="tab"><a class="fLalezar white-text" href="#options{{object.pk}}">امکانات</a></li>
+          <li class="tab"><a class="fLalezar white-text active" href="#sportclub{{object.pk}}">مجموعه ورزشی</a></li>
+          <li class="tab"><a class="fLalezar white-text" href="#session{{object.pk}}">جزئیات سانس </a></li>
+        </ul>
+      </div>
+      <div  class="card-content grey lighten-3" >
+        <div id="session{{object.pk}}" style=" font-size: 80%">
+          <div class="row"><h6 style="margin-bottom:-8px;">
+            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.six_to_twelve_sessions_discount}}%</div>
+            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بین ۶ و ۱۲ جلسه</div>
+  <br><br>
+            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.more_than_twelve_sessions_discount}}%</div>
+            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بین ۱۲ و ۲۴ جلسه</div>
+  <br><br>
+            <div class="col s3 m4 l4 right-align fHarmattan black-text">{{object.salon.more_than_twelve_sessions_discount}}%</div>
+            <div class="col s9 m8 l8 left-align fLalezar">تخفیف رزروهای بیش از ۲۴ جلسه</div>
+  </h6>
+  <br><br>
+  <div class="col s12 m12 l6 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large " ><h6> سانس های این سالن </h6></a></div>
+  <div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn-large " ><h6>عقد قرارداد با این سالن</h6></a></div>
+          </div>
+        </div>
+
+
+        <div class="center " style="height: auto" id="options{{object.pk}}">
+          {% if object.salon.locker %}
+          <div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/locker.png" width="42"><span class="tiptooltext" >کمد</span>
+          </div>
+          {% endif %}
+          {% if object.salon.air_conditioner %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/air_conditioner.png" width="42"><span class="tiptooltext" >تهویه هوا</span>
+          </div>
+          {% endif %}
+          {% if object.salon.ball_rent %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/ball_rent.png" width="42"><span class="tiptooltext" >اجاره توپ</span>
+        </div>
+          {% endif %}
+          {% if object.salon.spectator_place %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/spectator_place.png" width="42"><span class="tiptooltext" >جایگاه تماشاچی</span>
+        </div>
+          {% endif %}
+          {% if object.salon.shower %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/shower.png" width="42"><span class="tiptooltext" >دوش</span>
+        </div>
+          {% endif %}
+          {% if object.salon.changing_room %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/changing_room1.png" width="42"><span class="tiptooltext" >اتاق تعویض لباس</span>
+        </div>
+          {% endif %}
+          {% if object.salon.parking_area %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/parking_area.png" width="42"><span class="tiptooltext" >پارکینگ</span>
+        </div>
+          {% endif %}
+          {% if object.salon.drinking_water %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/drinking_water.png" width="42"><span class="tiptooltext" >آب آشامیدنی</span>
+        </div>
+          {% endif %}
+          {% if object.salon.safe_keeping %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/safe_keeping.png" width="42"><span class="tiptooltext" >امانتداری</span>
+        </div>
+          {% endif %}
+          {% if object.salon.buffet %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/buffet.png" width="42"><span class="tiptooltext" >بوفه</span>
+        </div>
+          {% endif %}
+          {% if object.salon.taxi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/taxi.png" width="42"><span class="tiptooltext" >تاکسی ویژه</span>
+        </div>
+          {% endif %}
+          {% if object.salon.wifi %}<div class="tiptool">
+            <img style="margin:10px;" src="/media/logos/wifi.png" width="42"><span class="tiptooltext" >وای فای</span>
+        </div>
+          {% endif %}
+        </div>
+        <div id="sportclub{{object.pk}}" style="height: auto">
+          <div class="row fHarmattan">
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.sportclub_name}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">نام مجموعه ورزشی</div>
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.serial_number}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">سریال مجموعه ورزشی</div>
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.region}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">استان</div>
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.address}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">آدرس</div>
+            <div class="col s7 m7 l7 right-align black-text">{{object.salon.sportclub.company_phone_number}}</div>
+            <div class="col s5 m5 l5 left-align fLalezar">شماره تلفن ثابت</div>
+          </div>
+  <a target="_blank" href="{% url 'sportclub:publicdetail' pk=object.salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+
+        </div>
+      </div>
+
+</div>
+<!-- session -->
+
+  <!-- session end -->
+
+  {% endif %}
+{% endfor %}

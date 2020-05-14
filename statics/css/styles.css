@@ -45,7 +45,35 @@
    border-bottom: 1px solid #d4af37 !important;
    box-shadow: 0 1px 0 0 #d4af37 !important
  }
+/* place holder */
+ input::-webkit-input-placeholder {
+ color: #d4af37 !important;
+ }
 
+ input:-moz-placeholder { /* Firefox 18- */
+ color: #d4af37 !important;
+ }
+
+ input::-moz-placeholder {  /* Firefox 19+ */
+ color: #d4af37 !important;
+ }
+
+ input:-ms-input-placeholder {
+ color: #d4af37 !important;
+ }
+/* place holder */
+/* dropdown */
+ .select-dropdown{
+    color: #d4af37 !important;
+    font-family: 'Lalezar', cursive;
+}
+
+ ul.dropdown-content li span {
+   direction: rtl;
+   text-align: right;
+   align: right;
+     color: #d4af37; /* no need for !important :) */
+ }
  .timepicker-modal,
 .datepicker-modal{
   top: -5% !important;

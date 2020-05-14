@@ -1017,14 +1017,41 @@ class IsBookedErrorView(TemplateView):
 def SessionPublicListView(request):
     today = jdatetime.datetime.now().date()
     now = datetime.datetime.now().time()
-    sessions_1 = SessionModel.objects.filter( salon__is_confirmed = True).filter(is_booked = False).filter(is_ready = True).filter( day = today ).order_by('time').exclude(time__lte=now)
-    sessions_2 = SessionModel.objects.filter( salon__is_confirmed = True).filter(is_booked = False).filter(is_ready = True).filter( day__gt = today ).order_by('day','time')
-    session_list = sessions_1 | sessions_2
-    session_filter = SessionFilter(request.GET,queryset = session_list)
-    paginator = Paginator(session_filter.qs, 15)
-    page = request.GET.get('page')
-    sessions = paginator.get_page(page)
-    return render(request,'session/publiclist.html',{'sessions':sessions,'filter':session_filter})
+    try:
+        day_filter = request.session['day_filter']
+        time_filter = request.session['time_filter']
+        type_filter = request.session['type_filter']
+        del request.session['day_filter']
+        del request.session['time_filter']
+        del request.session['type_filter']
+        sessions_1 = SessionModel.objects.filter( salon__is_confirmed = True).filter(is_booked = False).filter(is_ready = True).filter( day = today ).order_by('time').exclude(time__lte=now)
+        sessions_2 = SessionModel.objects.filter( salon__is_confirmed = True).filter(is_booked = False).filter(is_ready = True).filter( day__gt = today ).order_by('day','time')
+        session_list = sessions_1 | sessions_2
+        if time_filter == "1":
+            session_list_1 = session_list.filter(time__lte="10:00:00")
+        if time_filter == "2":
+            session_list_1 = session_list.filter(time__lte="15:00:00").filter(time__gte="10:00:00")
+        if time_filter == "3":
+            session_list_1 = session_list.filter(time__lte="19:00:00").filter(time__gte="15:00:00")
+        if time_filter == "4":
+            session_list_1 = session_list.filter(time__gte="19:00:00")
+
+
+        session_list_2 = session_list_1.filter(day=day_filter)
+        session_filter = SessionFilter(request.GET,queryset = session_list_2)
+        paginator = Paginator(session_filter.qs, 15)
+        page = request.GET.get('page')
+        sessions = paginator.get_page(page)
+        return render(request,'session/publiclist.html',{'sessions':sessions,'filter':session_filter})
+    except:
+        sessions_1 = SessionModel.objects.filter( salon__is_confirmed = True).filter(is_booked = False).filter(is_ready = True).filter( day = today ).order_by('time').exclude(time__lte=now)
+        sessions_2 = SessionModel.objects.filter( salon__is_confirmed = True).filter(is_booked = False).filter(is_ready = True).filter( day__gt = today ).order_by('day','time')
+        session_list = sessions_1 | sessions_2
+        session_filter = SessionFilter(request.GET,queryset = session_list)
+        paginator = Paginator(session_filter.qs, 15)
+        page = request.GET.get('page')
+        sessions = paginator.get_page(page)
+        return render(request,'session/publiclist.html',{'sessions':sessions,'filter':session_filter})
 
 
 def SessionPublicListForSpecificSalonView(request,pk):

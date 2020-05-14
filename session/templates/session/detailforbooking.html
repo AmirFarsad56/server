@@ -1,4 +1,4 @@
-{% extends "base_templates/base1.html" %}
+{% extends "base_templates/base_public.html" %}
 {% load static %}
 {% load leaflet_tags %}
 {% block head_block %}
@@ -21,24 +21,26 @@
 <div class="section">
 
   <div class="container"><br>
-<span class="center-align"><h3 class="fMarkazi gold-text";>جزئیات سانس</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar teal-text";>جزئیات سانس</h3><br><br></span>
+<br>
+  <div class="row center center-align">
 
-  <div class="row center">
-
-  <div class="card-panel hoverable grey lighten-2  z-depth-5 teal-text fMarkazi">
+  <div style="border-radius: 25px; border-top: 5px solid #d4af37;" class="card-panel hoverable grey lighten-3  z-depth-5 teal-text fLalezar">
 <br>
     <div class="row center center-align">
       <h4 class="col s6 m6 l6 center center-align grey-text text-darken-4">{{salon.sportclub.sportclub_name}}</h4>
       <h4 class="col s6 m6 l6 fLalezar " >نام مجموعه ورزشی</h4>
-<br><br><br><br><br><br>
-      {% leaflet_map 'gis' callback='map_init' %}
+<br><br><br><br><div style="padding:5%">
+        {% leaflet_map 'gis' callback='map_init' %}
+</div>
+
     </div>
-    <ul class="collapsible popout gold-text">
+    <ul class="collapsible center-align popout white-text">
     <li>
-      <div class="collapsible-header grey darken-4 " style="display: block;">
+      <div class="collapsible-header gold center-align center" style="display: block;">
       مشخصات مجموعه ورزشی مربوطه
       </div>
-      <div class="collapsible-body grey teal-text">
+      <div class="collapsible-body grey lighten-2 teal-text">
         <div class="row">
           <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.sportclub_name}}</div>
           <div class="col s4 m4 l4 left-align fLalezar">نام مجموعه ورزشی</div>
@@ -58,27 +60,28 @@
         </ul>
 
 
-        {% if salon.pictures.all %}
-            <div class="slider">
-                <ul class="slides">
-        {% for pic in salon.pictures.all %}
-            <li>
-              <img src="{{pic.picture.url}}"> <!-- random image -->
-            </li>
-        {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
+
         <ul class="collapsible popout ">
         <li>
-          <div class="collapsible-header grey darken-4 gold-text" style="display: block;">
+          <div class="collapsible-header gold white-text" style="display: block;">
           اطلاعات سالن ورزشی
           </div>
-          <div class="collapsible-body grey ">
+          <div class="collapsible-body grey lighten-2 ">
+            {% if salon.pictures.all %}
+                <div class="slider">
+                    <ul class="slides">
+            {% for pic in salon.pictures.all %}
+                <li>
+                  <img src="{{pic.picture.url}}"> <!-- random image -->
+                </li>
+            {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
             <h6>
               <div class="row">
                 <div class="col s6 m6 l6 right-align black-text">{{session.salon.area}}</div>
-                <div class="col s6 m6 l6 left-align fLalezar fLalezar">(اندازه سالن (متر مربع</div>
+                <div class="col s6 m6 l6 left-align fLalezar fLalezar">اندازه سالن (متر مربع)</div>
               </div>
               <div class="row">
                 <div class="col s6 m6 l6 right-align black-text">{{session.salon.floor_type}}</div>
@@ -108,52 +111,52 @@
                 امکانات سالن
               </h6>
         {% if session.salon.locker %}
-        <div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/locker.png" width="38"><span class="tooltiptext" >کمد</span>
+        <div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
         </div>
         {% endif %}
-        {% if session.salon.air_conditioner %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/air_conditioner.png" width="38"><span class="tooltiptext" >تهویه هوا</span>
+        {% if session.salon.air_conditioner %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
         </div>
         {% endif %}
-        {% if session.salon.ball_rent %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/ball_rent.png" width="38"><span class="tooltiptext" >اجاره توپ</span>
+        {% if session.salon.ball_rent %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
       </div>
         {% endif %}
-        {% if session.salon.spectator_place %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/spectator_place.png" width="38"><span class="tooltiptext" >جایگاه تماشاچی</span>
+        {% if session.salon.spectator_place %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
       </div>
         {% endif %}
-        {% if session.salon.shower %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/shower.png" width="38"><span class="tooltiptext" >دوش</span>
+        {% if session.salon.shower %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
       </div>
         {% endif %}
-        {% if session.salon.changing_room %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/changing_room1.png" width="38"><span class="tooltiptext" >اتاق تعویض لباس</span>
+        {% if session.salon.changing_room %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویض لباس</span>
       </div>
         {% endif %}
-        {% if session.salon.parking_area %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/parking_area.png" width="38"><span class="tooltiptext" >پارکینگ</span>
+        {% if session.salon.parking_area %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
       </div>
         {% endif %}
-        {% if session.salon.drinking_water %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/drinking_water.png" width="38"><span class="tooltiptext" >آب آشامیدنی</span>
+        {% if session.salon.drinking_water %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
       </div>
         {% endif %}
-        {% if session.salon.safe_keeping %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/safe_keeping.png" width="38"><span class="tooltiptext" >امانتداری</span>
+        {% if session.salon.safe_keeping %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
       </div>
         {% endif %}
-        {% if session.salon.buffet %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/buffet.png" width="38"><span class="tooltiptext" >بوفه</span>
+        {% if session.salon.buffet %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
       </div>
         {% endif %}
-        {% if session.salon.taxi %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/taxi.png" width="38"><span class="tooltiptext" >تاکسی ویژه</span>
+        {% if session.salon.taxi %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
       </div>
         {% endif %}
-        {% if session.salon.wifi %}<div class="tooltip">
-          <img style="margin:1px;" src="/media/logos/wifi.png" width="38"><span class="tooltiptext" >وای فای</span>
+        {% if session.salon.wifi %}<div class="tiptool">
+          <img style="margin:3px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
       </div>
         {% endif %}
         <div class="row center">
@@ -179,7 +182,7 @@
   <div class="col s6 m3 l3 left-align fLalezar">درصد تخفیف سانس</div>
 
   <div class="col s6 m6 l6 right-align black-text">{{session.price}}</div>
-  <div class="col s6 m6 l6 left-align fLalezar">(قیمت (تومان</div>
+  <div class="col s6 m6 l6 left-align fLalezar">قیمت (تومان)</div>
 </div>
 <br>
 <div class="row">
