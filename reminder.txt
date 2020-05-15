@@ -1,3 +1,6 @@
+if any problem happened in datepicker, find and replace "1399" with 1393
+
+
 CloudMessageView is not checked because identity is not verified in kavenegar
 and also forgotpassword
 
