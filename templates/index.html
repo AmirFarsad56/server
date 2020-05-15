@@ -23,7 +23,7 @@
 <!-- date picker -->
 <link href="{% static 'css/datepicker/bootstrap.css' %}" rel="stylesheet" />
 <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
-<link href="{% static 'css/datepicker/jquery.Bootstrap-PersianDateTimePicker.css' %}"  rel="stylesheet" />
+<link href="{% static 'css/datepicker/jquery.Bootstrap-PersianDateTimePicker_index.css' %}"  rel="stylesheet" />
 <script src="{% static 'js/datepicker/jquery-2.1.4.js' %}" ></script>
 <script src="{% static 'js/datepicker/bootstrap.js' %}" ></script>
 <link type="text/css" href="{% static 'css/datepicker/persian-datepicker.css' %}" rel="stylesheet" />
@@ -76,9 +76,7 @@
   <nav class="navbar-fixed" data-target="introduction" style="z-index: 5;top: 0px;">
     <div class="nav-wrapper white">
       <div class="container">
-        <ul class="right" style="direction:ltr;">
-        <a  href="#" data-target="nav1" class="sidenav-trigger"><i  class="gold-text material-icons"><font color="#d4af37">menu</font></i></a>
-        </ul>
+
         <ul style="margin-left:35px;" class="left hide-on-med-and-down">
 
           {% if user.is_authenticated %}

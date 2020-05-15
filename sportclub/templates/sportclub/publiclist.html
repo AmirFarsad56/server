@@ -14,6 +14,15 @@
   {% for sportclub in  filter.qs %}
     #gis{{sportclub.pk}} {width:100%;height:400px; z-index: 4;}
   {% endfor %}
+  header, section, footer {
+  padding-right: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, section, footer {
+    padding-right: 0;
+  }
+}
 </style>
 
 {% endblock %}
@@ -22,9 +31,6 @@
 {% block body_block %}
 
 <div class="row">
-
-  <div   class="col s12 m12 l2 fMarkazi gold-text">
-
   <ul id="slide-out" style="direction:ltr; border-top: #d4af37 10px solid; margin-top:63px; padding-bottom:150px;" class="sidenav sidenav-fixed grey lighten-3">
 
     <br>
@@ -57,23 +63,21 @@
 
     </form>
   </ul>
+  <section  class=" grey lighten-2 fLalezar">
 
-  </div>
+    <div class=" grey lighten-2 fLalezar">
 
-  <div   class="col s12 m12 l10 grey lighten-2 fMarkazi">
-    <!-- Teal page content  -->
-
-<div class="container">
 
 <br><br>
-<span class="center-align"><h3 style="margin-left:5%" class="fLalezar teal-text";>لیست مجموعه های ورزشی</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar teal-text";>لیست مجموعه های ورزشی</h3><br><br></span>
 
 
 
   <div class="row center">
     {% for sportclub in sportclubs %}
     {% if sportclub.user.is_active %}
-  <div style="padding:8px; margin-left:5%; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
+        <div class="col s12 m12 l6 ">
+  <div style="padding:8px; margin:4%; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
      data-aos-anchor-placement="top-bottom" data-aos-duration="1300">
     <h6>
 <div class="row">
@@ -151,7 +155,7 @@
 </h6>
   </div>
 
-  <br><br>
+</div>
   {% endif %}
   {% endfor %}
 </div>
@@ -182,35 +186,7 @@
 </div>
 
 
-<footer style="width:108%; margin-left:-10px;margin-right:-10px; margin-bottom:-30px; " class="page-footer white">
-    <div class="container ">
-      <div class="row">
-        <div class="col l6 m6 s12" style="direction:ltr;">
-          <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
-          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/white_footer.png" width="160"></a>
-        </div>
-        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
-          <ul><h5>
-            <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
-            <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>
-            <li><a class="gold-text " href="{% url 'company:faqs' %}">سوالات متداول</a></li>
-            <li><a class="gold-text " href="{% url 'company:aboutus' %}">درباره ما</a></li>
-            <li><a class="gold-text" href="{% url 'company:termsdetail' %}">قوانین سایت</a></li></h5>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright grey darken-2">
-      <div class="fLalezar container white-text">
-    1398  سامانه ورزش کن
-
-      </div>
-    </div>
-</footer>
-<!-- footer -->
-
-</div>
-</div>
+</section>
 <script type="text/javascript">
 {% for sportclub in filter.qs %}
     function map_init_{{sportclub.pk}} (map, options) {

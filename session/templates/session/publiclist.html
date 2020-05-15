@@ -10,91 +10,89 @@
 </title>
 
 <link href="{% static 'css/aos.css' %}" rel="stylesheet">
+<style media="screen">
+  header, section, footer {
+  padding-right: 300px;
+}
 
-
-
-
-
-
+@media only screen and (max-width : 992px) {
+  header, section, footer {
+    padding-right: 0;
+  }
+}
+</style>
 {% endblock %}
 
 
 {% block body_block %}
+<ul id="slide-out" style="direction:ltr; border-top: #d4af37 10px solid; margin-top:63px; padding-bottom:150px; " class="sidenav sidenav-fixed grey lighten-3">
 
-<div class="row">
-
-  <div class="col s12 m12 l2 fLalezar teal-text">
-
-  <ul id="slide-out" style="direction:ltr; border-top: #d4af37 10px solid; margin-top:63px; padding-bottom:150px; " class="sidenav sidenav-fixed grey lighten-3">
-
-    <br>
-    <li class="center fLalezar"  style="font-size:120%" >جستجوی پیشرفته</li>
-    <li><div style="border-top: #00796b 2px solid;" class="divider teal"></div></li>
-    <br>
-    <form  method="get">
+  <br>
+  <li class="center fLalezar teal-text"  style="font-size:120%" >جستجوی پیشرفته</li>
+  <li><div style="border-top: #00796b 2px solid;" class="divider teal"></div></li>
+  <br>
+  <form  method="get">
 <li></li>
 <div class="col s12">
-  <span  style="font-size:90%" class="fLalezar teal-text "   for="day_str">روز سانس</span>
-  <div  class="form-group">
-  {{filter.form.day_str}}
-  </div>
-
+<span  style="font-size:90%" class="fLalezar teal-text "   for="day_str">روز سانس</span>
+<div  class="form-group">
+{{filter.form.day_str}}
 </div>
 
+</div>
+
 <div class="input-field col s12">
-  {{filter.form.time__gte}}
-  <label    style="font-size:90%" class="fLalezar teal-text" for="time__gte">زمان شروع سانس بعد از</label>
+{{filter.form.time__gte}}
+<label    style="font-size:90%" class="fLalezar teal-text" for="time__gte">زمان شروع سانس بعد از</label>
 </div>
 <div class="input-field col s12">
-  {{filter.form.time__lte}}
-  <label   style="font-size:90%" class="fLalezar teal-text" for="time__lte">زمان شروع سانس قبل از</label>
+{{filter.form.time__lte}}
+<label   style="font-size:90%" class="fLalezar teal-text" for="time__lte">زمان شروع سانس قبل از</label>
 </div>
 <div class="input-field col s12">
-  {{filter.form.duration}}
-  <label   style="font-size:90%" class="fLalezar teal-text" for="duration">طول تایم</label>
+{{filter.form.duration}}
+<label   style="font-size:90%" class="fLalezar teal-text" for="duration">طول تایم</label>
 </div>
 <div class="input-field col s12">
-  {{filter.form.price__gte}}
-  <label   style="font-size:90%" class="fLalezar teal-text" for="price__gte">(قیمت سانس بیشتر و برابر (تومان</label>
+{{filter.form.price__gte}}
+<label   style="font-size:90%" class="fLalezar teal-text" for="price__gte">(قیمت سانس بیشتر و برابر (تومان</label>
 </div>
 <div class="input-field col s12">
-  {{filter.form.price__lte}}
-  <label   style="font-size:90%" class="fLalezar teal-text" for="price__lte">(قیمت سانس کمتر و برابر (تومان</label>
+{{filter.form.price__lte}}
+<label   style="font-size:90%" class="fLalezar teal-text" for="price__lte">(قیمت سانس کمتر و برابر (تومان</label>
 </div>
 <div class="input-field col s12">
-  {{filter.form.discount_percentage__gte}}
-  <label   style="font-size:90%" class="fLalezar teal-text" for="discount_percentage__gte">درصد تخفیف بیشتر و مساوی</label>
+{{filter.form.discount_percentage__gte}}
+<label   style="font-size:90%" class="fLalezar teal-text" for="discount_percentage__gte">درصد تخفیف بیشتر و مساوی</label>
 </div>
 <div class="input-field col s12">
-  {{filter.form.discount_percentage__lte}}
-  <label  style="font-size:90%" class="fLalezar teal-text" for="discount_percentage__lte">درصد تخفیف کمتر و مساوی</label>
+{{filter.form.discount_percentage__lte}}
+<label  style="font-size:90%" class="fLalezar teal-text" for="discount_percentage__lte">درصد تخفیف کمتر و مساوی</label>
 </div>
 
 <li class="center">  <button class="fLalezar hoverable btn waves-effect waves-dark teal white-text z-depth-3" type="submit">جستجو
 </button></li><br><br><br><br><br><br>
 <li><br><br><br></li>
-    </form>
-  </ul>
+  </form>
+</ul>
 
-  </div>
+<section  class=" grey lighten-2 fLalezar">
 
-  <div  class="col s12 m12 l10 grey lighten-2  fLalezar">
-    <!-- Teal page content  -->
-
-<div class="container">
+  <div class=" grey lighten-2 fLalezar">
 
 <br><br>
-<span class="center-align"><h3 style="margin-left:5%;" class="fLalezar teal-text";>لیست سانس ها</h3><br><br></span>
-
+<span class="center-align"><h3 class="fLalezar teal-text";>لیست سانس ها</h3><br><br></span>
 
 
   <div class="row center">
     {% for session in sessions %}
     {% if session.is_ready %}
-  <div style="margin-left:5%; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
+    <div class="col s12 m12 l6 ">
+
+  <div style="border-radius: 25px; border-top: 5px solid #d4af37; margin:4% " class="card hoverable grey lighten-3  z-depth-2 teal-text" data-aos="fade-up"
      data-aos-anchor-placement="top-bottom" data-aos-duration="1300">
     <div class="card-content">
-
+</div>
 {% if session.discount_percentage or session.salon.company_discount_percentage %}
 <div class="badge">
 <span>{{ session.discount_percentage|add:session.salon.company_discount_percentage }}%</span>
@@ -105,7 +103,7 @@
 </div>
 {% endif %}
 
-      <div style="margin-bottom: -12px; margin-top:-60px" class="row fHarmattan">
+      <div style="margin-bottom: -12px; margin-top:-90px"  class="row fHarmattan">
         <div class="col s6 m3 l3 right-align black-text">{{session.day}}</div>
         <div class="col s6 m3 l3 left-align fLalezar fLalezar">روز سانس</div>
 
@@ -122,9 +120,7 @@
         <div class="col s6 m6 l6 left-align fLalezar">قیمت (تومان)</div>
       </div>
 
-
-
-    </div>
+<br>
 
     <div class="card-tabs center-align " style="height: 50px; ">
       <ul class="center tabs tabs-fixed-width gold" style="direction:ltr;">
@@ -138,7 +134,7 @@
       <div id="session{{session.pk}}">
 <div class="row">
   <div class="col s12 m5 l5 center-align black-text">
-<a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:-14px;" class="waves-effect waves-light btn" ><h6>جزئیات و رزرو</h6></a>
+<a href="{% url 'session:publicdetail' pk=session.pk %}" style="height:40px; margin-top:-7px;" class="waves-effect waves-light btn" ><h6>جزئیات و رزرو</h6></a>
   </div>
   <div style="margin-top:9px;" class="col s4 m2 l2 right-align black-text fHarmattan">
 {{session.pk|final_price}}
@@ -269,8 +265,8 @@
     </div>
 
   </div>
+</div>
 
-  <br><br>
   {% endif %}
   {% endfor %}
 </div>
@@ -299,35 +295,7 @@
 
 </div>
 
-<footer style="width:108%; margin-left:-10px;margin-right:-10px; margin-bottom:-30px; " class="page-footer white">
-    <div class="container ">
-      <div class="row">
-        <div class="col l6 m6 s12" style="direction:ltr;">
-          <h4 class="gold-text fLalezar">سامانه ورزش کن</h4>
-          <a href="{% url 'index' %}"><img class="brand-logo center" src="/media/logos/white_footer.png" width="160"></a>
-        </div>
-        <div class="col l4 m4 offset-l2 offset-m2 s12 right-align fHarmattan gold-text">
-          <ul><h5>
-            <li><a class="gold-text" href="{% url 'company:contactus' %}">ارتباط با ما</a></li>
-            <li><a class="gold-text" href="{% url 'company:sportclubcontact' %}">ثبت مجموعه ورزشی در سامانه</a></li>
-            <li><a class="gold-text " href="{% url 'company:faqs' %}">سوالات متداول</a></li>
-            <li><a class="gold-text " href="{% url 'company:aboutus' %}">درباره ما</a></li>
-            <li><a class="gold-text" href="{% url 'company:termsdetail' %}">قوانین سایت</a></li></h5>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright grey darken-2">
-      <div class="fLalezar container white-text">
-    1398  سامانه ورزش کن
-
-      </div>
-    </div>
-</footer>
-<!-- footer -->
-
-</div>
-</div>
+</section>
 
 
 {% endblock %}

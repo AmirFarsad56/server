@@ -1,10 +1,7 @@
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ FOR UPDATING DJANGO SIDE
 
 #TO UPLOAD PROJECT; FIRST IN LOCAL MACHINE:
-git init
-git add .
-git commit -m "MESSAGE"
-git push -u origin master
+git init && git add . && git commit -m "May 15" && git push -u origin master
 
 sudo mv Main_Project/media media
 sudo rm -r Main_Project/ && git clone https://github.com/AmirFarsad56/server.git Main_Project
