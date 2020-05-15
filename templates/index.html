@@ -76,60 +76,75 @@
   <nav class="navbar-fixed" data-target="introduction" style="z-index: 5;top: 0px;">
     <div class="nav-wrapper white">
       <div class="container">
-        <ul id="nav-mobile" class="left hide-on-med-and-down table-of-contents fLalezar">
-          <li><a style="color: #d4af37;" href="#search">جستجو</a></li>
-          <li><a style="color: #d4af37;" href="#map">نقشه</a></li>
-          <li><a style="color: #d4af37;" href="#salon">سالن ها و سانس ها</a></li>
+        <ul class="right" style="direction:ltr;">
+        <a  href="#" data-target="nav1" class="sidenav-trigger"><i  class="gold-text material-icons"><font color="#d4af37">menu</font></i></a>
         </ul>
+        <ul style="margin-left:35px;" class="left hide-on-med-and-down">
+
+          {% if user.is_authenticated %}
+          {% if user.is_sportclub %}
+          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
+          <li><a href="{% url 'company:contactus'%}" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
+          <li><a href="{% url 'sportclub:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
+
+          {% if user.sportclubs.salons.count > 1 or user.sportclubs.salons.count == 0 %}
+          <li><a href="{% url 'sportclub:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سالن ها"><i style="color:#d4af37;" class=" material-icons">account_balance</i></a></li>
+          {% else %}
+          <li><a href="{% url 'sportclub:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سالن ها"><i style="color:#d4af37;" class=" material-icons">account_balance</i></a></li>
+          <li><a href="{% url 'session:workspace' pk=user.sportclubs.salons.get.pk %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سانس ها"><i style="color:#d4af37;" class=" material-icons">event_note</i></a></li>
+          {% endif %}
+
+
+
+          {% endif %}
+          {% if user.is_commonuser %}
+          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
+          <li><a href="{% url 'company:contactus' %}" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
+          <li><a href="{% url 'commonuser:dashboard' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="سانس های شما"><i style="color:#d4af37;" class="material-icons">event</i></a></li>
+          <li><a href="{% url 'commonuser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
+
+
+          {% endif %}
+          {% if user.is_superuser %}
+          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
+          <li><a href="{% url 'accounts:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
+          <li><a href="{% url 'accounts:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="میز کار"><i style="color:#d4af37;" class=" material-icons">event_note</i></a></li>
+
+
+
+
+          {% endif %}
+          {% if user.is_masteruser %}
+          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
+          <li><a href="{% url 'masteruser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
+          <li><a href="{% url 'masteruser:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="میز کار"><i style="color:#d4af37;" class=" material-icons">event_note</i></a></li>
+
+          {% endif %}
+          {% else %}
+          <li><a ><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
+          <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
+          <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
+          {% endif %}
+          <li><a class="dropdown-trigger gold-text fLalezar" href="#!" data-target="dropdown1"><div class="gold-text"><i class="material-icons right gold-text">arrow_drop_down</i>میانبر</div></a></li>
+        </ul>
+
 
         <a href="{% url 'index' %}"  ><img style="height: 100%" class="brand-logo center" src="/media/logos/white_logo.png" ></a>
         <ul class="right">
         <a  href="#" data-target="nav1" class="sidenav-trigger"><i  class="gold-text material-icons"><font color="#d4af37">menu</font></i></a>
         </ul>
-        <ul class="right hide-on-med-and-down">
-          <li><a class="dropdown-trigger gold-text fLalezar" href="#!" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i>میانبر</a></li>
-          {% if user.is_authenticated %}
-          {% if user.is_sportclub %}
-          {% if user.sportclubs.salons.count > 1 or user.sportclubs.salons.count == 0 %}
-          <li><a href="{% url 'sportclub:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سالن ها"><i style="color:#d4af37;" class=" material-icons">account_balance</i></a></li>
-          {% else %}
-          <li><a href="{% url 'session:workspace' pk=user.sportclubs.salons.get.pk %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سانس ها"><i style="color:#d4af37;" class=" material-icons">event_note</i></a></li>
-          <li><a href="{% url 'sportclub:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="مدیریت سالن ها"><i style="color:#d4af37;" class=" material-icons">account_balance</i></a></li>
-          {% endif %}
+        <ul id="nav-mobile" class="right hide-on-med-and-down table-of-contents fLalezar">
+          <li><a style="color: #d4af37;" href="#salon">سالن ها و سانس ها</a></li>
+          <li><a style="color: #d4af37;" href="#map">نقشه</a></li>
+          <li><a style="color: #d4af37;" href="#search">جستجو</a></li>
 
-          <li><a href="{% url 'sportclub:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
-          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
-          {% endif %}
-          {% if user.is_commonuser %}
-          <li><a href="{% url 'commonuser:dashboard' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="سانس های شما"><i style="color:#d4af37;" class="material-icons">event</i></a></li>
-          <li><a href="{% url 'commonuser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
-          <li><a href="{% url 'company:contactus' %}" class=" tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
-          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
-          {% endif %}
-          {% if user.is_superuser %}
-          <li><a href="{% url 'accounts:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="میز کار"><i style="color:#d4af37;" class=" material-icons">event_note</i></a></li>
-          <li><a href="{% url 'accounts:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
-          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
-
-
-          {% endif %}
-          {% if user.is_masteruser %}
-          <li><a href="{% url 'masteruser:workspace' slug=user.slug %}" class="tooltipped" data-position="bottom" data-tooltip="میز کار"><i style="color:#d4af37;" class=" material-icons">event_note</i></a></li>
-          <li><a href="{% url 'masteruser:profile' slug=user.slug %}" class=" tooltipped" data-position="bottom" data-tooltip="پروفایل ‍‍"><i style="color:#d4af37;" class="material-icons">account_circle</i></a></li>
-          <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
-          {% endif %}
-          {% else %}
-          <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
-          <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
-          <li><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
-          {% endif %}
         </ul>
       </div>
     </div>
   </nav>
 <!-- end nav-->
 
-<div class="grey darken-1">
+<div style="background-color:#8c8c8c">
   <br><br><br>
 
   <h4 class="row center black-text fHarmattan">
@@ -143,7 +158,7 @@
   <form method="POST" style="direction:rtl; text-align:right;">
 {% csrf_token %}
 
-<div class="grey darken-3">
+<div style="background-color:#545454">
   <br>
   <h4 class="row center fLalezar gold-text">
         جستجو در سانس های ورزشی
@@ -159,22 +174,22 @@
   <div style="direction:rtl; text-align:right;" class="fLalezar input-field right-align ">
     <div class="col s6 m3 l2 center-align">
 <label>
-<input style="direction:rtl;  text-align:right; color:d4af37;" value="grass" class="fLalezar gold-text col s12 m11 l11"  type="radio" name="type"/>
+<input style="direction:rtl;  text-align:right; color:#d4af37;" value="grass" class="fLalezar gold-text col s12 m11 l11"  type="radio" name="type"/>
 <span style="margin-top:18px;">زمین چمن</span>
 </label>
     </div>
     <div class="col s6 m3 l2 center-align">
       <label>
-  <input checked style="direction:rtl; text-align:right; color:d4af37;" value="salon" class="fLalezar gold-text col s12 m11 l11" type="radio" name="type"/>
+  <input checked style="direction:rtl; text-align:right; color:#d4af37;" value="salon" class="fLalezar gold-text col s12 m11 l11" type="radio" name="type"/>
   <span style="margin-top:18px;">سالن</span>
 </label>
 </div>
     <div class="col s12 m3 l4">
-      <input style="direction:rtl; text-align:right; color:d4af37;" class="fLalezar gold-text col s12 m11 l11" placeholder="روز"
+      <input style="direction:rtl; text-align:right; color:#d4af37;" class="fLalezar gold-text col s12 m11 l11" placeholder="روز"
        id="exampleInput3" data-mddatetimepicker="true" data-englishnumber="true" autocomplete="off" type="text" name="day" >
     </div>
     <div class="col s12 m3 l4">
-      <select style="border:none; border-bottom: 1px solid #9e9e9e; background-color:424242;" class="col s12 m11 l11 fLalezar gold-text browser-default" name="time">
+      <select style="border:none; border-bottom: 1px solid #9e9e9e; background-color:#545454; color:#b8972c" class="col s12 m11 l11 fLalezar browser-default" name="time">
         <option style="white-space:pre;" value="" disabled selected>        ساعت شروع</option>
         <option style="white-space:pre;" value="1" >      قبل از 10 صبح</option>
         <option style="white-space:pre;" value="2">      بین 10 صبح و 15 ظهر</option>
@@ -191,12 +206,12 @@
 </div>
 
 
-<div class="row grey darken-3 center-align">
+<div style="background-color:#545454" class="row center-align">
   <button class="input-field center-align left-align left-align btn btn-large fLalezar gold black-text " type="submit">جستجو
   </button>
 </div>
 </div>
-<div style="margin:-20px;" class="row center grey darken-1 black-text fLalezar"">
+<div style="margin:-20px; background-color:#8c8c8c; color:#b8972c" class="row center black-text fLalezar"">
 <br>
 <h4 >
 
@@ -204,7 +219,7 @@
 </h4>
 
 </div>
-<div class="row grey darken-1 center">
+<div style="background-color:#8c8c8c" class="row center">
 
 
   {% if error %}
@@ -217,7 +232,7 @@
 
   <div  class="container input-field left-align">
     <div style="direction:rtl; text-align:right;" class="fLalezar input-field right-align ">
-      <input style="direction:rtl; text-align:right; color:d4af37;" class="fLalezar gold-text" placeholder="سریال مجموعه ورزشی" type="text" name="serial_number" >
+      <input style="direction:rtl; text-align:right; color:#b8972c;" class="fLalezar gold-text" placeholder="سریال مجموعه ورزشی" type="text" name="serial_number" >
   </div>
 
 
