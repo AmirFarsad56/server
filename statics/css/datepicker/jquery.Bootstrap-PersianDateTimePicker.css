@@ -19,7 +19,7 @@
 
 [data-name="Md-PersianDateTimePicker"] {
     width: 230px;
-    position: absolute;
+    position: sticky;
 }
 
     [data-name="Md-PersianDateTimePicker"] button {
