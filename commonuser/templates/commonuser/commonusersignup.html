@@ -1,11 +1,11 @@
-{% extends "base_templates/base1.html" %}
-
+{% extends "base_templates/base_public.html" %}
+{% load static %}
 {% block head_block %}
 <meta name=”robots” content=”index,follow”>
 <title>
     عضویت | سامانه ورزش کن
 </title>
-
+<link type="text/css" rel="stylesheet" href="{% static 'css/placeholder_styles.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
@@ -13,49 +13,59 @@
   <div class="container">
 
   <div class="container"><br>
-<span class="center-align"><h3 class="fLalezar gold-text";>عضویت</h3><br><br></span>
-  <div class="row center">
-  <div class="card-panel hoverable pink accent-3 z-depth-5">
 
-        <form method="POST">
+  <div class="row center">
+  <div style="" class="grey lighten-3 card-panel hoverable z-depth-5">
+<span class="center-align"><h3 class="fLalezar gold-text";>عضویت</h3><br><br></span>
+        <form method="POST" name="form" id="form">
 
           {% csrf_token %}
 
             <form enctype="multipart/form-data" method="POST">
               {{user_form.Hfield}}
               {{commonuser_form.Hfield}}
-              <div class="input-field col s12 m6 l6">
-      {{user_form.username}}
-      <label class="fLalezar" for="username">نام کاربری</label>
-    </div>
+
+              <div class="row">
+
+              <div class="col s3 m2 l2 gold-text right-align" style="direction:ltr;">
+                <h6 style="margin-top:30px" >+98</h6>
+
+                </div>
+<div class="col s9 m4 l4">
+  <div class="input-field ">
+{{user_form.username}}
+<label id="a" class="validate fLalezar" for="username">شماره همراه</label>
+<span id="phonenumbervalidator" class="helper-text" data-error="wrong" data-success="right">مانند: 989123456789</span>
+</div>
+</div>
+
     <div class="input-field col s12 m6 l6">
 {{user_form.email}}
 <label class="fLalezar" for="emial">ایمیل</label>
 </div>
+</div>
+<div class="row">
 <div class="input-field col s12 m6 l6">
 {{user_form.first_name}}
-<label class="fLalezar" for="first_name">نام</label>
-</div>
-<div class="input-field col s12 m6 l6">
-{{user_form.last_name}}
-<label class="fLalezar" for="last_name">نام خانوادگی</label>
+<label class="fLalezar" for="first_name">نام و نام خانوادگی</label>
 </div>
 <div class="input-field col s12 m6 l6">
 {{user_form.password1}}
 <label class="fLalezar" for="password1">رمز عبور</label>
 </div>
-<div class="input-field col s12 m6 l6">
+</div>
+<div class="row">
+<div class="input-field col s12 m6 l6 right">
 {{user_form.password2}}
 <label class="fLalezar" for="password2">تکرار رمز</label>
 </div>
-
-<div class="center input-field col s12 m6 l6">
-{{commonuser_form.phone_number}}
-<label class="fLalezar" for="phone_number">تلفن همراه</label>
 </div>
 
-<div class="center row">
-  <div class="center input-field col s12 m12 l12">
+<div class="row">
+  <div class="col s0 m3 l3">
+
+  </div>
+  <div class="input-field col s12 m9 l9">
     <label>
       {{user_form.terms}}
       <span><a href="{% url 'company:termsdetail'%}">قوانین </a> سایت را به طور کامل خوانده و قبول دارم </span>
@@ -77,9 +87,10 @@
 
                     {% csrf_token %}
 
-                    <button class="fLalezar hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
-        </button>
+                  <div id="button">
 
+                  </div>
+                  <br>
             </form>
 
           </div>
@@ -95,5 +106,30 @@
           $(document).ready(function() {
           M.updateTextFields();
         });
+
+        </script>
+        <script>
+          function checkLength(el) {
+            if (el.value.length == 10) {
+  var str = "<i class='right tiny material-icons'>done_all</i>";
+  var result = str.fontcolor("green");
+  var str2 = "<button class='fLalezar hoverable btn waves-effect waves-dark gold white-text z-depth-3' type='submit'>عضویت</button>";
+  var result2 = str2.fontcolor("green");
+  document.getElementById("phonenumbervalidator").innerHTML = result;
+  document.getElementById("button").innerHTML = result2;
+
+            }
+            if (isNaN(el.value) || el.value.length != 10 && el.value.length !=0) {
+  var str = "<div class='right'>شماره صحیح نیست</div>";
+  var result = str.fontcolor("red");
+  document.getElementById("phonenumbervalidator").innerHTML = result;
+  var str2 = "";
+  var result2 = str2.fontcolor("green");
+  document.getElementById("button").innerHTML = result2;
+
+            }
+
+
+          }
         </script>
         {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "base_templates/base1.html" %}
+{% extends "base_templates/base_public.html" %}
 
 {% block head_block %}
 <meta name=”robots” content=”noindex,follow”>
@@ -9,35 +9,27 @@
 
 {% block body_block %}
 
-<div class="section">
+<div class="section fLalezar ">
 
   <div class="container"><br>
-<span class="center-align"><h3 class="fMarkazi gold-text";> {{commonuser_detail.user.last_name}} {{commonuser_detail.user.first_name}} خوش آمدید</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar gold-text";>{{commonuser_detail.user.first_name}} خوش آمدید</h3><br><br></span>
 
 
-  <div class="row center">
-  <div class="card-panel hoverable pink accent-3 z-depth-5 fMarkazi">
-    <h3 class=" fMarkazi gold-text">اطلاعات شخصی</h3>
+  <div class="row center fLalezar">
+  <div class="card-panel hoverable grey darken-2 z-depth-5">
+    <h3 class=" fLalezar gold-text">اطلاعات شخصی</h3>
 <h6>
     <div class="row">
-      <div class="col s6 m6 l6 right-align">{{commonuser_detail.user.username}}</div>
-      <div class="col s6 m6 l6 left-align">نام کاربری</div>
+      <div class="col s6 m6 l6 right-align fHarmattan ">{{commonuser_detail.user.username}}</div>
+      <div class="col s6 m6 l6 left-align">شماره تلفن همراه</div>
     </div>
     <div class="row">
-      <div class="col s6 m6 l6 right-align">{{commonuser_detail.user.first_name}}</div>
-      <div class="col s6 m6 l6 left-align">نام</div>
+      <div class="col s6 m6 l6 right-align fHarmattan">{{commonuser_detail.user.first_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام و نام خانوادگی</div>
     </div>
     <div class="row">
-      <div class="col s6 m6 l6 right-align">{{commonuser_detail.user.last_name}}</div>
-      <div class="col s6 m6 l6 left-align">نام خانوادگی</div>
-    </div>
-    <div class="row">
-      <div class="col s6 m6 l6 right-align">{{commonuser_detail.user.email}}</div>
+      <div class="col s6 m6 l6 right-align fHarmattan">{{commonuser_detail.user.email}}</div>
       <div class="col s6 m6 l6 left-align">ایمیل</div>
-    </div>
-    <div class="row">
-      <div class="col s6 m6 l6 right-align">{{commonuser_detail.phone_number}}</div>
-      <div class="col s6 m6 l6 left-align">شماره همراه</div>
     </div>
     </h6>
     <div class="row">

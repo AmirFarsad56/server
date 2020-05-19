@@ -46,7 +46,7 @@ def SportClubSignupView(request):
         region = request.POST.get('region')
 
         if user_form.is_valid() and sportclub_form.is_valid():
-
+                     '''
                 recaptcha_response = request.POST.get('g-recaptcha-response')
                 url = 'https://www.google.com/recaptcha/api/siteverify'
                 values = {
@@ -57,8 +57,8 @@ def SportClubSignupView(request):
                 req =  urllib.request.Request(url, data=data)
                 response = urllib.request.urlopen(req)
                 result = json.loads(response.read().decode())
-                ''' End reCAPTCHA validation '''
                 if result['success']:
+                     '''
                      messages.success(request, 'ثبت نام با موفقیت انجام شد')
                      user = user_form.save(commit = False)#changed this if sth wrong happen ..
                      user.is_sportclub = True
@@ -67,6 +67,8 @@ def SportClubSignupView(request):
                      sportclub.user = user
                      sportclub.region = region
                      sportclub.serial_number = sportclub.pk + 1000
+                     sportclub.phone_number = '0' + user.username
+                     print(sportclub.phone_number)
                      if 'picture' in request.FILES:
                         sportclub.picture = request.FILES['picture']
 
@@ -85,8 +87,8 @@ def SportClubSignupView(request):
                                  sportclub = str(user.username),)
                      masteruser_instance.user_logs = new_log
                      masteruser_instance.save()
-                else:
-                     messages.error(request, 'فیلد من ربات نیستم را به درستی کامل کنید')
+                #else:
+                #     messages.error(request, 'فیلد من ربات نیستم را به درستی کامل کنید')
 
         else:
             # One of the forms was invalid if this else gets called.
@@ -649,7 +651,7 @@ def MapDataSetView(request):
     try:
         points = serialize('geojson',query)
     except:
-        points = False    
+        points = False
     return HttpResponse(points, content_type = 'json')
 
 

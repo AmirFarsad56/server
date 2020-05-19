@@ -1,0 +1,20 @@
+input::-webkit-input-placeholder {
+color: #d4af37 !important;
+  font-family: 'Lalezar', cursive;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+color: #d4af37 !important;
+  font-family: 'Lalezar', cursive;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #d4af37 !important;
+  font-family: 'Lalezar', cursive;
+}
+
+input:-ms-input-placeholder {
+color: #d4af37 !important;
+  font-family: 'Lalezar', cursive;
+}
+/* place holder */

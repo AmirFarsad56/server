@@ -1,4 +1,4 @@
-{% extends "base_templates/base1.html" %}
+{% extends "base_templates/base_public.html" %}
 {% load leaflet_tags %}
 {% block head_block %}
 
@@ -18,12 +18,12 @@
 <div class="section fMarkazi">
   <div class="container">
   <div class="container"><br>
-<span class="center-align"><h3 class="fMarkazi gold-text";>افزودن مجموعه ورزشی</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar gold-text";>افزودن مجموعه ورزشی</h3><br><br></span>
   <div class="row center">
-  <div class="card-panel hoverable pink accent-3 z-depth-5">
+  <div class="card-panel hoverable grey lighten-3 z-depth-5">
     {% if registered %}
-    <h3 class="white-text fMarkazi">مجموعه ورزشی با موفقیت اضافه شد</h3>
-<a href="{% url 'masteruser:workspace' slug=user.slug %}" class="hoverable waves-effect waves-light btn gold white-text"><h6>میزکار</h6></a>
+    <h3 class="black-text fMarkazi">مجموعه ورزشی با موفقیت اضافه شد</h3>
+<a href="{% url 'masteruser:workspace' slug=user.slug %}" class="hoverable waves-effect waves-light btn gold black-text"><h6>میزکار</h6></a>
 
     {% else %}
         <form method="POST">
@@ -32,9 +32,13 @@
             <form enctype="multipart/form-data" method="POST">
               {{user_form.Hfield}}
               {{sportclub_form.Hfield}}
-              <div class="input-field col s12">
+              <div class="col s2 m2 l2 gold-text right-align fLalezar" style="direction:ltr;">
+                <h6 style="margin-top:34px;" >+98</h6>
+
+                </div>
+              <div class="input-field col s10 m10 l10">
       {{user_form.username}}
-      <label class="fMarkazi" for="username">نام کاربری</label>
+      <label class="fMarkazi" for="username">شماره تلفن همراه</label>
     </div>
     <div class="input-field col s12">
 {{user_form.email}}
@@ -102,10 +106,7 @@
 </div>
 
 
-<div class="input-field col s12">
-{{sportclub_form.phone_number}}
-<label class="fMarkazi" for="phone_number">تلفن همراه</label>
-</div>
+
 <div class="input-field col s12">
 {{sportclub_form.company_phone_number}}
 <label class="fMarkazi" for="company_phone_number">تلفن ثابت</label>
@@ -159,15 +160,15 @@
 </div>
 <br><br>
           {% if user_form.errors%}
-                <p class="fMarkazi white-text">{{user_form.errors}}</p>
+                <p class="fMarkazi black-text">{{user_form.errors}}</p>
                 {% endif %}
                 {% if sportclub_form.errors%}
-                <p class="fMarkazi white-text">{{sportclub_form.errors}}</p>
+                <p class="fMarkazi black-text">{{sportclub_form.errors}}</p>
                 {% endif %}
 
                     {% csrf_token %}
 
-                    <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
+                    <button class="hoverable btn waves-effect waves-dark gold black-text z-depth-3" type="submit">تایید
         </button>
 
             </form>

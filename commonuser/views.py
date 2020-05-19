@@ -20,7 +20,7 @@ from kavenegar import KavenegarAPI
 #handmade classes
 from booking.models import BookingModel, ContractModel
 from session.models import SessionModel
-from commonuser.forms import CommonUserForm, CommonUserUpdateForm
+from commonuser.forms import CommonUserForm
 from accounts.forms import UserForm, UserUpdateForm
 from commonuser.models import CommonUserModel
 from accounts.models import UserModel
@@ -53,8 +53,6 @@ def CommonUserSignupView(request):
             commonuser_form = CommonUserForm(data = request.POST)
 
             if user_form.is_valid() and commonuser_form.is_valid():
-                 phone_number = commonuser_form.cleaned_data.get('phone_number')
-
 
                  user = user_form.save(commit=False)
                  user.is_commonuser = True
@@ -64,7 +62,9 @@ def CommonUserSignupView(request):
                  request.session['user_slug'] =  user.slug
                  commonuser = commonuser_form.save(commit=False)
                  commonuser.user = user
+                 commonuser.phone_number = '0' + user.username
                  commonuser.save()
+                 phone_number = commonuser.phone_number
                  #### generating code
                  var = '1234567890'
                  random_code=''
@@ -72,6 +72,7 @@ def CommonUserSignupView(request):
                      c = random.choice(var)
                      random_code += c
                  ######
+                 print(phone_number)
                  code = random_code
                  ######### send code to commonuser
                  params = {
@@ -79,8 +80,9 @@ def CommonUserSignupView(request):
                  'receptor': phone_number,
                  'message' : 'سامانه ورزش کن \n' +'کد فعالسازی شما' +  ' :' + code
                  }
+
                  try:
-                     response = api.sms_send(params)
+                     #response = api.sms_send(params)
                      request.session['code'] =  code
                      request.session['phone_number'] =  phone_number
                      now = datetime.datetime.now() + datetime.timedelta(minutes=1)
@@ -90,6 +92,7 @@ def CommonUserSignupView(request):
                  #################################
                  except:
                      return HttpResponseRedirect(reverse('accounts:wrongphonenumber'))
+
 
                  return HttpResponseRedirect(reverse('commonuser:confirmation'))
             else:
@@ -255,7 +258,7 @@ def MesssageSendingView(request,slug):
                 message_text = message_form.cleaned_data.get('text')
                 params = {
                 'sender': settings.KAVENEGAR_PHONE_NUMBER,
-                'receptor': commonuser_instance.phone_number,
+                'receptor': commonuser_instance.user.username,
                 'message' : message_text
                 }
                 response = api.sms_send(params)
@@ -337,18 +340,15 @@ def CommonUserUpdateView(request,slug):
     if request.user == commonuser_user :
         user_update_form = UserUpdateForm(request.POST or None, instance = commonuser_user)
         commonuser = get_object_or_404(CommonUserModel, user = commonuser_user)
-        commonuser_update_form = CommonUserUpdateForm(request.POST or None, instance = commonuser)
-        if commonuser_update_form.is_valid() and user_update_form.is_valid():
+        if user_update_form.is_valid():
             user_update_form.save()
-            commonuser_update_form.save()
             if 'picture' in request.FILES:
                commonuser.picture = request.FILES['picture']
                commonuser.save()
             return HttpResponseRedirect(reverse('commonuser:profile',
                                         kwargs={'slug':commonuser_user.slug}))
         return render(request,'commonuser/commonuserupdate.html',
-                              {'commonuserform':commonuser_update_form,
-                               'userform':user_update_form,})
+                              {'userform':user_update_form,})
     else:
         return HttpResponseRedirect(reverse('login'))
 

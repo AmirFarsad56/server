@@ -7,7 +7,7 @@ class SportClubModel(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE,
                                 primary_key = True, related_name = 'sportclubs')
     region = models.CharField(max_length = 264, null = False, blank = False)
-    phone_number = models.CharField(max_length = 20, blank = False, unique = True)
+    phone_number = models.CharField(max_length = 20, blank = True, unique = True)
     serial_number = models.IntegerField(null = False, unique = True)
     company_phone_number = models.CharField(max_length = 20, blank = False)
     sportclub_name = models.CharField(max_length = 264, null = False, blank = False)

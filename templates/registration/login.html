@@ -1,4 +1,4 @@
-{% extends "base_templates/base1.html" %}
+{% extends "base_templates/base_public.html" %}
 
 {% block head_block %}
 <meta name=”robots” content=”index,follow”>
@@ -10,23 +10,35 @@
 {% block body_block %}
 <div class="section">
   <div class="container">
-  <div class="container"><br>
+  <div class="container">
 <span class="center-align"><h3 class="fLalezar gold-text";>ورود</h3><br><br></span>
   <div class="row center">
-  <div class="card-panel hoverable pink accent-3 z-depth-5">
+  <div class="card-panel hoverable grey lighten-3 z-depth-5">
 
         <form method="POST">
-          <div class="input-field col s12">
+          <div class="row">
+
+          <div class="col s2 m2 l2 gold-text right-align fLalezar" style="direction:ltr;">
+            <h6 style="margin-top:34px;" >+98</h6>
+
+            </div>
+          <div class="input-field col s10 m10 l4">
   {{form.username}}
-  <label class="fLalezar" for="username">نام کاربری</label>
+  <label class="fLalezar" for="id_username">شماره همراه</label>
 </div>
-<div class="input-field col s12 red-text">
+
+<div style="margin-left:30px;" class="input-field col s12 m12 l4 red-text">
 {{form.password}}
 
-<label class="fLalezar right-align" for="password">رمز عبور</label>
+<label class="fLalezar right-align" for="id_password">رمز عبور</label>
 </div>
+
+</div>
+
             {% if form.errors %}
-            <p class="fMarkazi white-text">نام کاربری یا رمز عبور اشتباه است</p>
+            <div class="row">
+            <p id='area' class="fHarmattan black-text">نام کاربری یا رمز عبور اشتباه است</p>
+            </div>
             {% endif %}
 
                 {% csrf_token %}
@@ -34,9 +46,10 @@
                 <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3 fLalezar" type="submit">ورود
     </button>
     <br><br>
-            <a class="white-text fMarkazi" href="{% url 'accounts:forgotpassword' %}">فراموشی رمز عبور</a>
+            <a class="black-text fHarmattan" href="{% url 'accounts:forgotpassword' %}">فراموشی رمز عبور</a>
         </form>
   </div>
+  <br><br><br>
 </div>
 </div>
 
@@ -50,4 +63,5 @@
   M.updateTextFields();
 });
 </script>
+
 {% endblock %}

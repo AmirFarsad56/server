@@ -1,4 +1,4 @@
-{% extends "base_templates/base1.html" %}
+{% extends "base_templates/base_public.html" %}
 
 {% block head_block %}
 <meta name=”robots” content=”noindex,follow”>
@@ -11,15 +11,15 @@
 <div class="section">
   <div class="container">
   <div class="container"><br>
-<span class="center-align"><h3 class="fMarkazi gold-text";>تایید حساب</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar gold-text";>تایید حساب</h3><br><br></span>
   <div class="row center">
-  <div class="card-panel hoverable pink accent-3 z-depth-5">
+  <div class="fLalezar card-panel hoverable grey lighten-3 z-depth-5">
 
         <form method="POST">
           {{confirmation_form.Hfield}}
           <div class="input-field col s12">
   {{confirmation_form.code}}
-  <label class="fMarkazi" for="username">کد تایید</label>
+  <label class="fLalezar" for="username">کد تایید</label>
 </div>
 <div class="row">
   <div class="col s6 m6 l6">
@@ -32,12 +32,12 @@
 </div>
 
             {% if form.errors %}
-            <p class="fMarkazi white-text">{{form.error}}</p>
+            <p class="fLalezar white-text">{{form.error}}</p>
             {% endif %}
 
                 {% csrf_token %}
 
-                <button class="hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
+                <button class="fLalezar hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">تایید
     </button>
         </form>
   </div>
