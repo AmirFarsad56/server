@@ -20,16 +20,16 @@ class TestForm(forms.Form):
 
 
 class ContactUsForm(forms.Form):
-    email = forms.CharField(required=True)
-    user_name = forms.CharField(required=True)
-    user_phone = forms.CharField(required=False)
-    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea','style': "height: 100px"}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'id': 'email'}),required=True)
+    user_name = forms.CharField(widget=forms.TextInput(attrs={'id': 'name'}),required=True)
+    user_phone = forms.CharField(widget=forms.TextInput(attrs={'id': 'phone_number'}),required=False)
+    text = forms.CharField(widget=forms.TextInput(attrs={'id':'text','class': 'materialize-textarea','style': "height: 100px"}))
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 
 class SportClubContactForm(forms.Form):
-    name = forms.CharField(required=True)
-    sportclub_name = forms.CharField(required=True)
-    phone = forms.CharField(required=True)
-    address = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea','style': "height: 80px"}))
+    name = forms.CharField(widget=forms.TextInput(attrs={'id': 'name'}),required=True)
+    sportclub_name = forms.CharField(widget=forms.TextInput(attrs={'id': 'sportclub_name'}),required=True)
+    phone = forms.CharField(widget=forms.TextInput(attrs={'id': 'phone'}),required=True)
+    address = forms.CharField(widget=forms.Textarea(attrs={'id':'address','class': 'materialize-textarea','style': "height: 80px"}))
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])

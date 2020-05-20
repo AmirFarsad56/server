@@ -20,7 +20,7 @@ class MessageForm(forms.Form):
 
 
 class ConfirmationForm(forms.Form):
-    code = forms.CharField()
+    code = forms.CharField(widget=forms.Textarea(attrs={'id': 'code',}))
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 

@@ -19,7 +19,10 @@ class UserForm(UserCreationForm):
                   'last_name','password1','password2')
         widgets = {
             'username': forms.TextInput(attrs={'id':'username','name':'username','onblur':'checkLength(this)'}),
-
+            'email': forms.TextInput(attrs={'id':'email'}),
+            'first_name': forms.TextInput(attrs={'id':'first_name'}),
+            'password1': forms.TextInput(attrs={'id':'password1'}),
+            'password2': forms.TextInput(attrs={'id':'password2'}),
         }
 
 
@@ -53,7 +56,11 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta():
         model = UserModel
-        fields = ('first_name','last_name','email',)
+        fields = ('first_name','email',)
+        widgets = {
+            'email': forms.TextInput(attrs={'id':'email'}),
+            'first_name': forms.TextInput(attrs={'id':'first_name'}),
+        }
 
 
 class SuperUserUpdateForm(forms.ModelForm):
@@ -73,7 +80,7 @@ class SuperUserUpdateForm(forms.ModelForm):
 
 
 class PasswordChangeForm(forms.Form):
-    current_password = forms.CharField(widget=forms.PasswordInput())
-    new_password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    current_password = forms.CharField(widget=forms.PasswordInput(attrs={'id':'current_password'}))
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'id':'new_password'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'id':'confirm_password'}))
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])

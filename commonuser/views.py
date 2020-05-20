@@ -82,7 +82,7 @@ def CommonUserSignupView(request):
                  }
 
                  try:
-                     #response = api.sms_send(params)
+                     response = api.sms_send(params)
                      request.session['code'] =  code
                      request.session['phone_number'] =  phone_number
                      now = datetime.datetime.now() + datetime.timedelta(minutes=1)
