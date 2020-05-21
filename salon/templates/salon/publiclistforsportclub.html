@@ -39,6 +39,7 @@
 <link rel="shortcut icon" type="image/png" href="/media/logos/favicon.png"/>
 
 <!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 
 <body class="white" style="direction:rtl;" >
@@ -96,7 +97,7 @@
     {% else %}
     <li><a ><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
     <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
-    <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
+    <li><a href="{% url 'accounts:login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
     {% endif %}
     <li><a class="dropdown-trigger gold-text fLalezar" href="#!" data-target="dropdown1"><div class="gold-text"><i class="material-icons right gold-text">arrow_drop_down</i>میانبر</div></a></li>
   </ul>
@@ -115,54 +116,52 @@
 {% if not filter_off %}
 <ul id="slide-out" style="direction:ltr; border-top: #d4af37 10px solid; margin-top:63px; padding-bottom:150px;" class="sidenav sidenav-fixed grey lighten-3">
 
-  <br>
-  <li class="center fLalezar teal-text" style="font-size:120%">جستجوی پیشرفته</li>
-  <li><div style="border-top: #00796b 2px solid;" class="divider teal"></div></li>
-  <br>
+  <li class="center fLalezar gold-text grey lighten-4"  style="font-size:120%; padding:20px;" >جستجوی پیشرفته</li>
+
   <form  method="get">
+        <div style="margin:30px;" >
 <li></li>
 <div class="input-field col s12">
 {{filter.form.area__gte}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="area__gte">ابعاد سالن بزرگتر از</label>
+<label style="color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="area__gte">ابعاد سالن بزرگتر از</label>
 </div>
 <div class="input-field col s12">
 {{filter.form.area__lte}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="area__lte">ابعاد سالن کوچکتر از</label>
+<label style="color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="area__lte">ابعاد سالن کوچکتر از</label>
 </div>
 <div class="input-field col s12">
 {{filter.form.company_discount_percentage__gte}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="company_discount_percentage__gte">درصد تخفیف سامانه بزرگتر از</label>
+<label style="color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="company_discount_percentage__gte">درصد تخفیف بزرگتر از</label>
 </div>
 <div class="input-field col s12">
 {{filter.form.company_discount_percentage__lte}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">درصد تخفیف سامانه کوچکتر از</label>
-</div>
+<label style="color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">درصد تخفیف کوچکتر از</label>
+</div><br>
 <div class="input-field col s6 m6 l6">
 {{filter.form.is_futsall}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">فوتسال</label>
-</div>
+<label style="margin-top:-30px;color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">فوتسال</label>
+</div><br>
 <div class="input-field col s6 m6 l6">
 {{filter.form.is_football}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">فوتبال</label>
-</div>
+<label style="margin-top:-30px;color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">فوتبال</label>
+</div><br>
 <div class="input-field col s6 m6 l6">
 {{filter.form.is_basketball}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">بسکتبال</label>
-</div>
+<label style="margin-top:-30px;color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">بسکتبال</label>
+</div><br>
 <div class="input-field col s6 m6 l6">
 {{filter.form.is_volleyball}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">والیبال</label>
-</div>
+<label style="margin-top:-30px;color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">والیبال</label>
+</div><br>
 <div class="input-field col s6 m6 l6">
 {{filter.form.is_handball}}
-<label style="color:#d4af37;" class="teal-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">هندبال</label>
+<label style="margin-top:-30px;color:#d4af37;" class="gold-text fLalezar" style="font-size:90%" for="company_discount_percentage__lte">هندبال</label>
 </div>
-<div class="row">
-
-</div>
-<li class="center">  <button class="fLalezar hoverable btn waves-effect waves-dark teal white-text z-depth-3" type="submit">جستجو
+<br>
+<li class="center">  <button class="fLalezar hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">جستجو
 </button></li>
 <br><br><br><br><br><br>
+</div>
   </form>
 </ul>
 <section  class=" grey lighten-2 fLalezar">
@@ -603,7 +602,7 @@
   <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
   {% endif %}
   {% else %}
-  <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
+  <li><a href="{% url 'accounts:login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
   <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
   <li><a><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
   {% endif %}
@@ -638,7 +637,7 @@
 <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'masteruser:profile' slug=user.slug %}">پروفایل<i style="color: white;" class=" material-icons teal-text">account_circle</i></a></li>
 {% endif %}
 {% else %}
-<li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'login' %}">ورود<i  class=" material-icons teal-text">keyboard_tab</i></a></li>
+<li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'accounts:login' %}">ورود<i  class=" material-icons teal-text">keyboard_tab</i></a></li>
 <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'commonuser:signup' %}">عضویت<i  class=" material-icons teal-text">person_add</i></a></li>
 {% endif %}
 <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i  class=" material-icons teal-text">search</i></a></li>

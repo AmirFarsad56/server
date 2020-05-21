@@ -21,6 +21,7 @@
     <link rel="shortcut icon" type="image/png" href="/media/logos/favicon.png"/>
 
    <!--Let browser know website is optimized for mobile-->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
   </head>
 
     <body class="grey darken-3" style="direction:rtl;" >
@@ -78,7 +79,7 @@
             {% else %}
             <li><a ><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
             <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
-            <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
+            <li><a href="{% url 'accounts:login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
             {% endif %}
             <li><a class="dropdown-trigger gold-text fLalezar" href="#!" data-target="dropdown1"><div class="gold-text"><i class="material-icons right gold-text">arrow_drop_down</i>میانبر</div></a></li>
           </ul>
@@ -128,7 +129,7 @@
         <li><a href="{% url 'logout' %}"><div class="fLalezar gold-text" >خروج</div></a></li>
         {% endif %}
         {% else %}
-        <li><a href="{% url 'login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
+        <li><a href="{% url 'accounts:login' %}"><div class="fLalezar gold-text">ورود</div></a></li>
         <li><a href="{% url 'commonuser:signup' %}"><div class="fLalezar gold-text">عضویت</div></a></li>
         <li><a><a href="{% url 'company:contactus' %}" class="tooltipped" data-position="bottom" data-tooltip="ارتباط با ما"><i style="color:#d4af37;" class=" material-icons">phone</i></a></li>
         {% endif %}
@@ -163,7 +164,7 @@
   <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'masteruser:profile' slug=user.slug %}">پروفایل<i style="color: white;" class=" material-icons teal-text">account_circle</i></a></li>
   {% endif %}
   {% else %}
-  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'login' %}">ورود<i  class=" material-icons teal-text">keyboard_tab</i></a></li>
+  <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'accounts:login' %}">ورود<i  class=" material-icons teal-text">keyboard_tab</i></a></li>
   <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'commonuser:signup' %}">عضویت<i  class=" material-icons teal-text">person_add</i></a></li>
   {% endif %}
   <li class="gold-text"><a class="fLalezar" style="color:#d4af37;" href="{% url 'sportclub:publiclist' %}">مجموعه های ورزشی<i  class=" material-icons teal-text">search</i></a></li>

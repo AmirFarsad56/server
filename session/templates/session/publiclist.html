@@ -25,14 +25,15 @@
 
 
 {% block body_block %}
+
 <ul id="slide-out" style="direction:ltr; border-top: #d4af37 10px solid; margin-top:63px; padding-bottom:150px; " class="sidenav sidenav-fixed grey lighten-3">
 
-  <br>
-  <li class="center fLalezar teal-text"  style="font-size:120%" >جستجوی پیشرفته</li>
-  <li><div style="border-top: #00796b 2px solid;" class="divider teal"></div></li>
-  <br>
+  <li class="center fLalezar gold-text grey lighten-4"  style="font-size:120%; padding:20px;" >جستجوی پیشرفته</li>
+
   <form  method="get">
 <li></li>
+<div style="margin:30px;" >
+
 <div class="col s12">
 <div  class="form-group">
 {{filter.form.day_str}}
@@ -61,10 +62,11 @@
 <div class="input-field col s12">
 {{filter.form.discount_percentage__lte}}
 </div>
-
-<li class="center">  <button class="fLalezar hoverable btn waves-effect waves-dark teal white-text z-depth-3" type="submit">جستجو
+<br>
+<li class="center">  <button class="fLalezar hoverable btn waves-effect waves-dark gold white-text z-depth-3" type="submit">جستجو
 </button></li><br><br><br><br><br><br>
 <li><br><br><br></li>
+</div>
   </form>
 </ul>
 
