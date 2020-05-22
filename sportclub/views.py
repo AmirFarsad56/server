@@ -163,18 +163,6 @@ def SportClubDetailView(request,slug):
                       {'sportclub_detail':sportclub_instance})
 
 
-def SportClubDetailsView(request,pk):
-    sportclub_instance = get_object_or_404(SportClubModel, pk = pk)
-
-    try:
-        salon_instances = get_list_or_404(SalonModel, sportclub = sportclub_instance)
-        return render(request,'sportclub/publicdetail.html',
-                      {'sportclub':sportclub_instance,
-                       'salons':salon_instances})
-    except:
-        return render(request,'sportclub/publicdetail.html',
-                      {'sportclub':sportclub_instance})
-
 @login_required
 @masteruser_required
 def UnBanModalView(request,slug):
@@ -672,9 +660,3 @@ def SportClubPublicListView(request):
     page = request.GET.get('page')
     sportclubs = paginator.get_page(page)
     return render(request,'sportclub/publiclist.html',{'sportclubs':sportclubs,'filter':sportclub_filter})
-
-
-def SportClubPublicDetailView(request,pk):
-    sportclub_instance = get_object_or_404(SportClubModel, pk = pk)
-    return render(request,'sportclub/publicdetail.html',
-                      {'sportclub':sportclub_instance})

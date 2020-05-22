@@ -1,17 +1,17 @@
 {% load static %}
+{% load customtags_sportclub %}
+{% load leaflet_tags %}
 <!DOCTYPE html>
 <html>
   <head>
-{% load customtags_sportclub %}
-{% load static %}
-{% load leaflet_tags %}
-{% leaflet_css %}
-{% leaflet_js %}
+    {% leaflet_css %}
+    {% leaflet_js %}
 <meta name=”robots” content=”noindex,follow”>
 <title>
     لیست سالن های مجموعه ورزشی | سامانه ورزش کن
 </title>
 <style media="screen">
+#gis{{sportclub.pk}} {width:100%;height:340px; z-index: 4;}
   header, section, footer {
   padding-right: 300px;
 }
@@ -21,7 +21,9 @@
     padding-right: 0;
   }
 }
+
 </style>
+
 <link href="{% static 'css/aos.css' %}" rel="stylesheet">
 <link href="{% static 'css/datepicker/bootstrap.min.css' %}" rel="stylesheet" />
 <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
@@ -164,10 +166,99 @@
 </div>
   </form>
 </ul>
-<section  class=" grey lighten-2 fLalezar">
+<section  class=" grey lighten-3 fLalezar">
+<div id="sportclub" class="grey lighten-3">
+  {% if sportclub.user.is_active %}
+  <div style="padding:8px;" class="teal-text" >
+  <h6>
+    <div class="row">
+<div class="col s12 m6 l6">
+  <br><br>
+  {% leaflet_map sportclub.pk|pk_to_str callback=sportclub.pk|pk_to_map_init %}
 
-  <div class=" grey lighten-2 fLalezar">
-<br><br>
+</div>
+<div class="col s12 m6 l6">
+
+<div class="row">
+<div class="row">
+  <br>
+  <h5 class="fLalezar teal-text center">اطلاعات مجموعه ورزشی</h5>
+
+</div>
+  </div>
+
+<div class="fHarmattan">
+
+
+  <div class="row">
+    <div class="col s6 m6 l6 right-align black-text">{{sportclub.sportclub_name}}</div>
+    <div class="fLalezar col s6 m6 l6 left-align fLalezar">نام مجموعه ورزشی</div>
+  </div>
+  <div class="row">
+    <div class="col s6 m6 l6 right-align black-text">{{sportclub.serial_number}}</div>
+    <div class="fLalezar col s6 m6 l6 left-align fLalezar">سریال مجموعه ورزشی</div>
+  </div>
+  <div class="row">
+    <div class="col s6 m6 l6 right-align black-text">{{sportclub.user.first_name}} {{sportclub.user.last_name}}</div>
+    <div class="col s6 m6 l6 left-align fLalezar">نام و نام خانوادگی</div>
+  </div>
+  <div class="row">
+    <div class="col s6 m6 l6 right-align black-text">{{sportclub.user.email}}</div>
+    <div class="col s6 m6 l6 left-align fLalezar">ایمیل</div>
+  </div>
+  <div class="row">
+    <div class="col s6 m6 l6 right-align black-text">{{sportclub.company_phone_number}}</div>
+    <div class="col s6 m6 l6 left-align fLalezar">شماره تلفن ثابت</div>
+  </div>
+  <div class="row">
+    <div class="col s6 m6 l6 right-align black-text">{{sportclub.region}}</div>
+    <div class="col s6 m6 l6 left-align fLalezar">استان</div>
+  </div>
+  <div class="row">
+    <div class="col s6 m6 l6 right-align black-text">{{sportclub.address}}</div>
+    <div class="col s6 m6 l6 left-align fLalezar">آدرس</div>
+  </div>
+  {% if sportclub.info %}
+  <div class="row">
+    <div class="col s6 m6 l6 right-align black-text">{{sportclub.info}}</div>
+    <div class="col s6 m6 l6 left-align fLalezar">اطلاعات دیگر</div>
+  </div>
+  {% endif %}
+  {% if sportclub.terms_and_conditions %}
+  <div class="row">
+    <h5 class="black-text fLalezar">قوانین خاص مجموعه ورزشی</h5>
+
+  <div class="col s12 m12 l12 right-align black-text">{{sportclub.terms_and_conditions|linebreaks}}</div>
+  </div>
+  {% endif %}
+</div>
+  <br>
+
+</h6>
+</div>
+
+
+{% else %}
+  <div style="padding:8px; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" >
+  <h6>
+    متاسفانه قرارداد این مجموعه ورزشی با سامانه ورزش کن تمام شده است
+  </h6>
+</div>
+{% endif %}
+</div>
+
+<div id="divider" class="row center center-align">
+<div style="border-top: solid grey 1px;" class="col s5 m5 l5">
+</div>
+<div style="margin-top:-12px;" class="center col s2 m2 l2">
+<i class="material-icons small">blur_on</i>
+</div>
+<div style="border-top: solid grey 1px;" class="col s5 m5 l5">
+</div>
+</div>
+
+  <div  class=" grey lighten-3 fLalezar">
+<br>
 <span class="center-align"><h3 class="fLalezar teal-text";>لیست سالن های مجموعه ورزشی</h3><br><br></span>
 
 
@@ -197,7 +288,7 @@
       </div>
       <div class="row">
         <div class="col s6 m6 l6 right-align black-text">{{salon.floor_type}}</div>
-        <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
+        <div class="col s6 m6 l6 left-align fLalezar">کیفیت کفپوش سالن</div>
       </div>
       <div class="row">
       <div class="col s6 m6 l6 right-align black-text">
@@ -226,8 +317,7 @@
     <div class="card-tabs center-align " style="height: 50px; ">
       <ul class="center tabs tabs-fixed-width gold" style="direction:ltr;">
         <li class="tab"><a class="white-text" href="#options{{salon.pk}}">امکانات</a></li>
-        <li class="tab"><a class="white-text active" href="#sportclub{{salon.pk}}">مجموعه ورزشی</a></li>
-        <li class="tab"><a class="white-text" href="#session{{salon.pk}}">سانس ها </a></li>
+        <li class="tab"><a class="white-text active" href="#session{{salon.pk}}">سانس ها </a></li>
       </ul>
     </div>
     <div  class="card-content grey lighten-2">
@@ -300,20 +390,6 @@
       </div>
         {% endif %}
       </div>
-      <div id="sportclub{{salon.pk}}">
-        <div class="row fHarmattan">
-          <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.sportclub_name}}</div>
-          <div class="col s5 m5 l5 left-align fLalezar">نام مجموعه ورزشی</div>
-          <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.serial_number}}</div>
-          <div class="col s5 m5 l5 left-align fLalezar">سریال مجموعه ورزشی</div>
-          <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.region}}</div>
-          <div class="col s5 m5 l5 left-align fLalezar">استان</div>
-          <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.address}}</div>
-          <div class="col s5 m5 l5 left-align fLalezar">آدرس</div>
-          <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.company_phone_number}}</div>
-          <div class="col s5 m5 l5 left-align fLalezar">شماره تلفن ثابت</div>
-        </div>
-      </div>
     </div>
 
   </div>
@@ -326,7 +402,7 @@
 <div class="container center">
 
 
-<ul style="margin-left:5%"  class="pagination  z-depth-5 hoverable white fLalezar">
+<ul class="pagination  z-depth-5 hoverable white fLalezar">
   {% if salons.has_previous %}
   <li class="waves-effect"><a href="?page=1">&laquo; اولین صفحه</a></li>
       <li class="waves-effect"><a href="?page={{ salons.previous_page_number }}">قبلی  </a></li>
@@ -348,7 +424,7 @@
 
 </div>
 </section>
-<footer style="width:108%; margin-left:-10px;margin-right:-10px; margin-bottom:-30px; " class="page-footer white">
+<footer style= margin-bottom:-30px; " class="page-footer white">
 <div class="container ">
 <div class="row">
   <div class="col l6 m6 s12" style="direction:ltr;">
@@ -376,11 +452,98 @@
 {% else %}
 <div class="row">
 
-<div  class="col s12 m12 l12 grey lighten-2 fLalezar">
+<div  class="col s12 m12 l12 grey lighten-3 fLalezar">
+  <div id="sportclub" class="grey lighten-3">
+    {% if sportclub.user.is_active %}
+    <div style="padding:8px;" class="teal-text" >
+    <h6>
+      <div class="row">
+  <div style="padding-right:15px;padding-left:15px;" class="col s12 m6 l6">
+    <br><br>
+    {% leaflet_map sportclub.pk|pk_to_str callback=sportclub.pk|pk_to_map_init %}
 
+  </div>
+  <div class="col s12 m6 l6">
+
+  <div class="row">
+  <div class="row">
+    <br>
+    <h5 class="fLalezar teal-text center">اطلاعات مجموعه ورزشی</h5>
+
+  </div>
+    </div>
+
+  <div class="fHarmattan">
+
+
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.sportclub_name}}</div>
+      <div class="fLalezar col s6 m6 l6 left-align fLalezar">نام مجموعه ورزشی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.serial_number}}</div>
+      <div class="fLalezar col s6 m6 l6 left-align fLalezar">سریال مجموعه ورزشی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.user.first_name}} {{sportclub.user.last_name}}</div>
+      <div class="col s6 m6 l6 left-align fLalezar">نام و نام خانوادگی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.user.email}}</div>
+      <div class="col s6 m6 l6 left-align fLalezar">ایمیل</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.company_phone_number}}</div>
+      <div class="col s6 m6 l6 left-align fLalezar">شماره تلفن ثابت</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.region}}</div>
+      <div class="col s6 m6 l6 left-align fLalezar">استان</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.address}}</div>
+      <div class="col s6 m6 l6 left-align fLalezar">آدرس</div>
+    </div>
+    {% if sportclub.info %}
+    <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">{{sportclub.info}}</div>
+      <div class="col s6 m6 l6 left-align fLalezar">اطلاعات دیگر</div>
+    </div>
+    {% endif %}
+    {% if sportclub.terms_and_conditions %}
+    <div class="row">
+      <h5 class="black-text fLalezar">قوانین خاص مجموعه ورزشی</h5>
+
+    <div class="col s12 m12 l12 right-align black-text">{{sportclub.terms_and_conditions|linebreaks}}</div>
+    </div>
+    {% endif %}
+  </div>
+    <br>
+
+  </h6>
+  </div>
+
+  {% else %}
+    <div style="padding:8px; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" >
+    <h6>
+      متاسفانه قرارداد این مجموعه ورزشی با سامانه ورزش کن تمام شده است
+    </h6>
+  </div>
+
+  </div>
+  {% endif %}
+
+  <div id="divider" class="row center center-align">
+  <div style="border-top: solid grey 1px;" class="col s5 m5 l5">
+  </div>
+  <div style="margin-top:-12px;" class="center col s2 m2 l2">
+  <i class="material-icons small">blur_on</i>
+  </div>
+  <div style="border-top: solid grey 1px;" class="col s5 m5 l5">
+  </div>
+  </div>
 <div class="container">
 
-<br><br>
 
 <span class="center-align"><h3 class="fLalezar teal-text";>لیست سالن ها</h3><br><br></span>
 
@@ -388,7 +551,7 @@
 
 <div class="row center fHarmattan">
   {% for salon in salons %}
-  <div style="margin-left:5%; border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
+  <div style=" border-radius: 25px; border-top: 5px solid #d4af37;" class="card hoverable grey lighten-3  z-depth-5 teal-text" data-aos="fade-up"
      data-aos-anchor-placement="top-bottom" data-aos-duration="1300">
   <div class="card-content">
     {% if salon.pictures.all %}
@@ -410,7 +573,7 @@
     </div>
     <div class="row">
       <div class="col s6 m6 l6 right-align black-text">{{salon.floor_type}}</div>
-      <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
+      <div class="col s6 m6 l6 left-align fLalezar">کیفیت کفپوش سالن</div>
     </div>
     <div class="row">
     <div class="col s6 m6 l6 right-align black-text">
@@ -438,9 +601,8 @@
 
   <div class="card-tabs center-align " style="height: 50px; ">
     <ul class="center tabs tabs-fixed-width gold" style="direction:ltr;">
-      <li class="tab"><a class="white-text" href="#options{{salon.pk}}"> سالن</a></li>
-      <li class="tab"><a class="white-text active" href="#sportclub{{salon.pk}}">مجموعه ورزشی</a></li>
-      <li class="tab"><a class="white-text" href="#session{{salon.pk}}">سانس ها </a></li>
+      <li class="tab"><a class="white-text" href="#options{{salon.pk}}">امکانات</a></li>
+      <li class="tab"><a class="white-text active" href="#session{{salon.pk}}">سانس ها </a></li>
     </ul>
   </div>
   <div  class="card-content grey lighten-2">
@@ -512,22 +674,6 @@
         <img style="margin:10px;" src="/media/logos/wifi.png" width="42"><span class="tiptooltext" >وای فای</span>
     </div>
       {% endif %}
-    </div>
-    <div id="sportclub{{salon.pk}}" >
-      <div class="row fHarmattan">
-        <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.sportclub_name}}</div>
-        <div class="col s5 m5 l5 left-align fLalezar">نام مجموعه ورزشی</div>
-        <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.serial_number}}</div>
-        <div class="col s5 m5 l5 left-align fLalezar">سریال مجموعه ورزشی</div>
-        <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.region}}</div>
-        <div class="col s5 m5 l5 left-align fLalezar">استان</div>
-        <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.address}}</div>
-        <div class="col s5 m5 l5 left-align fLalezar">آدرس</div>
-        <div class="col s7 m7 l7 right-align black-text">{{salon.sportclub.company_phone_number}}</div>
-        <div class="col s5 m5 l5 left-align fLalezar">شماره تلفن ثابت</div>
-      </div>
-        <a href="{% url 'sportclub:publicdetail' pk=salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large fLalezar" ><h6>جزئیات</h6></a>
-
     </div>
   </div>
 
@@ -700,6 +846,17 @@
 <script>
 AOS.init();
 </script>
+<script type="text/javascript">
+    function map_init_{{sportclub.pk}} (map, options) {
+        // get point lat and lon
+        var lon = "{{ sportclub.location.x }}";
+        var lat = "{{ sportclub.location.y }}";
+        // zoom to point & add it to map
+        map.setView([lat, lon], 12  );
+        L.marker([lat, lon]).addTo(map);
+    }
+</script>
+
 <script type="text/javascript">
   $(document).ready(function(){
     $('.slider').slider({

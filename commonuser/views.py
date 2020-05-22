@@ -42,37 +42,30 @@ def CommonUserSignupView(request):
     api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     try:
         last_retry_str = request.session['last_retry']
+        retries = request.session['retries']
         last_retry = datetime.datetime.strptime(last_retry_str,"%Y-%m-%d %H:%M:%S")
     except:
         last_retry = datetime.datetime.now()
     now = datetime.datetime.now()
-    if now >= last_retry:
+    if now >= last_retry or retries != 2:
         if request.method == 'POST':
 
             user_form = UserForm(data = request.POST)
             commonuser_form = CommonUserForm(data = request.POST)
 
             if user_form.is_valid() and commonuser_form.is_valid():
+                 request.session['name'] =  user_form.cleaned_data.get('first_name')
+                 request.session['password1'] =  user_form.cleaned_data.get('password1')
+                 request.session['username'] = user_form.cleaned_data.get('username')
+                 request.session['email'] =  user_form.cleaned_data.get('email')
 
-                 user = user_form.save(commit=False)
-                 user.is_commonuser = True
-                 user.is_active = False
-                 user.save()
-
-                 request.session['user_slug'] =  user.slug
-                 commonuser = commonuser_form.save(commit=False)
-                 commonuser.user = user
-                 commonuser.phone_number = '0' + user.username
-                 commonuser.save()
-                 phone_number = commonuser.phone_number
+                 phone_number = '0' + user_form.cleaned_data.get('username')
                  #### generating code
                  var = '1234567890'
                  random_code=''
                  for i in range(5):
                      c = random.choice(var)
                      random_code += c
-                 ######
-                 print(phone_number)
                  code = random_code
                  ######### send code to commonuser
                  params = {
@@ -85,19 +78,22 @@ def CommonUserSignupView(request):
                      response = api.sms_send(params)
                      request.session['code'] =  code
                      request.session['phone_number'] =  phone_number
-                     now = datetime.datetime.now() + datetime.timedelta(minutes=1)
+                     now = datetime.datetime.now() + datetime.timedelta(minutes=2)
                      str_now = str(now.year)+'-'+str(now.month)+'-'+str(now.day)+' '+str(now.hour)+':'+str(now.minute)+':'+str(now.second)
                      request.session['last_retry'] = str_now
+                     try:
+                         if request.session['retries'] == 1:
+                             request.session['retries'] = 2
+                     except:
+                         request.session['retries'] = 1
 
-                 #################################
+
                  except:
                      return HttpResponseRedirect(reverse('accounts:wrongphonenumber'))
 
 
                  return HttpResponseRedirect(reverse('commonuser:confirmation'))
             else:
-                # One of the forms was invalid if this else gets called.
-                #redirect to another page or anything else
                 print(user_form.errors,commonuser_form.errors)
 
 
@@ -113,28 +109,35 @@ def CommonUserSignupView(request):
 
 
 def UserConfirmView(request):
-
-    user_slug = request.session['user_slug']
+    name = request.session['name']
+    password1 = request.session['password1']
+    username = request.session['username']
+    email = request.session['email']
     code = request.session['code']
-    user_instance = get_object_or_404(UserModel,slug = user_slug)
+    phone_number = request.session['phone_number']
     if request.method == 'POST':
 
         confirmation_form = ConfirmationForm(data = request.POST)
 
         if confirmation_form.is_valid():
             confirmation_code = confirmation_form.cleaned_data.get('code')
-            print(confirmation_code,code)
             if confirmation_code == code:
-                user_instance.is_active = True
-                user_instance.save()
+                user = UserModel.objects.create(username=username, password=password1,
+                                            first_name = name, email = email)
+                user.is_active = True
+                user.is_commonuser = True
+                # hashing password
+                user.set_password(user.password)
+                user.save()
+                commonuser = CommonUserModel.objects.create(user=user, phone_number=phone_number)
+                commonuser.save()
                 return HttpResponseRedirect(reverse('login'))
         else:
-            print(confirmation_form.errors,)
+            print(confirmation_form.errors)
 
 
     else:
         confirmation_form = ConfirmationForm()
-        phone_number = request.session['phone_number']
     return render(request,'commonuser/confirmation.html',
                           {'confirmation_form':confirmation_form,'phone_number':phone_number})
 #    except:

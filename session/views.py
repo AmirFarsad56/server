@@ -1067,7 +1067,7 @@ def SessionPublicListForSpecificSalonView(request,pk):
     paginator = Paginator(session_filter.qs, 15)
     page = request.GET.get('page')
     sessions = paginator.get_page(page)
-    return render(request,'session/publiclistforsalon.html',{'sessions':sessions,'filter':session_filter})
+    return render(request,'session/publiclistforsalon.html',{'sessions':sessions,'filter':session_filter,'salon':salon,})
 
 
 def TodaySessionPublicListView(request):

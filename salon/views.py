@@ -495,7 +495,7 @@ def SalonPublicListForSpecificSportClubView(request,pk):
             filter_off = False
             if len(salon_list) == 1:
                 filter_off = True
-            return render(request,'salon/publiclistforsportclub.html',{'filter_off':filter_off,'salons':salons,'filter':salon_filter})
+            return render(request,'salon/publiclistforsportclub.html',{'filter_off':filter_off,'salons':salons,'filter':salon_filter,'sportclub':sportclub})
         except:
             return render(request,'salon/publiclistforsportclub.html')
     else:

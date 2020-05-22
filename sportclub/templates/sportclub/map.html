@@ -1,4 +1,4 @@
-{% extends "base_templates/base1.html" %}
+{% extends "base_templates/base_public.html" %}
 {% load static %}
 {% load customtags_sportclub %}
 {% load leaflet_tags %}
@@ -27,7 +27,7 @@
         var pk = feature.properties.pk;
         layer.on("click", function(e){
           console.log("inner",pk);
-          location.href='/sportclub/public-detail/'+pk+'/';
+          location.href='/salon/salon-Plist-sportclub/'+pk+'/';
         });
 
       }
@@ -35,14 +35,15 @@
     datasets.addTo(map);
   }
 </script>
-<br><br><br><br>
-
+<br>
+<h4 class="center fLalezar gold-text">موقعیت مجموعه های ورزشی</h4><br>
+<br><br>
 <div class="container">
   {% leaflet_map 'gis' callback="window.points" %}
 
 </div>
 
-
+<br><br><br>
 
 
 {% endblock %}

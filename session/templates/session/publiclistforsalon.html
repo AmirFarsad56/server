@@ -68,12 +68,132 @@
   </form>
 </ul>
 
-<section  class=" grey lighten-2 fLalezar">
+<section  class=" grey lighten-3 fLalezar">
+<div id="salon" class="grey lighten-3">
+  <br><br>
+  <div class="row">
+    <div style="padding:20px;" class="col s12 m6 l6">
+      {% if salon.pictures.all %}
+          <div style="z-index: 1; " class="slider">
+              <ul style="z-index: 1; " class="slides">
+      {% for pic in salon.pictures.all %}
+          <li >
+            <img style="z-index: 1" src="{{pic.picture.url}}">
+          </li>
+      {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    <div class="teal-text fHarmattan col s12 m6 l6">
+      <br><br>
+      <div class="row">
+        <div class="col s6 m6 l6 right-align black-text">{{salon.area}}</div>
+        <div class="col s6 m6 l6 left-align fLalezar fLalezar">اندازه سالن (متر مربع)</div>
+      </div>
+      <div class="row">
+        <div class="col s6 m6 l6 right-align black-text">{{salon.floor_type}}</div>
+        <div class="col s6 m6 l6 left-align fLalezar">کیفیت کفپوش سالن</div>
+      </div>
+      <div class="row">
+      <div class="col s6 m6 l6 right-align black-text">
+        {% if salon.is_football %}
+        فوتبال
+        {% endif %}
+        {% if salon.is_futsall %}
+        فوتسال
+        {% endif %}
+        {% if salon.is_volleyball %}
+        والیبال
+        {% endif %}
+        {% if salon.is_basketball %}
+        بسکتبال
+        {% endif %}
+        {% if salon.is_handball %}
+        هندبال
+        {% endif %}
+      </div>
+      <div class="col s6 m6 l6 left-align fLalezar">زمینه ورزشی سالن</div>
+      </div>
+      <div style="line-height: 27px;" class="row">
 
-  <div class=" grey lighten-2 fLalezar">
+
+      {% if salon.locker %}
+<div class="col s4 m4 l4">
+  <div class="col s6 m6 l6">
+      <img src="/media/logos/locker.png" width="42">
+</div>
+<div  class="left-align col s6 m6 l6 ">
+    <span >کمد</span>
+</div>
+</div>
+      {% endif %}
+      {% if salon.air_conditioner %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/air_conditioner.png" width="42"></div><div  style="line-height: 27px;" class="left-align left-align col s6 m6 l6 "><span >تهویه هوا</span></div>
+      </div>
+      {% endif %}
+      {% if salon.ball_rent %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/ball_rent.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >اجاره توپ</span></div>
+    </div>
+      {% endif %}
+      {% if salon.spectator_place %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/spectator_place.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >جایگاه تماشاچی</span></div>
+    </div>
+      {% endif %}
+      {% if salon.shower %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/shower.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >دوش</span></div>
+    </div>
+      {% endif %}
+      {% if salon.changing_room %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/changing_room1.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >اتاق تعویض لباس</span></div>
+    </div>
+      {% endif %}
+      {% if salon.parking_area %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/parking_area.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >پارکینگ</span></div>
+    </div>
+      {% endif %}
+      {% if salon.drinking_water %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/drinking_water.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >آب آشامیدنی</span></div>
+    </div>
+      {% endif %}
+      {% if salon.safe_keeping %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/safe_keeping.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >امانتداری</span></div>
+    </div>
+      {% endif %}
+      {% if salon.buffet %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/buffet.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >بوفه</span></div>
+    </div>
+      {% endif %}
+      {% if salon.taxi %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/taxi.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >تاکسی ویژه</span></div>
+    </div>
+      {% endif %}
+      {% if salon.wifi %}<div class="col s4 m4 l4"><div class="col s6 m6 l6">
+        <img   src="/media/logos/wifi.png" width="42"></div><div  style="line-height: 27px;" class="left-align col s6 m6 l6 "><span >وای فای</span></div>
+    </div>
+      {% endif %}
+            </div>
+    </div>
+<div class="row">
+
+</div>
+  </div>
+  </div>
+
+  <div id="divider" class="row center center-align">
+  <div style="border-top: solid grey 1px;" class="col s5 m5 l5">
+  </div>
+  <div style="margin-top:-12px;" class="center col s2 m2 l2">
+  <i class="material-icons small">blur_on</i>
+  </div>
+  <div style="border-top: solid grey 1px;" class="col s5 m5 l5">
+  </div>
+  </div>
+
+  <div class=" grey lighten-3 fLalezar">
 
 <br><br>
-<span class="center-align"><h3 class="fLalezar teal-text";>لیست سانس ها</h3><br><br></span>
+<span class="center-align"><h3 class="fLalezar teal-text";>سانس های این سالن</h3><br><br></span>
 
 
   <div class="row center">
@@ -116,7 +236,6 @@
 
     <div class="card-tabs center-align " style="height: 50px; ">
       <ul class="center tabs tabs-fixed-width gold" style="direction:ltr;">
-        <li class="tab"><a class="white-text" href="#options{{session.pk}}">سالن</a></li>
         <li class="tab"><a class="white-text active" href="#session{{session.pk}}">سانس </a></li>
         <li class="tab"><a class="white-text " href="#sportclub{{session.pk}}">مجموعه ورزشی</a></li>
 
@@ -138,106 +257,6 @@
 </div>
       </div>
 
-
-      <div  class="center fHarmattan" id="options{{session.pk}}">
-        {% if session.salon.pictures.all %}
-
-                <div class="slider">
-                    <ul class="slides">
-            {% for pic in session.salon.pictures.all %}
-                <li>
-                  <img src="{{pic.picture.url}}"> <!-- random image -->
-                </li>
-            {% endfor %}
-              </ul>
-            </div>
-<br>
-      {% endif %}
-
-              <div class="row">
-                <div class="col s6 m6 l6 right-align black-text">{{session.salon.area}}</div>
-                <div class="col s6 m6 l6 left-align fLalezar fLalezar">اندازه سالن (مترمربع)</div>
-              </div>
-              <div class="row">
-                <div class="col s6 m6 l6 right-align black-text">{{session.salon.floor_type}}</div>
-                <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
-              </div>
-              <div class="row">
-              <div class="col s6 m6 l6 right-align black-text">
-                {% if session.salon.is_football %}
-                فوتبال
-                {% endif %}
-                {% if session.salon.is_futsall %}
-                فوتسال
-                {% endif %}
-                {% if session.salon.is_volleyball %}
-                والیبال
-                {% endif %}
-                {% if session.salon.is_basketball %}
-                بسکتبال
-                {% endif %}
-                {% if session.salon.is_handball %}
-                هندبال
-                {% endif %}
-              </div>
-              <div class="col s6 m6 l6 left-align fLalezar">زمینه ورزشی سالن</div>
-              </div><br>
-              <h6 class="row fLalezar black-text">
-                امکانات سالن
-              </h6>
-        {% if session.salon.locker %}
-        <div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/locker.png" width="38"><span class="tiptooltext" >کمد</span>
-        </div>
-        {% endif %}
-        {% if session.salon.air_conditioner %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/air_conditioner.png" width="38"><span class="tiptooltext" >تهویه هوا</span>
-        </div>
-        {% endif %}
-        {% if session.salon.ball_rent %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/ball_rent.png" width="38"><span class="tiptooltext" >اجاره توپ</span>
-      </div>
-        {% endif %}
-        {% if session.salon.spectator_place %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/spectator_place.png" width="38"><span class="tiptooltext" >جایگاه تماشاچی</span>
-      </div>
-        {% endif %}
-        {% if session.salon.shower %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/shower.png" width="38"><span class="tiptooltext" >دوش</span>
-      </div>
-        {% endif %}
-        {% if session.salon.changing_room %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/changing_room1.png" width="38"><span class="tiptooltext" >اتاق تعویض لباس</span>
-      </div>
-        {% endif %}
-        {% if session.salon.parking_area %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/parking_area.png" width="38"><span class="tiptooltext" >پارکینگ</span>
-      </div>
-        {% endif %}
-        {% if session.salon.drinking_water %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/drinking_water.png" width="38"><span class="tiptooltext" >آب آشامیدنی</span>
-      </div>
-        {% endif %}
-        {% if session.salon.safe_keeping %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/safe_keeping.png" width="38"><span class="tiptooltext" >امانتداری</span>
-      </div>
-        {% endif %}
-        {% if session.salon.buffet %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/buffet.png" width="38"><span class="tiptooltext" >بوفه</span>
-      </div>
-        {% endif %}
-        {% if session.salon.taxi %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/taxi.png" width="38"><span class="tiptooltext" >تاکسی ویژه</span>
-      </div>
-        {% endif %}
-        {% if session.salon.wifi %}<div class="tiptool">
-          <img style="margin:3px;" src="/media/logos/wifi.png" width="38"><span class="tiptooltext" >وای فای</span>
-      </div>
-        {% endif %}
-        <div class="row center">
-          <a href="{% url 'session:publiclistforsalon' pk=session.salon.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large fLalezar" ><h6>سانس های دیگر این سالن</h6></a>
-        </div>
-      </div>
       <div id="sportclub{{session.pk}}" >
         <div class="row fHarmattan">
           <div class="col s7 m7 l7 right-align black-text">{{session.salon.sportclub.sportclub_name}}</div>
@@ -251,7 +270,7 @@
           <div class="col s7 m7 l7 right-align black-text">{{session.salon.sportclub.company_phone_number}}</div>
           <div class="col s5 m5 l5 left-align fLalezar">شماره تلفن ثابت</div>
         </div>
-          <a target="_blank" href="{% url 'sportclub:publicdetail' pk=session.salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+          <a target="_blank" href="{% url 'salon:publiclistforsportclub' pk=session.salon.sportclub.pk %}" style="height:40px; margin-top:0px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
 
       </div>
     </div>
@@ -267,7 +286,7 @@
 <div class="container center">
 
 
-<ul style="margin-left:5%"  class="pagination  z-depth-5 hoverable white fLalezar">
+<ul class="pagination  z-depth-5 hoverable white fLalezar">
   {% if sessions.has_previous %}
   <li class="waves-effect"><a href="?page=1">&laquo; اولین صفحه</a></li>
       <li class="waves-effect"><a href="?page={{ sessions.previous_page_number }}">قبلی  </a></li>

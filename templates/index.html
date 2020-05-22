@@ -60,7 +60,7 @@
         var pk = feature.properties.pk;
         layer.on("click", function(e){
           console.log("inner",pk);
-          location.href='/sportclub/Pdetail/'+pk+'/';
+          location.href='/salon/salon-Plist-sportclub/'+pk+'/';
         });
 
       }
@@ -445,7 +445,7 @@
 
 
     <div class="row">
-<div class="col s12 m12 l6 center-align"><a href="{% url 'sportclub:publicdetail' pk=object.salon.sportclub.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large z-depth-0" ><h6>جزئیات و محل مجموعه</h6></a></div>
+<div class="col s12 m12 l6 center-align"><a href="{% url 'salon:publiclistforsportclub' pk=object.salon.sportclub.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large z-depth-0" ><h6>جزئیات و محل مجموعه</h6></a></div>
 <div class="col s12 m12 l6 center-align"><a href="{% url 'booking:signcontract' object.salon.pk %}" style="height:40px; margin-top:16px; white-space:pre;" class="waves-effect waves-light btn z-depth-0" ><h6>    عقد قرارداد با این سالن    </h6></a></div>
 <div class="col s12 m12 l12 center-align"><a href="{% url 'session:publiclistforsalon' object.salon.pk %}" style="height:40px;white-space:pre; margin-top:16px;" class="waves-effect waves-light btn-large z-depth-3" ><h6>   رزرو و جزئیات سالن     </h6></a></div>
     </div>

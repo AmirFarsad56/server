@@ -7,13 +7,12 @@ from sportclub.views import (SportClubSignupView, SportClubProfileView,
                             EmailSendingView, BankInfoChangeView,
                             SportClubUpdateView, TermsAndConditionsView,
                             SportClubListViewSuperUser,SportClubDetailViewSuperUser,
-                            SportClubWorkSpaceView,SportClubDetailsView,
+                            SportClubWorkSpaceView,
                             SportClubBanView_2,SportClubUnBanView_2,
                             SportClubBanView_3,SportClubUnBanView_3,BanModalView,
                             UnBanModalView,UnBanModalView_2,UnBanModalView_3,
                             BanModalView_2,BanModalView_3, MapDataSetView, MapView,
-                            NoAccountDetailErrorView, SportClubPublicListView,
-                            SportClubPublicDetailView, )
+                            NoAccountDetailErrorView, SportClubPublicListView,)
 from salon.views import SalonCreateView
 
 app_name ='sportclub'
@@ -30,8 +29,6 @@ urlpatterns = [
     path('detail-superuser/<slug:slug>/', SportClubDetailViewSuperUser, name='detailforsuperuser'),
     path('bannedlist/', BannedSportClubListView, name='bannedlist'),
     path('list/<slug:slug>/', SportClubDetailView, name='detail'),
-    path('Pdetail/<int:pk>/', SportClubPublicDetailView, name='publicdetail'),#####
-    path('public-detail/<int:pk>/', SportClubDetailsView, name='publicdetail'),#####
     path('ban/<slug:slug>/', SportClubBanView, name='ban'),
     path('ban-modal/<slug:slug>/', BanModalView, name='banmodal'),
     path('ban-modal-2/<slug:slug>/', BanModalView_2, name='banmodal2'),

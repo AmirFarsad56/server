@@ -52,7 +52,7 @@
           <div class="col s4 m4 l4 left-align fLalezar">آدرس</div>
           <div class="col s8 m8 l8 right-align black-text">{{session.salon.sportclub.company_phone_number}}</div>
           <div class="col s4 m4 l4 left-align fLalezar">شماره تلفن ثابت</div>
-          <a target="_blank" href="{% url 'sportclub:publicdetail' pk=session.salon.sportclub.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
+          <a target="_blank" href="{% url 'salon:publiclistforsportclub' pk=session.salon.sportclub.pk %}" style="height:40px; margin-top:16px" class="waves-effect waves-light btn-large" ><h6>جزئیات</h6></a>
         </div>
           </div>
 
@@ -85,7 +85,7 @@
               </div>
               <div class="row">
                 <div class="col s6 m6 l6 right-align black-text">{{session.salon.floor_type}}</div>
-                <div class="col s6 m6 l6 left-align fLalezar">جنس کف سالن</div>
+                <div class="col s6 m6 l6 left-align fLalezar">کیفیت کفپوش سالن</div>
               </div>
               <div class="row">
               <div class="col s6 m6 l6 right-align black-text">
